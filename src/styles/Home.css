@@ -1,0 +1,123 @@
+html {
+    scroll-behavior: smooth;
+   /*Comenta la línea (o dale el valor 'auto' a scroll behavior )
+   para probar la diferencia con y sin scroll suavizado*/
+   
+    --main-color: rgb(80, 174, 233);
+}
+
+
+.div-main-home h2 {
+    margin: 50px 0;
+    font-weight: 400;
+}
+
+
+
+.div-main-balance {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 70%;
+    margin: auto;
+}
+
+.div-balance-margintop {
+    margin-top: 50px;
+}
+
+.div-balance-container {
+    border-bottom: solid 3px var(--main-color);
+    width: 50%;
+    padding: 10px 0;
+    color: gray;
+}
+
+.div-balance-title {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    border-left: solid 2px var(--main-color);
+    border-right: solid 2px var(--main-color);
+    width: 50%;
+    color: white;
+    font-weight: 500;
+}
+
+.div-main-balance-border {
+    border-left: solid 0.5px gray;
+    border-right: solid 0.5px gray;
+    margin-bottom: 25px;
+}
+
+.div-balance-title-left {
+    border-top-left-radius: 10px;
+    border-left: solid 2px var(--main-color);
+}
+
+.div-balance-title-right {
+    border-top-right-radius: 10px;
+    border-right: solid 2px var(--main-color);
+}
+
+.div-balance-ul {
+    padding: 0;
+    margin: 0;
+}
+
+.div-balance-ul li {
+    list-style: none;
+    width: 50%;
+    margin: auto;
+}
+
+@media (max-width: 440px){
+    .div-container-total {
+        display: flex;        
+        width: 70%;
+        margin: auto;
+    }
+
+
+    .div-balance-title {
+        min-height: 32px;
+        padding: 9px 20px;
+        margin: auto;
+    }
+    
+    .div-balance-title-left {
+        border-top-left-radius: 0px;
+        border-left: solid 2px var(--main-color);
+    }
+
+
+
+    .div-balance-title-right {
+        border-top-right-radius: 0px;
+        border-right: solid 2px var(--main-color);
+        background-color: var(--main-color);
+    }
+
+
+    .div-responsive {
+        display: block;
+        min-height: 184px;
+        margin-top: 50px;
+        border-bottom: solid 2px var(--main-color);
+        border-top: solid 2px var(--main-color);
+    }
+
+    .div-balance-container-responsive {
+        min-height: 35px;
+        border: none;
+        margin: auto;
+        padding-top: 23px;
+        padding-bottom: 0;
+    }
+
+    .div-balance-title-responsive {
+        width: auto;
+        max-width: 60px;
+    }
+
+    
+}
