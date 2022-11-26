@@ -4,14 +4,110 @@ html {
    para probar la diferencia con y sin scroll suavizado*/
    
     --main-color: rgb(80, 174, 233);
+    --second-color: rgb(116, 228, 150);
 }
 
+.div-main-home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.home-div-content {
+    background-color: white;
+    height: 80vh;
+    margin-left: 10%;
+    width: 55%;
+    z-index: 20;
+    position: relative;
+    border-radius: 30px;
+    border: 1px solid gray;
+    text-align: left;
+    padding-left: 6%;
+    padding-top: 50px;
+}
 
 .div-main-home h2 {
-    margin: 50px 0;
-    font-weight: 400;
+    margin: 10px 0;
+    font-weight: 800;
+    font-size: 32px;
 }
 
+.div-main-home h3 {
+    margin: 0px 0;
+    font-weight: 400;
+    margin-bottom: 40px;
+    font-size: 26px;
+}
+
+.home-div-container {
+    display: flex;
+
+}
+
+.home-div-container form {
+    width: 50%;
+}
+
+.home-div-container div {
+    width: 50%;
+    height: 100%;
+}
+
+.home-div-container div i {
+    float: right;
+    margin-right: -25px;
+    margin-top: 30px;
+    padding: 15px 10px;
+    border-radius: 30px;
+    background-color: var(--second-color);
+    font-size: 25px;
+    display: block;
+}
+
+.home-div-content form input {
+    display: block;
+    margin: 20px 10px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: 20px;
+}
+
+.home-div-content form input:focus {
+    outline: none;
+}
+
+.home-div-content form button {
+    padding: 20px 30px;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: var(--second-color);
+}
+
+
+
+.home-div-color{
+    background-color: var(--main-color);
+    min-height: 100vh;
+    width: 40%;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+
+.home-div-steps-container{
+}
+
+.step {
+    display: flex;
+
+}
 
 
 .div-main-balance {

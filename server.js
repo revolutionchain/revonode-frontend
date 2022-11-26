@@ -2,23 +2,106 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
+const { execFile } = require("child_process");
+const blk = require('linux-blockutils');
+const { resolveAny } = require("dns");
+
+
+
+app.get('/showdrives', function (req, res, next) {
+  blk.getBlockInfo({}, function (err, json) {
+    if (err) {
+      console.log("Error:" + err);
+      res.send('Error: ' + err);
+    } else {
+      res.send(JSON.stringify(json, null, "  "));
+    }
+  });
+});
+
+
+function checkFunction(sdx, type) {
+  execFile('bash', ['/home/revo/nodeutils', type, sdx], (err, stdout, stderr) => {
+    if (err) {
+      return (err);
+    } else {
+      return (stdout);
+    }
+  });
+}
+
+app.post('/checkdrive', (req, res, next) => {
+  const { sda, sdb } = req.body;
+  let res = [];
+  if (!sda || !sdb) {
+    res.status(404).send('You need at least 2 drives!');
+  }
+  resSda = { sda: checkFunction(sda, '-checkdrive') };
+  res.push(resSda);
+  resSdb = { sdb: checkFunction(sdb, '-checkdrive') };
+  res.push(resSdb);
+  res.send(res);
+
+});
+
+app.post('/checkfilesystem', (req, res, next) => {
+  const { sda, sdb } = req.body;
+  let res = [];
+  if (!sda || !sdb) {
+    res.status(404).send('You need at least 2 drives!');
+  }
+  let resSda = { sda: checkFunction(sda, '-checkfilesystem') };
+  res.push(resSda);
+  let resSdb = { sdb: checkFunction(sdb, '-checkfilesystem') };
+  res.push(resSdb);
+  res.send(res);
+});
+
+app.post('/makearray', (req, res, next) => {
+  const { sda, sdb } = req.body;
+  if(sda && sdb){
+    execFile('bash', ['/home/revo/nodeutils', '-makearray', sda, sdb, 'md0', 0], (err, stdout, stderr) => {
+      if (err) {
+        return (err);
+      } else {
+        return (stdout);
+      }
+    });
+  }else if(sda){
+    execFile('bash', ['/home/revo/nodeutils', '-makearray', sda, sdb, 'md0', 0], (err, stdout, stderr) => {
+      if (err) {
+        return (err);
+      } else {
+        return (stdout);
+      }
+    });
+  }
+});
+
+
+
+
+
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.get('/meta/image', function(req, res, next) {
+
+execFile('bash', ['/home/revo/nodeutils', '-makearray', 'sda', 'sdb', 'md0', '0']);
+
+app.get('/meta/image', function (req, res, next) {
   let pageImg = req.query.pageImg;
-  res.writeHead(200,{'content-type':'image/jpg'});
+  res.writeHead(200, { 'content-type': 'image/jpg' });
   fs.createReadStream(__dirname + `/public/metaimg/${pageImg}`).pipe(res);
 });
 
-function replaceHTMLData(data, title, desc, keywords, image){
+function replaceHTMLData(data, title, desc, keywords, image) {
   return (data
-  .replace(/__TITLE__/g, title)
-  .replace(/__DESCRIPTION__/g, desc)
-  .replace(/__KEYWORDS__/g, keywords)
-  .replace(/__IMAGE__/g, image))
+    .replace(/__TITLE__/g, title)
+    .replace(/__DESCRIPTION__/g, desc)
+    .replace(/__KEYWORDS__/g, keywords)
+    .replace(/__IMAGE__/g, image))
 }
 
 app.get("/", (req, res) => {
@@ -100,13 +183,13 @@ app.get("/news", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | News";
-      let description = "Latest news from Revo Technologies";
-      let keywords = "revo,blockchain,technology,news";
-      let image = "https://revo.network/meta/image?pageImg=news.png"
-      data = replaceHTMLData(data, title, description, keywords, image);
-  
-      res.send(data)
+    let title = "Revo | News";
+    let description = "Latest news from Revo Technologies";
+    let keywords = "revo,blockchain,technology,news";
+    let image = "https://revo.network/meta/image?pageImg=news.png"
+    data = replaceHTMLData(data, title, description, keywords, image);
+
+    res.send(data)
   });
 });
 
@@ -121,13 +204,13 @@ app.get("/news/:pathname", async (req, res) => {
       return console.log(err);
     }
 
-      let title = `Revo | News - ${metaData.title}`;
-      let description = metaData.description;
-      let keywords = metaData.keywords;
-      let image = metaData.imgUrl
-      data = replaceHTMLData(data, title, description, keywords, image);
-  
-      res.send(data)
+    let title = `Revo | News - ${metaData.title}`;
+    let description = metaData.description;
+    let keywords = metaData.keywords;
+    let image = metaData.imgUrl
+    data = replaceHTMLData(data, title, description, keywords, image);
+
+    res.send(data)
   });
 });
 
@@ -138,13 +221,13 @@ app.get("/partners", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | Partners";
-      let description = "Companies working and developing with Revo blockchain technologies";
-      let keywords = "revo,blockchain,technology,partners,companies";
-      let image = "https://revo.network/meta/image?pageImg=partners.png"
-      data = replaceHTMLData(data, title, description, keywords, image);
-  
-      res.send(data)
+    let title = "Revo | Partners";
+    let description = "Companies working and developing with Revo blockchain technologies";
+    let keywords = "revo,blockchain,technology,partners,companies";
+    let image = "https://revo.network/meta/image?pageImg=partners.png"
+    data = replaceHTMLData(data, title, description, keywords, image);
+
+    res.send(data)
   });
 });
 
@@ -155,13 +238,13 @@ app.get("/technology", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | Technology";
-      let description = "Revo is a Decentralized Blockchain,taking advance of a full featured ethereum virtual machine ecosystem, with sidechains, lightning network and storage subsystem.";
-      let keywords = "revo,blockchain,technology,utxo,evm,x86,lightning,network,pos,sidechain,domains,storage";
-      let image = "https://revo.network/meta/image?pageImg=technology.png"
-      data = replaceHTMLData(data, title, description, keywords, image);
-  
-      res.send(data)
+    let title = "Revo | Technology";
+    let description = "Revo is a Decentralized Blockchain,taking advance of a full featured ethereum virtual machine ecosystem, with sidechains, lightning network and storage subsystem.";
+    let keywords = "revo,blockchain,technology,utxo,evm,x86,lightning,network,pos,sidechain,domains,storage";
+    let image = "https://revo.network/meta/image?pageImg=technology.png"
+    data = replaceHTMLData(data, title, description, keywords, image);
+
+    res.send(data)
   });
 });
 
@@ -195,12 +278,12 @@ app.get("/ecosystem", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | Ecosystem";
-      let description = "About page description.";
-      let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
-      data = replaceHTMLData(data, title, description, keywords);
-  
-      res.send(data)
+    let title = "Revo | Ecosystem";
+    let description = "About page description.";
+    let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
+    data = replaceHTMLData(data, title, description, keywords);
+
+    res.send(data)
   });
 });
 
@@ -211,13 +294,13 @@ app.get("/members", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | Team Members";
-      let description = "Meet full Revo Technologies development Team, a full dedicated squad working on a public and open blockchain ecosystem";
-      let keywords = "revo,blockchain,technology,team,members";
-      let image = "https://revo.network/meta/image?pageImg=members.png"
-      data = replaceHTMLData(data, title, description, keywords, image);
-  
-      res.send(data)
+    let title = "Revo | Team Members";
+    let description = "Meet full Revo Technologies development Team, a full dedicated squad working on a public and open blockchain ecosystem";
+    let keywords = "revo,blockchain,technology,team,members";
+    let image = "https://revo.network/meta/image?pageImg=members.png"
+    data = replaceHTMLData(data, title, description, keywords, image);
+
+    res.send(data)
   });
 });
 
@@ -228,12 +311,12 @@ app.get("/notarize-document", (req, res) => {
       return console.log(err);
     }
 
-      let title = "Revo | Coming Soon..";
-      let description = "About page description.";
-      let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
-      data = replaceHTMLData(data, title, description, keywords);
-  
-      res.send(data)
+    let title = "Revo | Coming Soon..";
+    let description = "About page description.";
+    let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
+    data = replaceHTMLData(data, title, description, keywords);
+
+    res.send(data)
   });
 });
 
@@ -243,13 +326,13 @@ app.get("/defi", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
-      let title = "Revo | Coming Soon..";
-      let description = "About page description.";
-      let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
-      data = replaceHTMLData(data, title, description, keywords);
-  
-      res.send(data)
+
+    let title = "Revo | Coming Soon..";
+    let description = "About page description.";
+    let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
+    data = replaceHTMLData(data, title, description, keywords);
+
+    res.send(data)
   });
 });
 
@@ -259,7 +342,7 @@ app.get("/domains", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -275,7 +358,7 @@ app.get("/create-nft", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -291,7 +374,7 @@ app.get("/project-docs", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -307,7 +390,7 @@ app.get("/develop", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -323,7 +406,7 @@ app.get("/build", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -339,7 +422,7 @@ app.get("/deploy", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -355,7 +438,7 @@ app.get("/wiki", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -371,7 +454,7 @@ app.get("/training", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -387,7 +470,7 @@ app.get("/tutorials", (req, res) => {
     if (err) {
       return console.log(err);
     }
-    
+
     let title = "Revo | Coming Soon..";
     let description = "About page description.";
     let keywords = "revo,blockchain,decentralized,distribuited,pos,public,open,crypto,technology,staking,network";
@@ -399,10 +482,10 @@ app.get("/tutorials", (req, res) => {
 
 app.get("/:pathname", (req, res) => {
   const { pathname } = req.params;
-  const routes = ['public-api','docs-api', 'map', 'news', 'partners', 'technology', 'ecosystem', 'members', 'notarize-document', 'defi', 'domains', 'create-nft', 'project-docs', 'build', 'develop', 'deploy', 'training', 'wiki', 'tutorials', 'meta'];
-  if(routes.includes(pathname)){
+  const routes = ['public-api', 'docs-api', 'map', 'news', 'partners', 'technology', 'ecosystem', 'members', 'notarize-document', 'defi', 'domains', 'create-nft', 'project-docs', 'build', 'develop', 'deploy', 'training', 'wiki', 'tutorials', 'meta'];
+  if (routes.includes(pathname)) {
 
-  }else{
+  } else {
     const filePath = path.resolve(__dirname, "./build", "index.html");
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
