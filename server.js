@@ -2,10 +2,18 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const { default: axios } = require("axios");
-const { execFile } = require("child_process");
+const { exec, execFile } = require("child_process");
 const blk = require('linux-blockutils');
 
-
+app.get('/checkmaster', (req, res, next) => {
+  exec('ls', {cwd: '/home/revo/'}, (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(stdout);
+    }
+  });
+})
 
 app.get('/showdrives', function (req, res, next) {
   blk.getBlockInfo({}, function (err, json) {

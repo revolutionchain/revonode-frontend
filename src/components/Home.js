@@ -1,12 +1,17 @@
 import React from 'react';
 import '../styles/Home.css'
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 
 export default function Home() {
+    const [ master, setMaster ] = useState(false);
 
-    useEffect(() => {
+    useEffect(async () => {
+        let masterState = await axios.get('http://localhost:3001/checkmaster');
+        setMaster(masterState.data);
+        console.log(masterState.data);
     }, []);
 
     return (
