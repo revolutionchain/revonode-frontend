@@ -4,6 +4,93 @@ const fs = require("fs");
 const { default: axios } = require("axios");
 const { exec, execFile } = require("child_process");
 const blk = require('linux-blockutils');
+    const envfile = require('envfile')
+    const sourcePath = '.env'
+const { networkInterfaces } = require('os');
+const os = require('os');
+
+
+const PORT = process.env.PORT || 3001;
+
+const app = express();
+
+const nets = networkInterfaces();
+const results = {};
+
+for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+        // 'IPv4' is in Node <= 17, from 18 it's a number 4 or 6
+        const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
+        if (net.family === familyV4Value && !net.internal) {
+            if (!results[name]) {
+                results[name] = [];
+            }
+            results[name].push(net.address);
+        }
+    }
+}
+/*
+exec(
+  "echo $LOCAL_NODE_IP", 
+  { env: { REACT_APP_LOCAL_NODE_IP: results.wlan0[0] } }, 
+  function (error, stdout, stderr) {
+    console.log(stdout, stderr, error);
+  }
+);
+*/
+
+
+
+//process.env.REACT_APP_LOCAL_NODE_IP = results.wlan0[0];
+
+const envFilePath = path.resolve(__dirname, ".env");
+
+
+const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
+
+const getEnvValue = (key) => {
+  // find the line that contains the key (exact match)
+  const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
+  // split the line (delimiter is '=') and return the item at index 2
+  return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
+};
+
+
+const setEnvValue = (key, value) => {
+  const envVars = readEnvVars();
+  const targetLine = envVars.find((line) => line.split("=")[0] === key);
+  if (targetLine !== undefined) {
+    // update existing line
+    const targetLineIndex = envVars.indexOf(targetLine);
+    // replace the key/value with the new value
+    envVars.splice(targetLineIndex, 1, `${key}="${value}"`);
+  } else {
+    // create new key value
+    envVars.push(`${key}="${value}"`);
+  }
+  // write everything back to the file system
+  fs.writeFileSync(envFilePath, envVars.join(os.EOL));
+};
+
+setEnvValue('REACT_APP_LOCAL_NODE_IP', results.wlan0[0]);
+
+
+app.use((req, res, next) => {
+
+//  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+res.header('Access-Control-Allow-Origin', `http://${results.wlan0[0]}`); // update to match the domain you will make the request from
+
+
+
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
+
+
+
 
 app.get('/checkmaster', (req, res, next) => {
   exec('ls', {cwd: '/home/revo/'}, (err, stdout, stderr) => {
@@ -162,9 +249,6 @@ app.get('/getwificonfig', (req, res, next) => {
   }
 })
 
-const PORT = process.env.PORT || 3001;
-
-const app = express();
 
 
 app.use(express.static(path.resolve(__dirname, "./build")))

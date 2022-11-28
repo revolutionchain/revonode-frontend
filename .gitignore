@@ -10,6 +10,9 @@ package-lock.json*
 *.env
 .env
 
+build
+build/*
+
 package-lock.json
 node_modules
 dist

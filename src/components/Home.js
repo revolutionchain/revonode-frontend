@@ -2,16 +2,16 @@ import React from 'react';
 import '../styles/Home.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 export default function Home() {
     const [ master, setMaster ] = useState(false);
 
     useEffect(async () => {
-        let masterState = await axios.get('http://localhost:3001/checkmaster');
+        let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
-        console.log(masterState.data);
+        console.log(REACT_APP_LOCAL_NODE_IP);
     }, []);
 
     return (
