@@ -20,10 +20,10 @@ export default function Home() {
 
     async function getDrives() {
         let drivesData = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/showdrives`);
-        setDrivesData(drivesData);
+        setDrivesData(drivesData.data);
     }
 
-
+    currentPage == 2 && !drivesData && getDrives();
 
 
     return (
