@@ -2,17 +2,29 @@ import React from 'react';
 import '../styles/Home.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Firstpage from './wizardpages/firstpage';
+import Secondpage from './wizardpages/secondpage';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 export default function Home() {
     const [ master, setMaster ] = useState(false);
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ drivesData, setDrivesData ] = useState(false);
 
     useEffect(async () => {
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
-        console.log(REACT_APP_LOCAL_NODE_IP);
     }, []);
+
+
+    async function getDrives() {
+        let drivesData = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/showdrives`);
+        setDrivesData(drivesData);
+    }
+
+
+
 
     return (
         <div className='div-main-home'>
@@ -20,16 +32,15 @@ export default function Home() {
                 <h2>Logo</h2>
                 <h3>Configuring your Node</h3>
                 <div className='home-div-container'>
-                    <form>
-                        <input type='text' placeholder='user'></input>
-                        <input type='text' placeholder='pass'></input>
-                        <button >Submit</button>
-                    </form>
+                    { currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                    { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> : currentPage == 2 && <div>'Loading..' </div>}
                     <div>
+                        <div>
                         <i class="fas fa-solid fa-laptop"></i>
                         <i class="fas fa-solid fa-laptop"></i>
                         <i class="fas fa-solid fa-laptop"></i>
                         <i class="fas fa-solid fa-laptop"></i>
+                        </div>
                     </div>
                 </div>
             </div>
