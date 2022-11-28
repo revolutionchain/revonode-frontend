@@ -20,11 +20,10 @@ export default function Home() {
 
     async function getDrives() {
         let drivesData = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/showdrives`);
-        setDrivesData(drivesData);
+        setDrivesData(drivesData.data);
     }
 
-    currentPage == 2 && !drivesData && getDrives;
-
+    currentPage == 2 && !drivesData && getDrives();
 
 
     return (
@@ -34,7 +33,7 @@ export default function Home() {
                 <h3>Configuring your Node</h3>
                 <div className='home-div-container'>
                     { currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                    { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> : currentPage == 2 && <div>'Loading..' </div>}
+                    { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
                     <div>
                         <div>
                         <i class="fas fa-solid fa-laptop"></i>
