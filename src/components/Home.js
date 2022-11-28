@@ -23,6 +23,7 @@ export default function Home() {
         setDrivesData(drivesData);
     }
 
+    currentPage == 2 && !drivesData && getDrives;
 
 
 
