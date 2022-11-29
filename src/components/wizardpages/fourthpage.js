@@ -13,7 +13,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
 
     useEffect( async () => {
         let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
-        setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID')));
+        setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
     },[])
 
     function handleCheckbox (pos){
@@ -37,7 +37,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
                     wifiData.length && wifiData?.map((e,i) => {
                         return <div>
                         <input type="checkbox" checked={checkedState[i]} onClick={() => handleCheckbox(i)}></input>
-                        <span>{'Wifi name: '+ e}</span>
+                        <span>{'Wifi name: '+ e.slice(5)}</span>
                         </div>
                     })
                 }                
