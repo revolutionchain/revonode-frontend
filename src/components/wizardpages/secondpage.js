@@ -27,12 +27,17 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
             }
         });
         setCheckedState(newArr);
-        if(selectedDrives.length < 2 ){
-            setSelectedDrives([selectedDrives[0], elem]);
-
-        }else {
-            setSelectedDrives([selectedDrives[1], elem]);
-        }        
+        let drives = selectedDrives;
+        drivesData.map((e,i) => {
+            if(newArr[i] == 1){
+                drives[0] = elem;
+            }else if(newArr[i] == 2){
+                drives[1] = elem;
+            }else if(!newArr.includes(2)){
+                drives.pop();
+            }
+        })
+        setSelectedDrives(drives);
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
 
