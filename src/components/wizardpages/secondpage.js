@@ -6,10 +6,12 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
     const [ selectedDrives, setSelectedDrives ] = useState([]);
     const [ updateStates, setUpdatesStates ] = useState(false);
     const [ checkedState, setCheckedState ] = useState([]);
-
+    const [ totalDrives, setTotalDrives ] = useState([]);
     useEffect(() => {
-        let ssdCount = drivesData.filter(e => e.NAME.includes("sd")).map(e => 0);
+	let drives = drivesData.filter(e => e.NAME.includes("sd")).reverse();
+        let ssdCount = drives.map(e => 0);
         setCheckedState(ssdCount);
+	setTotalDrives(drives);
     }, [])
 
     function handleCheckbox(elem, position) {
@@ -27,8 +29,22 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
             }
         });
         setCheckedState(newArr);
-        let drives = selectedDrives;
-        drivesData.filter(e => e.NAME.includes("sd")).map((e,i) => {
+	let drives = [];
+	newArr.map((e,i) => {
+		if(e == 1){
+			drives[1] = totalDrives[i];
+		}else if(e == 2){
+			drives[0] = totalDrives[i];
+		}
+	})
+	if(!newArr.includes(2)){
+		drives[0] = null;
+	}
+	if(!newArr.includes(1)){
+		drives[1] = null;
+	}
+
+/*
             if(!drives[1] && newArr[i] == 1){
                 drives[1] = elem;
             }else if(drives[1] && newArr[i] == 1){
@@ -39,7 +55,7 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
                 drives[0] = null;
             }
         })
-
+*/
         
 
         setSelectedDrives(drives);
