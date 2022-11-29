@@ -34,10 +34,14 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
             }else if(drives[1] && newArr[i] == 1){
                 drives[0] = drives[1];
                 drives[1] = elem;
-            }else if(!newArr.includes(2)){
-                drives.pop();
+            }else if(!newArr.includes(2) && newArr[i] == 1){
+                drives[1] = elem;
+                drives[0] = null;
             }
         })
+
+        
+
         setSelectedDrives(drives);
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
