@@ -5,6 +5,7 @@ import axios from 'axios';
 import Firstpage from './wizardpages/firstpage';
 import Secondpage from './wizardpages/secondpage';
 import Thirdpage from './wizardpages/thirdpage';
+import Fourthpage from './wizardpages/fourthpage';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
@@ -36,12 +37,13 @@ export default function Home() {
                     { currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
                     { currentPage == 3 && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                    { currentPage == 4 && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     <div>
                         <div>
-                        <i class="fas fa-solid fa-laptop"></i>
-                        <i class="fas fa-solid fa-laptop"></i>
-                        <i class="fas fa-solid fa-laptop"></i>
-                        <i class="fas fa-solid fa-laptop"></i>
+                        <i class={currentPage == 1 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
+                        <i class={currentPage == 2 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
+                        <i class={currentPage == 3 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
+                        <i class={currentPage == 4 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
                         </div>
                     </div>
                 </div>

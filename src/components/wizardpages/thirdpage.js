@@ -15,10 +15,15 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
 
     return (
         <div className=''>
-            <h2> TITLE!</h2>
+            <h2> Success!</h2>
             <h3> Description text!</h3>
             <div>
-                
+                {
+                    arrayData.map((e,i) => {
+                        let res = i == 0 ? e.slice(1) : e;
+                        return <div>res</div>
+                    })
+                }                
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
             <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>

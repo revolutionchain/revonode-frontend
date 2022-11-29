@@ -68,6 +68,10 @@ html {
     display: block;
 }
 
+.icon-active {
+    background-color: var(--main-color);
+}
+
 .home-div-content form input {
     display: block;
     margin: 20px 10px;

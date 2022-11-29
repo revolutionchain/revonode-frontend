@@ -60,7 +60,6 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                 return alert('Drives missing');
             }
             let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
-	console.log(checkfilesystem);
             if(!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')){
                 return alert('Filesystem error');
             }
