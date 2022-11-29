@@ -133,14 +133,7 @@ app.post('/makearray', (req, res, next) => {
 });
 
 function getArrInfo(type) {
-  let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' }); /*(err, stdout, stderr) => {
-    if (err) {
-      return (err);
-    } else {
-	console.log(stdout);
-      return (stdout);
-    }
-  });*/
+  let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
  return result;
 }
 
@@ -148,9 +141,6 @@ app.get('/getarrayinfo', (req, res, next) => {
   let arrDetails = getArrInfo('-arraydetails');
   let arrStatus = getArrInfo('-arraystatus');
   let arrUsage = getArrInfo('-arrayusage');
-  console.log(arrDetails)
-  console.log(arrStatus)
-  console.log(arrUsage)
   let response = {
     arrayDetails: arrDetails,
     arrayStatus: arrStatus,

@@ -10,7 +10,7 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
 
     useEffect( async () => {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        setArrayData(getarrayinfo.arrayStatus.split(" "));
+        setArrayData(getarrayinfo.data.arrayStatus.split(" "));
     },[])
 
     return (
