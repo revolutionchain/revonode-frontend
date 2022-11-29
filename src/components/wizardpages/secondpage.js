@@ -29,9 +29,10 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
         setCheckedState(newArr);
         let drives = selectedDrives;
         drivesData.filter(e => e.NAME.includes("sd")).map((e,i) => {
-            if(newArr[i] == 1){
-                drives[0] = elem;
-            }else if(newArr[i] == 2){
+            if(!drives[1] && newArr[i] == 1){
+                drives[1] = elem;
+            }else if(drives[1] && newArr[i] == 1){
+                drives[0] = drives[1];
                 drives[1] = elem;
             }else if(!newArr.includes(2)){
                 drives.pop();
