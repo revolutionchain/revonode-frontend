@@ -52,9 +52,10 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     const [ raidLevel, setRaidLevel ] = useState("null");
 
 
-    function handleNextButton() {
-        if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
-            let json = axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, { disk1: selectedDrives[0], disk2: selectedDrives[1] });
+    async function handleNextButton() {
+        if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null"){
+	    let obj = { disk1: selectedDrives[0], disk2: selectedDrives[1]};
+            let json = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, obj);
             console.log(json.data);
             //setCurrentPage(currentPage + 1)
         } else if(!(checkedState.includes(1) && checkedState.includes(2))) {

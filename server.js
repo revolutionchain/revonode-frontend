@@ -10,7 +10,7 @@ const os = require('os');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
+app.use(express.json())
 const nets = networkInterfaces();
 const results = {};
 
@@ -99,14 +99,15 @@ function checkFunction(disk, type) {
 }
 
 app.post('/checkdrive', (req, res, next) => {
+ console.log(req.body);
   const { disk1, disk2 } = req.body;
   let response = [];
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
   }
-  resDisk1 = { disk1: checkFunction(disk1, '-checkdrive') };
+  resDisk1 = { disk1: checkFunction(disk1.NAME, '-checkdrive') };
   response.push(resDisk1);
-  resDisk2 = { disk2: checkFunction(disk2, '-checkdrive') };
+  resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkdrive') };
   response.push(resDisk2);
   res.send(response);
 
