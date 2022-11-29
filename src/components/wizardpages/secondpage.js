@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 export default function Secondpage({ currentPage, setCurrentPage, drivesData }) {
@@ -47,13 +49,20 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
 
+    const [ raidLevel, setRaidLevel ] = useState("null");
+
 
     function handleNextButton() {
-        if (checkedState.includes(1) && checkedState.includes(2)) {
-            setCurrentPage(currentPage + 1)
-        } else {
-            alert('You must select at least 2 drives.');
+        if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
+            let json = axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, { disk1: selectedDrives[0], disk2: selectedDrives[1] });
+            console.log(json.data);
+            //setCurrentPage(currentPage + 1)
+        } else if(!(checkedState.includes(1) && checkedState.includes(2))) {
+            alert('You must select 2 drives.');
+        }else if(raidLevel == 'null'){
+            alert('You must select raid level.');
         }
+
     }
 
     return (
@@ -70,6 +79,13 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                         </div>
                     })
                 }
+            </div>
+            <div>
+                <select onChange={e => setRaidLevel(e.target.value)}>
+                    <option value='null'>Raid Level</option>
+                    <option value='0' >Raid 0</option>
+                    <option value='1'>Raid 1</option>
+                </select>
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
             <button onClick={() => handleNextButton()} className='next-button'>Next</button>
