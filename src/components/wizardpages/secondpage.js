@@ -54,9 +54,14 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     async function handleNextButton() {
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null"){
-	    let obj = { disk1: selectedDrives[0], disk2: selectedDrives[1]};
-            let json = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, obj);
-            console.log(json.data);
+	    let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1]};
+            let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
+            console.log(checkdrive.data);
+            let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
+            console.log(checkfilesystem.data);
+        let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
+            let makearray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/makearray`, drivesAllowed);
+            console.log(makearray.data);
             //setCurrentPage(currentPage + 1)
         } else if(!(checkedState.includes(1) && checkedState.includes(2))) {
             alert('You must select 2 drives.');

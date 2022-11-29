@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { exec, execFile } = require("child_process");
+const { exec, execFile, execFileSync } = require("child_process");
 const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
@@ -88,14 +88,9 @@ app.get('/showdrives', function (req, res, next) {
 });
 
 
-function checkFunction(disk, type) {
-  execFile('bash', ['/home/revo/nodeutils', type, disk], (err, stdout, stderr) => {
-    if (err) {
-      return (err);
-    } else {
-      return (stdout);
-    }
-  });
+  function checkFunction(disk, type) {
+  let result = execFileSync('bash', ['/home/revo/nodeutils', type, disk], { encoding: 'utf8' }) 
+  return result
 }
 
 app.post('/checkdrive', (req, res, next) => {
@@ -104,10 +99,12 @@ app.post('/checkdrive', (req, res, next) => {
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
   }
+ 
   resDisk1 = { disk1: checkFunction(disk1.NAME, '-checkdrive') };
   response.push(resDisk1);
   resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkdrive') };
   response.push(resDisk2);
+  console.log(response);
   res.send(response);
 
 });
@@ -118,16 +115,16 @@ app.post('/checkfilesystem', (req, res, next) => {
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
   }
-  let resDisk1 = { disk1: checkFunction(disk1, '-checkfilesystem') };
+  let resDisk1 = { disk1: checkFunction(disk1.NAME, '-checkfilesystem') };
   response.push(resDisk1);
-  let resDisk2 = { disk2: checkFunction(disk2, '-checkfilesystem') };
+  let resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkfilesystem') };
   response.push(resDisk2);
   res.send(response);
 });
 
 app.post('/makearray', (req, res, next) => {
   const { disk1, disk2, raid } = req.body;
-  execFile('bash', ['/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
+  execFile('bash', ['/home/revo/nodeutils', '-makearray', disk1.NAME, disk2.NAME, 'md0', raid], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
