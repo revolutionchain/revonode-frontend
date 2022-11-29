@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { exec, execFile } = require("child_process");
+const { exec, execFile, execFileSync } = require("child_process");
 const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
@@ -88,27 +88,23 @@ app.get('/showdrives', function (req, res, next) {
 });
 
 
-function checkFunction(disk, type) {
-  execFile('bash', ['/home/revo/nodeutils', type, disk], (err, stdout, stderr) => {
-    if (err) {
-      return (err);
-    } else {
-      return (stdout);
-    }
-  });
+  function checkFunction(disk, type) {
+  let result = execFileSync('bash', ['/home/revo/nodeutils', type, disk], { encoding: 'utf8' }) 
+  return result
 }
 
-app.post('/checkdrive', (req, res, next) => {
- console.log(req.body);
+app.post('/checkdrive', async (req, res, next) => {
   const { disk1, disk2 } = req.body;
   let response = [];
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
   }
-  resDisk1 = { disk1: checkFunction(disk1.NAME, '-checkdrive') };
+ 
+  resDisk1 = { disk1: await checkFunction(disk1.NAME, '-checkdrive') };
   response.push(resDisk1);
-  resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkdrive') };
+  resDisk2 = { disk2: await checkFunction(disk2.NAME, '-checkdrive') };
   response.push(resDisk2);
+  console.log(response);
   res.send(response);
 
 });
