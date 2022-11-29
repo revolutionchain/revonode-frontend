@@ -19,9 +19,9 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
             <h3> Description text!</h3>
             <div>
                 {
-                    arrayData.map((e,i) => {
+                    arrayData.length && arrayData?.map((e,i) => {
                         let res = i == 0 ? e.slice(1) : e;
-                        return <div>res</div>
+                        return <div>{res}</div>
                     })
                 }                
             </div>

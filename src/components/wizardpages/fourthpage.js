@@ -34,7 +34,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
             <h3> Description text!</h3>
             <div>
                 {
-                    wifiData?.map((e,i) => {
+                    wifiData.length && wifiData?.map((e,i) => {
                         return <div>
                         <input type="checkbox" checked={checkedState[i]} onClick={() => handleCheckbox(i)}></input>
                         <span>{'Wifi name: '+ e}</span>
