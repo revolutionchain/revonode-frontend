@@ -4,7 +4,7 @@ const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 
-export default function Thirdpage({currentPage, setCurrentPage}) {
+export default function Fourthpage({currentPage, setCurrentPage}) {
 
     const [ wifiData, setWifiData ] = useState(false);
     const [checkedState, setCheckedState] = useState([]);
