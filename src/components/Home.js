@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Firstpage from './wizardpages/firstpage';
 import Secondpage from './wizardpages/secondpage';
+import Thirstpage from './wizardpages/thirstpage';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
@@ -34,6 +35,7 @@ export default function Home() {
                 <div className='home-div-container'>
                     { currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
+                    { currentPage == 3 && <Thirstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     <div>
                         <div>
                         <i class="fas fa-solid fa-laptop"></i>
