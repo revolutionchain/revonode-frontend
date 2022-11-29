@@ -14,11 +14,8 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
 
     function handleCheckbox(elem, position) {
         let newArr = checkedState.map((e,i) => {
-            if((e == 1 || e == 2) && position == i){
-                setCheckedState(selectedDrives.filter(e => e.NAME !== elem.NAME ));
+            if(((e == 1 || e == 2) && position == i) || (e == 0 && position !== i)){
                 return 0;
-            }else if(e == 0 && position !== i){
-                return 0
             }else if(e == 1 && checkedState[position] !== 2 && i !== position){
                 return 2;
             }else if(e == 1 && checkedState[position] == 2 && i !== position){
@@ -30,15 +27,23 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
             }
         });
         setCheckedState(newArr);
-        if(selectedDrives.length < 2 && (newArr[position] !== 0)){
+        if(selectedDrives.length < 2 ){
             setSelectedDrives([selectedDrives[0], elem]);
 
-        }else if(selectedDrives.length == 2 && (newArr[position] !== 0)) {
+        }else {
             setSelectedDrives([selectedDrives[1], elem]);
         }        
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
 
+
+    function handleNextButton() {
+        if(checkedState.includes(1) && checkedState.includes(2)){
+            setCurrentPage(currentPage + 1)
+        }else {
+            alert('You must select at least 2 drives.');
+        }
+    }
 
     return (
         <div className=''>
@@ -56,7 +61,7 @@ export default function Secondpage({currentPage, setCurrentPage, drivesData}) {
                 }
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
-            <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>
+            <button onClick={() => handleNextButton()} className='next-button'>Next</button>
         
         </div>
     )
