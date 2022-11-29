@@ -4,7 +4,7 @@ const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 
-export default function Thirstpage({currentPage, setCurrentPage}) {
+export default function Thirdpage({currentPage, setCurrentPage}) {
 
     const [ arrayData, setArrayData ] = useState(false);
 

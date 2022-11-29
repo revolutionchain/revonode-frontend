@@ -146,6 +146,9 @@ app.get('/getarrayinfo', (req, res, next) => {
   let arrDetails = getArrInfo('-arraydetails');
   let arrStatus = getArrInfo('-arraystatus');
   let arrUsage = getArrInfo('-arrayusage');
+  console.log(arrDetails)
+  console.log(arrStatus)
+  console.log(arrUsage)
   let response = {
     arrayDetails: arrDetails,
     arrayStatus: arrStatus,
