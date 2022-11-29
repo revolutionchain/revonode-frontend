@@ -99,7 +99,6 @@ function checkFunction(disk, type) {
 }
 
 app.post('/checkdrive', (req, res, next) => {
- console.log(req.body);
   const { disk1, disk2 } = req.body;
   let response = [];
   if (!disk1 || !disk2) {
