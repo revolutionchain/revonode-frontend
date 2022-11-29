@@ -9,7 +9,7 @@ export default function Thirstpage({currentPage, setCurrentPage}) {
     const [ arrayData, setArrayData ] = useState(false);
 
     useEffect( async () => {
-        let getarrayinfo = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`, drivesObj);
+        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         setArrayData(getarrayinfo.arrayStatus.split(" "));
     },[])
 
@@ -21,7 +21,7 @@ export default function Thirstpage({currentPage, setCurrentPage}) {
                 
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
-            <button onClick={() => handleNextButton()} className='next-button'>Next</button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>
         
         </div>
     )
