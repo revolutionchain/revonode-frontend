@@ -133,13 +133,15 @@ app.post('/makearray', (req, res, next) => {
 });
 
 function getArrInfo(type) {
-  execFile('bash', ['/home/revo/nodeutils', type, 'md0'], (err, stdout, stderr) => {
+  let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' }); /*(err, stdout, stderr) => {
     if (err) {
       return (err);
     } else {
+	console.log(stdout);
       return (stdout);
     }
-  });
+  });*/
+ return result;
 }
 
 app.get('/getarrayinfo', (req, res, next) => {
