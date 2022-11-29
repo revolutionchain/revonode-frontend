@@ -13,7 +13,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
 
     useEffect( async () => {
         let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
-        setWifiData(getwifidata);
+        setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID')));
     },[])
 
     function handleCheckbox (pos){
