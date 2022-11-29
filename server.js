@@ -104,7 +104,6 @@ app.post('/checkdrive', (req, res, next) => {
   response.push(resDisk1);
   resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkdrive') };
   response.push(resDisk2);
-  console.log(response);
   res.send(response);
 
 });
@@ -124,14 +123,13 @@ app.post('/checkfilesystem', (req, res, next) => {
 
 app.post('/makearray', (req, res, next) => {
   const { disk1, disk2, raid } = req.body;
-  execFile('bash', ['/home/revo/nodeutils', '-makearray', disk1.NAME, disk2.NAME, 'md0', raid], (err, stdout, stderr) => {
+  execFile('sudo', ['bash' , '/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
       res.send(stdout);
     }
   });
-
 });
 
 function getArrInfo(type) {
