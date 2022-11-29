@@ -56,16 +56,17 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null"){
 	    let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1]};
             let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
-            if(checkdrive[0].disk1.includes('missing') || checkdrive[1].disk2.includes('missing') ){
+            if(checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing') ){
                 return alert('Drives missing');
             }
             let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
-            if(!checkfilesystem[0].disk1.includes('no filesystem') || !checkfilesystem[1].disk2.includes('no filesystem')){
+	console.log(checkfilesystem);
+            if(!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')){
                 return alert('Filesystem error');
             }
             let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
             let makearray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/makearray`, drivesAllowed);
-            if(makearray.includes('ok')){
+            if(makearray?.data?.includes('ok')){
                 setCurrentPage(currentPage + 1);
             }else {
                 alert('Error: Array could not be created');
