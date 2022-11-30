@@ -54,7 +54,9 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
     async function handleConnect (){
         if(input?.essid.length && input?.pass.length && input?.country.length){
             let genwificonfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genwificonfig`, input);
-            console.log(genwificonfig);
+            if(genwificonfig.data.includes('ok')){
+                setCurrentPage(currentPage + 1)                
+            }
         }else if(!input?.essid.length) {
             alert('Select a Wifi!')
         }else if(!input?.pass.length) {
