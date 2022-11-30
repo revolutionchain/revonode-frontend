@@ -79,6 +79,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
                         { checkedState[i] && <select name='country' onChange={(e)=> handleInput(e)}>
                             <option value='Country'>Country</option>
                             <option value='AR'>AR</option>
+			    <option value='IT'>IT</option>
                         </select> }
                         </form>
                     })
