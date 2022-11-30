@@ -155,12 +155,12 @@ function getArrInfo(type) {
 }
 
 app.get('/getarrayinfo', (req, res, next) => {
-  let arrDetails = getArrInfo('-arraydetails');
-  let arrStatus;
+  let arrStatus = getArrInfo('-arraystatus');
+  let arrDetails;
   let arrUsage;
   let response
-  if(arrDetails.includes('md0')){
-    arrStatus = getArrInfo('-arraystatus');
+  if(arrStatus.includes('md0')){
+    arrDetails = getArrInfo('-arraydetails');
     arrUsage = getArrInfo('-arrayusage');
       response = {
       arrayDetails: arrDetails,
@@ -169,14 +169,11 @@ app.get('/getarrayinfo', (req, res, next) => {
     }
   }else {
     response = {
-      arrayDetails: arrDetails
+      arrayStatus: arrStatus
     }      
   }
-  if (arrDetails && arrStatus && arrUsage) {
-    res.send(response)
-  } else {
-    res.status(404).send(response);
-  }
+
+  res.send(response)
 })
 
 app.get('/wifiscan', (req, res, next) => {
@@ -202,12 +199,10 @@ app.post('/genwificonfig', (req, res, next) => {
 
 app.post('/removearray', (req, res, next) => {
   const { disk1, disk2 } = req.body;
-  console.log(disk1 + disk2);
   execFile('bash', ['/home/revo/nodeutils', '-removearray', disk1, disk2, 'md0'], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(stdout);
       res.send(stdout);
     }
   });

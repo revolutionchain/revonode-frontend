@@ -51,7 +51,7 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
         let arrInfo = { disk1: arrayData[3].slice(0,3), disk2: arrayData[2].slice(0,3) };
         let removeArray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/removearray`, arrInfo);
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-
+	console.log(getarrayinfo.data);
         if(!getarrayinfo.data.arrayStatus.includes('md0')){
             setCurrentPage(currentPage - 1)                        
         }
