@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-const { REACT_APP_LOCAL_NODE_IP } = process.env;
 import Modal from 'react-modal';
+const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
 

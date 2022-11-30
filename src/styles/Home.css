@@ -7,6 +7,11 @@ html {
     --second-color: rgb(116, 228, 150);
 }
 
+.ReactModal__Overlay--after-open {
+
+	z-index: 99999 !important;
+}
+
 .div-main-home{
     min-height: 100vh;
     display: flex;

@@ -193,10 +193,12 @@ app.post('/genwificonfig', (req, res, next) => {
 
 app.post('/removearray', (req, res, next) => {
   const { disk1, disk2 } = req.body;
+  console.log(disk1 + disk2);
   execFile('bash', ['/home/revo/nodeutils', '-removearray', disk1, disk2, 'md0'], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
+      console.log(stdout);
       res.send(stdout);
     }
   });
