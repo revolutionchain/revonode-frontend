@@ -11,12 +11,49 @@ export default function Fifthpage({currentPage, setCurrentPage}) {
     useEffect( async () => {
     },[])
 
+    
+    
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal(e) {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '70%',
+            textAlign: 'center',
+            backgroundColor: 'transparent'
+        },
+    };
+
     async function handleReboot () {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/forcereboot`);
     }
 
     async function handleRemove (){
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/delwificonfig`);        
+    }
+
+    async function handleBackButton (){
+        await handleRemove();
+        setCurrentPage(currentPage - 1)
     }
 
     return (
@@ -31,7 +68,21 @@ export default function Fifthpage({currentPage, setCurrentPage}) {
                     })
                 }                
             </div>
-            <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Remove</button>
+            <div className='Modal'>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div className="div-balance-title div-abm-title">Are you sure?</div>
+                    <button onClick={closeModal} className='button-form'>Cancelar</button>
+                    <button onClick={() => handleBackButton()} className='next-button'>Yes</button>
+                </Modal>
+            </div>
+            <button onClick={() => openModal()} className='next-button'>Back</button>
+            <button onClick={() => handleRemove()} className='next-button'>Remove</button>
             <button onClick={() => handleReboot()} className='next-button'>Reboot</button>
             <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>
         
