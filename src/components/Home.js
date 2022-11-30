@@ -6,6 +6,7 @@ import Firstpage from './wizardpages/firstpage';
 import Secondpage from './wizardpages/secondpage';
 import Thirdpage from './wizardpages/thirdpage';
 import Fourthpage from './wizardpages/fourthpage';
+import Fifthpage from './wizardpages/fifthpage';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
@@ -38,6 +39,7 @@ export default function Home() {
                     { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
                     { currentPage == 3 && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     { currentPage == 4 && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                    { currentPage == 5 && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                     <div>
                         <div>
                         <i class={currentPage == 1 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
