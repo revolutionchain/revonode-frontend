@@ -209,15 +209,7 @@ app.post('/removearray', (req, res, next) => {
 })
 
 function wifiConfig(type) {
-  let response = execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } )  /*(err, stdout, stderr) => {
-    if (err) {
-      return err;
-    } else {
-	console.log(stdout);
-      return stdout;
-    }
-  });*/
-
+  let response = execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } ) ;
   return response;
 
 }
