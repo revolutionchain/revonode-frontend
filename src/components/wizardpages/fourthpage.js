@@ -81,7 +81,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
                 {
                     wifiData.length && wifiData?.map((e,i) => {
                         return <form>
-                        <input type="checkbox" name='essid' value={e.slice(5, e.length-1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e,i)}></input>
+                        <input type="checkbox" name='essid' value={e.slice(6, e.length-1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e,i)}></input>
                         <span>{'Wifi name: '+ e.slice(5, e.length-1)}</span>
                         { checkedState[i] && <input type='password' name='pass' placeholder="Password" onChange={(e)=> handleInput(e)}></input> }
                         { checkedState[i] && <select name='country' onChange={(e)=> handleInput(e)}>
