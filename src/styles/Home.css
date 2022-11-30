@@ -63,13 +63,13 @@ html {
     margin-top: 30px;
     padding: 15px 10px;
     border-radius: 30px;
-    background-color: var(--second-color);
+    background-color: gray;
     font-size: 25px;
     display: block;
 }
 
 .icon-active {
-    background-color: var(--main-color);
+    background-color: var(--second-color) !important;
 }
 
 .home-div-content form input {

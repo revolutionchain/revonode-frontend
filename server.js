@@ -47,13 +47,22 @@ const setEnvValue = (key, value) => {
   }
   fs.writeFileSync(envFilePath, envVars.join(os.EOL));
 };
+let domain = 'localhost';
+console.log(results);
+if(results?.eth0?.length){
+setEnvValue('REACT_APP_LOCAL_NODE_IP', results.eth0[0]);
+domain = results.eth0[0];
+}
 
+if(results?.wlan0?.length){
 setEnvValue('REACT_APP_LOCAL_NODE_IP', results.wlan0[0]);
-
+domain = results.wlan0[0];
+}
+console.log(domain);
 
 app.use((req, res, next) => {
 
-res.header('Access-Control-Allow-Origin', `http://${results.wlan0[0]}`); // update to match the domain you will make the request from
+res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
 
 
 
