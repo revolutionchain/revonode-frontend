@@ -209,22 +209,22 @@ app.post('/removearray', (req, res, next) => {
 })
 
 function wifiConfig(type) {
-  execFile('bash', ['/home/revo/nodeutils', type], (err, stdout, stderr) => {
+  let response = execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } )  /*(err, stdout, stderr) => {
     if (err) {
-      return { err };
+      return err;
     } else {
-      return { stdout };
+	console.log(stdout);
+      return stdout;
     }
-  });
+  });*/
+
+  return response;
+
 }
 
 app.get('/delwificonfig', (req, res, next) => {
   let response = wifiConfig('-delwificonfig');
-  if(response.err){
-    res.status(404).send(response.err);
-  }else {
-    res.send(response.stdout);
-  }
+  res.send(response);
 })
 
 app.get('/getwificonfig', (req, res, next) => {
