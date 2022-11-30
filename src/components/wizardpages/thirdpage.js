@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
+import Modal from 'react-modal';
+
 
 
 
@@ -12,6 +14,53 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e,i) => [3, 6, 7, 8, 14].includes(i)));
     },[])
+
+
+    
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal(e) {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '70%',
+            textAlign: 'center',
+            backgroundColor: 'transparent'
+        },
+    };
+
+    async function handleRemoveArray() {
+        let arrInfo = { disk1: arrayData[1].slice(0,3), disk2: arrayData[2].slice(0,3) };
+        let removeArray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/removearray`, arrInfo);
+        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+
+        if(!getarrayinfo.data.arrayStatus.includes('md0')){
+            setCurrentPage(currentPage - 1)                        
+        }
+
+        
+    }
+
+
+
 
     return (
         <div className=''>
@@ -25,7 +74,21 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
                     })
                 }                
             </div>
-            <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
+            
+            <div className='Modal'>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div className="div-balance-title div-abm-title">Are you sure?</div>
+                    <button onClick={closeModal} className='button-form'>Cancelar</button>
+                    <button onClick={() => handleRemoveArray()} className='next-button'>Yes</button>
+                </Modal>
+            </div>
+            <button onClick={() => openModal()} className='next-button'>Back</button>
             <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>
         
         </div>

@@ -64,9 +64,15 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
         }
     }
 
+    async function handleRescan () {
+        let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
+        setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
+        console.log(getwifidata);
+    }
+
     return (
         <div className=''>
-            <button>Re-Scan</button>
+            <button onClick={() => handleRescan()}>Re-Scan</button>
             <h2> Wifi!</h2>
             <h3> Description text!</h3>
             <div>

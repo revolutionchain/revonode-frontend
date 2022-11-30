@@ -48,7 +48,6 @@ const setEnvValue = (key, value) => {
   fs.writeFileSync(envFilePath, envVars.join(os.EOL));
 };
 let domain = 'localhost';
-console.log(results);
 if(results?.eth0?.length){
 setEnvValue('REACT_APP_LOCAL_NODE_IP', results.eth0[0]);
 domain = results.eth0[0];
@@ -73,6 +72,15 @@ res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to matc
 });
 
 
+app.get('/forcereboot', (req, res, next) => {
+  execFile('bash', ['/home/revo/nodeutils', '-forcereboot'], (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      (stdout);
+    }
+  });
+})
 
 
 app.get('/checkmaster', (req, res, next) => {
