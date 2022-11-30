@@ -16,8 +16,18 @@ export default function Home() {
     const [ drivesData, setDrivesData ] = useState(false);
 
     useEffect(async () => {
+        let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
+        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+        if(getarrayinfo.data.arrayStatus.includes('md0')){
+            initialPage = initialPage + 3;
+        } 
+        let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
+        if(getwificonfig.data.arrayStatus.includes('md0')){
+            initialPage = initialPage + 1;
+        }
+        setCurrentPage(initialPage);
     }, []);
 
 
