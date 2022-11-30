@@ -156,12 +156,21 @@ function getArrInfo(type) {
 
 app.get('/getarrayinfo', (req, res, next) => {
   let arrDetails = getArrInfo('-arraydetails');
-  let arrStatus = getArrInfo('-arraystatus');
-  let arrUsage = getArrInfo('-arrayusage');
-  let response = {
-    arrayDetails: arrDetails,
-    arrayStatus: arrStatus,
-    arrayUsage: arrUsage
+  let arrStatus;
+  let arrUsage;
+  let response
+  if(arrDetails.includes('md0')){
+    arrStatus = getArrInfo('-arraystatus');
+    arrUsage = getArrInfo('-arrayusage');
+      response = {
+      arrayDetails: arrDetails,
+      arrayStatus: arrStatus,
+      arrayUsage: arrUsage
+    }
+  }else {
+    response = {
+      arrayDetails: arrDetails
+    }      
   }
   if (arrDetails && arrStatus && arrUsage) {
     res.send(response)
