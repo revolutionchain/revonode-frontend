@@ -56,7 +56,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div class="signup-form-conent">
-                        <form method="POST" id="signup-form" class="signup-form" enctype="multipart/form-data">
+                        <form id="signup-form" class="signup-form" >
                             <h3></h3>
                             <fieldset>
                                 <span class="step-current">Step {currentPage} / 4</span>
