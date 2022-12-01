@@ -150,8 +150,11 @@ app.post('/makearray', (req, res, next) => {
 });
 
 function getArrInfo(type) {
-  let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
- return result;
+  try{
+    return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
+  }catch {
+    return error.status;
+  }
 }
 
 app.get('/getarrayinfo', (req, res, next) => {
@@ -209,8 +212,11 @@ app.post('/removearray', (req, res, next) => {
 })
 
 function wifiConfig(type) {
-  let response = execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } ) ;
-  return response;
+  try {
+    return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } ) ;
+  }catch {
+    return error.status;
+  }
 
 }
 
