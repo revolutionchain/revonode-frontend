@@ -152,7 +152,7 @@ app.post('/makearray', (req, res, next) => {
 function getArrInfo(type) {
   try{
     return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
-  }catch {
+  }catch (error) {
     return error.status;
   }
 }
@@ -214,7 +214,7 @@ app.post('/removearray', (req, res, next) => {
 function wifiConfig(type) {
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } ) ;
-  }catch {
+  }catch (error) {
     return error.status;
   }
 
