@@ -162,7 +162,7 @@ app.get('/getarrayinfo', (req, res, next) => {
   let arrDetails;
   let arrUsage;
   let response
-  if(arrStatus.includes('md0')){
+  if(arrStatus?.includes('md0')){
     arrDetails = getArrInfo('-arraydetails');
     arrUsage = getArrInfo('-arrayusage');
       response = {
