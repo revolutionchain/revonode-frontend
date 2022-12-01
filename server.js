@@ -221,11 +221,7 @@ app.get('/delwificonfig', (req, res, next) => {
 
 app.get('/getwificonfig', (req, res, next) => {
   let response = wifiConfig('-getwificonfig');
-  if(response.err){
-    res.status(404).send(response.err);
-  }else {
-    res.send(response.stdout);
-  }
+  res.send(response);
 })
 
 

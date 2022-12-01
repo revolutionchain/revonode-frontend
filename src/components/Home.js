@@ -24,7 +24,7 @@ export default function Home() {
             initialPage = initialPage + 3;
         } 
         let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
-        if(getwificonfig.data.arrayStatus.includes('md0')){
+        if(getwificonfig.data.includes('md0')){
             initialPage = initialPage + 1;
         }
         setCurrentPage(initialPage);
