@@ -153,7 +153,7 @@ function getArrInfo(type) {
   try{
     return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
   }catch (error) {
-    return error.status;
+    return error.stdout.toString();
   }
 }
 
