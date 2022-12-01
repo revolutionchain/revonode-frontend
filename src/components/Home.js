@@ -39,12 +39,6 @@ export default function Home() {
 
     currentPage == 2 && !drivesData && getDrives();
 
-    { currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> }
-    { currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div> }
-    { currentPage == 3 && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> }
-    { currentPage == 4 && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> }
-    { currentPage == 5 && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} /> }
-
     return (
 
 
