@@ -172,7 +172,7 @@ app.get('/getarrayinfo', (req, res, next) => {
     }
   }else {
     response = {
-      arrayStatus: arrStatus
+      arrayStatus: 'Error: array not found'
     }      
   }
 
