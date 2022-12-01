@@ -56,7 +56,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div class="signup-form-conent">
-                        <form id="signup-form" class="signup-form" >
+                        <div id="signup-form" class="signup-form" >
                             <h3></h3>
                             <fieldset>
                                 <span class="step-current">Step {currentPage} / 4</span>
@@ -68,7 +68,7 @@ export default function Home() {
                                     {currentPage == 5 && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                 </div>
                             </fieldset>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
