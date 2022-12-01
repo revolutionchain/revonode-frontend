@@ -151,7 +151,12 @@ app.post('/makearray', (req, res, next) => {
 
 function getArrInfo(type) {
   try{
-    return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
+    let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
+    if(result.includes('md0')){
+      return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
+    }else {
+      return 'Error: array not found'
+    }
   }catch (error) {
     return error.stdout.toString();
   }
