@@ -23,12 +23,12 @@ export default function Home() {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         if (getarrayinfo.data.arrayStatus.includes('md0')) {
             initialPage = initialPage + 3;
+            let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
+            if (getwificonfig.data.includes('network')) {
+                initialPage = initialPage + 1;
+            }
+            setCurrentPage(initialPage);
         }
-        let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
-        if (getwificonfig.data.includes('network')) {
-            initialPage = initialPage + 1;
-        }
-        setCurrentPage(initialPage);
     }, []);
 
 
@@ -78,57 +78,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            {/*<div className='div-main-home'>
-            
-            
-            <div className='home-div-content'>
-                <h2>Logo</h2>
-                <h3>Configuring your Node</h3>
-                <div className='home-div-container'>
-                    <div>
-                        <div>
-                        <i class={currentPage == 1 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
-                        <i class={currentPage == 2 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
-                        <i class={currentPage == 3 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
-                        <i class={currentPage == 4 ? "fas fa-solid fa-laptop icon-active" : "fas fa-solid fa-laptop"}></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='home-div-color'>
-                <div className='home-div-steps-container'>
-                    <div className='step'>
-                        <div className='step-content'>
-                            <h2>Application</h2>
-                            <span>Lorem ipsum</span>
-                        </div>
-                    </div>
-                    <div className='step'>
-                        <i></i>
-                        <div className='step-content'>
-                            <h2>Application</h2>
-                            <span>Lorem ipsum</span>
-                        </div>
-                    </div>
-                    <div className='step'>
-                        <i></i>
-                        <div className='step-content'>
-                            <h2>Application</h2>
-                            <span>Lorem ipsum</span>
-                        </div>
-                    </div>
-                    <div className='step'>
-                        <i></i>
-                        <div className='step-content'>
-                            <h2>Application</h2>
-                            <span>Lorem ipsum</span>
-                        </div>
-                    </div>
-                </div>
-    </div>
-    
-        </div>*/}
-
         </div>
     )
 }
