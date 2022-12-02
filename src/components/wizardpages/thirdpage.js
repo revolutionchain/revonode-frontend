@@ -63,8 +63,8 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
 
     return (
         <div className=''>
-            <h2> Success!</h2>
-            <h3> Description text!</h3>
+            <h2>Array Created successfully!</h2>
+            <h3>Your storage array has been successfully created!</h3>
             <div>
                 {
                     arrayData.length && arrayData?.map((e,i) => {

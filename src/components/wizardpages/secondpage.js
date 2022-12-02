@@ -90,7 +90,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     return (
         <div className=''>
-            <h2> Select two drives!</h2>
+            <h2>Storage</h2>
+            <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? Click here!</h3>
             <div>
                 {
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {

@@ -310,7 +310,6 @@ h2 {
   font-weight: 800;
   font-family: 'Muli';
   margin: 0px;
-  padding-bottom: 40px;
 }
 
 h2 span {
@@ -441,8 +440,8 @@ input:valid+label {
 
 .form-group {
   position: relative;
-  min-height: 60vh;
-  padding: 0 30px;
+  min-height: 72vh;
+  padding: 0 50px;
 }
 
 
@@ -470,7 +469,7 @@ input:valid+label {
   font-family: 'Montserrat';
   text-transform: uppercase;
   font-weight: 800;
-  color: #7c7cdd;
+  color: black;
 }
 
 .actions ul {
@@ -581,6 +580,10 @@ input:valid+label {
 
 }
 
+.button-style:hover {
+  cursor: pointer;
+}
+
 
 .next-button {
   bottom: 0;
@@ -609,7 +612,15 @@ input[type=checkbox] {
   display: flex;  
   font-family: 'Poppins';
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
+  color: var(--second-color-text);
+}
+
+.networks-container {  
+  display: flex;  
+  font-family: 'Poppins';
+  font-weight: bold;
+  font-size: 20px;
   color: var(--second-color-text);
 }
 
@@ -632,5 +643,9 @@ input[type=checkbox] {
     
 }
 
+h3 {
+  color: var(--second-color-text);
+  text-align: justify;
+}
 
 /*# sourceMappingURL=style.css.map */

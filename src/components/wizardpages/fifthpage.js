@@ -59,8 +59,8 @@ export default function Fifthpage({currentPage, setCurrentPage}) {
 
     return (
         <div className=''>
-            <h2> Config Successfully for ESSID WiFi!</h2>
-            <h3> Description text!</h3>
+            <h2>WiFi configured successfully!</h2>
+            <h3>You can continue with the setup wizard or choose to restart your device. WARNING: If you decide to restart now, leave the network cable connected, wait for the restart and check on the monitor if you find a second IP address. Resume the wizard with the new IP and unplug the LAN cable as well. If the second IP is not visible, reboot and move closer to the WiFi router, if the configuration is incorrect, use the cable connection to correct it or continue.</h3>
             <div>
                 {
                     arrayData.length && arrayData?.map((e,i) => {

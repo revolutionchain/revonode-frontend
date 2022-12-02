@@ -39,6 +39,14 @@ export default function Home() {
 
     currentPage == 2 && !drivesData && getDrives();
 
+    let leftContent = [
+        { textLeft: 'Thank you for choosing to support REVO technology by joining the blockchain network!' },
+        { textLeft: 'The Revo software needs a certain amount of disk space, on this page you will need to select two SSD disks for saving the blockchain. It is always recommended to use storage devices of the same model and of the same capacity.' },
+        { textLeft: 'Your storage array has been successfully created!' },
+        { textLeft: 'Configure your node to work with WiFi. You can also give two connections for redoundancy.' },
+        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' }
+    ]
+
     return (
 
 
@@ -48,9 +56,9 @@ export default function Home() {
                     <div class="signup-desc">
                         <div class="signup-desc-content">
                             <img className="revo-lgo" src={revoLogo} />
-                            <p class="title">Sign up now to try undraw 30 days for free</p>
+                            {/*<p class="title">Sign up now to try undraw 30 days for free</p>*/}
                             <p class="desc">
-                                MIT licensed illustrations for every project you can imagine and create
+                                { leftContent[currentPage-1]?.textLeft }
                             </p>
                             <img src="images/signup-img.jpg" alt="" class="signup-img" />
                         </div>
