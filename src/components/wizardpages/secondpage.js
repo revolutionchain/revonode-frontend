@@ -50,8 +50,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
 
-    const [ raidLevel, setRaidLevel ] = useState("null");
-    
+    const [raidLevel, setRaidLevel] = useState("null");
+
     const options = [
         { value: '0', label: 'Raid 0' },
         { value: '1', label: 'Raid 1' },
@@ -59,26 +59,26 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
 
     async function handleNextButton() {
-        if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null"){
-	    let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1]};
+        if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
+            let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1] };
             let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
-            if(checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing') ){
+            if (checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing')) {
                 return alert('Drives missing');
             }
             let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
-            if(!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')){
+            if (!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')) {
                 return alert('Filesystem error');
             }
             let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
             let makearray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/makearray`, drivesAllowed);
-            if(makearray?.data?.includes('ok')){
+            if (makearray?.data?.includes('ok')) {
                 setCurrentPage(currentPage + 1);
-            }else {
+            } else {
                 alert('Error: Array could not be created');
             }
-        } else if(!(checkedState.includes(1) && checkedState.includes(2))) {
+        } else if (!(checkedState.includes(1) && checkedState.includes(2))) {
             alert('You must select 2 drives.');
-        }else if(raidLevel == 'null'){
+        } else if (raidLevel == 'null') {
             alert('You must select raid level.');
         }
 
@@ -92,16 +92,18 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
                         return <div key={e.NAME} className='drives-container'>
                             <input type="checkbox" checked={checkedState[i]} onClick={() => handleCheckbox(e, i)}></input>
-                            <span style={{marginRight: `10px`}}>{e.NAME}</span>
-                            <span style={{marginRight: `10px`}}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
+                            <span style={{ marginRight: `10px` }}>{e.NAME}</span>
+                            <span style={{ marginRight: `10px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
                             <span>{e.MODEL}</span>
                         </div>
                     })
                 }
             </div>
-            <div>
+            <div style={{ width: `30%` }}>
                 <Select
 
+                    menuPlacement="auto"
+                    menuPosition="fixed"
                     defaultValue={'Select Raid'}
                     styles={{
                         control: (baseStyles, state) => ({
