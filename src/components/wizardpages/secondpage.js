@@ -53,8 +53,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     const [raidLevel, setRaidLevel] = useState("null");
 
     const options = [
-        { value: '0', label: 'Raid 0' },
-        { value: '1', label: 'Raid 1' },
+        { value: 0, label: 'Raid 0' },
+        { value: 1, label: 'Raid 1' },
     ]
 
 
@@ -101,7 +101,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             </div>
             <div style={{ width: `30%` }}>
                 <Select
-
+                    onChange={(e) => setRaidLevel(e.target.value)}
                     menuPlacement="auto"
                     menuPosition="fixed"
                     defaultValue={'Select Raid'}
