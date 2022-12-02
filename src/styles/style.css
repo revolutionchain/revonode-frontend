@@ -246,7 +246,6 @@ a:active {
 }
 
 input,
-select,
 textarea {
   outline: none;
   appearance: unset !important;
@@ -267,7 +266,6 @@ input::-webkit-inner-spin-button {
 }
 
 input:focus,
-select:focus,
 textarea:focus {
   outline: none;
   box-shadow: none !important;
@@ -595,6 +593,25 @@ input[type=checkbox] {
   font-weight: bold;
   font-size: 24px;
   color: var(--second-color-text);
+}
+
+.select-styles{
+  border: 2px solid;   
+  transition: 0.5s; 
+  font-size: 24px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.select-styles option {
+  box-shadow: 0 0 10px 100px var(--main-color) inset !important;
+  background: none !important;  
+}
+
+.select-styles:hover {
+  border: 2px solid var(--main-color);
+  transition: 0.5s; 
+    
 }
 
 

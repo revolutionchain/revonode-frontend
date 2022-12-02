@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 const { REACT_APP_LOCAL_NODE_IP } = process.env;
 
 
@@ -94,11 +95,28 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                 }
             </div>
             <div>
-                <select onChange={e => setRaidLevel(e.target.value)}>
-                    <option value='null'>Raid Level</option>
-                    <option value='0' >Raid 0</option>
-                    <option value='1'>Raid 1</option>
-                </select>
+                <Select
+
+                    defaultValue={'Select Raid'}
+                    styles={{
+                        control: (baseStyles, state) => ({
+                            ...baseStyles,
+                            borderColor: state.isFocused ? 'purple' : 'grey',
+                            border: state.isFocused ? "2px solid #7c7cdd" : "2px solid #cccccc",
+                            "&:hover": {
+                                border: "2px solid #7c7cdd",
+                            }
+                        }), option: (provided, state) => ({
+                            ...provided,
+                            backgroundColor: state.isSelected ? "#7c7cdd" : "white",
+                            color: "black",
+                            "&:hover": {
+                                border: "1px solid #7c7cdd",
+                            }
+                        }),
+                    }}
+
+                    options={options} />
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
             <button onClick={() => handleNextButton()} className='next-button'>Next</button>
