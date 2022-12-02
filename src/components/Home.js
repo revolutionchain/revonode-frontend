@@ -59,7 +59,7 @@ export default function Home() {
                         <div id="signup-form" class="signup-form" >
                             <h3></h3>
                             <fieldset>
-                                <span class="step-current">Step {currentPage} / 4</span>
+                                <span class="step-current">Step {currentPage} / 6</span>
                                 <div class="form-group">
                                     {currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
