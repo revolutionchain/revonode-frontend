@@ -440,11 +440,9 @@ input:valid+label {
 
 .form-group {
   position: relative;
-}
-
-.form-group div{
   min-height: 60vh;
 }
+
 
 .field-icon {
   font-size: 24px;
