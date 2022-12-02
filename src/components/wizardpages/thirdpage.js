@@ -84,7 +84,7 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
                 >
                     <div className="div-balance-title div-abm-title">Are you sure?</div>
                     <button onClick={closeModal} className='button-style back-button'>Cancelar</button>
-                    <button onClick={() => handleRemoveArray()} className='next-button'>Yes</button>
+                    <button onClick={() => handleRemoveArray()} className='button-style next-button'>Yes</button>
                 </Modal>
             </div>
             <button onClick={() => openModal()} className='button-style back-button'>Back</button>

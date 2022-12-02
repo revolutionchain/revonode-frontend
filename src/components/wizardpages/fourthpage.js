@@ -94,7 +94,7 @@ export default function Fourthpage({currentPage, setCurrentPage}) {
                 }                
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
-            <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button skip-button'>Skip</button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style skip-button'>Skip</button>
             <button onClick={() => handleConnect()} className='button-style next-button'>Connect</button>
         
         </div>
