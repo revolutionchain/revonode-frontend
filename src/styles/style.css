@@ -442,6 +442,7 @@ input:valid+label {
 .form-group {
   position: relative;
   min-height: 60vh;
+  padding: 0 30px;
 }
 
 
@@ -563,7 +564,7 @@ input:valid+label {
 }
 
 
-.next-button {
+.button-style {
   width: 140px;
   height: 50px;
   color: #fff;
@@ -577,9 +578,21 @@ input:valid+label {
   @include justify-content(center);
   text-decoration: none;
   position: absolute;
+
+}
+
+
+.next-button {
   bottom: 0;
   right: 0;
   margin-right: 30px;
+
+}
+
+.back-button {
+  bottom: 0;
+  left: 0;
+  margin-left: 30px;
 
 }
 

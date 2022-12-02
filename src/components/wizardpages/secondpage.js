@@ -103,7 +103,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     })
                 }
             </div>
-            <div style={{ width: `30%` }}>
+            <div style={{ width: `30%`, marginTop: `15px` }}>
                 <Select
                     onChange={handleSelect}
                     menuPlacement="auto"
@@ -129,8 +129,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
                     options={options} />
             </div>
-            <button onClick={() => setCurrentPage(currentPage - 1)} className='next-button'>Back</button>
-            <button onClick={() => handleNextButton()} className='next-button'>Next</button>
+            <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
+            <button onClick={() => handleNextButton()} className='button-style next-button'>Next</button>
 
         </div>
     )

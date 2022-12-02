@@ -82,10 +82,10 @@ export default function Fifthpage({currentPage, setCurrentPage}) {
                     <button onClick={() => handleBackButton()} className='next-button'>Yes</button>
                 </Modal>
             </div>
-            <button onClick={() => openModal()} className='next-button'>Back</button>
-            <button onClick={() => handleRemove()} className='next-button'>Remove</button>
-            <button onClick={() => handleReboot()} className='next-button'>Reboot</button>
-            <button onClick={() => setCurrentPage(currentPage + 1)} className='next-button'>Next</button>
+            <button onClick={() => openModal()} className='button-style back-button'>Back</button>
+            <button onClick={() => handleRemove()} className='button-style remove-button'>Remove</button>
+            <button onClick={() => handleReboot()} className='button-style reboot-button'>Reboot</button>
+            <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
         
         </div>
     )
