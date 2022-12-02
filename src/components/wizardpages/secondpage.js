@@ -80,15 +80,15 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     return (
         <div className=''>
-            <h2> TITLE!</h2>
-            <h3> Description text!</h3>
+            <h2> Select two drives!</h2>
             <div>
                 {
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
-                        return <div key={e.NAME}>
+                        return <div key={e.NAME} className='drives-container'>
                             <input type="checkbox" checked={checkedState[i]} onClick={() => handleCheckbox(e, i)}></input>
-                            <span>{e.NAME}</span>
-                            <span>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + ' gb'}</span>
+                            <span style={{marginRight: `10px`}}>{e.NAME}</span>
+                            <span style={{marginRight: `10px`}}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
+                            <span>{e.MODEL}</span>
                         </div>
                     })
                 }

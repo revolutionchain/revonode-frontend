@@ -10,6 +10,8 @@ display-flex,
 html {
   
  --main-color: #7c7cdd;
+ --second-color-text: #888;
+ --third-color-text: #999;
 }
 
 /* @extend list-type-ulli; */
@@ -381,7 +383,8 @@ fieldset {
 }
 
 .signup-desc-content {
-  padding: 45px 55px;
+  padding: 35px 45px;
+  text-align: left;
 }
 
 .signup-form-conent {
@@ -581,5 +584,18 @@ input:valid+label {
   margin-right: 30px;
 
 }
+
+input[type=checkbox] {
+  width: auto !important;  
+}
+
+.drives-container {
+  display: flex;  
+  font-family: 'Poppins';
+  font-weight: bold;
+  font-size: 24px;
+  color: var(--second-color-text);
+}
+
 
 /*# sourceMappingURL=style.css.map */
