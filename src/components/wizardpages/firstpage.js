@@ -2,10 +2,6 @@ import React from 'react';
 
 
 export default function Firstpage({ currentPage, setCurrentPage }) {
-    const options = [
-        { value: '0', label: 'Raid 0' },
-        { value: '1', label: 'Raid 1' },
-    ]
 
 
     return (

@@ -51,6 +51,11 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     }
 
     const [ raidLevel, setRaidLevel ] = useState("null");
+    
+    const options = [
+        { value: '0', label: 'Raid 0' },
+        { value: '1', label: 'Raid 1' },
+    ]
 
 
     async function handleNextButton() {
