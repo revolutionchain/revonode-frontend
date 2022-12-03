@@ -117,16 +117,16 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                         control: (baseStyles, state) => ({
                             ...baseStyles,
                             borderColor: state.isFocused ? 'purple' : 'grey',
-                            border: state.isFocused ? "2px solid #7c7cdd" : "2px solid #cccccc",
+                            border: state.isFocused ? "2px solid #050A30" : "2px solid #cccccc",
                             "&:hover": {
-                                border: "2px solid #7c7cdd",
+                                border: "2px solid #050A30",
                             }
                         }), option: (provided, state) => ({
                             ...provided,
-                            backgroundColor: state.isSelected ? "#7c7cdd" : "white",
+                            backgroundColor: state.isSelected ? "#050A30" : "white",
                             color: "black",
                             "&:hover": {
-                                border: "1px solid #7c7cdd",
+                                border: "1px solid #050A30",
                             }
                         }),
                     }}

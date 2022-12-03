@@ -650,7 +650,7 @@ h3 {
 }
 
 .drives-container.selected {
-  background-color: var(--second-color);
+  background-color: rgba(223, 234, 241, 1);
 }
 
 /*# sourceMappingURL=style.css.map */
