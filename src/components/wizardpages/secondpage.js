@@ -123,7 +123,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                             }
                         }), option: (provided, state) => ({
                             ...provided,
-                            backgroundColor: state.isSelected ? "#050A30" : "white",
+                            backgroundColor: state.isSelected ? "#dfeaf1" : "white",
                             color: "black",
                             "&:hover": {
                                 border: "1px solid #050A30",
