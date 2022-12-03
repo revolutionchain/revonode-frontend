@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import floppyDiskImg from '../../styles/images/floppy-disk.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -100,6 +101,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
                         return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
                             {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
+                            <img src={floppyDiskImg} />
                             <span style={{ marginRight: `10px` }}>{e.NAME}</span>
                             <span style={{ marginRight: `10px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
                             <span>{e.MODEL}</span>
@@ -125,6 +127,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                             ...provided,
                             backgroundColor: state.isSelected ? "#dfeaf1" : "white",
                             color: "black",
+                            border: "1px solid white",
                             "&:hover": {
                                 border: "1px solid #050A30",
                             }
