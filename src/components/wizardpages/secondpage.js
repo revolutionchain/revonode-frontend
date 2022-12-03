@@ -101,7 +101,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
                         return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
                             {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
-                            <img src={floppyDiskImg} />
+                            <img style={{width: `40px`, height: `30px`, marginRight: `10px`}} src={floppyDiskImg} />
                             <span style={{ marginRight: `10px` }}>{e.NAME}</span>
                             <span style={{ marginRight: `10px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
                             <span>{e.MODEL}</span>

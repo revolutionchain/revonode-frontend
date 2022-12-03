@@ -373,7 +373,7 @@ fieldset {
 }
 
 .signup-desc {
-  background-color: rgba(80, 200, 120, 0.1);
+  background-color: #7c7cdd;
   width: 35%;
   height: calc(92vh - 50px);
 }
@@ -611,15 +611,20 @@ input[type=checkbox] {
 .drives-container {
   display: flex;  
   font-family: 'Poppins';
-  font-weight: bold;
+  font-weight: 300;
   font-size: 20px;
   color: var(--second-color-text);
+  padding: 10px;
+}
+
+.drives-container.selected {
+  background-color: rgba(223, 234, 241, 1);
 }
 
 .networks-container {  
   display: flex;  
   font-family: 'Poppins';
-  font-weight: bold;
+  font-weight: 300;
   font-size: 20px;
   color: var(--second-color-text);
 }
@@ -647,10 +652,6 @@ h3 {
   color: var(--second-color-text);
   text-align: justify;
   font-weight: 300;
-}
-
-.drives-container.selected {
-  background-color: rgba(223, 234, 241, 1);
 }
 
 /*# sourceMappingURL=style.css.map */
