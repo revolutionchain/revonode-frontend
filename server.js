@@ -15,15 +15,15 @@ const nets = networkInterfaces();
 const results = {};
 
 for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-        const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
-        if (net.family === familyV4Value && !net.internal) {
-            if (!results[name]) {
-                results[name] = [];
-            }
-            results[name].push(net.address);
-        }
+  for (const net of nets[name]) {
+    const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
+    if (net.family === familyV4Value && !net.internal) {
+      if (!results[name]) {
+        results[name] = [];
+      }
+      results[name].push(net.address);
     }
+  }
 }
 const envFilePath = path.resolve(__dirname, ".env");
 
@@ -48,20 +48,41 @@ const setEnvValue = (key, value) => {
   fs.writeFileSync(envFilePath, envVars.join(os.EOL));
 };
 let domain = 'localhost';
-if(results?.eth0?.length){
-setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
-domain = results.eth0[0];
+if (results?.eth0?.length) {
+  let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
+  setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
+  domain = results.eth0[0];
+  if (envCheck !== results.eth0[0]) {
+    exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(stdout);
+      }
+    });
+  }
 }
 
-if(results?.wlan0?.length){
-setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
-domain = results.wlan0[0];
+if (results?.wlan0?.length) {
+  let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
+  setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
+  domain = results.wlan0[0];
+  if (envCheck !== results.wlan0[0]) {
+    exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(stdout);
+      }
+    });
+  }
+
 }
 console.log(domain);
 
 app.use((req, res, next) => {
 
-res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
 
 
 
@@ -84,7 +105,7 @@ app.get('/forcereboot', (req, res, next) => {
 
 
 app.get('/checkmaster', (req, res, next) => {
-  exec('ls', {cwd: '/home/revo/'}, (err, stdout, stderr) => {
+  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -105,8 +126,8 @@ app.get('/showdrives', function (req, res, next) {
 });
 
 
-  function checkFunction(disk, type) {
-  let result = execFileSync('bash', ['/home/revo/nodeutils', type, disk], { encoding: 'utf8' }) 
+function checkFunction(disk, type) {
+  let result = execFileSync('bash', ['/home/revo/nodeutils', type, disk], { encoding: 'utf8' })
   return result
 }
 
@@ -116,7 +137,7 @@ app.post('/checkdrive', (req, res, next) => {
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
   }
- 
+
   resDisk1 = { disk1: checkFunction(disk1.NAME, '-checkdrive') };
   response.push(resDisk1);
   resDisk2 = { disk2: checkFunction(disk2.NAME, '-checkdrive') };
@@ -140,7 +161,7 @@ app.post('/checkfilesystem', (req, res, next) => {
 
 app.post('/makearray', (req, res, next) => {
   const { disk1, disk2, raid } = req.body;
-  execFile('sudo', ['bash' , '/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
+  execFile('sudo', ['bash', '/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -150,14 +171,14 @@ app.post('/makearray', (req, res, next) => {
 });
 
 function getArrInfo(type) {
-  try{
+  try {
     let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
-    if(result.includes('md0')){
+    if (result.includes('md0')) {
       return execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
-    }else {
+    } else {
       return 'Error: array not found'
     }
-  }catch (error) {
+  } catch (error) {
     return error.stdout.toString();
   }
 }
@@ -167,18 +188,18 @@ app.get('/getarrayinfo', (req, res, next) => {
   let arrDetails;
   let arrUsage;
   let response
-  if(arrStatus?.includes('md0')){
+  if (arrStatus?.includes('md0')) {
     arrDetails = getArrInfo('-arraydetails');
     arrUsage = getArrInfo('-arrayusage');
-      response = {
+    response = {
       arrayDetails: arrDetails,
       arrayStatus: arrStatus,
       arrayUsage: arrUsage
     }
-  }else {
+  } else {
     response = {
       arrayStatus: 'Error: array not found'
-    }      
+    }
   }
 
   res.send(response)
@@ -218,8 +239,8 @@ app.post('/removearray', (req, res, next) => {
 
 function wifiConfig(type) {
   try {
-    return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' } ) ;
-  }catch (error) {
+    return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
+  } catch (error) {
     return error.status;
   }
 
