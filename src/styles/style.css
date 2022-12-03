@@ -9,7 +9,7 @@ display-flex,
 
 html {
   
- --main-color: #7c7cdd;
+ --main-color: #050A30;
  --second-color-text: #888;
  --third-color-text: #999;
 }
@@ -317,10 +317,7 @@ h2 span {
 }
 
 .revo-logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 7%;
+  margin-bottom: 10px;
 }
 
 body {
@@ -346,6 +343,7 @@ body {
   margin: 0 auto;
   background: #efeeff;
   height: calc(92vh - 50px);
+  overflow: hidden;
 }
 
 p {
@@ -353,8 +351,8 @@ p {
 }
 
 p.desc {
-
-  color: #999;
+  margin-top: 10px;
+  color: black;
   line-height: 1.92;
 }
 
@@ -374,7 +372,7 @@ fieldset {
 }
 
 .signup-desc {
-  background: #fff;
+  background-color: rgba(80, 200, 120, 0.1);
   width: 35%;
   height: calc(92vh - 50px);
 }
@@ -386,6 +384,7 @@ fieldset {
 
 .signup-form-conent {
   width: 65%;
+  background-color: white;
 }
 
 .signup-form {
@@ -399,14 +398,14 @@ input {
   border-bottom: 1px solid #bfbfbf;
   box-sizing: border-box;
   font-family: 'Poppins';
-  font-weight: bold;
-  font-size: 24px;
+  font-weight: 300;
+  font-size: 20px;
   transition: 0.3s ease;
   -moz-transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
   -o-transition: 0.3s ease;
   -ms-transition: 0.3s ease;
-  padding-top: 30px;
+  padding-top: 10px;
   padding-bottom: 5px;
   -webkit-appearance: none;
   background: transparent;
@@ -646,6 +645,7 @@ input[type=checkbox] {
 h3 {
   color: var(--second-color-text);
   text-align: justify;
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-const { REACT_APP_LOCAL_NODE_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
+
+const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
 
 
 
@@ -89,13 +92,13 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             <div>
                 {
                     wifiData.length && wifiData?.map((e, i) => {
-                        return <form>
+                        return <form style={{marginBottom: `10px`}}>
                             <div style={{ display: `flex` }}>
                                 <input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>
                                 <span>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                             </div>
                             <div>
-                                {checkedState[i] && <input type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
+                                {checkedState[i] && <input style={{width: `60%`}} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
                                 {checkedState[i] &&
                                     <div style={{ width: `30%`, marginTop: `15px` }}>
                                         <Select

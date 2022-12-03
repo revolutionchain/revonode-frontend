@@ -7,8 +7,11 @@ import Secondpage from './wizardpages/secondpage';
 import Thirdpage from './wizardpages/thirdpage';
 import Fourthpage from './wizardpages/fourthpage';
 import Fifthpage from './wizardpages/fifthpage';
-import revoLogo from '../styles/images/revo-light.png'
-const { REACT_APP_LOCAL_NODE_IP } = process.env;
+import revoLogo from '../styles/images/revo-light.png';
+const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
+
+const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
 
 
 export default function Home() {

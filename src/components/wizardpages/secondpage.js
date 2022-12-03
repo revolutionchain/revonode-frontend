@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-const { REACT_APP_LOCAL_NODE_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
+
+const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
 
 
 export default function Secondpage({ currentPage, setCurrentPage, drivesData }) {

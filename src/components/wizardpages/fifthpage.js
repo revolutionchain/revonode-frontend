@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-const { REACT_APP_LOCAL_NODE_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
+const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
+
+const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
 
 
 
@@ -83,7 +86,6 @@ export default function Fifthpage({currentPage, setCurrentPage}) {
                 </Modal>
             </div>
             <button onClick={() => openModal()} className='button-style back-button'>Back</button>
-            <button onClick={() => handleRemove()} className='button-style remove-button'>Remove</button>
             <button onClick={() => handleReboot()} className='button-style skip-button'>Reboot</button>
             <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
         

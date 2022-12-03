@@ -49,12 +49,12 @@ const setEnvValue = (key, value) => {
 };
 let domain = 'localhost';
 if(results?.eth0?.length){
-setEnvValue('REACT_APP_LOCAL_NODE_IP', results.eth0[0]);
+setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
 domain = results.eth0[0];
 }
 
 if(results?.wlan0?.length){
-setEnvValue('REACT_APP_LOCAL_NODE_IP', results.wlan0[0]);
+setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
 domain = results.wlan0[0];
 }
 console.log(domain);
