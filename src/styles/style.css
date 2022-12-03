@@ -10,6 +10,7 @@ display-flex,
 html {
   
  --main-color: #050A30;
+ --second-color: rgba(80,200,120,.1);
  --second-color-text: #888;
  --third-color-text: #999;
 }
@@ -646,6 +647,10 @@ h3 {
   color: var(--second-color-text);
   text-align: justify;
   font-weight: 300;
+}
+
+.drives-container.selected {
+  background-color: var(--second-color);
 }
 
 /*# sourceMappingURL=style.css.map */
