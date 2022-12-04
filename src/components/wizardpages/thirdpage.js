@@ -68,11 +68,11 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
         <div className=''>
             <h2>Array Created successfully!</h2>
             <h3>Your storage array has been successfully created!</h3>
-            <div>
+            <div style={{ display: `flex`, marginRight: `10px`}}>
                 {
                     arrayData.length && arrayData?.map((e,i) => {
-                        let res = i == 0 ? e.slice(1) : e;
-                        return <div>{res}</div>
+                        let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e)/1000000).toFixed(2)) + 'GB' : e ;
+                        return <div className='div-drive-item'>{res}</div>
                     })
                 }                
             </div>

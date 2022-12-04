@@ -655,4 +655,20 @@ h3 {
   font-weight: 300;
 }
 
+.ReactModal__Content--after-open {
+  background-color: #eee !important;
+  width: 45% !important;
+}
+
+
+.ReactModal__Content--after-open.button-style{
+  position: initial !important;
+  margin: 10px !important;
+}
+
+.div-drive-item {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
 /*# sourceMappingURL=style.css.map */
