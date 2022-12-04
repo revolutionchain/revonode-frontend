@@ -56,7 +56,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     const [raidLevel, setRaidLevel] = useState("null");
 
-    function handleSelect (e) {
+    function handleSelect(e) {
         setRaidLevel(e.value);
     }
 
@@ -96,15 +96,18 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         <div className=''>
             <h2>Storage</h2>
             <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? Click here!</h3>
-            <div>
+            <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px` }}>
+                <span style={{ marginLeft: `10px` }}>Disk Drives</span>
                 {
                     drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
                         return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
                             {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
-                            <img style={{width: `40px`, height: `30px`, marginRight: `10px`}} src={floppyDiskImg} />
-                            <span style={{ marginRight: `10px` }}>{e.NAME}</span>
-                            <span style={{ marginRight: `10px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
-                            <span>{e.MODEL}</span>
+                            <img style={{ width: `40px`, height: `30px`, marginRight: `10px` }} src={floppyDiskImg} />
+                            <div>
+                                <span style={{ marginRight: `10px`, fontSize: `16px` }}>{e.NAME}</span>
+                                <span style={{ marginRight: `10px`, fontSize: `16px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
+                                <span style={{display: `block`, fontSize: `12px`, marginTop: `-5px`}}>{e.MODEL}</span>
+                            </div>
                         </div>
                     })
                 }

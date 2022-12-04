@@ -314,7 +314,7 @@ h2 {
 }
 
 h2 span {
-  color: #7c7cdd;
+  color: var(--second-color);
 }
 
 .revo-logo {
@@ -373,7 +373,7 @@ fieldset {
 }
 
 .signup-desc {
-  background-color: #7c7cdd;
+  background-color: var(--second-color);
   width: 35%;
   height: calc(92vh - 50px);
 }
@@ -615,6 +615,7 @@ input[type=checkbox] {
   font-size: 20px;
   color: var(--second-color-text);
   padding: 10px;
+  align-items: center;
 }
 
 .drives-container.selected {
