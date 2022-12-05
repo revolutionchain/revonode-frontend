@@ -117,7 +117,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     onChange={handleSelect}
                     menuPlacement="auto"
                     menuPosition="fixed"
-                    defaultValue={'Select Raid Level'}
+                    defaultValue={{ label: 'Select Raid Level'}}
                     styles={{
                         control: (baseStyles, state) => ({
                             ...baseStyles,
