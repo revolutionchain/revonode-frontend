@@ -112,12 +112,12 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     })
                 }
             </div>
-            <div style={{ width: `30%`, marginTop: `15px` }}>
+            <div style={{ width: `50%`, marginTop: `15px` }}>
                 <Select
                     onChange={handleSelect}
                     menuPlacement="auto"
                     menuPosition="fixed"
-                    defaultValue={'Select Raid'}
+                    defaultValue={'Select Raid Level'}
                     styles={{
                         control: (baseStyles, state) => ({
                             ...baseStyles,
