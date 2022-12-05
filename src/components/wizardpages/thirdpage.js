@@ -63,18 +63,19 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
     }
 
 
-
+    const tableElem = ['Array Name', 'Raid Level', 'Storage', 'Size']
 
     return (
         <div className=''>
             <h2>Array Created successfully!</h2>
             <h3>Your storage array has been successfully created!</h3>
-            <div style={{ display: `flex`, marginRight: `10px`}}>
-                <img src={raidIcon} />
+            <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px`}}>
+                <img style={{width: `50px`, marginRight: `10px`}} src={raidIcon} />
                 {
                     arrayData.length && arrayData?.map((e,i) => {
                         let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e)/1000000).toFixed(2)) + 'GB' : e ;
-                        return <div className='div-drive-item'>{res}</div>
+
+                        return <div className='div-drive-item'>{i == 3 ? <div></div> : <div><div>{i > 3 ? tableElem[i-1] : tableElem[i]}</div><span>{i == 2 ? <div>{res + " " + arrayData[i+1]}</div> : res}</span></div> }</div>
                     })
                 }                
             </div>
