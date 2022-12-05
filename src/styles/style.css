@@ -671,4 +671,9 @@ h3 {
   font-size: 16px;
 }
 
+.modal-button {
+  position: initial;
+  margin: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

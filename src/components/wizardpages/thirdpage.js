@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import raidIcon from '../../styles/images/RAID-icon.png';
+import warningIcon from '../../styles/images/warning.png';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -95,9 +96,10 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
+                    <img src={warningIcon} />
                     <div className="div-balance-title div-abm-title">Are you sure?</div>
-                    <button onClick={closeModal} className='button-style back-button'>Cancelar</button>
-                    <button onClick={() => handleRemoveArray()} className='button-style next-button'>Yes</button>
+                    <button onClick={closeModal} className='button-style back-button modal-button'>Cancelar</button>
+                    <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
                 </Modal>
             </div>
             <button onClick={() => openModal()} className='button-style back-button'>Back</button>
