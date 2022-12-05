@@ -90,9 +90,16 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             <h2>Wifi</h2>
             <h3>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
             <div>
+            <div style={{
+                backgroundColor: `#EEE`,
+                textAlign: `left`,
+                marginRight: `10px`,
+                paddingLeft: `10px`,
+                paddingTop: `5px`,
+            }}><span>WiFi Networks</span></div>
                 {
                     wifiData.length && wifiData?.map((e, i) => {
-                        return <div className='div-wifi-container' style={{ marginBottom: `10px` }}>
+                        return <div className='div-wifi-container' >
                             <div style={{ display: `flex` }}>
                                 {<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>}
                                 <span style={{fontSize: `16px`}}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
