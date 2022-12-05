@@ -92,13 +92,13 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             <div>
                 {
                     wifiData.length && wifiData?.map((e, i) => {
-                        return <div style={{ marginBottom: `10px` }}>
+                        return <div className='div-wifi-container' style={{ marginBottom: `10px` }}>
                             <div name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)} style={{ display: `flex` }}>
                                 {/*<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>*/}
-                                <span>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
+                                <span style={{fontSize: `16px`}}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                             </div>
                             <div>
-                                {checkedState[i] && <input style={{ width: `60%` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
+                                {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
                                 {checkedState[i] &&
                                     <div style={{ width: `30%`, marginTop: `15px` }}>
                                         <Select
