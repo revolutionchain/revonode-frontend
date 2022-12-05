@@ -604,6 +604,12 @@ input:valid+label {
   margin-left: -5px;
 }
 
+.rescan-button {
+  float: right;
+  bottom: auto;  
+}
+
+
 input[type=checkbox] {
   width: auto !important;  
 }
@@ -675,5 +681,13 @@ h3 {
   position: initial;
   margin: 10px;
 }
+
+.warning-icon {
+  position: absolute;
+  width: 65px;
+  top: 35px;
+  left: 55px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

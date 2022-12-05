@@ -96,9 +96,9 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <img src={warningIcon} />
+                    <img className='warning-icon' src={warningIcon} />
                     <div className="div-balance-title div-abm-title">Are you sure?</div>
-                    <button onClick={closeModal} className='button-style back-button modal-button'>Cancelar</button>
+                    <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
                     <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
                 </Modal>
             </div>

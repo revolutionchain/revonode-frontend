@@ -75,8 +75,8 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     ]
 
 
-    
-    function handleSelect (e) {
+
+    function handleSelect(e) {
         setInput({
             ...input,
             country: e.value
@@ -86,19 +86,19 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
 
     return (
         <div className=''>
-            <button onClick={() => handleRescan()}>Re-Scan</button>
+            <button className='button-style next-button rescan-button' onClick={() => handleRescan()}>Re-Scan</button>
             <h2>Wifi</h2>
             <h3>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
             <div>
                 {
                     wifiData.length && wifiData?.map((e, i) => {
-                        return <form style={{marginBottom: `10px`}}>
-                            <div style={{ display: `flex` }}>
-                                <input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>
+                        return <div style={{ marginBottom: `10px` }}>
+                            <div name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)} style={{ display: `flex` }}>
+                                {/*<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>*/}
                                 <span>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                             </div>
                             <div>
-                                {checkedState[i] && <input style={{width: `60%`}} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
+                                {checkedState[i] && <input style={{ width: `60%` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
                                 {checkedState[i] &&
                                     <div style={{ width: `30%`, marginTop: `15px` }}>
                                         <Select
@@ -127,7 +127,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                             options={options} />
                                     </div>}
                             </div>
-                        </form>
+                        </div>
                     })
                 }
             </div>
