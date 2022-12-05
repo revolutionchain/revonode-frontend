@@ -10,17 +10,17 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 
 
-export default function Thirdpage({currentPage, setCurrentPage}) {
+export default function Thirdpage({ currentPage, setCurrentPage }) {
 
-    const [ arrayData, setArrayData ] = useState(false);
+    const [arrayData, setArrayData] = useState(false);
 
-    useEffect( async () => {
+    useEffect(async () => {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e,i) => [3, 6, 7, 8, 14].includes(i)));
-    },[])
+        setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e, i) => [3, 6, 7, 8, 14].includes(i)));
+    }, [])
 
 
-    
+
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -52,14 +52,14 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
     };
 
     async function handleRemoveArray() {
-        let arrInfo = { disk1: arrayData[3].slice(0,3), disk2: arrayData[2].slice(0,3) };
+        let arrInfo = { disk1: arrayData[3].slice(0, 3), disk2: arrayData[2].slice(0, 3) };
         let removeArray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/removearray`, arrInfo);
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        if(!getarrayinfo.data.arrayStatus.includes('md0')){
-            setCurrentPage(currentPage - 1)                        
+        if (!getarrayinfo.data.arrayStatus.includes('md0')) {
+            setCurrentPage(currentPage - 1)
         }
 
-        
+
     }
 
 
@@ -69,17 +69,24 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
         <div className=''>
             <h2>Array Created successfully!</h2>
             <h3>Your storage array has been successfully created!</h3>
-            <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px`}}>
-                <img style={{width: `50px`, marginRight: `10px`}} src={raidIcon} />
+            <div style={{
+                backgroundColor: `#EEE`,
+                textÀlign: `left`,
+                marginRight: `10px`,
+                paddingLeft: `10px`,
+                paddingTop: `5px`,
+            }}>Array Details</div>
+            <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
+                <img style={{ width: `50px`, marginRight: `10px` }} src={raidIcon} />
                 {
-                    arrayData.length && arrayData?.map((e,i) => {
-                        let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e)/1000000).toFixed(2)) + 'GB' : e ;
+                    arrayData.length && arrayData?.map((e, i) => {
+                        let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : e;
 
-                        return <div className='div-drive-item'>{i == 3 ? <div></div> : <div><div>{i > 3 ? tableElem[i-1] : tableElem[i]}</div><span>{i == 2 ? <div>{res.slice(0,3) + " " + arrayData[i+1].slice(0,3)}</div> : res}</span></div> }</div>
+                        return <div style={{color: `#888`}} className='div-drive-item'>{i == 3 ? <div></div> : <div><div>{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><span>{i == 2 ? <div>{res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3)}</div> : res}</span></div>}</div>
                     })
-                }                
+                }
             </div>
-            
+
             <div className='Modal'>
                 <Modal
                     isOpen={modalIsOpen}
@@ -95,7 +102,7 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
             </div>
             <button onClick={() => openModal()} className='button-style back-button'>Back</button>
             <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
-        
+
         </div>
     )
 }
