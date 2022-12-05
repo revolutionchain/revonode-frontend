@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import raidIcon from '../../styles/images/RAID-icon.png';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -69,6 +70,7 @@ export default function Thirdpage({currentPage, setCurrentPage}) {
             <h2>Array Created successfully!</h2>
             <h3>Your storage array has been successfully created!</h3>
             <div style={{ display: `flex`, marginRight: `10px`}}>
+                <img src={raidIcon} />
                 {
                     arrayData.length && arrayData?.map((e,i) => {
                         let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e)/1000000).toFixed(2)) + 'GB' : e ;
