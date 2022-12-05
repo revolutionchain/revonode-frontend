@@ -140,7 +140,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     options={options} />
             </div>
             <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
-            <button onClick={() => handleNextButton()} className='button-style next-button'>Next</button>
+            <button onClick={() => handleNextButton()} className='button-style next-button'>Confirm</button>
 
         </div>
     )

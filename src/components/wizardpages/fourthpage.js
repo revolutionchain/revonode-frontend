@@ -93,7 +93,6 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             <div style={{
                 backgroundColor: `#EEE`,
                 textAlign: `left`,
-                marginRight: `10px`,
                 paddingLeft: `10px`,
                 paddingTop: `5px`,
             }}><span>WiFi Networks</span></div>

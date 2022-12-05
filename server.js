@@ -210,7 +210,7 @@ app.get('/getarrayinfo', (req, res, next) => {
 app.get('/wifiscan', (req, res, next) => {
   execFile('bash', ['/home/revo/nodeutils', '-wifiscan'], (err, stdout, stderr) => {
     if (err) {
-      res.status(404).send(err);
+      res.send('Error: wifi networks not found');
     } else {
       res.send(stdout);
     }
@@ -242,8 +242,8 @@ app.post('/removearray', (req, res, next) => {
 function wifiConfig(type) {
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
-  } catch (error) {
-    return error.status;
+  } catch (error) {    
+    return 'Error: wifi config file not found'
   }
 
 }
