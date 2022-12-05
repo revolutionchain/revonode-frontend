@@ -82,7 +82,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                     arrayData.length && arrayData?.map((e, i) => {
                         let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : e;
 
-                        return <div style={{color: `#888`}} className='div-drive-item'>{i == 3 ? <div></div> : <div><div style={{fontSize: `16px`}} >{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><span style={{fontSize: `12px`}}>{i == 2 ? <div style={{fontSize: `12px`}}>{res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3)}</div> : res}</span></div>}</div>
+                        return <div style={{color: `#888`}} className='div-drive-item'>{i == 3 ? <div></div> : <div style={{marginTop: `-5px`}}><div style={{fontSize: `16px`}} >{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><div style={{fontSize: `12px`, marginTop: `-5px`}}>{i == 2 ? res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3) : res}</div></div>}</div>
                     })
                 }
             </div>
