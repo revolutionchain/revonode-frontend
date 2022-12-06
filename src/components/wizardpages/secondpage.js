@@ -142,7 +142,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
                             options={options} />
                     </div>
-                </div> : <div style={{paddingTop: `130px`}} ><div class="bt-spinner"></div></div> }
+                </div> : <div style={{paddingTop: `70px`}} ><div class="bt-spinner"></div></div> }
             </div>
 
 

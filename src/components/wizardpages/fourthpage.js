@@ -64,10 +64,16 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         }
     }
 
+    const [ getError, setGetError ] = useState(false);
     async function handleRescan() {
-        let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
-        setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
-        console.log(getwifidata);
+        setIsLoading(true);
+        try {
+            let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
+            setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
+        }catch {
+            setGetError(true);
+        }
+        setIsLoading(false);
     }
 
     const options = [{ value: "AF", label: "Afghanistan" }, { value: "AX", label: "\u00c5land Islands" }, { value: "AL", label: "Albania" }, { value: "DZ", label: "Algeria" }, { value: "AS", label: "American Samoa" }, { value: "AD", label: "Andorra" }, { value: "AO", label: "Angola" }, { value: "AI", label: "Anguilla" }, { value: "AQ", label: "Antarctica" }, { value: "AG", label: "Antigua and Barbuda" }, { value: "AR", label: "Argentina" }, { value: "AM", label: "Armenia" }, { value: "AW", label: "Aruba" }, { value: "AU", label: "Australia" }, { value: "AT", label: "Austria" }, { value: "AZ", label: "Azerbaijan" }, { value: "BS", label: "Bahamas" }, { value: "BH", label: "Bahrain" }, { value: "BD", label: "Bangladesh" }, { value: "BB", label: "Barbados" }, { value: "BY", label: "Belarus" }, { value: "BE", label: "Belgium" }, { value: "BZ", label: "Belize" }, { value: "BJ", label: "Benin" },
@@ -83,7 +89,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     { value: "UG", label: "Uganda" }, { value: "UA", label: "Ukraine" }, { value: "AE", label: "United Arab Emirates" }, { value: "GB", label: "United Kingdom" }, { value: "US", label: "United States" }, { value: "UM", label: "United States Minor Outlying Islands" }, { value: "UY", label: "Uruguay" }, { value: "UZ", label: "Uzbekistan" }, { value: "VU", label: "Vanuatu" }, { value: "VE", label: "Venezuela, Bolivarian Republic of" }, { value: "VN", label: "Viet Nam" }, { value: "VG", label: "Virgin Islands, British" }, { value: "VI", label: "Virgin Islands, U.S." }, { value: "WF", label: "Wallis and Futuna" }, { value: "EH", label: "Western Sahara" }, { value: "YE", label: "Yemen" }, { value: "ZM", label: "Zambia" }, { value: "ZW", label: "Zimbabwe" }]
 
 
-
+    const [ isLoading, setIsLoading ] = useState(false);
 
     function handleSelect(e) {
         setInput({
@@ -107,7 +113,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                     paddingTop: `5px`,
                 }}><span>WiFi Networks</span></div>
                 {
-                    wifiData.length ? wifiData?.map((e, i) => {
+                    wifiData.length && !isLoading ? wifiData?.map((e, i) => {
                         return <div className='div-wifi-container' >
                             <div style={{ display: `flex` }}>
                                 {<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>}
@@ -144,7 +150,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     </div>}
                             </div>
                         </div>
-                    }) : <div style={{paddingTop: `130px`}} ><div class="bt-spinner"></div></div>
+                    }) : <div style={{paddingTop: `70px`}} ><div class="bt-spinner"></div></div>
                 }
             </div>
             </div>
