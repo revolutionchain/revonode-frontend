@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json())
 
+let domain;
+
 function checkLocalIpAddress() {
   
 const nets = networkInterfaces();
@@ -52,7 +54,6 @@ const setEnvValue = (key, value) => {
   }
   fs.writeFileSync(envFilePath, envVars.join(os.EOL));
 };
-let domain = 'localhost';
 if (results?.eth0?.length) {
   let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP').replaceAll('"', '');
   console.log('eth:' + envCheck )
