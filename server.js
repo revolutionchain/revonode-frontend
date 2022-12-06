@@ -90,6 +90,7 @@ console.log(domain);
 }
 
 
+checkLocalIpAddress();
 
 
 app.use((req, res, next) => {
