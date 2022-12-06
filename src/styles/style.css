@@ -738,11 +738,40 @@ h3 {
   }
 }   
 
-.astronautImage {
+.astronautImage1 {
   position: absolute;
   width: 100%;
   bottom: 0;
   left: -18px;  
 }
 
+.astronautImage2 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 25px;  
+}
+
+.astronautImage3 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;  
+}
+
+.astronautImage4 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;  
+  height: 45%;
+}
+
+.astronautImage4 {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: -15px;  
+  height: 45%;
+}
 /*# sourceMappingURL=style.css.map */
