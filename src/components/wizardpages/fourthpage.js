@@ -107,7 +107,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                     paddingTop: `5px`,
                 }}><span>WiFi Networks</span></div>
                 {
-                    wifiData.length && wifiData?.map((e, i) => {
+                    wifiData.length ? wifiData?.map((e, i) => {
                         return <div className='div-wifi-container' >
                             <div style={{ display: `flex` }}>
                                 {<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>}
@@ -144,7 +144,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     </div>}
                             </div>
                         </div>
-                    })
+                    }) : <div style={{paddingTop: `130px`}} ><div class="bt-spinner"></div></div>
                 }
             </div>
             </div>

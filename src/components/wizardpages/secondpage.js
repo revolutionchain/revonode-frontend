@@ -64,9 +64,10 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         { value: 0, label: 'Raid 0' },
         { value: 1, label: 'Raid 1' },
     ]
-
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleNextButton() {
+        setIsLoading(true);
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
             let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1] };
             let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
@@ -97,49 +98,51 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Storage</h2>
                 <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? <a target='_blank' href='https://www.youtube.com/watch?v=U-OCdTeZLac'>Click here!</a></h3>
-                <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px` }}>
-                    <span style={{ marginLeft: `10px` }}>Disk Drives</span>
-                    {
-                        drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
-                            return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
-                                {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
-                                <img style={{ width: `40px`, height: `30px`, marginRight: `10px` }} src={floppyDiskImg} />
-                                <div>
-                                    <span style={{ marginRight: `10px`, fontSize: `16px` }}>{e.NAME}</span>
-                                    <span style={{ marginRight: `10px`, fontSize: `16px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
-                                    <span style={{ display: `block`, fontSize: `12px`, marginTop: `-5px` }}>{e.MODEL}</span>
+                { !isLoading ? <div>
+                    <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px` }}>
+                        <span style={{ marginLeft: `10px` }}>Disk Drives</span>
+                        {
+                            drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
+                                return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
+                                    {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
+                                    <img style={{ width: `40px`, height: `30px`, marginRight: `10px` }} src={floppyDiskImg} />
+                                    <div>
+                                        <span style={{ marginRight: `10px`, fontSize: `16px` }}>{e.NAME}</span>
+                                        <span style={{ marginRight: `10px`, fontSize: `16px` }}>{((parseFloat(e.SIZE)) / 1000000000).toFixed(2) + 'GB'}</span>
+                                        <span style={{ display: `block`, fontSize: `12px`, marginTop: `-5px` }}>{e.MODEL}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        })
-                    }
-                </div>
-                <div style={{ width: `50%`, marginTop: `15px` }}>
-                    <Select
-                        onChange={handleSelect}
-                        menuPlacement="auto"
-                        menuPosition="fixed"
-                        defaultValue={{ label: 'Select Raid Level' }}
-                        styles={{
-                            control: (baseStyles, state) => ({
-                                ...baseStyles,
-                                borderColor: state.isFocused ? 'purple' : 'grey',
-                                border: state.isFocused ? "2px solid #050A30" : "2px solid #cccccc",
-                                "&:hover": {
-                                    border: "2px solid #050A30",
-                                }
-                            }), option: (provided, state) => ({
-                                ...provided,
-                                backgroundColor: state.isSelected ? "#dfeaf1" : "white",
-                                color: "black",
-                                border: "1px solid white",
-                                "&:hover": {
-                                    border: "1px solid #050A30",
-                                }
-                            }),
-                        }}
+                            })
+                        }
+                    </div>
+                    <div style={{ width: `50%`, marginTop: `15px` }}>
+                        <Select
+                            onChange={handleSelect}
+                            menuPlacement="auto"
+                            menuPosition="fixed"
+                            defaultValue={{ label: 'Select Raid Level' }}
+                            styles={{
+                                control: (baseStyles, state) => ({
+                                    ...baseStyles,
+                                    borderColor: state.isFocused ? 'purple' : 'grey',
+                                    border: state.isFocused ? "2px solid #050A30" : "2px solid #cccccc",
+                                    "&:hover": {
+                                        border: "2px solid #050A30",
+                                    }
+                                }), option: (provided, state) => ({
+                                    ...provided,
+                                    backgroundColor: state.isSelected ? "#dfeaf1" : "white",
+                                    color: "black",
+                                    border: "1px solid white",
+                                    "&:hover": {
+                                        border: "1px solid #050A30",
+                                    }
+                                }),
+                            }}
 
-                        options={options} />
-                </div>
+                            options={options} />
+                    </div>
+                </div> : <div style={{paddingTop: `130px`}} ><div class="bt-spinner"></div></div> }
             </div>
 
 
