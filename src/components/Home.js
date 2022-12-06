@@ -19,7 +19,8 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
 
-    useEffect(async () => {
+    useEffect(async () => {        
+        let checklocalip = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);

@@ -11,8 +11,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.json())
+
+function checkLocalIpAddress() {
+  
 const nets = networkInterfaces();
 const results = {};
+
+
 
 for (const name of Object.keys(nets)) {
   for (const net of nets[name]) {
@@ -81,12 +86,14 @@ if (results?.wlan0?.length) {
 
 }
 console.log(domain);
+}
+
+
+
 
 app.use((req, res, next) => {
 
   res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
-
-
 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -94,6 +101,11 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.get('/checklocalip', (req, res, next) => {
+  checkLocalIpAddress();
+  res.send('ok');
+})
 
 app.get('/forcereboot', (req, res, next) => {
   execFile('bash', ['/home/revo/nodeutils', '-forcereboot'], (err, stdout, stderr) => {
