@@ -376,6 +376,7 @@ fieldset {
   background-color: var(--second-color);
   width: 35%;
   min-height: calc(92vh - 50px);
+  position: relative;
 }
 
 .signup-desc-content {
@@ -737,5 +738,11 @@ h3 {
   }
 }   
 
+.astronautImage {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: -18px;  
+}
 
 /*# sourceMappingURL=style.css.map */

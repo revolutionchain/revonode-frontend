@@ -96,7 +96,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Storage</h2>
-                <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? Click here!</h3>
+                <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? <a target='_blank' href='https://www.youtube.com/watch?v=U-OCdTeZLac'>Click here!</a></h3>
                 <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px` }}>
                     <span style={{ marginLeft: `10px` }}>Disk Drives</span>
                     {

@@ -9,6 +9,12 @@ import Fourthpage from './wizardpages/fourthpage';
 import Fifthpage from './wizardpages/fifthpage';
 import Sixthpage from './wizardpages/sixthpage';
 import revoLogo from '../styles/images/revo-light.png';
+import astronauteRevo1 from '../styles/images/AstronauteRevo-1.svg'
+import astronauteRevo2 from '../styles/images/AstronauteRevo-2.svg'
+import astronauteRevo3 from '../styles/images/AstronauteRevo-3.svg'
+import astronauteRevo4 from '../styles/images/AstronauteRevo-4.svg'
+import astronauteRevo5 from '../styles/images/AstronauteRevo-5.svg'
+import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -59,6 +65,8 @@ export default function Home() {
 
     ]
 
+    let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6];
+
     return (
 
 
@@ -74,6 +82,7 @@ export default function Home() {
                             </p>
                             <img src="images/signup-img.jpg" alt="" class="signup-img" />
                         </div>
+                        <img className='astronautImage' src={imgArr[currentPage]} />
                     </div>
                     <div class="signup-form-conent">
                         <div id="signup-form" class="signup-form" >
