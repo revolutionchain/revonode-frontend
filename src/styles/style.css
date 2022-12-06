@@ -750,6 +750,7 @@ h3 {
   width: 100%;
   bottom: 0;
   left: 25px;  
+  height: 45%;
 }
 
 .astronautImage3 {
@@ -757,6 +758,7 @@ h3 {
   width: 100%;
   bottom: 0;
   left: 0;  
+  height: 45%;
 }
 
 .astronautImage4 {
@@ -767,7 +769,7 @@ h3 {
   height: 45%;
 }
 
-.astronautImage4 {
+.astronautImage5 {
   position: absolute;
   width: 100%;
   bottom: 0;
