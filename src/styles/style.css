@@ -343,7 +343,7 @@ body {
   position: relative;
   margin: 0 auto;
   background: #efeeff;
-  height: calc(92vh - 50px);
+  min-height: calc(92vh - 50px);
   overflow: hidden;
 }
 
@@ -375,7 +375,7 @@ fieldset {
 .signup-desc {
   background-color: var(--second-color);
   width: 35%;
-  height: calc(92vh - 50px);
+  min-height: calc(92vh - 50px);
 }
 
 .signup-desc-content {
@@ -576,7 +576,6 @@ input:valid+label {
   @include align-items(center);
   @include justify-content(center);
   text-decoration: none;
-  position: absolute;
 
 }
 
@@ -588,20 +587,21 @@ input:valid+label {
 .next-button {
   bottom: 0;
   right: 0;
-  margin-right: 30px;
+  margin-right: 0px;
 
 }
 
 .back-button {
   bottom: 0;
   left: 0;
-  margin-left: 30px;
+  margin-left: 0px;
 
 }
 
 .skip-button {
   bottom: 0;
-  margin-left: -5px;
+  margin-left: 0px;
+  margin-right: 10px;
 }
 
 .rescan-button {

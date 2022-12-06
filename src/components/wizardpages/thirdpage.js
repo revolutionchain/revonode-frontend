@@ -68,43 +68,54 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     return (
         <div className=''>
-            <h2>Array Created successfully!</h2>
-            <h3>Your storage array has been successfully created!</h3>
-            <div style={{
-                backgroundColor: `#EEE`,
-                textAlign: `left`,
-                marginRight: `10px`,
-                paddingLeft: `10px`,
-                paddingTop: `5px`,
-            }}><span>Array Details</span></div>
-            <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
-                <img style={{ width: `50px`, marginRight: `10px` }} src={raidIcon} />
-                {
-                    arrayData.length && arrayData?.map((e, i) => {
-                        let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : e;
+            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+                <h2>Array Created successfully!</h2>
+                <h3>Your storage array has been successfully created!</h3>
+                <div style={{
+                    backgroundColor: `#EEE`,
+                    textAlign: `left`,
+                    marginRight: `10px`,
+                    paddingLeft: `10px`,
+                    paddingTop: `5px`,
+                }}><span>Array Details</span></div>
+                <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
+                    <img style={{ width: `50px`, marginRight: `10px` }} src={raidIcon} />
+                    {
+                        arrayData.length && arrayData?.map((e, i) => {
+                            let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : e;
 
-                        return <div style={{color: `#888`}} className='div-drive-item'>{i == 3 ? <div></div> : <div style={{marginTop: `-5px`}}><div style={{fontSize: `16px`}} >{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><div style={{fontSize: `12px`, marginTop: `-5px`}}>{i == 2 ? res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3) : res}</div></div>}</div>
-                    })
-                }
+                            return <div style={{ color: `#888` }} className='div-drive-item'>{i == 3 ? <div></div> : <div style={{ marginTop: `-5px` }}><div style={{ fontSize: `16px` }} >{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><div style={{ fontSize: `12px`, marginTop: `-5px` }}>{i == 2 ? res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3) : res}</div></div>}</div>
+                        })
+                    }
+                </div>
+
+                <div className='Modal'>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+                        <img className='warning-icon' src={warningIcon} />
+                        <div className="div-balance-title div-abm-title">Are you sure?</div>
+                        <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
+                        <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
+                    </Modal>
+                </div>
             </div>
 
-            <div className='Modal'>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <img className='warning-icon' src={warningIcon} />
-                    <div className="div-balance-title div-abm-title">Are you sure?</div>
-                    <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
-                    <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
-                </Modal>
-            </div>
-            <button onClick={() => openModal()} className='button-style back-button'>Back</button>
-            <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
 
+
+            <div style={{ display: `flex` }}>
+                <div style={{ width: `30%`, textAlign: `left` }}>
+                    <button onClick={() => openModal()} className='button-style back-button'>Back</button>
+                </div>
+
+                <div style={{ width: `70%`, textAlign: `right` }}>
+                    <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
+                </div>
+            </div>
         </div>
     )
 }
