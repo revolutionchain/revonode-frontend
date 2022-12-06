@@ -7,6 +7,7 @@ import Secondpage from './wizardpages/secondpage';
 import Thirdpage from './wizardpages/thirdpage';
 import Fourthpage from './wizardpages/fourthpage';
 import Fifthpage from './wizardpages/fifthpage';
+import Sixthpage from './wizardpages/sixthpage';
 import revoLogo from '../styles/images/revo-light.png';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
@@ -18,10 +19,12 @@ export default function Home() {
     const [master, setMaster] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
+    const [ loaded, setLoaded ] = useState(false);
 
     useEffect(async () => {        
         try{
-            await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
+            let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
+            setLoaded(result);
         }catch (err){
             window.location.reload();
         }
@@ -52,7 +55,8 @@ export default function Home() {
         { textLeft: 'The Revo software needs a certain amount of disk space, on this page you will need to select two SSD disks for saving the blockchain. It is always recommended to use storage devices of the same model and of the same capacity.' },
         { textLeft: 'Your storage array has been successfully created!' },
         { textLeft: 'Configure your node to work with WiFi. You can also give two connections for redoundancy.' },
-        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' }
+        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' },
+
     ]
 
     return (
@@ -76,12 +80,14 @@ export default function Home() {
                             <h3></h3>
                             <fieldset>
                                 <span class="step-current">Step {currentPage} / 6</span>
-                                <div class="form-group">
-                                    {currentPage == 1 && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 2 && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
-                                    {currentPage == 3 && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 4 && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 5 && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                <div class="form-group" style={!loaded ? {minHeight: `auto`, paddingTop: `230px`} : {}}>
+                                    {!loaded && <div class="bt-spinner"></div>}
+                                    {currentPage == 1 && loaded && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 2 && loaded && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div>'Loading..' </div>}
+                                    {currentPage == 3 && loaded && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 4 && loaded && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                 </div>
                             </fieldset>
                         </div>
