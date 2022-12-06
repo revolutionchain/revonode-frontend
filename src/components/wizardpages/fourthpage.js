@@ -122,7 +122,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                             <div>
                                 {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
                                 {checkedState[i] &&
-                                    <div style={{ width: `30%`, marginTop: `15px` }}>
+                                    <div style={{ width: `45%`, marginTop: `15px` }}>
                                         <Select
                                             onChange={handleSelect}
                                             menuPlacement="auto"
@@ -150,7 +150,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     </div>}
                             </div>
                         </div>
-                    }) : <div style={{paddingTop: `50px`}} ><div class="bt-spinner"></div></div>
+                    }) : <div style={{paddingTop: `60px`}} ><div class="bt-spinner"></div></div>
                 }
             </div>
             </div>
