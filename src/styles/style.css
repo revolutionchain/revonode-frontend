@@ -741,14 +741,14 @@ h3 {
 .astronautImage1 {
   position: absolute;
   width: 100%;
-  bottom: 0;
+  bottom: -40px;
   left: -18px;  
 }
 
 .astronautImage2 {
   position: absolute;
   width: 100%;
-  bottom: 0;
+  bottom: 10px;
   left: 25px;  
   height: 45%;
 }
@@ -764,9 +764,9 @@ h3 {
 .astronautImage4 {
   position: absolute;
   width: 100%;
-  bottom: 0;
+  bottom: 30px;
   left: 0;  
-  height: 45%;
+  height: 40%;
 }
 
 .astronautImage5 {
@@ -775,5 +775,6 @@ h3 {
   bottom: 0;
   left: -15px;  
   height: 45%;
+  bottom: 10px;
 }
 /*# sourceMappingURL=style.css.map */

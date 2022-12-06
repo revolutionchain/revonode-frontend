@@ -127,7 +127,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                             onChange={handleSelect}
                                             menuPlacement="auto"
                                             menuPosition="fixed"
-                                            defaultValue={'Select Country'}
+                                            defaultValue={{ label: 'Select Country Code' }}
                                             styles={{
                                                 control: (baseStyles, state) => ({
                                                     ...baseStyles,
@@ -150,7 +150,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     </div>}
                             </div>
                         </div>
-                    }) : <div style={{paddingTop: `70px`}} ><div class="bt-spinner"></div></div>
+                    }) : <div style={{paddingTop: `50px`}} ><div class="bt-spinner"></div></div>
                 }
             </div>
             </div>
