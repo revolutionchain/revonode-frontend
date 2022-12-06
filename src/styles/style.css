@@ -607,6 +607,9 @@ input:valid+label {
 .rescan-button {
   float: right;
   bottom: auto;  
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
 }
 
 
@@ -691,7 +694,7 @@ h3 {
 
 .div-wifi-container{
   background-color: #eee;
-  padding: 10px;
+  padding: 10px;  
 }
 
 /*# sourceMappingURL=style.css.map */
