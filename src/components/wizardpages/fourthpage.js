@@ -150,7 +150,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     </div>}
                             </div>
                         </div>
-                    }) : <div style={{paddingTop: `60px`}} ><div class="bt-spinner"></div></div>
+                    }) : <div style={{paddingTop: `60px`}} ><div class="nb-spinner"></div></div>
                 }
             </div>
             </div>

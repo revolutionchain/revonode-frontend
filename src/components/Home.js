@@ -23,7 +23,7 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(2);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(false);
 
@@ -89,10 +89,10 @@ export default function Home() {
                             <h3></h3>
                             <fieldset>
                                 <span class="step-current">Step {currentPage} / 6</span>
-                                <div class="form-group" style={!loaded ? {minHeight: `auto`, paddingTop: `230px`} : {}}>
-                                    {!loaded && <div class="bt-spinner"></div>}
+                                <div class="form-group" style={!loaded ? {minHeight: `auto`, } : {}}>
+                                    {!loaded && <div><h2 style={{marginTop: `100px`, marginBottom: `50px`}}>Please wait while we load the last installation resources...</h2><div class="nb-spinner"></div></div>}
                                     {currentPage == 1 && loaded && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 2 && loaded && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && <div style={{paddingTop: `230px`}} ><div class="bt-spinner"></div></div>}
+                                    {currentPage == 2 && loaded && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && loaded && <div style={{paddingTop: `230px`}} ><div class="nb-spinner"></div></div>}
                                     {currentPage == 3 && loaded && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 4 && loaded && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}

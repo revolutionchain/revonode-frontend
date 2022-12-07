@@ -702,20 +702,19 @@ h3 {
   height: calc(72vh - 70px);
   overflow-y: auto;
 }
-
-   
-.bt-spinner {
+.nb-spinner {
   width: 75px;
   height: 75px;
+  margin: 0;
+  margin: auto;
+  background: transparent;
+  border-top: 4px solid #999;
+  border-right: 4px solid transparent;
   border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #222;
-  border-top: 2px solid #03A9F4;
   -webkit-animation: 1s spin linear infinite;
   animation: 1s spin linear infinite;
-  margin: auto;
 }
-
+  
 @-webkit-keyframes spin {
   from {
       -webkit-transform: rotate(0deg);
@@ -736,7 +735,8 @@ h3 {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
   }
-}   
+}
+
 
 .astronautImage1 {
   position: absolute;
