@@ -66,31 +66,51 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     ]
     const [isLoading, setIsLoading] = useState(false);
 
+    const [ errorFound, setErrorFound ] = useState('');
+
     async function handleNextButton() {
         setIsLoading(true);
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
             let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1] };
             let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
             if (checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing')) {
-                return alert('Drives missing');
+                setErrorFound('One of the selected disks is not connected correctly!');
+                openModal();
             }
             let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
             if (!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')) {
-                return alert('Filesystem error');
+                setErrorFound('One of the selected disks cannot be used because a file system already exists!');
+                openModal();
             }
             let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
             let makearray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/makearray`, drivesAllowed);
             if (makearray?.data?.includes('ok')) {
                 setCurrentPage(currentPage + 1);
             } else {
-                alert('Error: Array could not be created');
+                setErrorFound('Storage array cannot be created, contact technical support');
+                openModal();
             }
         } else if (!(checkedState.includes(1) && checkedState.includes(2))) {
-            alert('You must select 2 drives.');
+            setErrorFound('You must select two disks!');
+            openModal();
         } else if (raidLevel == 'null') {
-            alert('You must select raid level.');
+            setErrorFound('You must select the RAID level!');
+            openModal();
         }
 
+    }
+    
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal(e) {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+    }
+
+    function closeModal() {
+        setIsOpen(false);
     }
 
     return (
@@ -103,8 +123,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                         <span style={{ marginLeft: `10px` }}>Disk Drives</span>
                         {
                             drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
-                                return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
-                                    {/*<input type="checkbox" checked={checkedState[i]} ></input>*/}
+                                return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>                                    
                                     <img style={{ width: `40px`, height: `30px`, marginRight: `10px` }} src={floppyDiskImg} />
                                     <div>
                                         <span style={{ marginRight: `10px`, fontSize: `16px` }}>{e.NAME}</span>
@@ -157,6 +176,21 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             </div>
 
 
+            <div className='Modal'>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+                        <img className='warning-icon' src={warningIcon} />
+                        <div className="div-balance-title div-abm-title">Are you sure?</div>
+                        <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
+                        <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
+                    </Modal>
+                </div>
+            </div>
 
         </div>
     )
