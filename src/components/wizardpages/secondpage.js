@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import floppyDiskImg from '../../styles/images/floppy-disk.png'
+import failedIcon from '../../styles/images/failed.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -66,7 +67,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     ]
     const [isLoading, setIsLoading] = useState(false);
 
-    const [ errorFound, setErrorFound ] = useState('');
+    const [errorFound, setErrorFound] = useState('');
 
     async function handleNextButton() {
         setIsLoading(true);
@@ -99,7 +100,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         }
 
     }
-    
+
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal(e) {
@@ -118,12 +119,12 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Storage</h2>
                 <h3>If you are not using a fresh drive, please format the drive, there must be no partitions present, this installer will take care of everything. If you don't see your drives, check that they are connected correctly. Choose whether to use RAID 0 or RAID 1 for your data storage carrier. Don't know what RAID technology is? <a target='_blank' href='https://www.youtube.com/watch?v=U-OCdTeZLac'>Click here!</a></h3>
-                { !isLoading ? <div>
+                {!isLoading ? <div>
                     <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px` }}>
                         <span style={{ marginLeft: `10px` }}>Disk Drives</span>
                         {
                             drivesData.filter(e => e.NAME.includes("sd")).reverse().map((e, i) => {
-                                return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>                                    
+                                return <div key={e.NAME} onClick={() => handleCheckbox(e, i)} className={checkedState[i] ? 'drives-container selected' : 'drives-container'}>
                                     <img style={{ width: `40px`, height: `30px`, marginRight: `10px` }} src={floppyDiskImg} />
                                     <div>
                                         <span style={{ marginRight: `10px`, fontSize: `16px` }}>{e.NAME}</span>
@@ -161,8 +162,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
                             options={options} />
                     </div>
-                    <div>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME ) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span> }</div>
-                </div> : <div style={{paddingTop: `60px`}} ><div class="nb-spinner"></div></div> }
+                    <div>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span>}</div>
+                </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>
 
 
@@ -177,19 +178,17 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
 
             <div className='Modal'>
-                    <Modal
-                        isOpen={modalIsOpen}
-                        onAfterOpen={afterOpenModal}
-                        onRequestClose={closeModal}
-                        style={customStyles}
-                        contentLabel="Example Modal"
-                    >
-                        <img className='warning-icon' src={warningIcon} />
-                        <div className="div-balance-title div-abm-title">Are you sure?</div>
-                        <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
-                        <button onClick={() => handleRemoveArray()} className='button-style next-button modal-button'>Yes</button>
-                    </Modal>
-                </div>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <img className='warning-icon' src={failedIcon} />
+                    <div className="div-balance-title div-abm-title">{errorFound}</div>
+                    <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
+                </Modal>
             </div>
 
         </div>
