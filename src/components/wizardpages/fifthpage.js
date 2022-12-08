@@ -84,7 +84,7 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
                         contentLabel="Example Modal"
                     >
                         <img className='warning-icon' src={warningIcon} />
-                        <div className="div-balance-title div-abm-title">Are you sure?</div>
+                        <div className="div-balance-title div-abm-title">Are you sure you want to go back? This will erase the newly created WiFi configuration.</div>
                         <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
                         <button onClick={() => handleBackButton()} className='button-style next-button modal-button'>Yes</button>
                     </Modal>

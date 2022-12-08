@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import Modal from 'react-modal';
 import rescanIcon from '../../styles/images/rescan-icon.png'
+import failedIcon from '../../styles/images/failed.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -49,6 +51,9 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         })
     }
 
+
+    const [errorFound, setErrorFound] = useState('');
+
     async function handleConnect() {
         if (input?.essid.length && input?.pass.length && input?.country.length) {
             let genwificonfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genwificonfig`, input);
@@ -56,21 +61,24 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                 setCurrentPage(currentPage + 1)
             }
         } else if (!input?.essid.length) {
-            alert('Select a Wifi!')
+            setErrorFound('You must select a WiFi network!');
+            openModal();
         } else if (!input?.pass.length) {
-            alert('Enter a Password.')
+            setErrorFound('You have not entered a password!');
+            openModal();
         } else if (!input?.country.length) {
-            alert('Select a Country')
+            setErrorFound('you must select the abbreviation of your country!');
+            openModal();
         }
     }
 
-    const [ getError, setGetError ] = useState(false);
+    const [getError, setGetError] = useState(false);
     async function handleRescan() {
         setIsLoading(true);
         try {
             let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
             setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
-        }catch {
+        } catch {
             setGetError(true);
         }
         setIsLoading(false);
@@ -89,7 +97,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     { value: "UG", label: "Uganda" }, { value: "UA", label: "Ukraine" }, { value: "AE", label: "United Arab Emirates" }, { value: "GB", label: "United Kingdom" }, { value: "US", label: "United States" }, { value: "UM", label: "United States Minor Outlying Islands" }, { value: "UY", label: "Uruguay" }, { value: "UZ", label: "Uzbekistan" }, { value: "VU", label: "Vanuatu" }, { value: "VE", label: "Venezuela, Bolivarian Republic of" }, { value: "VN", label: "Viet Nam" }, { value: "VG", label: "Virgin Islands, British" }, { value: "VI", label: "Virgin Islands, U.S." }, { value: "WF", label: "Wallis and Futuna" }, { value: "EH", label: "Western Sahara" }, { value: "YE", label: "Yemen" }, { value: "ZM", label: "Zambia" }, { value: "ZW", label: "Zimbabwe" }]
 
 
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleSelect(e) {
         setInput({
@@ -99,70 +107,112 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     }
 
 
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '70%',
+            textAlign: 'center',
+            backgroundColor: 'transparent'
+        },
+    };
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal(e) {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+
     return (
         <div className=''>
-            <div style={{minHeight: `calc(72vh - 50px)`}}>
-            <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => handleRescan()} />
-            <h2>Wifi</h2>
-            <h3>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
-            <div>
-                <div style={{
-                    backgroundColor: `#EEE`,
-                    textAlign: `left`,
-                    paddingLeft: `10px`,
-                    paddingTop: `5px`,
-                }}><span>WiFi Networks</span></div>
-                {
-                    wifiData.length && !isLoading ? wifiData?.map((e, i) => {
-                        return <div className='div-wifi-container' >
-                            <div style={{ display: `flex` }}>
-                                {<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>}
-                                <span style={{ fontSize: `16px` }}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
-                            </div>
-                            <div>
-                                {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
-                                {checkedState[i] &&
-                                    <div style={{ width: `45%`, marginTop: `15px` }}>
-                                        <Select
-                                            onChange={handleSelect}
-                                            menuPlacement="auto"
-                                            menuPosition="fixed"
-                                            defaultValue={{ label: 'Select Country Code' }}
-                                            styles={{
-                                                control: (baseStyles, state) => ({
-                                                    ...baseStyles,
-                                                    borderColor: state.isFocused ? 'purple' : 'grey',
-                                                    border: state.isFocused ? "2px solid #7c7cdd" : "2px solid #cccccc",
-                                                    "&:hover": {
-                                                        border: "2px solid #7c7cdd",
-                                                    }
-                                                }), option: (provided, state) => ({
-                                                    ...provided,
-                                                    backgroundColor: state.isSelected ? "#7c7cdd" : "white",
-                                                    color: "black",
-                                                    "&:hover": {
-                                                        border: "1px solid #7c7cdd",
-                                                    }
-                                                }),
-                                            }}
+            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+                <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => handleRescan()} />
+                <h2>Wifi</h2>
+                <h3>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
+                <div>
+                    <div style={{
+                        backgroundColor: `#EEE`,
+                        textAlign: `left`,
+                        paddingLeft: `10px`,
+                        paddingTop: `5px`,
+                    }}><span>WiFi Networks</span></div>
+                    {
+                        wifiData.length && !isLoading ? wifiData?.map((e, i) => {
+                            return <div className='div-wifi-container' >
+                                <div style={{ display: `flex` }}>
+                                    {<input type="checkbox" name='essid' value={e.slice(6, e.length - 1)} checked={checkedState[i]} onClick={(e) => handleCheckbox(e, i)}></input>}
+                                    <span style={{ fontSize: `16px` }}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
+                                </div>
+                                <div>
+                                    {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
+                                    {checkedState[i] &&
+                                        <div style={{ width: `45%`, marginTop: `15px` }}>
+                                            <Select
+                                                onChange={handleSelect}
+                                                menuPlacement="auto"
+                                                menuPosition="fixed"
+                                                defaultValue={{ label: 'Select Country Code' }}
+                                                styles={{
+                                                    control: (baseStyles, state) => ({
+                                                        ...baseStyles,
+                                                        borderColor: state.isFocused ? 'purple' : 'grey',
+                                                        border: state.isFocused ? "2px solid #7c7cdd" : "2px solid #cccccc",
+                                                        "&:hover": {
+                                                            border: "2px solid #7c7cdd",
+                                                        }
+                                                    }), option: (provided, state) => ({
+                                                        ...provided,
+                                                        backgroundColor: state.isSelected ? "#7c7cdd" : "white",
+                                                        color: "black",
+                                                        "&:hover": {
+                                                            border: "1px solid #7c7cdd",
+                                                        }
+                                                    }),
+                                                }}
 
-                                            options={options} />
-                                    </div>}
+                                                options={options} />
+                                        </div>}
+                                </div>
                             </div>
-                        </div>
-                    }) : <div style={{paddingTop: `60px`}} ><div class="nb-spinner"></div></div>
-                }
+                        }) : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>
+                    }
+                </div>
             </div>
-            </div>
-            <div style={{display: `flex`}}>
-                <div style={{width: `30%`, textAlign: `left`}}>
+            <div style={{ display: `flex` }}>
+                <div style={{ width: `30%`, textAlign: `left` }}>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
 
-                <div style={{width: `70%`, textAlign: `right`}}>
+                <div style={{ width: `70%`, textAlign: `right` }}>
                     <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style skip-button'>Skip</button>
                     <button onClick={() => handleConnect()} className='button-style next-button'>Connect</button>
                 </div>
+            </div>
+
+
+            <div className='Modal'>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <img className='warning-icon' src={failedIcon} />
+                    <div className="div-balance-title div-abm-title">{errorFound}</div>
+                    <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
+                </Modal>
             </div>
         </div>
     )
