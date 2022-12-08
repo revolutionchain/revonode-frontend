@@ -67,7 +67,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             setErrorFound('You have not entered a password!');
             openModal();
         } else if (!input?.country.length) {
-            setErrorFound('you must select the abbreviation of your country!');
+            setErrorFound('You must select the abbreviation of your country!');
             openModal();
         }
     }
