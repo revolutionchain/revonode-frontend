@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import Modal from 'react-modal';
 import floppyDiskImg from '../../styles/images/floppy-disk.png'
 import failedIcon from '../../styles/images/failed.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
@@ -101,6 +102,19 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     }
 
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '70%',
+            textAlign: 'center',
+            backgroundColor: 'transparent'
+        },
+    };
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal(e) {
