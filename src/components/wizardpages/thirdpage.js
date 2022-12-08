@@ -80,6 +80,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                 }}><span>Array Details</span></div>
                 <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
                     <img style={{ width: `50px`, marginRight: `10px` }} src={raidIcon} />
+                    <div>
                     {
                         arrayData.length && arrayData?.map((e, i) => {
                             let res = i == 0 ? e.slice(1) : i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : e;
@@ -87,6 +88,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                             return <div style={{ color: `#888` }} className='div-drive-item'>{i == 3 ? <div></div> : <div style={{ marginTop: `-5px` }}><div style={{ fontSize: `16px` }} >{i > 3 ? tableElem[i - 1] : tableElem[i]}</div><div style={{ fontSize: `12px`, marginTop: `-5px` }}>{i == 2 ? res.slice(0, 3) + " / " + arrayData[i + 1].slice(0, 3) : res}</div></div>}</div>
                         })
                     }
+                    </div>
                 </div>
 
                 <div className='Modal'>
