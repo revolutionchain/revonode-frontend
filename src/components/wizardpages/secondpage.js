@@ -119,6 +119,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     function openModal(e) {
         setIsOpen(true);
+        setIsLoading(false);
     }
 
     function afterOpenModal() {
