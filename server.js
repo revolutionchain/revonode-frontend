@@ -253,26 +253,73 @@ app.post('/removearray', (req, res, next) => {
   });
 })
 
-function wifiConfig(type) {
+function globalFunction(type) {
+  let message;
+  if(type == '-delwificonfig' || type == '-getwificonfig'){
+    message = 'Error: Wifi config file not found';
+  }else if (type == '-delrevoconfig' || type == '-getrevoconfig'){
+    message = 'Error: Revo rpc config file not found';
+  }else if(type == '-delrevoconfig' || type == '-getrevoconfig'){
+    message = 'Daemon error on start/stop'
+  }
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
   } catch (error) {    
-    return 'Error: wifi config file not found'
+    return message
   }
 
 }
-
 app.get('/delwificonfig', (req, res, next) => {
-  let response = wifiConfig('-delwificonfig');
+  let response = globalFunction('-delwificonfig');
   res.send(response);
 })
 
 app.get('/getwificonfig', (req, res, next) => {
-  let response = wifiConfig('-getwificonfig');
+  let response = globalFunction('-getwificonfig');
   res.send(response);
 })
 
+app.post('/genrevoconfig', (req, res, next) => {
+  const { rpcUser, rpcPass, nodeName } = req.body;
+  execFile('bash', ['/home/revo/nodeutils', '-genrevoconfig', rpcUser, rpcPass, nodeName], (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(stdout);
+    }
+  });
+})
 
+app.get('/delrevoconfig', (req, res, next) => {
+  let response = globalFunction('-delrevoconfig');
+  res.send(response);
+})
+
+app.get('/getrevoconfig', (req, res, next) => {
+  let response = globalFunction('-getrevoconfig');
+  res.send(response);
+})
+
+app.get('/startdaemon', (req, res, next) => {
+  let response = globalFunction('-startdaemon');
+  res.send(response);
+})
+
+app.get('/stopdaemon', (req, res, next) => {
+  let response = globalFunction('-stopdaemon');
+  res.send(response);
+})
+
+app.post('/createwallet', (req, res, next) => {
+  const { walletName, secretPassphrase } = req.body;
+  execFile('bash', ['/home/revo/nodeutils', '-genrevoconfig', walletName, secretPassphrase], (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(stdout);
+    }
+  });
+})
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 

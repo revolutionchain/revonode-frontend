@@ -17,6 +17,8 @@ import astronauteRevo5 from '../styles/images/AstronauteRevo-5.svg'
 import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
 import Seventhpage from './wizardpages/seventhpage';
 import Eighthpage from './wizardpages/eighthpage';
+import Ninethpage from './wizardpages/ninethpage';
+import Tenthpage from './wizardpages/tenthpage';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -101,6 +103,8 @@ export default function Home() {
                                     {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 8 && loaded && <Eighthpage />}
+                                    {currentPage == 9 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 10 && loaded && <Tenthpage />}
                                 </div>
                             </fieldset>
                         </div>
