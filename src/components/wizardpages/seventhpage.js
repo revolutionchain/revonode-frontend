@@ -81,11 +81,11 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Create RPC user Title</h2>
                 <h3>Description.</h3>
-            </div>
             <div>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input>
+            </div>
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>

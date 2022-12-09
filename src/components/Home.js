@@ -15,6 +15,8 @@ import astronauteRevo3 from '../styles/images/AstronauteRevo-3.svg'
 import astronauteRevo4 from '../styles/images/AstronauteRevo-4.svg'
 import astronauteRevo5 from '../styles/images/AstronauteRevo-5.svg'
 import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
+import Seventhpage from './wizardpages/seventhpage';
+import Eighthpage from './wizardpages/eighthpage';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -88,7 +90,7 @@ export default function Home() {
                         <div id="signup-form" class="signup-form" >
                             <h3></h3>
                             <fieldset>
-                                <span class="step-current">Step {currentPage} / 6</span>
+                                <span class="step-current">Step {currentPage} / 10</span>
                                 <div class="form-group" style={!loaded ? {minHeight: `auto`, } : {}}>
                                     {!loaded && <div><h2 style={{marginTop: `100px`, marginBottom: `50px`}}>Please wait while we load the last installation resources...</h2><div class="nb-spinner"></div></div>}
                                     {currentPage == 1 && loaded && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
@@ -97,6 +99,8 @@ export default function Home() {
                                     {currentPage == 4 && loaded && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 8 && loaded && <Eighthpage />}
                                 </div>
                             </fieldset>
                         </div>
