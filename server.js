@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json())
 
-let domain;
+let domains = [];
 
 function checkLocalIpAddress() {
   
@@ -54,6 +54,8 @@ const setEnvValue = (key, value) => {
   }
   fs.writeFileSync(envFilePath, envVars.join(os.EOL));
 };
+
+
 if (results?.eth0?.length && !results?.wlan0?.length) {
   let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   if(envCheck){
@@ -61,7 +63,7 @@ if (results?.eth0?.length && !results?.wlan0?.length) {
   }
   console.log('eth:' + envCheck )
   setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
-  domain = results.eth0[0];
+  domains.push(results.eth0[0]);
   if (envCheck !== results.eth0[0]) {
     exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
       if (err) {
@@ -80,7 +82,7 @@ if (results?.wlan0?.length) {
   }
   console.log('wifi:' + envCheck )
   setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
-  domain = results.wlan0[0];
+  domains.push(results.wlan0[0]);
   if (envCheck !== results.wlan0[0]) {
     exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
       if (err) {
@@ -100,8 +102,12 @@ checkLocalIpAddress();
 
 
 app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (domains.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
 
-  res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
+  //res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
