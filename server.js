@@ -12,89 +12,84 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json())
 
-let domains = [];
-
 function checkLocalIpAddress() {
-  
-const nets = networkInterfaces();
-const results = {};
+
+  const nets = networkInterfaces();
+  const results = {};
 
 
 
-for (const name of Object.keys(nets)) {
-  for (const net of nets[name]) {
-    const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
-    if (net.family === familyV4Value && !net.internal) {
-      if (!results[name]) {
-        results[name] = [];
+  for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+      const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
+      if (net.family === familyV4Value && !net.internal) {
+        if (!results[name]) {
+          results[name] = [];
+        }
+        results[name].push(net.address);
       }
-      results[name].push(net.address);
     }
   }
-}
-const envFilePath = path.resolve(__dirname, ".env");
+  const envFilePath = path.resolve(__dirname, ".env");
 
 
-const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
+  const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
 
-const getEnvValue = (key) => {
-  const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
-  return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
-};
-
-
-const setEnvValue = (key, value) => {
-  const envVars = readEnvVars();
-  const targetLine = envVars.find((line) => line.split("=")[0] === key);
-  if (targetLine !== undefined) {
-    const targetLineIndex = envVars.indexOf(targetLine);
-    envVars.splice(targetLineIndex, 1, `${key}="${value}"`);
-  } else {
-    envVars.push(`${key}="${value}"`);
-  }
-  fs.writeFileSync(envFilePath, envVars.join(os.EOL));
-};
+  const getEnvValue = (key) => {
+    const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
+    return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
+  };
 
 
-if (results?.eth0?.length && !results?.wlan0?.length) {
-  let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
-  if(envCheck){
-    envCheck = envCheck.replaceAll('"', '');
-  }
-  console.log('eth:' + envCheck )
-  setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
-  domains.push(results.eth0[0]);
-  if (envCheck !== results.eth0[0]) {
-    exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(stdout);
-      }
-    });
-  }
-}
+  const setEnvValue = (key, value) => {
+    const envVars = readEnvVars();
+    const targetLine = envVars.find((line) => line.split("=")[0] === key);
+    if (targetLine !== undefined) {
+      const targetLineIndex = envVars.indexOf(targetLine);
+      envVars.splice(targetLineIndex, 1, `${key}="${value}"`);
+    } else {
+      envVars.push(`${key}="${value}"`);
+    }
+    fs.writeFileSync(envFilePath, envVars.join(os.EOL));
+  };
 
-if (results?.wlan0?.length) {
-  let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP')
-  if(envCheck){
-    envCheck = envCheck.replaceAll('"', '');
-  }
-  console.log('wifi:' + envCheck )
-  setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
-  domains.push(results.wlan0[0]);
-  if (envCheck !== results.wlan0[0]) {
-    exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(stdout);
-      }
-    });
+
+  if (results?.eth0?.length && !results?.wlan0?.length) {
+    let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
+    if (envCheck) {
+      envCheck = envCheck.replaceAll('"', '');
+    }
+    console.log('eth:' + envCheck)
+    setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
+    if (envCheck !== results.eth0[0]) {
+      exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(stdout);
+        }
+      });
+    }
   }
 
-}
-//console.log(domains);
+  if (results?.wlan0?.length) {
+    let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP')
+    if (envCheck) {
+      envCheck = envCheck.replaceAll('"', '');
+    }
+    console.log('wifi:' + envCheck)
+    setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
+    if (envCheck !== results.wlan0[0]) {
+      exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(stdout);
+        }
+      });
+    }
+
+  }
 }
 
 
@@ -104,26 +99,25 @@ checkLocalIpAddress();
 app.use((req, res, next) => {
 
   const envFilePath = path.resolve(__dirname, ".env");
-  
-  
+
+
   const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
-  
-  
-const getEnvValue = (key) => {
-  const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
-  return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
-};
+
+
+  const getEnvValue = (key) => {
+    const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
+    return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
+  };
 
   const allowedDomains = []
   const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
-  let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
+  const wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
   ethDomain && allowedDomains.push('http://' + ethDomain.replaceAll('"', ''));
   wifiDomain && allowedDomains.push('http://' + wifiDomain.replaceAll('"', ''));
-  //console.log('allowedDomains: ' + allowedDomains);
+  console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
-  if (domains.includes(origin)) {
-    console.log(origin);
-       res.setHeader('Access-Control-Allow-Origin', origin);
+  if (allowedDomains.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
   //res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
@@ -288,16 +282,16 @@ app.post('/removearray', (req, res, next) => {
 
 function globalFunction(type) {
   let message;
-  if(type == '-delwificonfig' || type == '-getwificonfig'){
+  if (type == '-delwificonfig' || type == '-getwificonfig') {
     message = 'Error: Wifi config file not found';
-  }else if (type == '-delrevoconf' || type == '-getrevoconf'){
+  } else if (type == '-delrevoconf' || type == '-getrevoconf') {
     message = 'Error: Revo rpc config file not found';
-  }else if(type == '-stopdaemon' || type == '-startdaemon'){
+  } else if (type == '-stopdaemon' || type == '-startdaemon') {
     message = 'Daemon error on start/stop'
   }
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
-  } catch (error) {    
+  } catch (error) {
     return message
   }
 
