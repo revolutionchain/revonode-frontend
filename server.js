@@ -102,7 +102,7 @@ checkLocalIpAddress();
 
 
 app.use((req, res, next) => {
-  
+
   const envFilePath = path.resolve(__dirname, ".env");
   
   
@@ -117,8 +117,8 @@ const getEnvValue = (key) => {
   const allowedDomains = []
   const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
-  ethDomain && allowedDomains.push(ethDomain);
-  wifiDomain && allowedDomains.push(wifiDomain);
+  ethDomain && allowedDomains.push(ethDomain.replaceAll('"', ''));
+  wifiDomain && allowedDomains.push(wifiDomain.replaceAll('"', ''));
   console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if (domains.includes(origin)) {
