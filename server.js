@@ -117,8 +117,8 @@ const getEnvValue = (key) => {
   const allowedDomains = []
   const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
-  ethDomain && allowedDomains.push(ethDomain.replaceAll('"', ''));
-  wifiDomain && allowedDomains.push(wifiDomain.replaceAll('"', ''));
+  ethDomain && allowedDomains.push('http://' + ethDomain.replaceAll('"', ''));
+  wifiDomain && allowedDomains.push('http://' + wifiDomain.replaceAll('"', ''));
   //console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if (domains.includes(origin)) {
