@@ -94,7 +94,7 @@ if (results?.wlan0?.length) {
   }
 
 }
-console.log(domain);
+console.log(domains);
 }
 
 
