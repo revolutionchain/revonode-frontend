@@ -174,14 +174,11 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                                     }
                                 }),
                             }}
-
                             options={options} />
                     </div>
                     <div>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span>}</div>
                 </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>
-
-
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
@@ -190,8 +187,6 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     <button onClick={() => handleNextButton()} className='button-style next-button'>Confirm</button>
                 </div>
             </div>
-
-
             <div className='Modal'>
                 <Modal
                     isOpen={modalIsOpen}
@@ -205,7 +200,6 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
                 </Modal>
             </div>
-
         </div>
     )
 }

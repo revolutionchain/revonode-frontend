@@ -11,14 +11,9 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 export default function Eighthpage({ currentPage, setCurrentPage }) {
 
-
     useEffect(async () => {
         await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/startdaemon`);
     }, [])
-
-    const [errorFound, setErrorFound] = useState('');
-
-    const [getError, setGetError] = useState(false);
 
     setTimeout(() => {
         setCurrentPage(currentPage + 1);

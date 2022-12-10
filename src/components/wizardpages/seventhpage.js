@@ -53,7 +53,6 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
         }else{
             return "Ok"
         }
-
     }
 
     async function handleCreate() {   
@@ -83,8 +82,6 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
             openModal();
         }
     }
-
-    const [getError, setGetError] = useState(false);
 
     const customStyles = {
         content: {
@@ -137,9 +134,6 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
         }
         handleInput(e);
     }
-
-
-
 
     return (
         <div className=''>

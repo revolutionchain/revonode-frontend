@@ -98,8 +98,7 @@ export default function Ninethpage({ currentPage, setCurrentPage }) {
         await backConfirmed();
         setCurrentPage(currentPage - 2)
     }
-
-
+    
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>

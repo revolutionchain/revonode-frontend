@@ -246,8 +246,10 @@ app.post('/removearray', (req, res, next) => {
   const { disk1, disk2 } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-removearray', disk1, disk2, 'md0'], (err, stdout, stderr) => {
     if (err) {
+      console.log(err)
       res.status(404).send(err);
     } else {
+      console.log(stdout)
       res.send(stdout);
     }
   });
@@ -257,9 +259,9 @@ function globalFunction(type) {
   let message;
   if(type == '-delwificonfig' || type == '-getwificonfig'){
     message = 'Error: Wifi config file not found';
-  }else if (type == '-delrevoconfig' || type == '-getrevoconfig'){
+  }else if (type == '-delrevoconf' || type == '-getrevoconf'){
     message = 'Error: Revo rpc config file not found';
-  }else if(type == '-delrevoconfig' || type == '-getrevoconfig'){
+  }else if(type == '-stopdaemon' || type == '-startdaemon'){
     message = 'Daemon error on start/stop'
   }
   try {

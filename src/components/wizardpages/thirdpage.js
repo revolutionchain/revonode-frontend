@@ -20,9 +20,6 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
         setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e, i) => [3, 6, 7, 8, 14].includes(i)));
     }, [])
 
-
-
-
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal(e) {
@@ -35,8 +32,6 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
     function closeModal() {
         setIsOpen(false);
     }
-
-
 
     const customStyles = {
         content: {
@@ -59,10 +54,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
         if (!getarrayinfo.data.arrayStatus.includes('md0')) {
             setCurrentPage(currentPage - 1)
         }
-
-
     }
-
 
     const tableElem = ['Array Name', 'Raid Level', 'Storage', 'Size']
 
@@ -106,8 +98,6 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                     </Modal>
                 </div>
             </div>
-
-
 
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>

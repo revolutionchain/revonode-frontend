@@ -52,7 +52,6 @@ export default function Home() {
         }
     }, []);
 
-
     async function getDrives() {
         let drivesData = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/showdrives`);
         setDrivesData(drivesData.data);
@@ -65,15 +64,12 @@ export default function Home() {
         { textLeft: 'The Revo software needs a certain amount of disk space, on this page you will need to select two SSD disks for saving the blockchain. It is always recommended to use storage devices of the same model and of the same capacity.' },
         { textLeft: 'Your storage array has been successfully created!' },
         { textLeft: 'Configure your node to work with WiFi. You can also give two connections for redoundancy.' },
-        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' },
-
+        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' }
     ]
 
     let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6];
 
     return (
-
-
         <div class="main">
             <div class="container">
                 <div class="signup-content">
