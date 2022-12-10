@@ -14,7 +14,8 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     const [input, setInput] = useState({
         rpcUser: "",
         rpcPass: "",
-        rpcRePass: ""
+        rpcRePass: "",
+        nodeName: ""
     });
 
     useEffect(async () => {
@@ -30,19 +31,25 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     const [errorFound, setErrorFound] = useState('');
 
     async function handleCreate() {
-        if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass.length) {
-            let genwificonfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genwificonfig`, input);
-            if (genwificonfig.data.includes('ok')) {
+        if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass.length && input.nodeName.length) {
+            let genrevoconfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genrevoconfig`, input);
+            if (genrevoconfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
             }
-        } else if (!input?.essid.length) {
-            setErrorFound('You must select a WiFi network!');
+        } else if (!input?.rpcUser.length) {
+            setErrorFound('Enter a RPC Username!');
             openModal();
-        } else if (!input?.pass.length) {
+        } else if (!input?.rpcPass.length) {
             setErrorFound('You have not entered a password!');
             openModal();
-        } else if (!input?.country.length) {
-            setErrorFound('You must select the abbreviation of your country!');
+        } else if (input?.rpcRePass !== input?.rpcPass) {
+            setErrorFound('Password does not match.');
+            openModal();
+        }else if (!input?.nodeName.length) {
+            setErrorFound('You must enter or select a Node name!');
+            openModal();
+        }else if (input?.nodeName.split(" ").length > 3) {
+            setErrorFound('Node name must have maximum 3 words!');
             openModal();
         }
     }
@@ -85,6 +92,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                 <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input>
+                <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='nodeName' placeholder="Node name" onChange={(e) => handleInput(e)}></input>
             </div>
             </div>
             <div style={{ display: `flex` }}>

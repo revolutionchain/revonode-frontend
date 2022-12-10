@@ -9,7 +9,7 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 
 
-export default function Eighthpage() {
+export default function Eighthpage({ currentPage, setCurrentPage }) {
 
 
     useEffect(async () => {
@@ -19,32 +19,9 @@ export default function Eighthpage() {
 
     const [getError, setGetError] = useState(false);
 
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            width: '70%',
-            textAlign: 'center',
-            backgroundColor: 'transparent'
-        },
-    };
-
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-
-    function openModal(e) {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
+    setTimeout(() => {
+        setCurrentPage(currentPage + 1);
+    }, "10000")
 
     return (
         <div className=''>

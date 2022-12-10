@@ -102,7 +102,7 @@ export default function Home() {
                                     {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 8 && loaded && <Eighthpage />}
+                                    {currentPage == 8 && loaded && <Eighthpage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
                                     {currentPage == 9 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 10 && loaded && <Tenthpage />}
                                 </div>
