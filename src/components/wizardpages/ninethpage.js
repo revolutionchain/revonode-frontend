@@ -31,7 +31,8 @@ export default function Ninethpage({ currentPage, setCurrentPage }) {
     const [errorFound, setErrorFound] = useState('');
 
     async function handleCreate() {
-        if (input?.walletName.length && input?.walletPass.length && input?.walletRePass == input?.walletPass) {
+        let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);        
+        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null ) {
             let createWallet = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
@@ -42,8 +43,14 @@ export default function Ninethpage({ currentPage, setCurrentPage }) {
         } else if (!input?.walletPass.length) {
             setErrorFound('You have not entered a secret passphrase!');
             openModal();
+        } else if (input?.walletPass.length < 6) {
+            setErrorFound('Secret passphrase must have at least 6 characters! (letters and numbers)');
+            openModal();
         } else if (input?.walletRePass !== input?.walletRePass) {
             setErrorFound('Secret passphrase does not match.');
+            openModal();
+        } else if (symbols.exec(input?.walletPass) !== null) {
+            setErrorFound('Secret passphrase can only contain letters and numbers.');
             openModal();
         }
     }

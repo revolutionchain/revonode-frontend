@@ -27,11 +27,17 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(7);
+    const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
-    const [ loaded, setLoaded ] = useState(true);
+    const [ loaded, setLoaded ] = useState(false);
 
     useEffect(async () => {        
+        try{
+            let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
+            setLoaded(result);
+        }catch (err){
+            window.location.reload();
+        }
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
