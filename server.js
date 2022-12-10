@@ -119,9 +119,10 @@ const getEnvValue = (key) => {
   let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
   ethDomain && allowedDomains.push(ethDomain.replaceAll('"', ''));
   wifiDomain && allowedDomains.push(wifiDomain.replaceAll('"', ''));
-  console.log('allowedDomains: ' + allowedDomains);
+  //console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if (domains.includes(origin)) {
+    console.log(origin);
        res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
