@@ -102,6 +102,18 @@ checkLocalIpAddress();
 
 
 app.use((req, res, next) => {
+  
+  const envFilePath = path.resolve(__dirname, ".env");
+  
+  
+  const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
+  
+  
+const getEnvValue = (key) => {
+  const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
+  return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
+};
+
   const allowedDomains = []
   const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
