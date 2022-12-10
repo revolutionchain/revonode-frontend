@@ -94,7 +94,7 @@ if (results?.wlan0?.length) {
   }
 
 }
-console.log(domains);
+//console.log(domains);
 }
 
 
@@ -102,6 +102,12 @@ checkLocalIpAddress();
 
 
 app.use((req, res, next) => {
+  const allowedDomains = []
+  const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
+  let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
+  ethDomain && allowedDomains.push(ethDomain);
+  wifiDomain && allowedDomains.push(wifiDomain);
+  console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if (domains.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
