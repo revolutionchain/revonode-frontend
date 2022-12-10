@@ -281,7 +281,7 @@ app.get('/getwificonfig', (req, res, next) => {
 
 app.post('/genrevoconfig', (req, res, next) => {
   const { rpcUser, rpcPass, nodeName } = req.body;
-  execFile('bash', ['/home/revo/nodeutils', '-genrevoconfig', rpcUser, rpcPass, nodeName], (err, stdout, stderr) => {
+  execFile('bash', ['/home/revo/nodeutils', '-genrevoconf', rpcUser, rpcPass, nodeName], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -291,12 +291,12 @@ app.post('/genrevoconfig', (req, res, next) => {
 })
 
 app.get('/delrevoconfig', (req, res, next) => {
-  let response = globalFunction('-delrevoconfig');
+  let response = globalFunction('-delrevoconf');
   res.send(response);
 })
 
 app.get('/getrevoconfig', (req, res, next) => {
-  let response = globalFunction('-getrevoconfig');
+  let response = globalFunction('-getrevoconf');
   res.send(response);
 })
 
@@ -312,7 +312,7 @@ app.get('/stopdaemon', (req, res, next) => {
 
 app.post('/createwallet', (req, res, next) => {
   const { walletName, secretPassphrase } = req.body;
-  execFile('bash', ['/home/revo/nodeutils', '-genrevoconfig', walletName, secretPassphrase], (err, stdout, stderr) => {
+  execFile('bash', ['/home/revo/nodeutils', '-createwallet', walletName, secretPassphrase], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {
