@@ -31,7 +31,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     const [errorFound, setErrorFound] = useState('');
 
     async function handleCreate() {
-        if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass.length && input.nodeName.split(" ").length <= 3) {
+        if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass.length && input.nodeName.length && input.nodeName.split(" ").length <= 3) {
             let genrevoconfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genrevoconfig`, input);
             if (genrevoconfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
