@@ -13,6 +13,7 @@ export default function Eighthpage({ currentPage, setCurrentPage }) {
 
 
     useEffect(async () => {
+        await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/startdaemon`);
     }, [])
 
     const [errorFound, setErrorFound] = useState('');
