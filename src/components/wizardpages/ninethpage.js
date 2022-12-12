@@ -10,7 +10,7 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 
 
-export default function Ninethpage({ currentPage, setCurrentPage }) {
+export default function Ninethpage({ currentPage, setCurrentPage, setWalletData }) {
 
     const [input, setInput] = useState({
         walletName: "",
@@ -35,6 +35,7 @@ export default function Ninethpage({ currentPage, setCurrentPage }) {
         if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null ) {
             let createWallet = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/createwallet`, input);
             if (createWallet.data.includes('ok')) {
+                setWalletData(input)
                 setCurrentPage(currentPage + 1)
             }
         } else if (!input?.walletName.length) {

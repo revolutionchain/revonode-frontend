@@ -34,6 +34,10 @@ export default function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(false);
+    const [ walletData, setWalletData ] = useState({
+        walletName: "",
+        walletPass: ""
+    })
 
     useEffect(async () => {   
         try{
@@ -114,8 +118,8 @@ export default function Home() {
                                     {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 8 && loaded && <Eighthpage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
-                                    {currentPage == 9 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 10 && loaded && <Tenthpage />}
+                                    {currentPage == 9 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} setWalletData={setWalletData} />}
+                                    {currentPage == 10 && loaded && <Tenthpage walletData={walletData} />}
                                 </div>
                             </fieldset>
                         </div>

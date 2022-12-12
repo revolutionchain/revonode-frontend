@@ -9,13 +9,12 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 
 
-export default function Tenthpage() {
+export default function Tenthpage({walletData}) {
 
     const [ rpcData, setRpcData ] = useState(false);
 
     useEffect(async () => {
         let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
-        console.log(result.data)
         let arr = []
         arr[0] = result.data.split("rpc")[1];
         arr[1] = result.data.split("rpc")[2];
@@ -26,6 +25,7 @@ export default function Tenthpage() {
             nodeName: arr[2].slice(0, arr[2].length - 3)
         }
         console.log(obj);
+        console.log(walletData);
     }, [])
 
     const [errorFound, setErrorFound] = useState('');
