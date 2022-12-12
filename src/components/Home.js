@@ -82,7 +82,7 @@ export default function Home() {
                             </p>
                             <img src="images/signup-img.jpg" alt="" class="signup-img" />
                         </div>
-                        <img className={`astronautImage${currentPage}`} src={imgArr[currentPage]} />
+                        <img className={`astronautImage${currentPage}`} src={imgArr[currentPage-1]} />
                     </div>
                     <div class="signup-form-conent">
                         <div id="signup-form" class="signup-form" >

@@ -150,33 +150,35 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                             })
                         }
                     </div>
-                    <div style={{ width: `50%`, marginTop: `15px` }}>
-                        <Select
-                            onChange={handleSelect}
-                            menuPlacement="auto"
-                            menuPosition="fixed"
-                            defaultValue={{ label: 'Select Raid Level' }}
-                            styles={{
-                                control: (baseStyles, state) => ({
-                                    ...baseStyles,
-                                    borderColor: state.isFocused ? 'purple' : 'grey',
-                                    border: state.isFocused ? "2px solid #050A30" : "2px solid #cccccc",
-                                    "&:hover": {
-                                        border: "2px solid #050A30",
-                                    }
-                                }), option: (provided, state) => ({
-                                    ...provided,
-                                    backgroundColor: state.isSelected ? "#dfeaf1" : "white",
-                                    color: "black",
-                                    border: "1px solid white",
-                                    "&:hover": {
-                                        border: "1px solid #050A30",
-                                    }
-                                }),
-                            }}
-                            options={options} />
+                    <div style={{ display: `flex`, marginTop: `15px`, alignItems: `center`}}>
+                        <div style={{ width: `50%`}}>
+                            <Select
+                                onChange={handleSelect}
+                                menuPlacement="auto"
+                                menuPosition="fixed"
+                                defaultValue={{ label: 'Select Raid Level' }}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'purple' : 'grey',
+                                        border: state.isFocused ? "2px solid #050A30" : "2px solid #cccccc",
+                                        "&:hover": {
+                                            border: "2px solid #050A30",
+                                        }
+                                    }), option: (provided, state) => ({
+                                        ...provided,
+                                        backgroundColor: state.isSelected ? "#dfeaf1" : "white",
+                                        color: "black",
+                                        border: "1px solid white",
+                                        "&:hover": {
+                                            border: "1px solid #050A30",
+                                        }
+                                    }),
+                                }}
+                                options={options} />
+                        </div>
+                        <div style={{width: `50%`}}>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span>}</div>
                     </div>
-                    <div>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span>}</div>
                 </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>
             <div style={{ display: `flex` }}>
