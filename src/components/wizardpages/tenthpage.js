@@ -12,6 +12,8 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 export default function Tenthpage() {
 
     useEffect(async () => {
+        let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
+        console.log(result.data)
     }, [])
 
     const [errorFound, setErrorFound] = useState('');

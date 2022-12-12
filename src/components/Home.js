@@ -52,6 +52,11 @@ export default function Home() {
             if (getwificonfig.data.includes('network')) {
                 initialPage = initialPage + 1;
             }
+            let getrpcdata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:/getrevoconfig`);
+            console.log(getrpcdata?.data);
+            if(getwificonfig.data.includes('network')) {
+
+            }
             setCurrentPage(initialPage);
         }
     }, []);
