@@ -31,7 +31,7 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(10);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(false);
 
@@ -45,21 +45,6 @@ export default function Home() {
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        if (getarrayinfo.data.arrayStatus.includes('md0')) {
-            initialPage = initialPage + 3;
-            let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
-            if (getwificonfig.data.includes('network')) {
-                initialPage = initialPage + 1;
-            }
-            let getrpcdata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
-            if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
-                initialPage = initialPage + 4
-            }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
-                initialPage = initialPage + 3
-            }
-            setCurrentPage(initialPage);
-        }
     }, []);
 
     async function getDrives() {
