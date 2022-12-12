@@ -8,6 +8,10 @@ import Thirdpage from './wizardpages/thirdpage';
 import Fourthpage from './wizardpages/fourthpage';
 import Fifthpage from './wizardpages/fifthpage';
 import Sixthpage from './wizardpages/sixthpage';
+import Seventhpage from './wizardpages/seventhpage';
+import Eighthpage from './wizardpages/eighthpage';
+import Ninethpage from './wizardpages/ninethpage';
+import Tenthpage from './wizardpages/tenthpage';
 import revoLogo from '../styles/images/revo-light.png';
 import astronauteRevo1 from '../styles/images/AstronauteRevo-1.svg'
 import astronauteRevo2 from '../styles/images/AstronauteRevo-2.svg'
@@ -15,10 +19,10 @@ import astronauteRevo3 from '../styles/images/AstronauteRevo-3.svg'
 import astronauteRevo4 from '../styles/images/AstronauteRevo-4.svg'
 import astronauteRevo5 from '../styles/images/AstronauteRevo-5.svg'
 import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
-import Seventhpage from './wizardpages/seventhpage';
-import Eighthpage from './wizardpages/eighthpage';
-import Ninethpage from './wizardpages/ninethpage';
-import Tenthpage from './wizardpages/tenthpage';
+import astronauteRevo7 from '../styles/images/AstronauteRevo-7.svg'
+import astronauteRevo8 from '../styles/images/AstronauteRevo-8.svg'
+import astronauteRevo9 from '../styles/images/AstronauteRevo-9.svg'
+import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -64,10 +68,14 @@ export default function Home() {
         { textLeft: 'The Revo software needs a certain amount of disk space, on this page you will need to select two SSD disks for saving the blockchain. It is always recommended to use storage devices of the same model and of the same capacity.' },
         { textLeft: 'Your storage array has been successfully created!' },
         { textLeft: 'Configure your node to work with WiFi. You can also give two connections for redoundancy.' },
-        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' }
+        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' },
+        { textLeft: 'Please review revo software license.' },
+        { textLeft: "Generating the configuration file for the Revo Node daemon. Usually you don't need to remember the RPC credentials, but it's very important to choose a secure combination if your node will be fully exposed on the network (exposed host)." },
+        { textLeft: 'Please wait while the Revo software launches for the first time!' },
+        { textLeft: 'This is the trickiest part of all. It is extremely important to check several times that you have entered the password correctly. Without her you will never be able to unlock your crypto wallet ever again!' }
     ]
 
-    let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6];
+    let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6,astronauteRevo7,astronauteRevo8,astronauteRevo9,astronauteRevo10];
 
     return (
         <div class="main">

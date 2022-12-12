@@ -138,17 +138,17 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
-                <h2>Create RPC user Title</h2>
-                <h3>Description.</h3>
+                <h2>Node internal configuration</h2>
+                <h3>Set a secure username and password for the Revo RPC protocol, this will ensure the best possible security between the interface and the software. Also choose your node name, try to generate something funny and unique!</h3>
                 <div>
                     <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
                     <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input>
                     <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input>
-                    <input style={{ width: `60%`, fontSize: `16px` }} value={input.nodeName} type='text' name='nodeName' placeholder="Write a Node name" onChange={(e) => handleInput(e)}></input>
+                    {/*<input style={{ width: `60%`, fontSize: `16px` }} value={input.nodeName} type='text' name='nodeName' placeholder="Write a Node name" onChange={(e) => handleInput(e)}></input>*/}
                 </div>
 
                 <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `10px`, marginBottom: `10px` }}>
-                    <span style={{ marginLeft: `10px` }}>Or Select a random Node name</span>
+                    <span style={{ marginLeft: `10px` }}>Select Node name</span>
                     {
                         randomNames?.length == 5 && randomNames?.map(elem => {
                             return <div onClick={() => selectedName(elem)} className={ elem == input.nodeName ? 'drives-container selected' : 'drives-container'}>

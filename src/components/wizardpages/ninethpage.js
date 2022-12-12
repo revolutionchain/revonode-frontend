@@ -103,7 +103,7 @@ export default function Ninethpage({ currentPage, setCurrentPage }) {
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Create Wallet</h2>
-                <h3>Description.</h3>
+                <h3>Give your wallet a name and be sure to use a strong password to secure your RVOs!</h3>
             <div>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>

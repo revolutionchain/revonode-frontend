@@ -23,7 +23,7 @@ export default function Eighthpage({ currentPage, setCurrentPage }) {
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Daemon Activation</h2>
-                <h3>Description.</h3>
+                <h3>Revo is initializing services, please be patient!</h3>
             <div>
                 <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>
             </div>
