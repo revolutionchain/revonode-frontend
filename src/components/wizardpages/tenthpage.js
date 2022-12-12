@@ -16,8 +16,16 @@ export default function Tenthpage() {
     useEffect(async () => {
         let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
         console.log(result.data)
-        let arr = result.data.split("rpc");
-        console.log(arr);
+        let arr = []
+        arr[0] = result.data.split("rpc")[1];
+        arr[1] = result.data.split("rpc")[2];
+        arr[2] = result.data.split("uacomment=")[1];
+        let obj = {
+            user: arr[0].slice(5, (arr[0]).length - 1),
+            pass: arr[1].slice(9, (arr[1]).length - 1),
+            nodeName: arr[2].slice(0, arr[2].length - 3)
+        }
+        console.log(obj);
     }, [])
 
     const [errorFound, setErrorFound] = useState('');
