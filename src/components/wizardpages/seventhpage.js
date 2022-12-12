@@ -147,7 +147,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                     <input style={{ width: `60%`, fontSize: `16px` }} value={input.nodeName} type='text' name='nodeName' placeholder="Write a Node name" onChange={(e) => handleInput(e)}></input>
                 </div>
 
-                <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `10px` }}>
+                <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `10px`, marginBottom: `10px` }}>
                     <span style={{ marginLeft: `10px` }}>Or Select a random Node name</span>
                     {
                         randomNames?.length == 5 && randomNames?.map(elem => {

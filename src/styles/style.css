@@ -742,24 +742,24 @@ h3 {
 
 .astronautImage1 {
   position: absolute;
-  width: 100%;
-  bottom: -40px;
-  left: -18px;  
+  width: 90%;
+  bottom: 10px;
+  left: 10px;  
 }
 
 .astronautImage2 {
   position: absolute;
   width: 100%;
-  bottom: 10px;
-  left: 25px;  
-  height: 45%;
+  bottom: -20px;
+  left: -20px;  
+  height: 50%;
 }
 
 .astronautImage3 {
   position: absolute;
   width: 100%;
-  bottom: 0;
-  left: 0;  
+  bottom: 5px;
+  left: 20px;  
   height: 45%;
 }
 
@@ -774,9 +774,16 @@ h3 {
 .astronautImage5 {
   position: absolute;
   width: 100%;
-  bottom: 0;
-  left: -15px;  
+  bottom: 25px;
+  left: 0px;  
   height: 45%;
-  bottom: 10px;
+}
+
+.astronautImage6 {
+  position: absolute;
+  width: 100%;
+  bottom: 25px;
+  left: -20px;  
+  height: 45%;
 }
 /*# sourceMappingURL=style.css.map */
