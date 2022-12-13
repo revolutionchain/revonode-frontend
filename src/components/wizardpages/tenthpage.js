@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
-import raidIcon from '../../styles/images/raid.png';
-import rpcIcon from '../../styles/images/rpc.png';
-import walletIcon from '../../styles/images/wallet.png';
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -135,33 +132,17 @@ export default function Tenthpage({ walletData }) {
                 <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
                     <img style={{ width: `50px`, marginRight: `10px` }} src={walletIcon} />
                     <div style={{ width: `100%`, display: `flex`, justifyContent: `space-around` }}>
-                        {
-                            walletData?.walletName && <div style={{ color: `#888` }} className='div-drive-item'>{
-                                <div style={{ marginTop: `-5px` }}>
-                                    <div style={{ fontSize: `16px` }} >Wallet Name</div>
-                                    <div style={{ fontSize: `12px`, marginTop: `-5px` }}>{walletData.walletName}</div>
-                                </div>}
-                            </div>
-                        }
-                        {
-                            walletData?.walletName && <div style={{ color: `#888` }} className='div-drive-item'>{
-                                <div style={{ marginTop: `-5px` }}>
-                                    <div style={{ fontSize: `16px` }} >Wallet Passphrase</div>
-                                    <div style={{ fontSize: `12px`, marginTop: `-5px` }}>{walletData.walletPass}</div>
-                                </div>}
-                            </div>
-                        }
-                        {
-                            walletData?.walletName && <div style={{ color: `#888` }} className='div-drive-item'>{
-                                <div style={{ marginTop: `-5px` }}>
-                                    <div style={{ fontSize: `16px` }} >Node Name</div>
-                                    <div style={{ fontSize: `12px`, marginTop: `-5px` }}>{rpcData.nodeName}</div>
-                                </div>}
-                            </div>
-                        }
+                        <input type="textarea">Disk Array Level: {arrayData[1]}
+                            Disk Array Size:  {arrayData[4]} GB
+                            RPC Username: {rpcData.user}
+                            RPC Password: {rpcData.pass}
+
+                            Your node name: {walletData.nodeName}
+                            Wallet name: {walletData.walletName}
+                            Wallet password: {walletData.walletPass}</input>                        
                     </div>
                 </div>
-            </div>        
+            </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
                 </div>
