@@ -29,10 +29,12 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     }
 
     const [errorFound, setErrorFound] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleCreate() {
-        let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);        
-        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null ) {
+        let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);
+        setIsLoading(true);
+        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null) {
             let createWallet = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
@@ -89,63 +91,68 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/delrevoconfig`);
     }
 
-    const [ backPressed, setBackPressed ] = useState(false);
-    function handleBackButton(){
+    const [backPressed, setBackPressed] = useState(false);
+    function handleBackButton() {
         setBackPressed(true);
         openModal();
     }
-    
+
     async function handleConfirmBackButton() {
         await backConfirmed();
         setCurrentPage(currentPage - 2)
     }
-    
+
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Create Wallet</h2>
                 <h3>Give your wallet a name and be sure to use a strong password to secure your RVOs!</h3>
-            <div>
-                <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
-                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
-                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                {!isLoading ?
+                    <div>
+                        <div>
+                            <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
+                            <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
+                            <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                        </div>
+                    </div> : <div style={{ paddingTop: `200px` }} ><div class="nb-spinner"></div></div>
+                }
             </div>
-            </div>
-            <div style={{ display: `flex` }}>
+
+            {!isLoading && <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
                     <button onClick={() => handleBackButton()} className='button-style back-button'>Back</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
                     <button onClick={() => handleCreate()} className='button-style next-button'>Create</button>
                 </div>
-            </div>
+            </div>}
             <div className='Modal'>{
-                backPressed ? 
-                
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <img className='warning-icon' src={warningIcon} />
-                    <div className="div-balance-title div-abm-title">Are you sure you want to go back?<br></br>This will erase the newly created RPC config file.</div>
+                backPressed ?
+
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+                        <img className='warning-icon' src={warningIcon} />
+                        <div className="div-balance-title div-abm-title">Are you sure you want to go back?<br></br>This will erase the newly created RPC config file.</div>
                         <button onClick={closeModal} className='button-style back-button modal-button'>Cancel</button>
                         <button onClick={() => handleConfirmBackButton()} className='button-style next-button modal-button'>Yes</button>
-                </Modal>
-                :
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <img className='warning-icon' src={failedIcon} />
-                    <div className="div-balance-title div-abm-title">{errorFound}</div>
-                    <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
-                </Modal>}
+                    </Modal>
+                    :
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+                        <img className='warning-icon' src={failedIcon} />
+                        <div className="div-balance-title div-abm-title">{errorFound}</div>
+                        <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
+                    </Modal>}
             </div>
         </div>
     )
