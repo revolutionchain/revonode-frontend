@@ -159,6 +159,13 @@ export default function Tenthpage({ walletData }) {
                         }
                     </div>
                 </div>
+            </div>        
+            <div style={{ display: `flex` }}>
+                <div style={{ width: `30%`, textAlign: `left` }}>
+                </div>
+                <div style={{ width: `70%`, textAlign: `right` }}>
+                    <button className='button-style next-button'>Finish</button>
+                </div>
             </div>
         </div>
     )
