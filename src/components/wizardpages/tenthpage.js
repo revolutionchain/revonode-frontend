@@ -74,13 +74,14 @@ export default function Tenthpage({ walletData }) {
                     marginRight: `10px`,
                     paddingLeft: `10px`,
                     paddingTop: `5px`,
-                }}><span>Node Data</span>
-                    {arrayData.length && rpcData?.user && <textarea style={{ minHeight: `229px`, minWidth: `225px`, marginTop: `10px`}}>{`Disk Array Level: ${arrayData[1]}
-                            Disk Array Size:  ${arrayData[4]} GB
+                }}><span>Node Data</span></div>
+                <div style={{textAlign: left}}>
+                    {arrayData.length && rpcData?.user && <textarea style={{ minHeight: `229px`, minWidth: `225px`, marginTop: `10px` }}>{`Disk Array Level: ${arrayData[1]}
+                            Disk Array Size:  ${(parseFloat(arrayData[4])/1000000).toFixed(2)} GB
                             RPC Username: ${rpcData?.user}
                             RPC Password: ${rpcData?.pass}
 
-                            Your node name: ${walletData?.nodeName}
+                            Your node name: ${rpcData?.nodeName}
                             Wallet name: ${walletData?.walletName}
                             Wallet password: ${walletData?.walletPass}`}</textarea>}
                 </div>
