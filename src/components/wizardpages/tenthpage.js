@@ -67,22 +67,23 @@ export default function Tenthpage({ walletData }) {
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Daemon Activation</h2>
-                <h3>Description.</h3>                
+                <h3>Description.</h3>
                 <div style={{
                     backgroundColor: `#EEE`,
                     textAlign: `left`,
                     marginRight: `10px`,
                     paddingLeft: `10px`,
                     paddingTop: `5px`,
-                }}><span>Node Data</span></div>
-                        <textarea>{`Disk Array Level: ${arrayData[1]}
+                }}><span>Node Data</span>
+                    {arrayData.length && rpcData?.user && <textarea style={{ minHeight: `229px`, minWidth: `225px`, marginTop: `10px`}}>{`Disk Array Level: ${arrayData[1]}
                             Disk Array Size:  ${arrayData[4]} GB
-                            RPC Username: ${rpcData.user}
-                            RPC Password: ${rpcData.pass}
+                            RPC Username: ${rpcData?.user}
+                            RPC Password: ${rpcData?.pass}
 
-                            Your node name: ${walletData.nodeName}
-                            Wallet name: ${walletData.walletName}
-                            Wallet password: ${walletData.walletPass}`}</textarea>    
+                            Your node name: ${walletData?.nodeName}
+                            Wallet name: ${walletData?.walletName}
+                            Wallet password: ${walletData?.walletPass}`}</textarea>}
+                </div>
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
