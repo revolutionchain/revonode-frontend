@@ -68,8 +68,12 @@ Wallet password: ${walletData?.walletPass}`);
     }
 
 
-    const handleCopyButton = () => {
-
+    const handleCopyButton = async () => {
+        if ("clipboard" in navigator) {
+          await navigator.clipboard.writeText(textArea);
+        } else {
+          document.execCommand("copy", true, textArea);
+        }
     }
     return (
         <div className=''>
@@ -86,7 +90,7 @@ Wallet password: ${walletData?.walletPass}`);
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
-                    <button onClick={() =>  navigator.clipboard.writeText(textArea)} className='button-style back-button'>Copy to Clipboard</button>
+                    <button onClick={() =>  handleCopyButton()} className='button-style back-button'>Copy to Clipboard</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
                     <button className='button-style next-button'>Finish</button>
