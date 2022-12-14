@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
@@ -72,9 +72,9 @@ Wallet password: ${walletData?.walletPass}`);
     const handleCopyButton = async () => {
         if ("clipboard" in navigator) {
             console.log(textArea);
-          await navigator.clipboard.writeText(textArea);
+            await navigator.clipboard.writeText(textArea);
         } else {
-          document.execCommand("copy", true, textArea);
+            document.execCommand("copy", true, textArea);
         }
     }
     return (
@@ -92,11 +92,10 @@ Wallet password: ${walletData?.walletPass}`);
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
-                    {/*<button onClick={() =>  handleCopyButton()} className='button-style back-button'>Copy to Clipboard</button>*/}
-        <CopyToClipboard text={textArea}
-          onCopy={() => {}}>
-          <button className='button-style back-button'>Copy to Clipboard</button>
-        </CopyToClipboard>
+                    <CopyToClipboard text={textArea}
+                        onCopy={() => { }}>
+                        <button className='button-style back-button'>Copy to Clipboard</button>
+                    </CopyToClipboard>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
                     <button className='button-style next-button'>Finish</button>

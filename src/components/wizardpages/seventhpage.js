@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
+import rescanIcon from '../../styles/images/reload-icon.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -25,7 +26,6 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
             arrNames.push(adjetives[Math.ceil(Math.random()*(0, adjetives.length))] + " " + colors[Math.ceil(Math.random()*(0, adjetives.length))] + " " + things[Math.ceil(Math.random()*(0, adjetives.length))])
         }        
         setRandomNames(arrNames);
-        console.log(arrNames.length);
     }, [])
 
     function handleInput(e) {
@@ -135,9 +135,26 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
         handleInput(e);
     }
 
+
+    const [ reloadState, setReloadState ] = useState(false);
+
+    function reloadPage(){
+        let arrNames = [];
+        for(let i = 0 ; i < 5 ; i++){
+            arrNames.push(adjetives[Math.ceil(Math.random()*(0, adjetives.length))] + " " + colors[Math.ceil(Math.random()*(0, adjetives.length))] + " " + things[Math.ceil(Math.random()*(0, adjetives.length))])
+        }        
+        setRandomNames(arrNames);
+        if(reloadState){
+            setReloadState(false);
+        }else {
+            setReloadState(true);
+        }
+    }
+
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
+                <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => reloadPage()} />
                 <h2>Node internal configuration</h2>
                 <h3>Set a secure username and password for the Revo RPC protocol, this will ensure the best possible security between the interface and the software. Also choose your node name, try to generate something funny and unique!</h3>
                 <div>

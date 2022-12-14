@@ -49,7 +49,6 @@ export default function Home() {
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
-        console.log(masterState.data);
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         if (getarrayinfo.data.arrayStatus.includes('md0')) {
             initialPage = initialPage + 3;
