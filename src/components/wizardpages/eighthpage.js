@@ -25,7 +25,7 @@ export default function Eighthpage({ currentPage, setCurrentPage }) {
                 <h2>Daemon Activation</h2>
                 <h3 style={{textAlign: `center`}}>Revo is initializing services, please be patient!</h3>
             <div>
-                <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>
+                <div style={{ paddingTop: `100px` }} ><div class="nb-spinner"></div></div>
             </div>
             </div>
         </div>
