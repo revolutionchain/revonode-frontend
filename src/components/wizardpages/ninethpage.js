@@ -114,7 +114,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                             <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
                             <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
                         </div>
-                    </div> : <div style={{ paddingTop: `150px` }} ><div class="nb-spinner"></div></div>
+                    </div> : <div style={{ paddingTop: `100px` }} ><div class="nb-spinner"></div></div>
                 }
             </div>
 

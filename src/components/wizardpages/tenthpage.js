@@ -8,7 +8,6 @@ const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
 
 
-
 export default function Tenthpage({ walletData }) {
 
     const [rpcData, setRpcData] = useState(false);
@@ -28,11 +27,18 @@ export default function Tenthpage({ walletData }) {
             nodeName: arr[2].slice(0, arr[2].length - 3)
         }
         setRpcData(obj);
-    }, [])
+    }, []);
 
-    const [errorFound, setErrorFound] = useState('');
+    const [textArea, setTextArea] = useState(false);
 
-    const [getError, setGetError] = useState(false);
+    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].slice(4)}
+Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
+RPC Username: ${rpcData?.user}
+RPC Password: ${rpcData?.pass}
+
+Your node name: ${rpcData?.nodeName}
+Wallet name: ${walletData?.walletName}
+Wallet password: ${walletData?.walletPass}`);
 
     const customStyles = {
         content: {
@@ -61,30 +67,26 @@ export default function Tenthpage({ walletData }) {
         setIsOpen(false);
     }
 
-    const tableElem = ['Array Name', 'Raid Level', 'Storage', 'Size']
 
+    const handleCopyButton = () => {
+
+    }
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Daemon Activation</h2>
                 <h3>Description.</h3>
-                <div style={{textAlign: `left`}}>
-                <span style={{position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, marginTop: `-10px`, padding: `0px 5px`, fontSize: `16px` }}>Node Data</span>
-                    {arrayData.length && rpcData?.user && <textarea style={{ resize: `none`, minHeight: `229px`, minWidth: `300px`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
+                <div style={{ textAlign: `left` }}>
+                    <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Node Data</span>
+                    {textArea && <textarea style={{ resize: `none`, minHeight: `229px`, minWidth: `350px`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
                         {
-`Disk Array Level: Raid ${arrayData[1].slice(4)}
-Disk Array Size:  ${(parseFloat(arrayData[4])/1000000).toFixed(2)} GB
-RPC Username: ${rpcData?.user}
-RPC Password: ${rpcData?.pass}
-
-Your node name: ${rpcData?.nodeName}
-Wallet name: ${walletData?.walletName}
-Wallet password: ${walletData?.walletPass}`
-                            }</textarea>}
+                            textArea
+                        }</textarea>}
                 </div>
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
+                    <button onClick={() =>  navigator.clipboard.writeText(textArea)} className='button-style back-button'>Copy to Clipboard</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
                     <button className='button-style next-button'>Finish</button>
