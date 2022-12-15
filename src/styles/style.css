@@ -608,9 +608,10 @@ input:valid+label {
 .rescan-button {
   float: right;
   bottom: auto;  
-  width: 30px;
-  height: 30px;
+  width: 18px;
+  height: 18px;
   background-color: transparent;
+  margin-right: 10px;
 }
 
 
