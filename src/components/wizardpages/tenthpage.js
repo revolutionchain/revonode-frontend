@@ -87,7 +87,7 @@ Wallet password: ${walletData?.walletPass}`);
                     <div style={{width: `30%`}}>
                     <CopyToClipboard text={textArea}
                         onCopy={() => { }}>
-                        <button className='button-style'><img className='copy-icon' src={copyIcon} /></button>
+                        <button style={{marginTop: `10px`}} className='button-style'><img className='copy-icon' src={copyIcon} /></button>
                     </CopyToClipboard>
                     <button style={{marginTop: `10px`}} onClick={() => window.print()} className='button-style'><img className='copy-icon' src={printIcon} /></button>
                     </div>

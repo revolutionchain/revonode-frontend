@@ -39,8 +39,7 @@ export default function Home() {
         walletPass: ""
     })
 
-    useEffect(async () => {   
-        
+    useEffect(async () => {           
         try{
             let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
             setLoaded(result);
@@ -50,6 +49,9 @@ export default function Home() {
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
+        if(master.data.includes("master")){
+            return setCurrentPage("dashboard");
+        }
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         if (getarrayinfo.data.arrayStatus.includes('md0')) {
             initialPage = initialPage + 3;
