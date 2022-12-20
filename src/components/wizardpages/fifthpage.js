@@ -61,7 +61,7 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
         if (getwificonfig.data.includes('network')) {
             await handleRemove();
         }
-        setCurrentPage(currentPage - 2)
+        setCurrentPage(currentPage - 1)
     }
 
     const [ agree, setAgree ] = useState(false);

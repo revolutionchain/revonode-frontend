@@ -71,13 +71,13 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         }
 
         if(e.value == 0){
-            setRaidResult(drivesSize + drivesSize + "GB");            
+            let sum = drivesSize + drivesSize;
+            setRaidResult( sum + "GB");            
         }else if (e.value == 1) {
             setRaidResult(drivesSize + "GB + " + drivesSize + "GB");
         }
     }
 
-    !raidResult && selectedDrives?.length && handleSelect({value: 0});
 
     const options = [
         { value: 0, label: 'Raid 0' },
