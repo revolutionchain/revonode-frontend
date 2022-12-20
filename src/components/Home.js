@@ -51,21 +51,22 @@ export default function Home() {
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
             return setCurrentPage("dashboard");
-        }
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        if (getarrayinfo.data.arrayStatus.includes('md0')) {
-            initialPage = initialPage + 3;
-            let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
-            if (getwificonfig.data.includes('network')) {
-                initialPage = initialPage + 1;
+        }else {
+            let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+            if (getarrayinfo.data.arrayStatus.includes('md0')) {
+                initialPage = initialPage + 3;
+                let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
+                if (getwificonfig.data.includes('network')) {
+                    initialPage = initialPage + 1;
+                }
+                let getrpcdata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
+                if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
+                    initialPage = initialPage + 4
+                }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
+                    initialPage = initialPage + 3
+                }
+                setCurrentPage(initialPage);
             }
-            let getrpcdata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
-            if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
-                initialPage = initialPage + 4
-            }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
-                initialPage = initialPage + 3
-            }
-            setCurrentPage(initialPage);
         }
     }, []);
 
