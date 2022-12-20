@@ -592,6 +592,10 @@ input:valid+label {
 
 }
 
+.next-grayed {
+  background-color: #888;
+}
+
 .back-button {
   bottom: 0;
   left: 0;
@@ -608,12 +612,24 @@ input:valid+label {
 .rescan-button {
   float: right;
   bottom: auto;  
+  width: 21px;
+  height: 21px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.research-button {
+  float: right;
+  bottom: auto;  
   width: 18px;
   height: 18px;
   background-color: transparent;
   margin-right: 10px;
 }
 
+.copy-icon {
+  width: 30px;
+}
 
 input[type=checkbox] {
   width: auto !important;  

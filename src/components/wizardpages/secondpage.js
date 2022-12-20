@@ -4,6 +4,7 @@ import Select from 'react-select';
 import Modal from 'react-modal';
 import floppyDiskImg from '../../styles/images/floppy-disk.png'
 import failedIcon from '../../styles/images/failed.png'
+import buttonArrow from '../../styles/images/button-arrow.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -58,9 +59,25 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     const [raidLevel, setRaidLevel] = useState("null");
 
+    const [ raidResult, setRaidResult ] = useState(false);
+
     function handleSelect(e) {
+        let drivesSize;
         setRaidLevel(e.value);
+        if(parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = (selectedDrives[0]?.SIZE / 1000000000).toFixed(2);
+        }else if(parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2);
+        }
+
+        if(e.value == 0){
+            setRaidResult(drivesSize + drivesSize + "GB");            
+        }else if (e.value == 1) {
+            setRaidResult(drivesSize + "GB + " + drivesSize + "GB");
+        }
     }
+
+    !raidResult && selectedDrives?.length && handleSelect({value: 0});
 
     const options = [
         { value: 0, label: 'Raid 0' },
@@ -177,7 +194,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                                 }}
                                 options={options} />
                         </div>
-                        <div style={{width: `50%`}}>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) ? raidLevel == 0 ? parseFloat(((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2)) + parseFloat(((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2)) + "GB" : ((parseFloat(selectedDrives[0]?.SIZE)) / 1000000000).toFixed(2) + "GB + " + ((parseFloat(selectedDrives[1]?.SIZE)) / 1000000000).toFixed(2) + "GB" : <span></span>}</div>
+                        <div style={{width: `50%`}}>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) && <span>{raidResult}</span>}</div>
                     </div>
                 </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>
@@ -186,7 +203,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button onClick={() => handleNextButton()} className='button-style next-button'>Confirm</button>
+                    <button style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleNextButton()} className='button-style next-button'>Confirm<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>
             <div className='Modal'>

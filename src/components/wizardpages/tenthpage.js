@@ -3,6 +3,8 @@ import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
+import copyIcon from '../../styles/images/copy-icon.png'
+import printIcon from '../../styles/images/print-icon.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -32,8 +34,9 @@ export default function Tenthpage({ walletData }) {
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].slice(4)}
+    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1]?.slice(4)}
 Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
+
 RPC Username: ${rpcData?.user}
 RPC Password: ${rpcData?.pass}
 
@@ -68,34 +71,30 @@ Wallet password: ${walletData?.walletPass}`);
         setIsOpen(false);
     }
 
-
-    const handleCopyButton = async () => {
-        if ("clipboard" in navigator) {
-            console.log(textArea);
-            await navigator.clipboard.writeText(textArea);
-        } else {
-            document.execCommand("copy", true, textArea);
-        }
-    }
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
-                <h2>Daemon Activation</h2>
-                <h3>Description.</h3>
-                <div style={{ textAlign: `left` }}>
-                    <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Node Data</span>
-                    {textArea && <textarea style={{ resize: `none`, minHeight: `229px`, minWidth: `350px`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
+                <h2>We did it!</h2>
+                <h3>Installation complete! Before accessing the Dashboard of your Revo node, take the time to make a copy of the data you have entered! Print or save the data below and be sure to keep it safe!</h3>
+                <div style={{ textAlign: `left`, display: `flex` }}>
+                    <div style={{width: `70%`}}>
+                    {textArea && <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Your Node Data</span>}
+                    {textArea && <textarea style={{ resize: `none`, minHeight: `229px`, minWidth: `70%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
                         {
                             textArea
                         }</textarea>}
+                    </div>
+                    <div style={{width: `30%`}}>
+                    <CopyToClipboard text={textArea}
+                        onCopy={() => { }}>
+                        <button className='button-style'><img className='copy-icon' src={copyIcon} /></button>
+                    </CopyToClipboard>
+                    <button style={{marginTop: `10px`}} onClick={() => window.print()} className='button-style'><img className='copy-icon' src={printIcon} /></button>
+                    </div>
                 </div>
             </div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
-                    <CopyToClipboard text={textArea}
-                        onCopy={() => { }}>
-                        <button className='button-style back-button'>Copy to Clipboard</button>
-                    </CopyToClipboard>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
                     <button className='button-style next-button'>Finish</button>

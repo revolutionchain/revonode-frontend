@@ -3,6 +3,10 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
 import warningIcon from '../../styles/images/warning.png';
+import userIcon from '../../styles/images/user-icon.png'
+import passIcon from '../../styles/images/pass-icon.png'
+import walletIcon from '../../styles/images/wallet-icon.png'
+import buttonArrow from '../../styles/images/button-arrow.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -110,9 +114,18 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                 {!isLoading ?
                     <div>
                         <div>
-                            <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
-                            <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
-                            <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                            <div style={{ display: `flex`, alignItems: `center` }}>
+                                <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={walletIcon} />
+                                <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
+                            </div>
+                            <div style={{ display: `flex`, alignItems: `center` }}>
+                                <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
+                                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
+                            </div>
+                            <div style={{ display: `flex`, alignItems: `center` }}>
+                                <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
+                                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                            </div>
                         </div>
                     </div> : <div style={{ paddingTop: `100px` }} ><div class="nb-spinner"></div></div>
                 }
@@ -123,7 +136,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                     <button onClick={() => handleBackButton()} className='button-style back-button'>Back</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button onClick={() => handleCreate()} className='button-style next-button'>Create</button>
+                    <button style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleCreate()} className='button-style next-button'>Create<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>}
             <div className='Modal'>{

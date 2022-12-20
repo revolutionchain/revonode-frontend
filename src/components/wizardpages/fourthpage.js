@@ -4,6 +4,7 @@ import Select from 'react-select';
 import Modal from 'react-modal';
 import rescanIcon from '../../styles/images/rescan-icon.png'
 import failedIcon from '../../styles/images/failed.png'
+import buttonArrow from '../../styles/images/button-arrow.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -69,7 +70,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         } else if (!input?.country.length) {
             setErrorFound('You must select the abbreviation of your country!');
             openModal();
-        }
+        } 
     }
 
     const [getError, setGetError] = useState(false);
@@ -133,20 +134,21 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         setIsOpen(false);
     }
 
-
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
-                <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => handleRescan()} />
                 <h2>Wifi</h2>
-                <h3>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
+                <h3 style={{marginBottom: `5px`}}>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
                 <div>
                     <div style={{
                         backgroundColor: `#EEE`,
                         textAlign: `left`,
                         paddingLeft: `10px`,
                         paddingTop: `5px`,
-                    }}><span>WiFi Networks</span></div>
+                    }}><span>WiFi Networks</span>
+                    
+                <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => handleRescan()} />
+                    </div>
                     {
                         wifiData.length && !isLoading ? wifiData?.map((e, i) => {
                             return <div className='div-wifi-container' >
@@ -189,15 +191,17 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                     }
                 </div>
             </div>
+            <div>
             <div style={{ display: `flex` }}>
                 <div style={{ width: `30%`, textAlign: `left` }}>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
 
                 <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style skip-button'>Skip</button>
-                    <button onClick={() => handleConnect()} className='button-style next-button'>Connect</button>
+                    <button onClick={() => setCurrentPage(currentPage + 2)} className='button-style skip-button'>Skip</button>
+                    <button  style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleConnect()} className='button-style next-button'>Connect<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
+            </div>
             </div>
 
 

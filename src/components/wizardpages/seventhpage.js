@@ -5,6 +5,7 @@ import failedIcon from '../../styles/images/failed.png'
 import rescanIcon from '../../styles/images/reload-icon.png'
 import userIcon from '../../styles/images/user-icon.png'
 import passIcon from '../../styles/images/pass-icon.png'
+import buttonArrow from '../../styles/images/button-arrow.png'
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -50,8 +51,8 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
             return "RPC password must have at least 1 letter in uppercase"
         } else if (lowerCase < 6) {
             return "RPC password must have at least 6 letter in lowercase"
-        } else if (numbers < 3) {
-            return "RPC password must have at least 3 numbers"
+        } else if (numbers < 1) {
+            return "RPC password must have at least 1 numbers"
         } else {
             return "Ok"
         }
@@ -176,7 +177,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
 
                 <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `10px`, marginBottom: `10px` }}>
                     <span style={{ marginLeft: `10px` }}>Select Node name</span>
-                    <img src={rescanIcon} className='button-style next-button rescan-button' onClick={() => reloadPage()} />
+                    <img src={rescanIcon} className='button-style next-button research-button' onClick={() => reloadPage()} />
                     {
                         randomNames?.length == 5 && randomNames?.map(elem => {
                             return <div onClick={() => selectedName(elem)} className={elem == input.nodeName ? 'drives-container selected' : 'drives-container'}>
@@ -193,7 +194,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
                 <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button onClick={() => handleCreate()} className='button-style next-button'>Confirm</button>
+                    <button style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleCreate()} className='button-style next-button'>Confirm<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>
             <div className='Modal'>

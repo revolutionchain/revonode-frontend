@@ -31,22 +31,22 @@ const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(9);
+    const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
-    const [ loaded, setLoaded ] = useState(true);
+    const [ loaded, setLoaded ] = useState(false);
     const [ walletData, setWalletData ] = useState({
         walletName: "",
         walletPass: ""
     })
 
     useEffect(async () => {   
-        /*
+        
         try{
             let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
-        }     */
+        }     
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
@@ -83,7 +83,8 @@ export default function Home() {
         { textLeft: 'Please review revo software license.' },
         { textLeft: "Generating the configuration file for the Revo Node daemon. Usually you don't need to remember the RPC credentials, but it's very important to choose a secure combination if your node will be fully exposed on the network (exposed host)." },
         { textLeft: 'Please wait while the Revo software launches for the first time!' },
-        { textLeft: 'This is the trickiest part of all. It is extremely important to check several times that you have entered the password correctly. Without her you will never be able to unlock your crypto wallet ever again!' }
+        { textLeft: 'This is the trickiest part of all. It is extremely important to check several times that you have entered the password correctly. Without her you will never be able to unlock your crypto wallet ever again!' },
+        { textLeft: 'From now on you are officially a full validator node of the Revo blockchain! Usually the synchronization of the blocks with the global network can take from a few hours to a few days! Welcome on board!' }
     ]
 
     let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6,astronauteRevo7,astronauteRevo8,astronauteRevo9,astronauteRevo10];
