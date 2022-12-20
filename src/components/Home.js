@@ -49,7 +49,7 @@ export default function Home() {
         let initialPage = 1;
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
         setMaster(masterState.data);
-        if(master.data.includes("master")){
+        if(masterState.data.includes("master")){
             return setCurrentPage("dashboard");
         }
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
