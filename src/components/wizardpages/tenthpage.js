@@ -20,7 +20,7 @@ export default function Tenthpage({ walletData }) {
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwalletaddress`);
         walletData.walletAddress = masterState.data;
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        console.log(getarrayinfo.arrayStatus.split(" "))
+        console.log(getarrayinfo.data.arrayStatus.split(" "))
         setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e, i) => [3, 6, 7, 8, 14].includes(i)));
         let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
         let arr = []
