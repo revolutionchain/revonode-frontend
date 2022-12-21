@@ -837,4 +837,13 @@ a {
   text-decoration: none;
 }
 
+@media print {
+  *{
+  display:none;
+  }
+  #print-content {
+  display: auto !important;
+  }
+  }
+
 /*# sourceMappingURL=style.css.map */

@@ -17,6 +17,8 @@ export default function Tenthpage({ walletData }) {
     const [arrayData, setArrayData] = useState(false);
 
     useEffect(async () => {
+        let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwalletaddress`);
+        walletData.walletAddress = masterState.data;
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
         setArrayData(getarrayinfo.data.arrayStatus.split(" ").filter((e, i) => [3, 6, 7, 8, 14].includes(i)));
         let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
@@ -42,7 +44,8 @@ RPC Password: ${rpcData?.pass}
 
 Your node name: ${rpcData?.nodeName}
 Wallet name: ${walletData?.walletName}
-Wallet password: ${walletData?.walletPass}`);
+Wallet password: ${walletData?.walletPass}
+Wallet Address: ${walletData.walletAddress}`);
 
     const customStyles = {
         content: {
@@ -71,6 +74,35 @@ Wallet password: ${walletData?.walletPass}`);
         setIsOpen(false);
     }
 
+    function printReports(divId){
+        let content = document.createElement('div');
+        content.innerHTML = `
+        <h2>My Revo Node configuration details</h2>
+        Disk Array Level: Raid ${arrayData[1]?.slice(4)}<br>
+        Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB <br><br>        
+        RPC Username: ${rpcData?.user}<br>
+        RPC Password: ${rpcData?.pass}<br><br>        
+        Your node name: ${rpcData?.nodeName}<br>
+        Wallet name: ${walletData?.walletName}<br>
+        Wallet password: ${walletData?.walletPass}
+        Wallet Address: ${walletData.walletAddress}`
+        let mywindow = window.open('', 'Print', 'height=600,width=800');
+    
+        mywindow.document.write('<html><head><title>Print</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(content.innerHTML);
+        mywindow.document.write('</body></html>');
+    
+        mywindow.document.close();
+        mywindow.focus()
+        mywindow.print();
+        mywindow.close();
+        return true;
+    }
+
+
+
+
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
@@ -79,17 +111,18 @@ Wallet password: ${walletData?.walletPass}`);
                 <div style={{ textAlign: `left`, display: `flex` }}>
                     <div style={{width: `70%`}}>
                     {textArea && <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Your Node Data</span>}
-                    {textArea && <textarea style={{ resize: `none`, minHeight: `229px`, minWidth: `70%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
-                        {
+                    {textArea && <textarea id='print-content' style={{ resize: `none`, minHeight: `229px`, minWidth: `70%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
+                        {                            
                             textArea
-                        }</textarea>}
+                        }
+                        </textarea>}
                     </div>
                     <div style={{width: `30%`}}>
                     <CopyToClipboard text={textArea}
                         onCopy={() => { }}>
                         <button style={{marginTop: `10px`}} className='button-style'><img className='copy-icon' src={copyIcon} /></button>
                     </CopyToClipboard>
-                    <button style={{marginTop: `10px`}} onClick={() => window.print()} className='button-style'><img className='copy-icon' src={printIcon} /></button>
+                    <button style={{marginTop: `10px`}} onClick={() => printReports("print-content")} className='button-style'><img className='copy-icon' src={printIcon} /></button>
                     </div>
                 </div>
             </div>

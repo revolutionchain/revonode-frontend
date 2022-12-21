@@ -72,9 +72,9 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
         if(e.value == 0){
             let sum = parseFloat(drivesSize) + parseFloat(drivesSize);
-            setRaidResult( sum + "GB");            
+            setRaidResult( "Size: " + sum + "GB");            
         }else if (e.value == 1) {
-            setRaidResult(drivesSize + "GB + " + drivesSize + "GB");
+            setRaidResult( "Size: " + drivesSize + "GB");
         }
     }
 

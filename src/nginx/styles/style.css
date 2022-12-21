@@ -740,9 +740,9 @@ h3 {
 
 .astronautImage1 {
   position: absolute;
-  width: 100%;
-  bottom: 0px;
-  left: 0px;  
+  width: 75%;
+  bottom: -10px;
+  left: 35px;  
 }
 
 .astronautImage2 {

@@ -76,7 +76,7 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
         if(agree){
             setCurrentPage(currentPage + 1)
         }else {
-            setErrorFound([ 0, 'You must read wifi instructions and confirm you has been understand!']);
+            setErrorFound([ 0, 'Please read best practice for WiFi']);
             openModal();
         }
     }
