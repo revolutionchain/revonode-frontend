@@ -36,7 +36,7 @@ export default function Tenthpage({ walletData }) {
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split(d)[1]}
+    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split("d")[1]}
 Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
 
 RPC Username: ${rpcData?.user}
