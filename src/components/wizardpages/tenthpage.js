@@ -36,7 +36,7 @@ export default function Tenthpage({ walletData }) {
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1]}
+    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split(d)[1]}
 Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
 
 RPC Username: ${rpcData?.user}
@@ -111,13 +111,13 @@ Wallet Address: ${walletData.walletAddress}`);
                 <div style={{ textAlign: `left`, display: `flex` }}>
                     <div style={{width: `70%`}}>
                     {textArea && <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Your Node Data</span>}
-                    {textArea && <textarea id='print-content' style={{ resize: `none`, minHeight: `229px`, minWidth: `70%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
+                    {textArea && <textarea id='print-content' style={{ resize: `none`, minHeight: `250px`, minWidth: `85%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
                         {                            
                             textArea
                         }
                         </textarea>}
                     </div>
-                    <div style={{width: `30%`}}>
+                    <div style={{width: `30%`, textAlign: `right`}}>
                     <CopyToClipboard text={textArea}
                         onCopy={() => { }}>
                         <button style={{marginTop: `10px`}} className='button-style'><img className='copy-icon' src={copyIcon} /></button>
