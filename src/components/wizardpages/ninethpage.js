@@ -53,7 +53,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         } else if (input?.walletPass.length < 6) {
             setErrorFound('Secret passphrase must have at least 6 characters! (letters and numbers)');
             openModal();
-        } else if (input?.walletRePass !== input?.walletRePass) {
+        } else if (input?.walletPass !== input?.walletRePass) {
             setErrorFound('Secret passphrase does not match.');
             openModal();
         } else if (symbols.exec(input?.walletPass) !== null) {
