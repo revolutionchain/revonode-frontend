@@ -60,6 +60,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
             setErrorFound('Secret passphrase can only contain letters and numbers.');
             openModal();
         }
+        setIsLoading(false);
     }
 
     const customStyles = {

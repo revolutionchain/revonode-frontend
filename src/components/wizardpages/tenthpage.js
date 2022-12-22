@@ -84,7 +84,7 @@ Wallet Address: ${walletData.walletAddress}`);
         RPC Password: ${rpcData?.pass}<br><br>        
         Your node name: ${rpcData?.nodeName}<br>
         Wallet name: ${walletData?.walletName}<br>
-        Wallet password: ${walletData?.walletPass}
+        Wallet password: ${walletData?.walletPass}<br>
         Wallet Address: ${walletData.walletAddress}`
         let mywindow = window.open('', 'Print', 'height=600,width=800');
     
