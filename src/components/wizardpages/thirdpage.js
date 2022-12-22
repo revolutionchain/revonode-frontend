@@ -17,6 +17,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     useEffect(async () => {
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+        console.log(getarrayinfo.data.arrayStatus);
         setArrayData(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 6, 7, 8, 14].includes(i)));
     }, [])
 
