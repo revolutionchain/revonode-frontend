@@ -20,7 +20,6 @@ export default function Tenthpage({ walletData }) {
         let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwalletaddress`);
         walletData.walletAddress = masterState.data;
         let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
-        console.log(getarrayinfo.data.arrayStatus.split(" "))
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
         let result = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
         let arr = []
@@ -37,7 +36,7 @@ export default function Tenthpage({ walletData }) {
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[0]?.slice(5, (arr[0].length - 1))}
+    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1]}
 Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
 
 RPC Username: ${rpcData?.user}
