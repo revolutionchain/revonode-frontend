@@ -55,7 +55,6 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         }
         setSelectedDrives(drives);
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
-        raidLevel && handleSelect({value: raidLevel});
     }
 
     const [raidLevel, setRaidLevel] = useState("null");
@@ -78,6 +77,9 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             setRaidResult( "Size: " + drivesSize + "GB");
         }
     }
+
+    
+    raidLevel !== "null" && !raidResult && selectedDrives.length > 1 && handleSelect({value: raidLevel});
 
 
     const options = [
