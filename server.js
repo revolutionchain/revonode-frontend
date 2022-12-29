@@ -146,6 +146,7 @@ app.get('/checklocalip', (req, res, next) => {
 })
 
 app.get('/forcereboot', (req, res, next) => {
+  res.send('done');
   execFile('bash', ['/home/revo/nodeutils', '-forcereboot'], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
