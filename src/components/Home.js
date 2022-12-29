@@ -64,7 +64,7 @@ export default function Home() {
         let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
-            return setCurrentPage("dashboard");
+            window.location.href = `http://${window.location.hostname}/`;
         }else {
             let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
             if (getarrayinfo.data.arrayStatus.includes('md0')) {
