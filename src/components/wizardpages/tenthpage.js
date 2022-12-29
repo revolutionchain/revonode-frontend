@@ -118,7 +118,9 @@ Wallet Address: ${walletData.walletAddress}`);
                         </textarea>}
                     </div>
                     <div style={{width: `30%`, textAlign: `right`}}>
-                    <CopyToClipboard text={textArea}
+                    <CopyToClipboard text={`My Revo Node configuration details
+
+${textArea}`}
                         onCopy={() => { }}>
                         <button style={{marginTop: `10px`}} className='button-style'><img className='copy-icon' src={copyIcon} /></button>
                     </CopyToClipboard>
