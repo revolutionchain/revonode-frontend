@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/install react-scripts build && cp -R build /home/revo/dashboard/build/install",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
