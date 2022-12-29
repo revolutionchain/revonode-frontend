@@ -65,8 +65,11 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
             }
             setCurrentPage(currentPage - 1)
         }else if(errorFound[0] == 2){
-            await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
-            window.location.reload();
+            try {
+                await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
+            }catch {
+                window.location.reload();
+            }
         }        
     }
 
