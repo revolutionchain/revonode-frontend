@@ -49,19 +49,25 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
     };
 
     async function handleReboot() {
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/forcereboot`);
+        setErrorFound([ 2, 'Are you sure you want to reboot this device?']);
+        openModal();
     }
 
     async function handleRemove() {
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/delwificonfig`);
+        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/delwificonfig`);
     }
 
     async function handleConfirmButton() {
-        let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
-        if (getwificonfig.data.includes('network')) {
-            await handleRemove();
-        }
-        setCurrentPage(currentPage - 1)
+        if(errorFound[0] == 1){
+            let getwificonfig = await axios.get(`http://${window.location.hostname}:3001/getwificonfig`);
+            if (getwificonfig.data.includes('network')) {
+                await handleRemove();
+            }
+            setCurrentPage(currentPage - 1)
+        }else if(errorFound[0] == 2){
+            await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
+            window.location.reload();
+        }        
     }
 
     const [ agree, setAgree ] = useState(false);
@@ -114,9 +120,10 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
                         contentLabel="Example Modal"
                     >
                         <img className='warning-icon' src={warningIcon} />
-                        <div className="div-balance-title div-abm-title">{errorFound[0] == 0 ? errorFound[1] : <div dangerouslySetInnerHTML={errorFound.length && {__html: (errorFound[1]).replaceAll("`","")}}></div>}</div>
+                        <div className="div-balance-title div-abm-title">{errorFound[0] == 0 || errorFound[0] == 2 ? errorFound[1] : <div dangerouslySetInnerHTML={errorFound.length && {__html: (errorFound[1]).replaceAll("`","")}}></div>}</div>
                         <button onClick={closeModal} className='button-style back-button modal-button'>{errorFound[0] == 0 ? "Ok" : "Cancel"}</button>
                         { errorFound[0] == 1 && <button onClick={() => handleConfirmButton()} className='button-style next-button modal-button'>Yes</button>}
+                        { errorFound[0] == 2 && <button onClick={() => handleConfirmButton()} className='button-style next-button modal-button'>Yes</button>}
                     </Modal>
                 </div>
             </div>

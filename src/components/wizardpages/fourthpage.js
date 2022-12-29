@@ -25,7 +25,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
 
 
     useEffect(async () => {
-        let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
+        let getwifidata = await axios.get(`http://${window.location.hostname}:3001/wifiscan`);
         setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
     }, [])
 
@@ -57,7 +57,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
 
     async function handleConnect() {
         if (input?.essid.length && input?.pass.length && input?.country.length) {
-            let genwificonfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genwificonfig`, input);
+            let genwificonfig = await axios.post(`http://${window.location.hostname}:3001/genwificonfig`, input);
             if (genwificonfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
             }
@@ -77,7 +77,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     async function handleRescan() {
         setIsLoading(true);
         try {
-            let getwifidata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/wifiscan`);
+            let getwifidata = await axios.get(`http://${window.location.hostname}:3001/wifiscan`);
             setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
         } catch {
             setGetError(true);

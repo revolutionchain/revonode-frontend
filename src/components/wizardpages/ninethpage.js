@@ -39,7 +39,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);
         setIsLoading(true);
         if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null) {
-            let createWallet = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/createwallet`, input);
+            let createWallet = await axios.post(`http://${window.location.hostname}:3001/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
                 setCurrentPage(currentPage + 1)
@@ -92,8 +92,8 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     }
 
     async function backConfirmed() {
-        await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/stopdaemon`);
-        await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/delrevoconfig`);
+        await axios.get(`http://${window.location.hostname}:3001/stopdaemon`);
+        await axios.get(`http://${window.location.hostname}:3001/delrevoconfig`);
     }
 
     const [backPressed, setBackPressed] = useState(false);
@@ -119,7 +119,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={walletIcon} />
                                 <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
                             </div>
-                            <div style={{ display: `flex`, alignItems: `center` }}>
+                            <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
                                 <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
                             </div>

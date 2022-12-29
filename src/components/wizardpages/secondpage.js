@@ -64,16 +64,16 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     function handleSelect(e) {
         let drivesSize;
         setRaidLevel(e.value);
-        if(parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+        if(parseFloat(selectedDrives.length > 1 && selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
             drivesSize = (selectedDrives[0]?.SIZE / 1000000000).toFixed(2);
-        }else if(parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+        }else if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
             drivesSize = parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2);
         }
 
-        if(e.value == 0){
+        if(e.value == 0 && drivesSize){
             let sum = parseFloat(drivesSize) + parseFloat(drivesSize);
             setRaidResult( "Size: " + sum + "GB");            
-        }else if (e.value == 1) {
+        }else if (e.value == 1 && drivesSize) {
             setRaidResult( "Size: " + drivesSize + "GB");
         }
     }

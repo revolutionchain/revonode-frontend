@@ -61,7 +61,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     async function handleCreate() {
         let passChecked = checkPass(input?.rpcPass);
         if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass == input?.rpcPass && input?.nodeName.length && input.nodeName.split(" ").length <= 3 && passChecked == "Ok") {
-            let genrevoconfig = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/genrevoconfig`, input);
+            let genrevoconfig = await axios.post(`http://${window.location.hostname}:3001/genrevoconfig`, input);
             if (genrevoconfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
             }
@@ -164,7 +164,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={userIcon} />
                         <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
                     </div>
-                    <div style={{ display: `flex`, alignItems: `center` }}>
+                    <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
                         <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input>
                     </div>

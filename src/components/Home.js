@@ -23,6 +23,20 @@ import astronauteRevo7 from '../styles/images/AstronauteRevo-7.svg'
 import astronauteRevo8 from '../styles/images/AstronauteRevo-8.svg'
 import astronauteRevo9 from '../styles/images/AstronauteRevo-9.svg'
 import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
+
+
+
+//import { Row, Col, Alert, Container, Card } from "reactstrap"
+
+// Redux
+//import { Link } from "react-router-dom"
+
+
+
+
+
+
+
 const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
 const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
 
@@ -47,19 +61,19 @@ export default function Home() {
             window.location.reload();
         }     
         let initialPage = 1;
-        let masterState = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkmaster`);
+        let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
             return setCurrentPage("dashboard");
         }else {
-            let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+            let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
             if (getarrayinfo.data.arrayStatus.includes('md0')) {
                 initialPage = initialPage + 3;
-                let getwificonfig = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getwificonfig`);
+                let getwificonfig = await axios.get(`http://${window.location.hostname}:3001/getwificonfig`);
                 if (getwificonfig.data.includes('network')) {
                     initialPage = initialPage + 1;
                 }
-                let getrpcdata = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getrevoconfig`);
+                let getrpcdata = await axios.get(`http://${window.location.hostname}:3001/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
                     initialPage = initialPage + 4
                 }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
@@ -71,7 +85,7 @@ export default function Home() {
     }, []);
 
     async function getDrives() {
-        let drivesData = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/showdrives`);
+        let drivesData = await axios.get(`http://${window.location.hostname}:3001/showdrives`);
         setDrivesData(drivesData.data);
     }
 
@@ -99,7 +113,6 @@ export default function Home() {
                     <div class="signup-desc">
                         <div class="signup-desc-content">
                             <img className="revo-lgo" src={revoLogo} />
-                            {/*<p class="title">Sign up now to try undraw 30 days for free</p>*/}
                             <p class="desc">
                                 { leftContent[currentPage-1]?.textLeft }
                             </p>
@@ -132,4 +145,61 @@ export default function Home() {
             </div>
         </div>
     )
+
+
+
+
+/*
+  return (
+    <React.Fragment>
+      <div className="home-btn d-none d-sm-block">
+        <Link to="/" className="text-dark">
+          <i className="mdi mdi-home-variant h2"></i>
+        </Link>
+      </div>
+      <div className="account-pages my-5 pt-sm-5">
+        <Container>
+          <Row className="justify-content-center">
+            <Col md={10}>
+              <div className="text-center mb-5">
+                <Link to="/" className="auth-logo">
+                  <img src={revoLogo} alt="" height="28" className="auth-logo-dark" />
+                  <img src={revoLogo} alt="" height="28" className="auth-logo-light" />
+                </Link>
+                <p className="font-size-15 text-muted mt-3">Responsive <b>Bootstrap 5</b> Admin Dashboard</p>
+              </div>
+              <Card className="overflow-hidden">
+                <Row className="g-0">
+                  <Col lg={6}>
+                    <div className="p-lg-5 p-4">
+                      <div>
+                        <h5>Welcome Back !</h5>
+                        <p className="text-muted">Sign in to continue to Samply.</p>
+                      </div>
+                      <div className="mt-4 pt-3">
+                        aksldjasd
+                      </div>
+                    </div>
+                  </Col>
+                  <Col lg={6}>
+                    <div className="p-lg-5 p-4 bg-auth h-100 d-none d-lg-block">
+                      <div className="bg-overlay">
+                        asdasd
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
+              <div className="mt-5 text-center">
+                <p>© {new Date().getFullYear()} Samply. Crafted with <i
+                  className="mdi mdi-heart text-danger"></i> by Pichforest
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </React.Fragment>
+  )*/
+
 }
