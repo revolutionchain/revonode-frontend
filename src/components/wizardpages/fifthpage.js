@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import warningIcon from '../../styles/images/warning.png';
 
 
-export default function Fifthpage({ currentPage, setCurrentPage }) {
+export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
 
     const [arrayData, setArrayData] = useState(false);
 
@@ -61,6 +61,8 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
             setCurrentPage(currentPage - 1)
         }else if(errorFound[0] == 2){
             let response = await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
+            closeModal();
+            response.data.includes("done") && setLoaded(false);
             response.data.includes("done") && setTimeout(() => {
                 window.location.reload();
             }, "2500")

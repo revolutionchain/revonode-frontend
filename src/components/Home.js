@@ -38,7 +38,7 @@ export default function Home() {
     const [master, setMaster] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
-    const [ loaded, setLoaded ] = useState(true);
+    const [ loaded, setLoaded ] = useState(false);
     const [ walletData, setWalletData ] = useState({
         walletName: "",
         walletPass: ""
@@ -122,7 +122,7 @@ export default function Home() {
                                     {currentPage == 2 && loaded && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && loaded && <div style={{paddingTop: `230px`}} ><div class="nb-spinner"></div></div>}
                                     {currentPage == 3 && loaded && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 4 && loaded && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} setLoaded={setLoaded} />}
                                     {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
                                     {currentPage == 8 && loaded && <Eighthpage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
