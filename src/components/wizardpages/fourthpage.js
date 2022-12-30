@@ -130,7 +130,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         setIsOpen(false);
     }
 
-    const [ passButtonState, setPassButtonState ] = useState(false);
+    const [ passButtonState, setPassButtonState ] = useState(true);
 
     function handlePassButton () {
         passButtonState ? setPassButtonState(false) : setPassButtonState(false);
@@ -159,7 +159,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     <span style={{ fontSize: `16px` }}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                                 </div>
                                 <div>
-                                    {checkedState[i] && <div style={{width: `60%`, display: `flex`, borderBottom: `1px solid #bfbfbf`, alignItems: `center`}}><input style={{ fontSize: `16px`, borderBottom: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input><img onClick={() => handlePassButton()} style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></div>}
+                                    {checkedState[i] && <div style={{width: `60%`, display: `flex`, borderBottom: `1px solid #bfbfbf`, alignItems: `center`}}><input style={{ fontSize: `16px`, borderBottom: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>}
                                     {checkedState[i] &&
                                         <div style={{ width: `45%`, marginTop: `15px` }}>
                                             <Select
