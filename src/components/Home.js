@@ -36,7 +36,7 @@ import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(4);
+    const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(true);
     const [ walletData, setWalletData ] = useState({
@@ -44,13 +44,13 @@ export default function Home() {
         walletPass: ""
     })
 
-    useEffect(async () => {      /*     
+    useEffect(async () => {          
         try{
             let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
-        }  */   
+        }    
         let initialPage = 1;
         let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
         setMaster(masterState.data);

@@ -61,7 +61,9 @@ export default function Fifthpage({ currentPage, setCurrentPage }) {
             setCurrentPage(currentPage - 1)
         }else if(errorFound[0] == 2){
             let response = await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
-            response.data.includes("done") && window.location.reload();
+            response.data.includes("done") && setTimeout(() => {
+                window.location.reload();
+            }, "2500")
         }        
     }
 

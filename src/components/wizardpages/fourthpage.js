@@ -72,6 +72,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     const [getError, setGetError] = useState(false);
     async function handleRescan() {
         setIsLoading(true);
+        setPassButtonState(true);
         try {
             let getwifidata = await axios.get(`http://${window.location.hostname}:3001/wifiscan`);
             setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
