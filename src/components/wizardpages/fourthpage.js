@@ -133,7 +133,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     const [ passButtonState, setPassButtonState ] = useState(true);
 
     function handlePassButton () {
-        passButtonState ? setPassButtonState(false) : setPassButtonState(false);
+        passButtonState ? setPassButtonState(false) : setPassButtonState(true);
     }
 
     return (
