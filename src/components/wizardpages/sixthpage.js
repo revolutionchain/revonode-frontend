@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
 
 
 export default function Sixthpage({ currentPage, setCurrentPage }) {

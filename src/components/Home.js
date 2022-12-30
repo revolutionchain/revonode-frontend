@@ -34,32 +34,23 @@ import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 
 
 
-
-
-
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
-
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(4);
     const [drivesData, setDrivesData] = useState(false);
-    const [ loaded, setLoaded ] = useState(false);
+    const [ loaded, setLoaded ] = useState(true);
     const [ walletData, setWalletData ] = useState({
         walletName: "",
         walletPass: ""
     })
 
-    useEffect(async () => {           
+    useEffect(async () => {      /*     
         try{
             let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
-        }     
+        }  */   
         let initialPage = 1;
         let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
         setMaster(masterState.data);
@@ -71,13 +62,13 @@ export default function Home() {
                 initialPage = initialPage + 3;
                 let getwificonfig = await axios.get(`http://${window.location.hostname}:3001/getwificonfig`);
                 if (getwificonfig.data.includes('network')) {
-                    initialPage = initialPage + 1;
+                    initialPage = initialPage + 2;
                 }
                 let getrpcdata = await axios.get(`http://${window.location.hostname}:3001/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
-                    initialPage = initialPage + 4
-                }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
                     initialPage = initialPage + 3
+                }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
+                    initialPage = initialPage + 2
                 }
                 setCurrentPage(initialPage);
             }

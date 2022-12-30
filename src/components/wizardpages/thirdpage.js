@@ -3,11 +3,6 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import raidIcon from '../../styles/images/RAID-icon.png';
 import warningIcon from '../../styles/images/warning.png';
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
 
 
 
@@ -16,7 +11,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
     const [arrayData, setArrayData] = useState(false);
 
     useEffect(async () => {
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
     }, [])
 
@@ -49,8 +44,8 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     async function handleRemoveArray() {
         let arrInfo = { disk1: arrayData[3].slice(0, 3), disk2: arrayData[2].slice(0, 3) };
-        let removeArray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/removearray`, arrInfo);
-        let getarrayinfo = await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/getarrayinfo`);
+        let removeArray = await axios.post(`http://${window.location.hostname}:3001/removearray`, arrInfo);
+        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
         if (!getarrayinfo.data.arrayStatus.includes('md0')) {
             setCurrentPage(currentPage - 1)
         }

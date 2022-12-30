@@ -5,11 +5,6 @@ import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
 import copyIcon from '../../styles/images/copy-icon.png'
 import printIcon from '../../styles/images/print-icon.png'
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
 
 export default function Tenthpage({ walletData }) {
 

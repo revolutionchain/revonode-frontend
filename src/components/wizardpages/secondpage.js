@@ -5,11 +5,6 @@ import Modal from 'react-modal';
 import floppyDiskImg from '../../styles/images/floppy-disk.png'
 import failedIcon from '../../styles/images/failed.png'
 import buttonArrow from '../../styles/images/button-arrow.png'
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP ? REACT_APP_LOCAL_NODE_WIFI_IP : REACT_APP_LOCAL_NODE_ETH_IP;
-
 
 export default function Secondpage({ currentPage, setCurrentPage, drivesData }) {
 
@@ -94,18 +89,18 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         setIsLoading(true);
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
             let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1] };
-            let checkdrive = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkdrive`, drivesObj);
+            let checkdrive = await axios.post(`http://${window.location.hostname}:3001/checkdrive`, drivesObj);
             if (checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing')) {
                 setErrorFound('One of the selected disks is not connected correctly!');
                 openModal();
             }
-            let checkfilesystem = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/checkfilesystem`, drivesObj);
+            let checkfilesystem = await axios.post(`http://${window.location.hostname}:3001/checkfilesystem`, drivesObj);
             if (!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')) {
                 setErrorFound('One of the selected disks cannot be used because a file system already exists!');
                 openModal();
             }
             let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
-            let makearray = await axios.post(`http://${REACT_APP_LOCAL_NODE_IP}:3001/makearray`, drivesAllowed);
+            let makearray = await axios.post(`http://${window.location.hostname}:3001/makearray`, drivesAllowed);
             if (makearray?.data?.includes('ok')) {
                 setCurrentPage(currentPage + 1);
             } else {

@@ -5,12 +5,8 @@ import Modal from 'react-modal';
 import rescanIcon from '../../styles/images/rescan-icon.png'
 import failedIcon from '../../styles/images/failed.png'
 import buttonArrow from '../../styles/images/button-arrow.png'
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
-
+import openEye from '../../styles/images/open-eye.png'
+import closedEye from '../../styles/images/closed-eye.png'
 
 export default function Fourthpage({ currentPage, setCurrentPage }) {
 
@@ -157,7 +153,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     <span style={{ fontSize: `16px` }}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                                 </div>
                                 <div>
-                                    {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}
+                                    {checkedState[i] && <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input>}<img src={openEye}></img>
                                     {checkedState[i] &&
                                         <div style={{ width: `45%`, marginTop: `15px` }}>
                                             <Select

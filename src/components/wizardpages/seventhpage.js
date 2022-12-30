@@ -6,11 +6,6 @@ import rescanIcon from '../../styles/images/reload-icon.png'
 import userIcon from '../../styles/images/user-icon.png'
 import passIcon from '../../styles/images/pass-icon.png'
 import buttonArrow from '../../styles/images/button-arrow.png'
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
 
 
 export default function Seventhpage({ currentPage, setCurrentPage }) {

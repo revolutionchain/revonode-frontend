@@ -7,11 +7,6 @@ import userIcon from '../../styles/images/user-icon.png'
 import passIcon from '../../styles/images/pass-icon.png'
 import walletIcon from '../../styles/images/wallet-icon.png'
 import buttonArrow from '../../styles/images/button-arrow.png'
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
 
 
 export default function Ninethpage({ currentPage, setCurrentPage, setWalletData }) {

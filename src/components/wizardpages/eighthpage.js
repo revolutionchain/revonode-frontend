@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-const { REACT_APP_LOCAL_NODE_ETH_IP } = process.env;
-const { REACT_APP_LOCAL_NODE_WIFI_IP } = process.env;
-
-const REACT_APP_LOCAL_NODE_IP = REACT_APP_LOCAL_NODE_WIFI_IP || REACT_APP_LOCAL_NODE_ETH_IP;
-
-
 
 export default function Eighthpage({ currentPage, setCurrentPage }) {
 
     useEffect(async () => {
-        await axios.get(`http://${REACT_APP_LOCAL_NODE_IP}:3001/startdaemon`);
+        await axios.get(`http://${window.location.hostname}:3001/startdaemon`);
     }, [])
 
     setTimeout(() => {
