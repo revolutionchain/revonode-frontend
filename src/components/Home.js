@@ -25,15 +25,6 @@ import astronauteRevo9 from '../styles/images/AstronauteRevo-9.svg'
 import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 
 
-
-//import { Row, Col, Alert, Container, Card } from "reactstrap"
-
-// Redux
-//import { Link } from "react-router-dom"
-
-
-
-
 export default function Home() {
     const [master, setMaster] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -97,6 +88,7 @@ export default function Home() {
 
     let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6,astronauteRevo7,astronauteRevo8,astronauteRevo9,astronauteRevo10];
 
+
     return (
         <div class="main">
             <div class="container">
@@ -138,59 +130,5 @@ export default function Home() {
     )
 
 
-
-
-/*
-  return (
-    <React.Fragment>
-      <div className="home-btn d-none d-sm-block">
-        <Link to="/" className="text-dark">
-          <i className="mdi mdi-home-variant h2"></i>
-        </Link>
-      </div>
-      <div className="account-pages my-5 pt-sm-5">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md={10}>
-              <div className="text-center mb-5">
-                <Link to="/" className="auth-logo">
-                  <img src={revoLogo} alt="" height="28" className="auth-logo-dark" />
-                  <img src={revoLogo} alt="" height="28" className="auth-logo-light" />
-                </Link>
-                <p className="font-size-15 text-muted mt-3">Responsive <b>Bootstrap 5</b> Admin Dashboard</p>
-              </div>
-              <Card className="overflow-hidden">
-                <Row className="g-0">
-                  <Col lg={6}>
-                    <div className="p-lg-5 p-4">
-                      <div>
-                        <h5>Welcome Back !</h5>
-                        <p className="text-muted">Sign in to continue to Samply.</p>
-                      </div>
-                      <div className="mt-4 pt-3">
-                        aksldjasd
-                      </div>
-                    </div>
-                  </Col>
-                  <Col lg={6}>
-                    <div className="p-lg-5 p-4 bg-auth h-100 d-none d-lg-block">
-                      <div className="bg-overlay">
-                        asdasd
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Card>
-              <div className="mt-5 text-center">
-                <p>© {new Date().getFullYear()} Samply. Crafted with <i
-                  className="mdi mdi-heart text-danger"></i> by Pichforest
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </React.Fragment>
-  )*/
 
 }

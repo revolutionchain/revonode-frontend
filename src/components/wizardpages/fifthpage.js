@@ -65,7 +65,7 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
             response.data.includes("done") && setLoaded(false);
             response.data.includes("done") && setTimeout(() => {
                 window.location.reload();
-            }, "2500")
+            }, "3000")
         }        
     }
 

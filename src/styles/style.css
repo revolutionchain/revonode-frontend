@@ -756,6 +756,22 @@ h3 {
   }
 }
 
+.content-container {
+  min-height: calc(72vh - 50px);
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.buttons-container .left {  
+  text-align: left;
+  width: 30%;
+}
+.buttons-container .right {  
+  text-align: right;
+  width: 70%;
+}
 
 .astronautImage1 {
   position: absolute;
@@ -845,5 +861,86 @@ a {
   display: auto !important;
   }
   }
+
+@media (max-width: 992px){
+  .form-group{
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px){
+  .container {    
+    min-height: calc(30vh - 50px);
+  }
+  .signup-desc{
+    min-height: calc(30vh - 50px);
+    display: flex;
+    
+  }
+  .signup-desc-content {
+    position: relative;
+    padding: 35px 45px;
+  }
+  .signup-form-conent{
+    position: relative;
+  }
+  .form-group{
+    min-height: 32px;
+  }
+
+  .content-container {
+    min-height: calc(32vh - 50px);
+  }
+
+  .astronautImage1 {
+    position: relative;
+    width: 30%;
+    bottom: 0px;
+    left: 0px;  
+    top: 10px;
+  }
+  
+  
+}
+
+
+@media (max-width: 500px) {
+  .signup-desc{
+    min-height: calc(30vh - 50px);
+    display: block;    
+  }
+
+  .signup-desc-content {
+    position: relative;
+    padding: 35px 45px 0 45px;
+  }
+
+  .buttons-container {
+    display: block;
+  }
+
+  .buttons-container .left{
+    width: 100%;
+    text-align: center;
+  }
+
+  .buttons-container .right{
+    width: 100%;
+    text-align: center;
+  }
+
+  .button-style {
+    width: 70%;
+  }
+
+  .astronautImage1 {
+    position: relative;
+    width: 30%;
+    bottom: 0px;
+    left: 0px;  
+    top: 0px;
+  }
+
+}
 
 /*# sourceMappingURL=style.css.map */

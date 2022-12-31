@@ -777,4 +777,15 @@ h3 {
   height: 45%;
   bottom: 10px;
 }
+
+@media screen and (max-width: 769px){
+  .astronautImage1 {
+    position: absolute;
+    width: 25%;
+    bottom: -10px;
+    left: 35px;  
+  }
+}
+
+
 /*# sourceMappingURL=style.css.map */
