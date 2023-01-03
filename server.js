@@ -145,7 +145,8 @@ app.get('/getwalletaddress', (req, res, next) => {
 
 app.post('/login', (req,res) => {  
   const { user, pass } = req.body;
-
+  
+    console.log('Body user: ' + user + ' Body pass: ' + pass);
   let dashUser = getEnvValue('DASHBOARD_USER');
   let dashPass = getEnvValue('DASHBOARD_PASS');
   if (dashUser && dashPass) {
