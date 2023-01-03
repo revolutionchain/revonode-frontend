@@ -152,6 +152,8 @@ app.post('/login', (req,res) => {
     dashUser = dashUser.replaceAll('"', '');
     dashPass = dashPass.replaceAll('"', '');
   }
+
+  console.log('user: ' + dashUser + ' pass: ' + dashPass);
   if(dashUser == user && dashPass == pass){    
     res.send(true);
   }else if(dashUser !== user || dashPass !== pass){
