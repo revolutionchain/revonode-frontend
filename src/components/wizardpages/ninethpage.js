@@ -3,10 +3,11 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import failedIcon from '../../styles/images/failed.png'
 import warningIcon from '../../styles/images/warning.png';
-import userIcon from '../../styles/images/user-icon.png'
 import passIcon from '../../styles/images/pass-icon.png'
 import walletIcon from '../../styles/images/wallet-icon.png'
 import buttonArrow from '../../styles/images/button-arrow.png'
+import openEye from '../../styles/images/open-eye.png'
+import closedEye from '../../styles/images/closed-eye.png'
 
 
 export default function Ninethpage({ currentPage, setCurrentPage, setWalletData }) {
@@ -102,6 +103,12 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         setCurrentPage(currentPage - 2)
     }
 
+    const [ passButtonState, setPassButtonState ] = useState(true);
+
+    function handlePassButton () {
+        passButtonState ? setPassButtonState(false) : setPassButtonState(true);
+    }
+
     return (
         <div className=''>
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
@@ -112,27 +119,27 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                         <div>
                             <div style={{ display: `flex`, alignItems: `center` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={walletIcon} />
-                                <input style={{ width: `60%`, fontSize: `16px` }} type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
+                                <input className='data-input' type='text' name='walletName' placeholder="Wallet Name" onChange={(e) => handleInput(e)}></input>
                             </div>
                             <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input>
+                                <div className='data-input input-container'><input style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                             </div>
                             <div style={{ display: `flex`, alignItems: `center` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                                <input style={{ width: `60%`, fontSize: `16px` }} type='password' name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                                <input className='data-input' type={passButtonState ? 'password' : 'text'} name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
                             </div>
                         </div>
                     </div> : <div style={{ paddingTop: `100px` }} ><div class="nb-spinner"></div></div>
                 }
             </div>
 
-            {!isLoading && <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            {!isLoading && <div className='buttons-container'>
+                <div className='left'>
                     <button onClick={() => handleBackButton()} className='button-style back-button'>Back</button>
                 </div>
-                <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleCreate()} className='button-style next-button'>Create<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
+                <div className='right'>
+                    <button  onClick={() => handleCreate()} className='button-style next-button wifi-button'>Create<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>}
             <div className='Modal'>{

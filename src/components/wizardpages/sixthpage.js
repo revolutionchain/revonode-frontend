@@ -36,12 +36,12 @@ export default function Sixthpage({ currentPage, setCurrentPage }) {
                 </div>
             </div>
 
-            <div style={{ display: `flex`, marginTop: `20px` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container' style={{ marginTop: `20px` }}>
+                <div className='left'>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
 
-                <div style={{ width: `70%`, textAlign: `right` }}>
+                <div className='right'>
                     <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Accept</button>
                 </div>
             </div>

@@ -94,12 +94,12 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                 </div>
             </div>
 
-            <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container'>
+                <div className='left'>
                     <button onClick={() => openModal()} className='button-style back-button'>Back</button>
                 </div>
 
-                <div style={{ width: `70%`, textAlign: `right` }}>
+                <div className='right'>
                     <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
                 </div>
             </div>

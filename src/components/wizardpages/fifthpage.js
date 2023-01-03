@@ -127,12 +127,12 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
                 </div>
             </div>
 
-            <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container'>
+                <div className='left'>
                     <button onClick={() => handleBackButton()} className='button-style back-button'>Back</button>
                 </div>
 
-                <div style={{ width: `70%`, textAlign: `right` }}>
+                <div className='right'>
                     <button onClick={() => handleReboot()} className='button-style skip-button'>Reboot</button>
                     <button onClick={() => handleNextButton()} className={agree ? 'button-style next-button' : 'button-style next-button next-grayed'}>Next</button>
                 </div>

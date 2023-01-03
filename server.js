@@ -12,6 +12,28 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json())
 
+const envFilePath = path.resolve(__dirname, ".env");
+
+
+const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
+
+const getEnvValue = (key) => {
+  const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
+  return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
+};
+
+
+const setEnvValue = (key, value) => {
+  const envVars = readEnvVars();
+  const targetLine = envVars.find((line) => line.split("=")[0] === key);
+  if (targetLine !== undefined) {
+    const targetLineIndex = envVars.indexOf(targetLine);
+    envVars.splice(targetLineIndex, 1, `${key}="${value}"`);
+  } else {
+    envVars.push(`${key}="${value}"`);
+  }
+  fs.writeFileSync(envFilePath, envVars.join(os.EOL));
+};
 function checkLocalIpAddress() {
 
   const nets = networkInterfaces();
@@ -30,37 +52,16 @@ function checkLocalIpAddress() {
       }
     }
   }
-  const envFilePath = path.resolve(__dirname, ".env");
 
 
-  const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
-
-  const getEnvValue = (key) => {
-    const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
-    return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
-  };
-
-
-  const setEnvValue = (key, value) => {
-    const envVars = readEnvVars();
-    const targetLine = envVars.find((line) => line.split("=")[0] === key);
-    if (targetLine !== undefined) {
-      const targetLineIndex = envVars.indexOf(targetLine);
-      envVars.splice(targetLineIndex, 1, `${key}="${value}"`);
-    } else {
-      envVars.push(`${key}="${value}"`);
-    }
-    fs.writeFileSync(envFilePath, envVars.join(os.EOL));
-  };
-
-
-  if (results?.eth0?.length && !results?.wlan0?.length) {
+  if (results?.eth0?.length) {
     let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
     if (envCheck) {
       envCheck = envCheck.replaceAll('"', '');
     }
     console.log('eth:' + envCheck)
     setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
+    /*
     if (envCheck !== results.eth0[0]) {
       exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
         if (err) {
@@ -69,7 +70,7 @@ function checkLocalIpAddress() {
           console.log(stdout);
         }
       });
-    }
+    }*/
   }
 
   if (results?.wlan0?.length) {
@@ -79,6 +80,7 @@ function checkLocalIpAddress() {
     }
     console.log('wifi:' + envCheck)
     setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
+    /*
     if (envCheck !== results.wlan0[0]) {
       exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
         if (err) {
@@ -87,7 +89,7 @@ function checkLocalIpAddress() {
           console.log(stdout);
         }
       });
-    }
+    }*/
 
   }
 }
@@ -96,28 +98,29 @@ function checkLocalIpAddress() {
 checkLocalIpAddress();
 
 
-app.use((req, res, next) => {
-
-  const envFilePath = path.resolve(__dirname, ".env");
-
-
-  const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
-
-
-  const getEnvValue = (key) => {
-    const matchedLine = readEnvVars().find((line) => line.split("=")[0] === key);
-    return matchedLine !== undefined ? matchedLine.split("=")[1] : null;
-  };
-
-  const allowedDomains = []
-  const ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
-  const wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
+function getAllowedDomains () {
+  let allowedDomains = []
+  let ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
+  let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
   ethDomain && allowedDomains.push('http://' + ethDomain.replaceAll('"', ''));
   wifiDomain && allowedDomains.push('http://' + wifiDomain.replaceAll('"', ''));
+
+  return allowedDomains;
+}
+
+
+app.use((req, res, next) => {
+  let allowedDomains = getAllowedDomains();
   console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if (allowedDomains.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
+  }else {
+    checkLocalIpAddress();    
+    let allowedDomains = getAllowedDomains();
+    if (allowedDomains.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
   }
 
   //res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
@@ -139,6 +142,31 @@ app.get('/getwalletaddress', (req, res, next) => {
   });
 })
 
+
+app.get('/login', (req,res) => {  
+  const { user, pass } = req.body;
+
+  let dashUser = getEnvValue('DASHBOARD_USER');
+  let dashPass = getEnvValue('DASHBOARD_PASS');
+  if (dashUser && dashPass) {
+    dashUser = dashUser.replaceAll('"', '');
+    dashPass = dashPass.replaceAll('"', '');
+  }
+  if(dashUser == user && dashPass == pass){    
+    res.send(true);
+  }else if(dashUser !== user || dashPass !== pass){
+    res.send(false);
+  }
+})
+
+app.get('/register', (req,res) => {  
+  const { user, pass } = req.body;
+  let dashUser = getEnvValue('DASHBOARD_USER');
+  if (!dashUser) {
+    setEnvValue('DASHBOARD_USER', user);
+    setEnvValue('DASHBOARD_PASS', pass);
+  }
+})
 
 app.get('/checklocalip', (req, res, next) => {
   checkLocalIpAddress();

@@ -27,21 +27,21 @@ import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(10);
     const [drivesData, setDrivesData] = useState(false);
-    const [ loaded, setLoaded ] = useState(false);
+    const [ loaded, setLoaded ] = useState(true);
     const [ walletData, setWalletData ] = useState({
         walletName: "",
         walletPass: ""
     })
 
-    useEffect(async () => {          
+    useEffect(async () => {          /*
         try{
             let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
-        }    
+        }    */
         let initialPage = 1;
         let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
         setMaster(masterState.data);
@@ -99,7 +99,7 @@ export default function Home() {
                             <p class="desc">
                                 { leftContent[currentPage-1]?.textLeft }
                             </p>
-                            <img src="images/signup-img.jpg" alt="" class="signup-img" />
+                            {/*<img src="images/signup-img.jpg" alt="" class="signup-img" />*/}
                         </div>
                         <img className={`astronautImage${currentPage}`} src={imgArr[currentPage-1]} />
                     </div>

@@ -160,7 +160,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                     <span style={{ fontSize: `16px` }}>{'Wifi name: ' + e.slice(5, e.length - 1)}</span>
                                 </div>
                                 <div>
-                                    {checkedState[i] && <div style={{width: `60%`, display: `flex`, borderBottom: `1px solid #bfbfbf`, alignItems: `center`}}><input style={{ fontSize: `16px`, borderBottom: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>}
+                                    {checkedState[i] && <div className='input-container'><input style={{ fontSize: `16px`, borderBottom: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>}
                                     {checkedState[i] &&
                                         <div style={{ width: `45%`, marginTop: `15px` }}>
                                             <Select
@@ -195,14 +195,14 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                 </div>
             </div>
             <div>
-            <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container'>
+                <div className='left'>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
 
-                <div style={{ width: `70%`, textAlign: `right` }}>
+                <div className='right'>
                     <button onClick={() => setCurrentPage(currentPage + 2)} className='button-style skip-button'>Skip</button>
-                    <button  style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleConnect()} className='button-style next-button'>Connect<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
+                    <button   onClick={() => handleConnect()} className='button-style next-button wifi-button'>Connect<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>
             </div>

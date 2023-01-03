@@ -773,6 +773,41 @@ h3 {
   width: 70%;
 }
 
+.wifi-button {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  align-content: center;
+  justify-content: center;
+}
+
+.input-container {
+  width: 60%;
+  display: flex;
+  border-bottom: 1px solid #bfbfbf;
+  align-items: center;
+}
+
+.data-input{
+  width: 60%;
+  font-size: 16px;
+}
+
+.tenth-container {
+  display: flex;
+  text-align: left;
+}
+
+.tenth-container .left {
+  text-align: left;
+  width: 70%;
+}
+
+.tenth-container .right {
+  text-align: right;
+  width: 30%;
+}
+
 .astronautImage1 {
   position: absolute;
   width: 90%;
@@ -866,7 +901,38 @@ a {
   .form-group{
     padding: 0;
   }
+
+  .tenth-container {
+    display: block;
+  }
+  .tenth-container .right {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .tenth-container .right .button-style {
+    width: 70%;
+  }
+
 }
+
+@media (max-width: 1200px) {
+  
+  .skip-button {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+  }  
+
+  .input-container {
+    width: 100%;
+  }
+  .data-input {
+    width: 100%;
+  }
+}
+
 
 @media (max-width: 768px){
   .container {    
@@ -875,11 +941,12 @@ a {
   .signup-desc{
     min-height: calc(30vh - 50px);
     display: flex;
-    
+    align-items: center;
   }
   .signup-desc-content {
     position: relative;
-    padding: 35px 45px;
+    padding: 35px 0px 35px 45px;
+    width: 100%;
   }
   .signup-form-conent{
     position: relative;
@@ -892,19 +959,93 @@ a {
     min-height: calc(32vh - 50px);
   }
 
+  .skip-button {
+    margin-right: 10px;
+    margin-bottom: 0px;
+    display: initial;
+  }  
   .astronautImage1 {
     position: relative;
     width: 30%;
     bottom: 0px;
     left: 0px;  
-    top: 10px;
+    top: 0px;
+  }
+
+  .astronautImage2 {
+    position: relative;
+    width: 30%;
+    bottom: 0px;
+    left: 0px;  
+    height: 50%;
+  }
+  
+  .astronautImage3 {
+    position: relative;
+    width: 25%;
+    bottom: 5px;
+    left: 20px;  
+    height: 45%;
+  }
+  
+  .astronautImage4 {
+    position: relative;
+    width: 25%;
+    bottom: 0px;
+    left: 0;  
+    height: 40%;
+  }
+  
+  .astronautImage5 {
+    position: relative;
+    width: 25%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
+  }
+  
+  .astronautImage6 {
+    position: relative;
+    width: 25%;
+    bottom: 0px;
+    left: -20px;  
+    height: 45%;
+  }
+  .astronautImage7 {
+    position: relative;
+    width: 30%;
+    height: 45%;
+    bottom: 5px;
+    left: -10px;  
+  }
+  .astronautImage8 {
+    position: relative;
+    width: 25%;
+    bottom: 0px;
+    left: 0px;  
+    height: 40%;
+  }
+  .astronautImage9 {
+    position: relative;
+    width: 35%;
+    bottom: 0px;
+    left: -20px;  
+    height: 45%;
+  }
+  .astronautImage10 {
+    position: relative;
+    width: 30%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
   }
   
   
 }
 
 
-@media (max-width: 500px) {
+
+@media (max-width: 550px) {
   .signup-desc{
     min-height: calc(30vh - 50px);
     display: block;    
@@ -912,7 +1053,8 @@ a {
 
   .signup-desc-content {
     position: relative;
-    padding: 35px 45px 0 45px;
+    padding: 35px 25px 0 25px;
+    width: auto;
   }
 
   .buttons-container {
@@ -929,16 +1071,105 @@ a {
     text-align: center;
   }
 
+
   .button-style {
     width: 70%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .rescan-button {
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+  }
+
+  .research-button {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+
+  .wifi-button {
+    float: none;
   }
 
   .astronautImage1 {
     position: relative;
-    width: 30%;
+    width: 40%;
     bottom: 0px;
     left: 0px;  
     top: 0px;
+    margin-top: 20px;
+  }
+
+  .astronautImage2 {
+    position: relative;
+    width: 60%;
+    bottom: 0px;
+    left: -3%;  
+    height: 50%;
+  }
+  
+  .astronautImage3 {
+    position: relative;
+    width: 40%;
+    bottom: 5px;
+    left: 20px;  
+    height: 45%;
+    margin-top: 20px;
+  }
+  
+  .astronautImage4 {
+    position: relative;
+    width: 35%;
+    bottom: 0px;
+    left: 0;  
+    height: 40%;
+  }
+  
+  .astronautImage5 {
+    position: relative;
+    width: 40%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
+  }
+  
+  .astronautImage6 {
+    position: relative;
+    width: 40%;
+    bottom: 0px;
+    left: -20px;  
+    height: 45%;
+  }
+  .astronautImage7 {
+    position: relative;
+    width: 45%;
+    height: 45%;
+    bottom: 0px;
+    left: -10px;  
+  }
+  .astronautImage8 {
+    position: relative;
+    width: 50%;
+    bottom: 0px;
+    left: 0px;  
+    height: 40%;
+  }
+  .astronautImage9 {
+    position: relative;
+    width: 50%;
+    bottom: 0px;
+    left: -20px;  
+    height: 45%;
+  }
+  .astronautImage10 {
+    position: relative;
+    width: 45%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
   }
 
 }

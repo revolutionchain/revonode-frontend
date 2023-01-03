@@ -103,8 +103,8 @@ Wallet Address: ${walletData.walletAddress}`);
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>We did it!</h2>
                 <h3>Installation complete! Before accessing the Dashboard of your Revo node, take the time to make a copy of the data you have entered! Print or save the data below and be sure to keep it safe!</h3>
-                <div style={{ textAlign: `left`, display: `flex` }}>
-                    <div style={{width: `70%`}}>
+                <div className='tenth-container'>
+                    <div className='left' style={{textAlign: `left`}}>
                     {textArea && <span style={{ position: `absolute`, backgroundColor: `white`, marginLeft: `10px`, padding: `0px 5px`, fontSize: `16px` }}>Your Node Data</span>}
                     {textArea && <textarea id='print-content' style={{ resize: `none`, minHeight: `250px`, minWidth: `85%`, marginTop: `10px`, padding: `15px`, border: `3px solid #050A30`, borderRadius: `5px`, fontSize: `16px` }}>
                         {                            
@@ -112,7 +112,7 @@ Wallet Address: ${walletData.walletAddress}`);
                         }
                         </textarea>}
                     </div>
-                    <div style={{width: `30%`, textAlign: `right`}}>
+                    <div className='right'>
                     <CopyToClipboard text={`My Revo Node configuration details
 
 ${textArea}`}
