@@ -143,7 +143,7 @@ app.get('/getwalletaddress', (req, res, next) => {
 })
 
 
-app.get('/login', (req,res) => {  
+app.post('/login', (req,res) => {  
   const { user, pass } = req.body;
 
   let dashUser = getEnvValue('DASHBOARD_USER');
@@ -159,7 +159,7 @@ app.get('/login', (req,res) => {
   }
 })
 
-app.get('/register', (req,res) => {  
+app.post('/register', (req,res) => {  
   const { user, pass } = req.body;
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser) {
