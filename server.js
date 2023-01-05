@@ -175,6 +175,18 @@ app.post('/register', (req,res) => {
   }
 })
 
+
+app.get('/checkuser', (req, res, next) => {
+  let dashUser = getEnvValue('DASHBOARD_USER');
+  if (!dashUser) {
+    setEnvValue('DASHBOARD_USER', user);
+    setEnvValue('DASHBOARD_PASS', pass);
+    res.send(true)
+  }else {
+    res.send(false);
+  }
+})
+
 app.get('/checklocalip', (req, res, next) => {
   checkLocalIpAddress();
   res.send('ok');
