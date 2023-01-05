@@ -179,11 +179,9 @@ app.post('/register', (req,res) => {
 app.get('/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser) {
-    setEnvValue('DASHBOARD_USER', user);
-    setEnvValue('DASHBOARD_PASS', pass);
-    res.send(true)
+    res.send(false)
   }else {
-    res.send(false);
+    res.send(true);
   }
 })
 
