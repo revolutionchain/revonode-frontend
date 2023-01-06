@@ -150,7 +150,7 @@ app.post('/login', (req,res) => {
     console.log('Body user: ' + user + ' Body pass: ' + pass);
   let dashUser = getEnvValue('DASHBOARD_USER');
   let dashPass = getEnvValue('DASHBOARD_PASS');
-  if (dashUser && dashPass) {
+  if ((dashUser && dashUser?.length > 2) && (dashPass && dashPass?.length > 2)) {
     dashUser = dashUser.replaceAll('"', '');
     dashPass = dashPass.replaceAll('"', '');
   }
@@ -166,7 +166,7 @@ app.post('/login', (req,res) => {
 app.post('/register', (req,res) => {  
   const { user, pass } = req.body;
   let dashUser = getEnvValue('DASHBOARD_USER');
-  if (!dashUser) {
+  if (!dashUser || dashUser?.length <= 2) {
     setEnvValue('DASHBOARD_USER', user);
     setEnvValue('DASHBOARD_PASS', pass);
     res.send(true)
@@ -178,7 +178,7 @@ app.post('/register', (req,res) => {
 
 app.get('/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
-  if (dashUser?.length <= 2) {
+  if (!dashUser || dashUser?.length <= 2) {
     res.send(false)
   }else {
     res.send(true);
