@@ -27,7 +27,7 @@ import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(true);
     const [ walletData, setWalletData ] = useState({
