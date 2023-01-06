@@ -178,7 +178,7 @@ app.post('/register', (req,res) => {
 
 app.get('/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
-  if (dashUser?.length < 1) {
+  if (dashUser?.length <= 2) {
     res.send(false)
   }else {
     res.send(true);
