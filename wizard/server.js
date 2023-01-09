@@ -53,14 +53,15 @@ function checkLocalIpAddress() {
     }
   }
 
-
+console.log("results: " + results);
   if (results?.eth0?.length) {
     let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
     if (envCheck) {
       envCheck = envCheck.replaceAll('"', '');
+      console.log('last eth:' + envCheck);
     }
-    console.log('eth:' + envCheck)
     setEnvValue('REACT_APP_LOCAL_NODE_ETH_IP', results.eth0[0]);
+    console.log('current eth: ' + results.eth0[0]);
     /*
     if (envCheck !== results.eth0[0]) {
       exec('sudo npm run build', { cwd: '/home/revo/revonode-frontend/' }, (err, stdout, stderr) => {
