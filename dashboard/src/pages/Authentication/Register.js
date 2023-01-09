@@ -134,7 +134,7 @@ const Register = props => {
               {/*<p style={{ margin: `0 !important` }} className='desc'>Dashboard visibility is exposed to your LAN Network, please create a new account to secure your node</p>
               <img src="images/signup-img.jpg" alt="" class="signup-img" />*/}
             </div>
-            <img className={`astronautImageRegister`} src={astronauteImageRegister} />
+            <img className={`astronautImageLogin`} src={astronauteImageRegister} />
           </div>
           <div class="signup-form-conent">
             <div id="signup-form" class="signup-form" >
