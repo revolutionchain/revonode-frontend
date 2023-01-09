@@ -53,8 +53,6 @@ function checkLocalIpAddress() {
     }
   }
 
-console.log("results: " + results);
-/*
   if (results?.eth0?.length) {
     let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
     if (envCheck) {
@@ -69,13 +67,14 @@ console.log("results: " + results);
     let envCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP')
     if (envCheck) {
       envCheck = envCheck.replaceAll('"', '');
+      console.log('last wifi:' + envCheck)
     }
-    console.log('wifi:' + envCheck)
     setEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP', results.wlan0[0]);
+    console.log('current wifi: ' + results.wlan0[0]);
 
   }
 }
-*/
+
 checkLocalIpAddress();
 
 
