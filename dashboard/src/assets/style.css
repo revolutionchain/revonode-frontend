@@ -1,0 +1,973 @@
+/* @extend display-flex; */
+display-flex,
+.signup-content,
+.actions ul,
+.actions ul li a {
+  display: flex;
+  display: -webkit-flex;
+}
+
+html {
+  
+ --main-color: #050A30;
+ --second-color: rgba(80,200,120,.1);
+ --second-color-text: #888;
+ --third-color-text: #999;
+}
+
+/* @extend list-type-ulli; */
+list-type-ulli,
+.actions ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* poppins-300 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url("./fonts/poppins/poppins-v5-latin-300.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Light"), local("Poppins-Light"), url("./fonts/poppins/poppins-v5-latin-300.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-300.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-300.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-300.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-300.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-300italic - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 300;
+  src: url("./fonts/poppins/poppins-v5-latin-300italic.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Light Italic"), local("Poppins-LightItalic"), url("./fonts/poppins/poppins-v5-latin-300italic.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-300italic.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-300italic.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-300italic.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-300italic.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-regular - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/poppins/poppins-v5-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Regular"), local("Poppins-Regular"), url("./fonts/poppins/poppins-v5-latin-regular.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-regular.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-regular.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-regular.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-regular.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-italic - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 400;
+  src: url("./fonts/poppins/poppins-v5-latin-italic.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Italic"), local("Poppins-Italic"), url("./fonts/poppins/poppins-v5-latin-italic.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-italic.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-italic.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-italic.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-italic.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-500 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/poppins/poppins-v5-latin-500.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Medium"), local("Poppins-Medium"), url("./fonts/poppins/poppins-v5-latin-500.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-500.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-500.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-500.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-500.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-500italic - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 500;
+  src: url("./fonts/poppins/poppins-v5-latin-500italic.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Medium Italic"), local("Poppins-MediumItalic"), url("./fonts/poppins/poppins-v5-latin-500italic.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-500italic.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-500italic.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-500italic.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-500italic.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-600 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url("./fonts/poppins/poppins-v5-latin-600.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins SemiBold"), local("Poppins-SemiBold"), url("./fonts/poppins/poppins-v5-latin-600.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-600.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-600.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-600.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-600.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-700 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/poppins/poppins-v5-latin-700.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Bold"), local("Poppins-Bold"), url("./fonts/poppins/poppins-v5-latin-700.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-700.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-700.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-700.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-700.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-700italic - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 700;
+  src: url("./fonts/poppins/poppins-v5-latin-700italic.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Bold Italic"), local("Poppins-BoldItalic"), url("./fonts/poppins/poppins-v5-latin-700italic.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-700italic.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-700italic.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-700italic.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-700italic.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-800 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  src: url("./fonts/poppins/poppins-v5-latin-800.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins ExtraBold"), local("Poppins-ExtraBold"), url("./fonts/poppins/poppins-v5-latin-800.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-800.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-800.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-800.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-800.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-800italic - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 800;
+  src: url("./fonts/poppins/poppins-v5-latin-800italic.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins ExtraBold Italic"), local("Poppins-ExtraBoldItalic"), url("./fonts/poppins/poppins-v5-latin-800italic.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-800italic.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-800italic.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-800italic.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-800italic.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+/* poppins-900 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: url("./fonts/poppins/poppins-v5-latin-900.eot");
+  /* IE9 Compat Modes */
+  src: local("Poppins Black"), local("Poppins-Black"), url("./fonts/poppins/poppins-v5-latin-900.eot?#iefix") format("embedded-opentype"), url("./fonts/poppins/poppins-v5-latin-900.woff2") format("woff2"), url("./fonts/poppins/poppins-v5-latin-900.woff") format("woff"), url("./fonts/poppins/poppins-v5-latin-900.ttf") format("truetype"), url("./fonts/poppins/poppins-v5-latin-900.svg#Poppins") format("svg");
+  /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/muli/Muli-Regular.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 800;
+  src: url("./fonts/muli/Muli-ExtraBold.ttf");
+  /* IE9 Compat Modes */
+}
+
+/* Montserrat-300 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: url("./fonts/montserrat/Montserrat-Light.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/montserrat/Montserrat-Regular.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  src: url("./fonts/montserrat/Montserrat-Italic.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/montserrat/Montserrat-Medium.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url("./fonts/montserrat/Montserrat-SemiBold.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/montserrat/Montserrat-Bold.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 700;
+  src: url("./fonts/montserrat/Montserrat-BoldItalic.ttf");
+  /* IE9 Compat Modes */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 900;
+  src: url("./fonts/montserrat/montserrat-v12-latin-900.ttf"), url("./fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("./fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("./fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("./fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype");
+}
+
+a:focus,
+a:active {
+  text-decoration: none;
+  outline: none;
+  transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -webkit-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
+}
+
+input,
+textarea {
+  outline: none;
+  appearance: unset !important;
+  -moz-appearance: unset !important;
+  -webkit-appearance: unset !important;
+  -o-appearance: unset !important;
+  -ms-appearance: unset !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  -o-appearance: none !important;
+  -ms-appearance: none !important;
+  margin: 0;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+}
+
+input[type=checkbox] {
+  appearance: checkbox !important;
+  -moz-appearance: checkbox !important;
+  -webkit-appearance: checkbox !important;
+  -o-appearance: checkbox !important;
+  -ms-appearance: checkbox !important;
+}
+
+input[type=radio] {
+  appearance: radio !important;
+  -moz-appearance: radio !important;
+  -webkit-appearance: radio !important;
+  -o-appearance: radio !important;
+  -ms-appearance: radio !important;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 30px transparent inset;
+  -moz-box-shadow: 0 0 0 30px transparent inset;
+  -webkit-box-shadow: 0 0 0 30px transparent inset;
+  -o-box-shadow: 0 0 0 30px transparent inset;
+  -ms-box-shadow: 0 0 0 30px transparent inset;
+  background-color: transparent !important;
+}
+
+.clear {
+  clear: both;
+}
+
+h2 {
+  font-size: 27px !important;
+  color: #222;
+  font-weight: 800;
+  font-family: 'Muli';
+  margin: 0px;
+}
+
+h2 span {
+  color: var(--second-color);
+}
+
+.revo-logo {
+  margin-bottom: 10px;
+}
+
+body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #222;
+  font-weight: 400;
+  font-family: 'Poppins' !important;
+  margin: 0px;
+  background: url("./nebula.png");
+  background-size: cover;
+
+}
+
+
+.main {
+  padding: 50px 0;
+}
+
+.container {
+  width: 70vw !important;
+  position: relative;
+  margin: 0 auto;
+  background: #efeeff;
+  min-height: calc(92vh - 50px);
+  overflow: hidden;
+}
+
+p {
+  margin: 0px;
+}
+
+p.desc {
+  margin-top: 10px !important;
+  color: black !important;
+  line-height: 1.92 !important;
+  font-size: 13px !important;
+}
+
+p.title {
+  font-weight: bold;
+  padding-bottom: 7px;
+}
+
+.signup-img {
+  padding-bottom: 43px;
+}
+
+fieldset {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.signup-desc {
+  background-color: var(--second-color);
+  width: 35%;
+  min-height: calc(92vh - 50px);
+  position: relative;
+}
+
+.signup-desc-content {
+  padding: 35px 45px;
+  text-align: left;
+}
+
+.signup-form-conent {
+  width: 65%;
+  background-color: white;
+}
+
+.signup-form {
+  padding: 55px 0px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #bfbfbf;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 20px;
+  transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+input+label {
+  position: absolute;
+  transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+  -ms-transition: 0.25s ease;
+  left: 0;
+  top: 25px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #888;
+}
+
+input:focus+label {
+  top: -7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input:valid+label {
+  top: -7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group-principal {
+  position: relative;
+  min-height: 72vh;
+  padding: 0 50px;
+}
+
+
+.field-icon {
+  font-size: 24px;
+  position: relative;
+  z-index: 2;
+  float: right;
+  margin-top: -37px;
+}
+
+.content {
+  padding: 340px 0 315px 0;
+  position: relative;
+}
+
+.content h3 {
+  display: none;
+}
+
+.step-current {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  font-weight: 800;
+  color: black;
+}
+
+.actions ul {
+  width: 100%;
+  justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+}
+
+.actions ul .disabled {
+  display: none;
+}
+
+.actions ul li {
+  margin-left: 20px;
+}
+
+.actions ul li:first-child a {
+  background: #fff;
+  color: #999;
+}
+
+.actions ul li a {
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: bold;
+  background: #7c7cdd;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  text-decoration: none;
+}
+
+.steps {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    width: calc(100% - 40px);
+    max-width: 100%;
+  }
+
+  .signup-form {
+    padding: 55px 30px;
+  }
+
+  .signup-desc {
+    width: 465px;
+  }
+
+  .signup-img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .steps ul,
+  .signup-content {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column;
+  }
+
+  .steps ul li,
+  .signup-desc,
+  .signup-form-conent {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .actions ul li a {
+    width: 100px;
+  }
+}
+
+
+.button-style {
+  width: 140px;
+  height: 50px;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: bold;
+  background: var(--main-color);
+  border: none;
+  @extend display-flex;
+  @include align-items(center);
+  @include justify-content(center);
+  text-decoration: none;
+
+}
+
+.button-style:hover {
+  cursor: pointer;
+}
+
+
+.next-button {
+  bottom: 0;
+  right: 0;
+  margin-right: 0px;
+
+}
+
+.next-grayed {
+  background-color: #888;
+}
+
+.back-button {
+  bottom: 0;
+  left: 0;
+  margin-left: 0px;
+
+}
+
+.skip-button {
+  bottom: 0;
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+.rescan-button {
+  float: right;
+  bottom: auto;  
+  width: 21px;
+  height: 21px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.research-button {
+  float: right;
+  bottom: auto;  
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.copy-icon {
+  width: 30px;
+}
+
+input[type=checkbox] {
+  width: auto !important;  
+}
+
+.drives-container {
+  display: flex;  
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--second-color-text);
+  padding: 10px;
+  align-items: center;
+}
+
+.drives-container.selected {
+  background-color: rgba(223, 234, 241, 1);
+}
+
+.networks-container {  
+  display: flex;  
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--second-color-text);
+}
+
+.select-styles{
+  border: 2px solid;   
+  transition: 0.5s; 
+  font-size: 24px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.select-styles option {
+  box-shadow: 0 0 10px 100px var(--main-color) inset !important;
+  background: none !important;  
+}
+
+.select-styles:hover {
+  border: 2px solid var(--main-color);
+  transition: 0.5s; 
+    
+}
+
+h3 {
+  color: var(--second-color-text);
+  text-align: justify;
+  font-weight: 300;
+}
+
+.ReactModal__Content--after-open {
+  background-color: #eee !important;
+  width: 45% !important;
+}
+
+
+.ReactModal__Content--after-open.button-style{
+  position: initial !important;
+  margin: 10px !important;
+}
+
+.div-drive-item {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.modal-button {
+  position: initial;
+  margin: 10px;
+}
+
+.warning-icon {
+  position: absolute;
+  width: 65px;
+  top: 35px;
+  left: 55px;
+}
+
+.div-wifi-container{
+  background-color: #eee;
+  padding: 10px;  
+}
+
+.div-scrollable {
+  height: calc(72vh - 70px);
+  overflow-y: auto;
+  font-size: 16px;
+  text-align: left;
+}
+.nb-spinner {
+  width: 75px;
+  height: 75px;
+  margin: 0;
+  margin: auto;
+  background: transparent;
+  border-top: 4px solid #999;
+  border-right: 4px solid transparent;
+  border-radius: 50%;
+  -webkit-animation: 1s spin linear infinite;
+  animation: 1s spin linear infinite;
+}
+  
+@-webkit-keyframes spin {
+  from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+        
+@keyframes spin {
+  from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+
+.content-container {
+  min-height: calc(72vh - 50px);
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.buttons-container .left {  
+  text-align: left;
+  width: 30%;
+}
+.buttons-container .right {  
+  text-align: right;
+  width: 70%;
+}
+
+.wifi-button {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  align-content: center;
+  justify-content: center;
+}
+
+.input-container {
+  width: 60%;
+  display: flex;
+  border-bottom: 1px solid #bfbfbf;
+  align-items: center;
+}
+
+.data-input{
+  width: 60%;
+  font-size: 16px;
+}
+
+.tenth-container {
+  display: flex;
+  text-align: left;
+}
+
+.tenth-container .left {
+  text-align: left;
+  width: 70%;
+}
+
+.tenth-container .right {
+  text-align: right;
+  width: 30%;
+}
+
+.astronautImageLogin {
+  position: absolute;
+  width: 100%;
+  bottom: 25px;
+  left: 0px;  
+  height: 45%;
+}
+
+a {
+  color: #050A30;
+  text-decoration: none;
+}
+
+@media print {
+  *{
+  display:none;
+  }
+  #print-content {
+  display: auto !important;
+  }
+  }
+
+@media (max-width: 992px){
+  .form-group-principal{
+    padding: 0;
+  }
+
+  .tenth-container {
+    display: block;
+  }
+  .tenth-container .right {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .tenth-container .right .button-style {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  
+  .skip-button {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+  }  
+
+  .input-container {
+    width: 100%;
+  }
+  .data-input {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px){
+  .container {    
+    min-height: calc(30vh - 50px);
+  }
+  .signup-desc{
+    min-height: calc(30vh - 50px);
+    display: flex;
+    align-items: center;
+  }
+  .signup-desc-content {
+    position: relative;
+    padding: 35px 0px 35px 45px;
+    width: 100%;
+  }
+  .signup-form-conent{
+    position: relative;
+  }
+  .form-group-principal{
+    min-height: 32px;
+  }
+
+  .content-container {
+    min-height: calc(32vh - 50px);
+  }
+
+  .skip-button {
+    margin-right: 10px;
+    margin-bottom: 0px;
+    display: initial;
+  }  
+  .astronautImageLogin {
+    position: relative;
+    width: 25%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
+  }
+  
+  
+}
+
+
+
+@media (max-width: 550px) {
+  .signup-desc{
+    min-height: calc(30vh - 50px);
+    display: block;    
+  }
+
+  .signup-desc-content {
+    position: relative;
+    padding: 35px 25px 0 25px;
+    width: auto;
+  }
+
+  .buttons-container {
+    display: block;
+  }
+
+  .buttons-container .left{
+    width: 100%;
+    text-align: center;
+  }
+
+  .buttons-container .right{
+    width: 100%;
+    text-align: center;
+  }
+
+
+  .button-style {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .rescan-button {
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+  }
+
+  .research-button {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+
+  .wifi-button {
+    float: none;
+  }
+
+  .astronautImageLogin {
+    position: relative;
+    width: 40%;
+    bottom: 0px;
+    left: 0px;  
+    height: 45%;
+  }
+
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,6 @@
+/* TASKS */
+export const API_SUCCESS = "API_SUCCESS";
+export const API_FAIL = "API_FAIL";
+export const GET_RECENT_USERS = "GET_RECENT_USERS";
+export const GET_LATEST_TRANSACTION = "GET_LATEST_TRANSACTION";
+export const GET_LATEST_ORDERS = "GET_LATEST_ORDERS";
