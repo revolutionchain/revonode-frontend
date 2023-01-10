@@ -195,15 +195,15 @@ app.get('/checkmaster', (req, res, next) => {
 app.post('/getprivkey', (req, res, next) => {
   const { walletKey } = req.body;  
   execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
-    if (err) {
+    if (errWalletUnlock) {
       res.status(404).send(errWalletUnlock);
     } else {
       execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
-        if (err) {
+        if (errShowMaster) {
           res.status(404).send(errShowMaster);
         } else {
           execFile('bash', ['/home/revo/nodeutils', '-getprivkey', stdoutShowMaster], (errGetPrivKey, stdoutGetPrivKey, stderrGetPrivKey) => {
-            if (err) {
+            if (errGetPrivKey) {
               res.status(404).send(errGetPrivKey);
             } else {
               res.send(stdoutGetPrivKey);
