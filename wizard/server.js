@@ -215,13 +215,6 @@ app.post('/getprivkey', (req, res, next) => {
       });
     }
   });
-  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.send(stdout);
-    }
-  });
 })
 
 app.get('/showdrives', function (req, res, next) {
