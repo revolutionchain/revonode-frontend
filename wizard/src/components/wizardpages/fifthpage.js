@@ -100,7 +100,7 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
                 <h3><strong>WARNING:</strong> If you decide to restart now, leave the network cable connected, wait for the restart and check on the monitor if you find a second IP address. Resume the wizard with the new IP and unplug the LAN cable as well. If the second IP is not visible, reboot and move closer to the WiFi router, if the configuration is incorrect, use the cable connection to correct it or continue.</h3>
                 <div style={{display: `flex`, marginBottom: `10px`}}>
                     <input value={agree} onClick={() => handleAgreement()} type="checkbox"></input>
-                    <span>I've understood</span>
+                    <span style={{marginLeft: `5px`, fontSize: `16px`, fontWeight: `600`, color: `#888`}}>I've understood</span>
                 </div>
                 <div>
                     {
