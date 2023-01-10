@@ -70,9 +70,11 @@ const Register = props => {
       setErrorMsg("You must write your email!");
       return openModal();
     } else if (!value.pass) {
-      return alert('You must write your password!');
+      setErrorMsg("You must write your password!");
+      return openModal();
     } else if (value.pass !== value.rePass) {
-      return alert("Passwords don't match!");
+      setErrorMsg("Passwords don't match!");
+      return openModal();
     }
     dispatch(userRegister(value, props.history));
   }
@@ -186,7 +188,7 @@ const Register = props => {
                             ></input>
                           </div>*/}<div style={{ display: `flex`, alignItems: `center` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={passIcon} />
-                            <input className='data-input' type={passButtonState ? 'password' : 'text'} name='rePass' placeholder="Repeat password" onChange={(e) => handleInputs(e)}></input>
+                            <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rePass' placeholder="Repeat password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
                           </div>
                           {/*<div className="mb-3">
                             

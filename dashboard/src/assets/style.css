@@ -521,6 +521,7 @@ input:valid+label {
   display: none;
 }
 
+
 @media screen and (max-width: 992px) {
   .container {
     width: calc(100% - 40px);
@@ -970,4 +971,52 @@ a {
 
 }
 
+
+@media (min-width: 1921px) {
+  .container {
+    min-height: 0;
+    margin-top: -10vh;
+  }
+  
+  .content-container {
+    min-height: calc(75vh - 50px);
+  }
+  .signup-desc {
+    min-height: 0;
+  }
+  .signup-content{
+    min-height: 40vh;
+  }
+  .main {
+    display: flex;
+    align-items: center;        
+    min-height: 100vh;
+  }
+  .form-group-principal{
+    min-height: 40vh;
+  }
+  }
+  
+  @media (min-width: 2561px) {
+    .signup-desc {
+      min-height: 0;
+      max-height: 50vh;
+    }
+    .signup-content{
+      min-height: 40vh;
+      max-height: 50vh;
+    }
+  
+    .content-container {
+      min-height: calc(45vh - 50px);
+    }
+    .container {
+      width: 50vw;
+    }
+  
+    .tenth-container .right .button-style {
+      display: block;
+    }
+  
+  }
 /*# sourceMappingURL=style.css.map */
