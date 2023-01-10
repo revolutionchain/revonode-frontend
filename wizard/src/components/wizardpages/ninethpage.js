@@ -123,11 +123,11 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                             </div>
                             <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                                <div className='data-input input-container'><input style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
+                                <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='walletPass' placeholder="Wallet secret passphrase" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                             </div>
                             <div style={{ display: `flex`, alignItems: `center` }}>
                                 <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                                <input className='data-input' type={passButtonState ? 'password' : 'text'} name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input>
+                                <div className='data-input input-container'> <input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='walletRePass' placeholder="Repeat secret passphrase" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                             </div>
                         </div>
                     </div> : <div style={{ paddingTop: `100px` }} ><div class="nb-spinner"></div></div>

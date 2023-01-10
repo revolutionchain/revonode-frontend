@@ -174,12 +174,12 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                     </div>
                     <div style={{ display: `flex`, alignItems: `center` }}>
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                        <input className='data-input' type={passButtonState ? 'password' : 'text'} name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input>
+                        <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                     </div>
                     {/*<input style={{ width: `60%`, fontSize: `16px` }} value={input.nodeName} type='text' name='nodeName' placeholder="Write a Node name" onChange={(e) => handleInput(e)}></input>*/}
                 </div>
 
-                <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `10px`, marginBottom: `10px` }}>
+                <div style={{ backgroundColor: `#EEE`, textAlign: `left`, paddingTop: `5px`, marginTop: `30px`, marginBottom: `30px` }}>
                     <span style={{ marginLeft: `10px` }}>Select Node name</span>
                     <img src={rescanIcon} className='button-style next-button research-button' onClick={() => reloadPage()} />
                     {

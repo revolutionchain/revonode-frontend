@@ -12,9 +12,9 @@ export default function Sixthpage({ currentPage, setCurrentPage }) {
 
             <div style={{ minHeight: `calc(72vh - 50px)` }}>
                 <h2>Revo Software Lincese</h2>
-                <div className='div-scrollable'>
+                <div className='div-scrollable'>                    
 
-                    The MIT License (MIT)
+                    <p style={{textAlign: `center`, margin: `10px 0`}}>The MIT License (MIT)</p>
 
                     Permission is hereby granted, free of charge, to any person obtaining a copy
                     of this software and associated documentation files (the "Software"), to deal

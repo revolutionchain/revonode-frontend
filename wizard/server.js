@@ -192,6 +192,36 @@ app.get('/checkmaster', (req, res, next) => {
   });
 })
 
+app.post('/getprivkey', (req, res, next) => {
+  const { walletKey } = req.body;  
+  execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
+    if (err) {
+      res.status(404).send(errWalletUnlock);
+    } else {
+      execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+        if (err) {
+          res.status(404).send(errShowMaster);
+        } else {
+          execFile('bash', ['/home/revo/nodeutils', '-getprivkey', stdoutShowMaster], (errGetPrivKey, stdoutGetPrivKey, stderrGetPrivKey) => {
+            if (err) {
+              res.status(404).send(errGetPrivKey);
+            } else {
+              res.send(stdoutGetPrivKey);
+            }
+          });
+        }
+      });
+    }
+  });
+  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(stdout);
+    }
+  });
+})
+
 app.get('/showdrives', function (req, res, next) {
   blk.getBlockInfo({}, function (err, json) {
     if (err) {
@@ -375,8 +405,8 @@ app.get('/stopdaemon', (req, res, next) => {
 })
 
 app.post('/createwallet', (req, res, next) => {
-  const { walletName, secretPassphrase } = req.body;
-  execFile('bash', ['/home/revo/nodeutils', '-createwallet', walletName, secretPassphrase], (err, stdout, stderr) => {
+  const { walletName, walletPass } = req.body;
+  execFile('bash', ['/home/revo/nodeutils', '-createwallet', walletName, walletPass], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
     } else {

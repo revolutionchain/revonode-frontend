@@ -10,6 +10,7 @@ export default function Tenthpage({ walletData }) {
 
     const [rpcData, setRpcData] = useState(false);
     const [arrayData, setArrayData] = useState(false);
+    const [privData, setPrivData] = useState(false);
 
     useEffect(async () => {
         let masterState = await axios.get(`http://${window.location.hostname}:3001/getwalletaddress`);
@@ -27,11 +28,14 @@ export default function Tenthpage({ walletData }) {
             nodeName: arr[2].slice(0, arr[2].length - 3)
         }
         setRpcData(obj);
+        let privKeyObj = { walletKey: walletData?.walletPass};
+        let getPrivKey = await axios.post(`http://${window.location.hostname}:3001/getprivkey`, privKeyObj);
+        setPrivData(getPrivKey.data)
     }, []);
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split("d")[1]}
+    arrayData.length && rpcData?.user && privData.length && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split("d")[1]}
 Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
 
 RPC Username: ${rpcData?.user}
@@ -40,7 +44,8 @@ RPC Password: ${rpcData?.pass}
 Your node name: ${rpcData?.nodeName}
 Wallet name: ${walletData?.walletName}
 Wallet password: ${walletData?.walletPass}
-Wallet Address: ${walletData.walletAddress}`);
+Wallet Address: ${walletData.walletAddress}
+Private Key: ${privData}`);
 
     const customStyles = {
         content: {
@@ -80,7 +85,8 @@ Wallet Address: ${walletData.walletAddress}`);
         Your node name: ${rpcData?.nodeName}<br>
         Wallet name: ${walletData?.walletName}<br>
         Wallet password: ${walletData?.walletPass}<br>
-        Wallet Address: ${walletData.walletAddress}`
+        Wallet Address: ${walletData.walletAddress}<br>
+        Private Key: ${privData}`
         let mywindow = window.open('', 'Print', 'height=600,width=800');
     
         mywindow.document.write('<html><head><title>Print</title>');
