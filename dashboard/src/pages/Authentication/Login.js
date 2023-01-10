@@ -144,7 +144,7 @@ const Login = (props) => {
 
   return (
     <div class="main">
-      <div style={{ padding: 0 }} class="container">
+      <div style={{ padding: 0 }} class="container-g">
         <div class="signup-content">
           <div class="signup-desc">
             <div class="signup-desc-content">

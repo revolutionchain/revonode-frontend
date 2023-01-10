@@ -338,8 +338,8 @@ body {
   padding: 50px 0;
 }
 
-.container {
-  width: 70vw !important;
+.container-g {
+  width: 70vw ;
   position: relative;
   margin: 0 auto;
   background: #efeeff;
@@ -523,7 +523,7 @@ input:valid+label {
 
 
 @media screen and (max-width: 992px) {
-  .container {
+  .container-g {
     width: calc(100% - 40px);
     max-width: 100%;
   }
@@ -870,7 +870,7 @@ a {
 
 
 @media (max-width: 768px){
-  .container {    
+  .container-g {    
     min-height: calc(30vh - 50px);
   }
   .signup-desc{
@@ -973,7 +973,7 @@ a {
 
 
 @media (min-width: 1921px) {
-  .container {
+  .container-g {
     min-height: 0;
     margin-top: -10vh;
   }
@@ -1010,7 +1010,7 @@ a {
     .content-container {
       min-height: calc(45vh - 50px);
     }
-    .container {
+    .container-g {
       width: 50vw;
     }
   
