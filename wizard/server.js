@@ -202,10 +202,12 @@ app.post('/getprivkey', (req, res, next) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
         } else {
+          console.log( 'ShowMaster: ' + stdoutShowMaster);
           execFile('bash', ['/home/revo/nodeutils', '-getprivkey', stdoutShowMaster], (errGetPrivKey, stdoutGetPrivKey, stderrGetPrivKey) => {
             if (errGetPrivKey) {
               res.status(404).send(errGetPrivKey);
             } else {
+              console.log( 'PrivKey: ' + stdoutGetPrivKey);
               res.send(stdoutGetPrivKey);
             }
           });
