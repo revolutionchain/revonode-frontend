@@ -106,7 +106,7 @@ Private Key: ${privData}`);
 
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>We did it!</h2>
                 <h3>Installation complete! Before accessing the Dashboard of your Revo node, take the time to make a copy of the data you have entered! Print or save the data below and be sure to keep it safe!</h3>
                 <div className='tenth-container'>

@@ -13,7 +13,7 @@ export default function Eighthpage({ currentPage, setCurrentPage }) {
 
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)`, textAlign: `center` }}>
+            <div className='content-container' style={{ textAlign: `center` }}>
                 <h2>Daemon Activation</h2>
                 <h3 style={{textAlign: `center`}}>Revo is initializing services, please be patient!</h3>
             <div>

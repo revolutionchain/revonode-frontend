@@ -160,7 +160,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>Node internal configuration</h2>
                 <h3>Set a secure username and password for the Revo RPC protocol, this will ensure the best possible security between the interface and the software. Also choose your node name, try to generate something funny and unique!</h3>
                 <div>

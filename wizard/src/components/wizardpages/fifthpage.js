@@ -94,7 +94,7 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
     return (
         <div className=''>
 
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>WiFi configured successfully!</h2>
                 <h3>You can continue with the setup wizard or choose to restart your device.</h3>
                 <h3><strong>WARNING:</strong> If you decide to restart now, leave the network cable connected, wait for the restart and check on the monitor if you find a second IP address. Resume the wizard with the new IP and unplug the LAN cable as well. If the second IP is not visible, reboot and move closer to the WiFi router, if the configuration is incorrect, use the cable connection to correct it or continue.</h3>

@@ -111,7 +111,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
 
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>Create Wallet</h2>
                 <h3>Give your wallet a name and be sure to use a strong password to secure your RVOs!</h3>
                 {!isLoading ?

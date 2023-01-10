@@ -55,7 +55,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>Array Created successfully!</h2>
                 <h3>Your storage array has been successfully created!</h3>
                 <div style={{

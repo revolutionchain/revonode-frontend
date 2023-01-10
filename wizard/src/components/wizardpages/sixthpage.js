@@ -10,7 +10,7 @@ export default function Sixthpage({ currentPage, setCurrentPage }) {
     return (
         <div className=''>
 
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>Revo Software Lincese</h2>
                 <div className='div-scrollable'>                    
 

@@ -139,7 +139,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
 
     return (
         <div className=''>
-            <div style={{ minHeight: `calc(72vh - 50px)` }}>
+            <div className='content-container'>
                 <h2>Wifi</h2>
                 <h3 style={{marginBottom: `5px`}}>The use of a wired ethernet network is highly recommended to guarantee the node maximum performance levels. However, if it is not possible to use a LAN cable, you can connect your node in WiFi making sure to keep it as close as possible to your WiFi router. If you're planning to use a cable, great! You can skip this page.</h3>
                 <div>
