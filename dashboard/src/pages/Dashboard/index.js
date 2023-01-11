@@ -22,16 +22,23 @@ import LatestTransactions from './LatestTransactions';
 import LatestOrders from './LatestOrders';
 import RecentUsers from './RecentUsers';
 
+import { useSelector } from 'react-redux';
+
 
 const Dashboard = props => {
 
   const [subscribemodal, setSubscribemodal] = useState(false)
+
+  const isLogged = useSelector(state => state.isLogged);
 
   function tog_standard() {
     setSubscribemodal(!setSubscribemodal)
   }
 
   useEffect(() => {
+    if(!isLogged){      
+      props.history.push('/login');
+    }
     setTimeout(() => {
       setSubscribemodal(true)
     }, 2000);
