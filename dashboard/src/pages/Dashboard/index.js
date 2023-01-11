@@ -29,7 +29,7 @@ const Dashboard = props => {
 
   const [subscribemodal, setSubscribemodal] = useState(false)
 
-  const isLogged = useSelector(state => state.isLogged);
+  const isLogged = useSelector(state => state.Login.isLogged);
 
   function tog_standard() {
     setSubscribemodal(!setSubscribemodal)

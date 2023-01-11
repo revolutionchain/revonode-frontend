@@ -916,6 +916,7 @@ a {
   .signup-desc{
     min-height: calc(30vh - 50px);
     display: block;    
+    text-align: center;
   }
 
   .signup-desc-content {
@@ -926,6 +927,7 @@ a {
 
   .buttons-container {
     display: block;
+    margin-top: 20px;
   }
 
   .buttons-container .left{
@@ -938,12 +940,25 @@ a {
     text-align: center;
   }
 
-
-  .button-style {
-    width: 70%;
-    margin: auto;
-    margin-bottom: 10px;
+  .warning-icon {
+    position: initial;
   }
+
+  
+.tenth-container .left {
+  width: 100%;
+}
+
+.button-style {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+
+.modal-button {
+  margin-top: 10px;
+}
 
   .rescan-button {
     width: 21px;

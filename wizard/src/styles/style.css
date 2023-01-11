@@ -798,6 +798,18 @@ h3 {
   width: 45%;
 }
 
+.select2-container {
+  width: 50%;
+}
+
+.raid-container {
+  display: flex;
+}
+
+.raid-result {
+  width: 50%;
+}
+
 .data-input{
   width: 60%;
   font-size: 16px;
@@ -1079,10 +1091,27 @@ a {
     width: 100%;
   }
 
+  .select2-container {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .raid-container {
+    display: block;
+  }
+
+  .raid-result {
+    width: 100%;
+  }
+
   .array-container {
     display: block;
   }
 
+  .tenth-container .left {
+    width: 100%;
+  }
+  
   .div-drive-item {
     margin-right: 10px;
     font-size: 16px;

@@ -166,8 +166,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                             })
                         }
                     </div>
-                    <div style={{ display: `flex`, marginTop: `15px`, alignItems: `center`}}>
-                        <div style={{ width: `50%`}}>
+                    <div className='raid-container' style={{ marginTop: `15px`, alignItems: `center`}}>
+                        <div className='select2-container' >
                             <Select
                                 onChange={handleSelect}
                                 menuPlacement="auto"
@@ -193,16 +193,16 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                                 }}
                                 options={options} />
                         </div>
-                        <div style={{width: `50%`}}>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) && <span>{raidResult}</span>}</div>
+                        <div className='raid-result'>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) && <span>{raidResult}</span>}</div>
                     </div>
                 </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>
-            <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container' >
+                <div className='left'>
                     <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
                 </div>
-                <div style={{ width: `70%`, textAlign: `right` }}>
-                    <button style={{display: `flex`, flexWrap: `wrap`, float: `right`, alignContent: `center`, justifyContent: `center`}} onClick={() => handleNextButton()} className='button-style next-button'>Confirm<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
+                <div className='right'>
+                    <button  onClick={() => handleNextButton()} className='button-style next-button wifi-button'>Confirm<img style={{width: `20px`, marginLeft: `5px`, marginTop: `-2px`}} src={buttonArrow} /></button>
                 </div>
             </div>
             <div className='Modal'>

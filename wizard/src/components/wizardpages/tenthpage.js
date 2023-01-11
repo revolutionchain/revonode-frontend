@@ -129,10 +129,10 @@ ${textArea}`}
                     </div>
                 </div>
             </div>
-            <div style={{ display: `flex` }}>
-                <div style={{ width: `30%`, textAlign: `left` }}>
+            <div className='buttons-container'>
+                <div className='left'>
                 </div>
-                <div style={{ width: `70%`, textAlign: `right` }}>
+                <div className='right'>
                     <button onClick={() => window.location.reload()} className='button-style next-button'>Finish</button>
                 </div>
             </div>
