@@ -162,7 +162,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
                                 <div>
                                     {checkedState[i] && <div className='input-container'><input style={{ fontSize: `16px`, borderBottom: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>}
                                     {checkedState[i] &&
-                                        <div style={{ width: `45%`, marginTop: `15px` }}>
+                                        <div className='select-container' style={{  marginTop: `15px` }}>
                                             <Select
                                                 onChange={handleSelect}
                                                 menuPlacement="auto"

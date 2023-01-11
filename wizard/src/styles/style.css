@@ -693,6 +693,12 @@ h3 {
   margin: 10px !important;
 }
 
+
+.array-container {
+  display: flex;
+}
+
+
 .div-drive-item {
   margin-right: 10px;
   font-size: 16px;
@@ -786,6 +792,10 @@ h3 {
   display: flex;
   border-bottom: 1px solid #bfbfbf;
   align-items: center;
+}
+
+.select-container {
+  width: 45%;
 }
 
 .data-input{
@@ -1043,9 +1053,6 @@ a {
   
   
 }
-
-
-
 @media (max-width: 550px) {
   .signup-desc{
     min-height: calc(30vh - 50px);
@@ -1058,7 +1065,33 @@ a {
     width: auto;
   }
 
+  .warning-icon {
+    position: initial;
+  }
+
+  .content-container{
+  }
+
+  .div-wifi-container div span {
+    overflow-wrap: anywhere;
+  }
+  .select-container {
+    width: 100%;
+  }
+
+  .array-container {
+    display: block;
+  }
+
+  .div-drive-item {
+    margin-right: 10px;
+    font-size: 16px;
+    padding-top: 5px;
+    border-bottom: solid 1px;
+  }
+
   .buttons-container {
+    margin-top: 20px;
     display: block;
   }
 
@@ -1089,6 +1122,10 @@ a {
     width: 18px;
     height: 18px;
     margin-right: 10px;
+  }
+
+  .modal-button {
+    margin-top: 10px;
   }
 
   .wifi-button {

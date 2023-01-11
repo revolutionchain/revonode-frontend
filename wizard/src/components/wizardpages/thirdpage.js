@@ -67,7 +67,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                 }}><span>Array Details</span></div>
                 <div style={{ display: `flex`, marginRight: `10px`, alignItems: `center`, backgroundColor: `#EEE`, padding: `5px` }}>
                     <img style={{ width: `50px`, marginRight: `10px` }} src={raidIcon} />
-                    <div style={{width: `100%`, display: `flex`, justifyContent: `space-around`}}>
+                    <div className='array-container' style={{width: `100%`, justifyContent: `space-around`}}>
                     {
                         arrayData.length && arrayData?.map((e, i) => {
                             let res = i == arrayData.length - 1 ? ((parseFloat(e) / 1000000).toFixed(2)) + 'GB' : i == 1 ? "Raid " + e.split("d")[1] : e;
