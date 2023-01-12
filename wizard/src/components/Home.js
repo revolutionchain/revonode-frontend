@@ -82,7 +82,7 @@ export default function Home() {
         { textLeft: 'Please review revo software license.' },
         { textLeft: "Generating the configuration file for the Revo Node daemon. Usually you don't need to remember the RPC credentials, but it's very important to choose a secure combination if your node will be fully exposed on the network (exposed host)." },
         { textLeft: 'Please wait while the Revo software launches for the first time!' },
-        { textLeft: 'This is the trickiest part of all. It is extremely important to check several times that you have entered the password correctly. Without her you will never be able to unlock your crypto wallet ever again!' },
+        { textLeft: 'This is the trickiest part of all. It is extremely important to check several times that you have entered the password correctly. Without you will never be able to unlock your crypto wallet ever again without reconfiguring your node from scratch!' },
         { textLeft: 'From now on you are officially a full validator node of the Revo blockchain! Usually the synchronization of the blocks with the global network can take from a few hours to a few days! Welcome on board!' }
     ]
 
