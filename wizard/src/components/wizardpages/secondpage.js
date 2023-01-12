@@ -49,28 +49,34 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             drives[1] = null;
         }
         setSelectedDrives(drives);
+        handleSelect({value: raidLevel}, drives);
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
-        handleSelect({value: raidLevel});
     }
 
     const [raidLevel, setRaidLevel] = useState("null");
 
     const [ raidResult, setRaidResult ] = useState(false);
 
-    function handleSelect(e) {
+    function handleSelect(e, drives = false) {
+        let usedDrives;
+        if(drives){
+            usedDrives = drives;            
+        }else {
+            usedDrives = selectedDrives;
+        }
         let drivesSize;
         setRaidLevel(e.value);
-        console.log(selectedDrives)
-        if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
-            drivesSize = parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2);
-        }else if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
-            drivesSize = parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2);
+        console.log(usedDrives)
+        if(drives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2);
+        }else if(selectedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2);
         }
 
-        if(e.value == 0 && selectedDrives.length > 1){
+        if(e.value == 0 && usedDrives.length > 1){
             let sum = parseFloat(drivesSize) + parseFloat(drivesSize);
             setRaidResult( "Size: " + sum + "GB");            
-        }else if (e.value == 1 && selectedDrives.length > 1) {
+        }else if (e.value == 1 && usedDrives.length > 1) {
             setRaidResult( "Size: " + drivesSize + "GB");
         }
     }
