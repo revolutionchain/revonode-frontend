@@ -12,6 +12,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     const [updateStates, setUpdatesStates] = useState(false);
     const [checkedState, setCheckedState] = useState([]);
     const [totalDrives, setTotalDrives] = useState([]);
+    const [executed, setExecuted] = useState(false);
     useEffect(() => {
         let drives = drivesData.filter(e => e.NAME.includes("sd")).reverse();
         let ssdCount = drives.map(e => 0);
@@ -49,7 +50,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             drives[1] = null;
         }
         setSelectedDrives(drives);
-        handleSelect({value: raidLevel}, drives);
+        setExecuted(true);
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
     }
 
@@ -57,29 +58,27 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     const [ raidResult, setRaidResult ] = useState(false);
 
-    function handleSelect(e, drives = false) {
-        let usedDrives;
-        if(drives){
-            usedDrives = drives;            
-        }else {
-            usedDrives = selectedDrives;
-        }
+    function handleSelect(e) {
         let drivesSize;
         setRaidLevel(e.value);
-        console.log(usedDrives)
-        if(usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
-            drivesSize = parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2);
-        }else if(usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
-            drivesSize = parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2);
+        console.log(selectedDrives)
+        if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2);
+        }else if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+            drivesSize = parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2);
         }
 
-        if(e.value == 0 && usedDrives.length > 1){
+        if(e.value == 0 && selectedDrives.length > 1){
             let sum = parseFloat(drivesSize) + parseFloat(drivesSize);
             setRaidResult( "Size: " + sum + "GB");            
-        }else if (e.value == 1 && usedDrives.length > 1) {
+        }else if (e.value == 1 && selectedDrives.length > 1) {
             setRaidResult( "Size: " + drivesSize + "GB");
         }
+        setExecuted(false);
     }
+
+    
+    raidLevel !== "null" && executed && handleSelect({value: raidLevel});
 
     
     raidLevel !== "null" && !raidResult && selectedDrives.length > 1 && handleSelect({value: raidLevel});
