@@ -57,9 +57,10 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     const [ raidResult, setRaidResult ] = useState(false);
 
-    function handleSelect(e, drives = false) {
+    function handleSelect(e, drives) {
         let usedDrives;
-        if(drives){
+
+        if(drives && !drives.action){
             usedDrives = drives;
         }else {
             usedDrives = selectedDrives
