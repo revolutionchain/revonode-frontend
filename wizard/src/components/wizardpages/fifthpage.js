@@ -44,8 +44,13 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
     };
 
     async function handleReboot() {
-        setErrorFound([ 2, 'Are you sure you want to reboot this device?']);
-        openModal();
+        if(agree){
+            setErrorFound([ 2, 'Are you sure you want to reboot this device?']);
+            openModal();
+        }else {
+            setErrorFound([ 0, 'Please read best practice for WiFi']);
+            openModal();
+        }
     }
 
     async function handleRemove() {
@@ -65,7 +70,7 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
             response.data.includes("done") && setLoaded(false);
             response.data.includes("done") && setTimeout(() => {
                 window.location.reload();
-            }, "3000")
+            }, "60000")
         }        
     }
 
@@ -133,7 +138,7 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
                 </div>
 
                 <div className='right'>
-                    <button onClick={() => handleReboot()} className='button-style skip-button'>Reboot</button>
+                    <button onClick={() => handleReboot()} className={agree ? 'button-style skip-button' : 'button-style skip-button next-grayed' }>Reboot</button>
                     <button onClick={() => handleNextButton()} className={agree ? 'button-style next-button' : 'button-style next-button next-grayed'}>Next</button>
                 </div>
             </div>

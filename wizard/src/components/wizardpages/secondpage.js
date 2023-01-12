@@ -60,6 +60,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     function handleSelect(e) {
         let drivesSize;
         setRaidLevel(e.value);
+        console.log(selectedDrives)
         if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
             drivesSize = parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2);
         }else if(selectedDrives.length > 1 && parseFloat(selectedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(selectedDrives[1]?.SIZE / 1000000000).toFixed(2)){
