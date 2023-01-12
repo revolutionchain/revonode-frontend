@@ -49,8 +49,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
             drives[1] = null;
         }
         setSelectedDrives(drives);
-        handleSelect({value: raidLevel});
         updateStates ? setUpdatesStates(false) : setUpdatesStates(true);
+        handleSelect({value: raidLevel});
     }
 
     const [raidLevel, setRaidLevel] = useState("null");
