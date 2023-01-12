@@ -67,11 +67,12 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         let drivesSize;
         setRaidLevel(e.value);
         console.log(usedDrives)
-        if(usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) <= parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+        if(usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE ) <= parseFloat(usedDrives[1]?.SIZE)){
             drivesSize = parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2);
-        }else if(usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE / 1000000000).toFixed(2) > parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2)){
+        }else if (usedDrives.length > 1 && parseFloat(usedDrives[0]?.SIZE) > parseFloat(usedDrives[1]?.SIZE)){
             drivesSize = parseFloat(usedDrives[1]?.SIZE / 1000000000).toFixed(2);
         }
+        console.log(drivesSize);
 
         if(e.value == 0 && usedDrives.length > 1){
             let sum = parseFloat(drivesSize) + parseFloat(drivesSize);
