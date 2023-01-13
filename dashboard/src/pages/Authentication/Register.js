@@ -41,7 +41,6 @@ const Register = props => {
   useEffect(() => {
     props.apiError("")
     document.body.className = "authentication-bg";
-    // remove classname when component will unmount    
     fetch(`http://${window.location.hostname}:3001/checkuser`)
       .then(response => response.json())
       .then(data => {
@@ -65,6 +64,8 @@ const Register = props => {
 
   const [errorMsg, setErrorMsg] = useState("");
 
+  const [successMsg, setSuccessMsg] = useState("");
+
   const handleButton = (value) => {
     if (!value.user || !value.user.includes('@') || !value.user.split('@')[1].includes('.')) {
       setErrorMsg("You must write your email!");
@@ -77,6 +78,8 @@ const Register = props => {
       return openModal();
     }
     dispatch(userRegister(value, props.history));
+    setSuccessMsg("Registration succesfully! You'll be now redirected to login");
+    openModal();
   }
 
 
@@ -133,8 +136,6 @@ const Register = props => {
               <p style={{ marginBottom: `0` }} class="desc">
                 {"Dashboard visibility is exposed to your LAN Network, please create a new account to secure your node"}
               </p>
-              {/*<p style={{ margin: `0 !important` }} className='desc'>Dashboard visibility is exposed to your LAN Network, please create a new account to secure your node</p>
-              <img src="images/signup-img.jpg" alt="" class="signup-img" />*/}
             </div>
             <img className={`astronautImageLogin`} src={astronauteImageRegister} />
           </div>
@@ -159,50 +160,14 @@ const Register = props => {
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={userIcon} />
                             <input className='data-input' type='text' name='user' placeholder="Enter email" onChange={(e) => handleInputs(e)}></input>
                           </div>
-                          {/*<div className="mb-3">
-                            <label>Email</label>
-                            <input
-                              name='user'
-                              value={userData.user}
-                              className="form-control"
-                              placeholder="Enter email"
-                              onChange={(e) => handleInputs(e)}
-                              type="text"
-                            ></input>
-                          </div>*/}
                           <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={passIcon} />
                             <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Enter password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
                           </div>
-                          {/*<div className="mb-3">
-                            
-                    
-                            <label>Password</label>
-                            <input
-                              name='pass'
-                              value={userData.pass}
-                              className="form-control"
-                              placeholder="Enter password"
-                              onChange={(e) => handleInputs(e)}
-                              type="password"
-                            ></input>
-                          </div>*/}<div style={{ display: `flex`, alignItems: `center` }}>
+                          <div style={{ display: `flex`, alignItems: `center` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={passIcon} />
                             <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rePass' placeholder="Repeat password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
                           </div>
-                          {/*<div className="mb-3">
-                            
-                    
-                            <label>Re Write Password</label>
-                            <input
-                              name='rePass'
-                              value={userData.rePass}
-                              className="form-control"
-                              placeholder="Repeat password"
-                              onChange={(e) => handleInputs(e)}
-                              type="password"
-                            ></input>
-                          </div>*/}
                         </AvForm>
                       </div>
                     </div>
@@ -228,9 +193,9 @@ const Register = props => {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          {<img className='warning-icon' src={failedIcon} />}
-          <div className="div-balance-title div-abm-title">{errorMsg}</div>
-          <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>
+          { successMsg.length < 1 && <img className='warning-icon' src={failedIcon} />}
+          <div className="div-balance-title div-abm-title">{successMsg.length < 1 ? errorMsg : successMsg}</div>
+          {successMsg < 1 && <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>}
         </Modal>
       </div>
     </div>

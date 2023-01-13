@@ -38,7 +38,7 @@ export default function Sixthpage({ currentPage, setCurrentPage }) {
 
             <div className='buttons-container' style={{ marginTop: `20px` }}>
                 <div className='left'>
-                    <button onClick={() => setCurrentPage(currentPage - 1)} className='button-style back-button'>Back</button>
+                    <button onClick={() => setCurrentPage(currentPage - 2)} className='button-style back-button'>Back</button>
                 </div>
 
                 <div className='right'>

@@ -35,7 +35,9 @@ function* userRegister({ payload: { userData, history } }){
      }
   }); 
   if(response == true) {
-    history.push("/login")
+    setTimeout(() => {
+        history.push("/login");
+    }, "5000")
   } else {/*
     const jsonResponse = yield response;
     yield put({ type: SUCCESS_LOGIN, payload: jsonResponse })*/
