@@ -1,23 +1,16 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { exec, execFile, execFileSync } = require("child_process");
+const { exec, execSync, execFile, execFileSync } = require("child_process");
 const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
 
 const envFilePath = path.resolve(__dirname, ".env");
-//const path = '/home/revo/revonode-frontend/wizard/.env';
 
 
-if(!fs.existsSync('.env')){
-  exec('sudo touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
-    if (errExecuting) {
-      console.log(errExecuting)
-    } else {
-      console.log('.env file created successfully');
-    }
-  });
+if(!fs.existsSync(envFilePath)){
+  execSync('touch .env')
 }
 
 
