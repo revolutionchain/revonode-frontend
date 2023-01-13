@@ -10,10 +10,10 @@ import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 
-import logoSm from "../../assets/images/logo-sm.png";
-import logoSmLight from "../../assets/images/logo-sm-light.png";
-import logoDark from "../../assets/images/logo-dark.png";
-import logoLight from "../../assets/images/logo-light.png";
+import logoSm from "../../assets/images/revo-light.svg";
+import logoSmLight from "../../assets/images/revo-light.svg";
+import logoDark from "../../assets/images/revo-light.svg";
+import logoLight from "../../assets/images/revo-light.svg";
 
 //i18n
 import { withTranslation } from "react-i18next";
@@ -108,7 +108,7 @@ const Header = (props) => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
-            <form className="app-search d-none d-lg-block">
+            <form className="app-search d-none d-lg-block">{/*
               <div className="position-relative">
                 <input
                   type="text"
@@ -116,7 +116,7 @@ const Header = (props) => {
                   placeholder={props.t("Search") + "..."}
                 />
                 <span className="mdi mdi-magnify" />
-              </div>
+              </div>*/}
             </form>
           </div>
           <div className="d-flex">
