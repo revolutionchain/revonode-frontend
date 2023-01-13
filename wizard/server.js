@@ -7,7 +7,7 @@ const { networkInterfaces } = require('os');
 const os = require('os');
 
 const envFilePath = path.resolve(__dirname, ".env");
-const path = '/home/revo/revonode-frontend/wizard/.env';
+//const path = '/home/revo/revonode-frontend/wizard/.env';
 
 
 if(!fs.existsSync('.env')){
