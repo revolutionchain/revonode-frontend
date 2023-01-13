@@ -851,8 +851,9 @@ a {
 
 }
 
-.success-padding {
+.success-adjust {
   padding: 38px 0;
+  left: 20px;
 }
 
 @media (max-width: 1200px) {
@@ -922,8 +923,9 @@ a {
     display: block;    
     text-align: center;
   }
- .success-padding {
+ .success-adjust {
   padding: 0;
+  left: 0;
  }
   .signup-desc-content {
     position: relative;

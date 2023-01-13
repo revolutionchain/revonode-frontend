@@ -6,13 +6,27 @@ const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
 
+const envFilePath = path.resolve(__dirname, ".env");
+
+try {
+  if (fs.existsSync(envFilePath)) {
+  }
+} catch(err) {
+  exec('touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
+    if (errExecuting) {
+      console.log(errExecuting)
+    } else {
+      console.log('.env file created successfully');
+    }
+  });
+}
+
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.json())
 
-const envFilePath = path.resolve(__dirname, ".env");
 
 
 const readEnvVars = () => fs.readFileSync(envFilePath, "utf-8").split(os.EOL);
