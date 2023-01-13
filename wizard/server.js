@@ -7,22 +7,18 @@ const { networkInterfaces } = require('os');
 const os = require('os');
 
 const envFilePath = path.resolve(__dirname, ".env");
+const path = '/home/revo/revonode-frontend/wizard/.env';
 
 
-fs.access(envFilePath, fs.F_OK, (err) => {
-  console.log('fs.access')
-  if (err) {
-    console.log('error');
-    exec('sudo touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
-      if (errExecuting) {
-        console.log(errExecuting)
-      } else {
-        console.log('.env file created successfully');
-      }
-    });
-  }
-  //file exists
-})
+if(!fs.existsSync('.env')){
+  exec('sudo touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
+    if (errExecuting) {
+      console.log(errExecuting)
+    } else {
+      console.log('.env file created successfully');
+    }
+  });
+}
 
 
 const PORT = process.env.PORT || 3001;
