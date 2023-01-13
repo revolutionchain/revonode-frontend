@@ -4,6 +4,7 @@ import { Row, Col, Card, Alert, Container } from "reactstrap"
 import MetaTags from 'react-meta-tags';
 import Modal from 'react-modal';
 import failedIcon from '../../assets/images/failed.png'
+import successIcon from '../../assets/images/success.png'
 
 
 import '../../assets/style.css'
@@ -194,6 +195,7 @@ const Register = props => {
           contentLabel="Example Modal"
         >
           { successMsg.length < 1 && <img className='warning-icon' src={failedIcon} />}
+          { successMsg.length > 1 && <img className='warning-icon' src={successIcon} />}
           <div className="div-balance-title div-abm-title">{successMsg.length < 1 ? errorMsg : successMsg}</div>
           {successMsg < 1 && <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>}
         </Modal>
