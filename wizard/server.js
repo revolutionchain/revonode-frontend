@@ -8,18 +8,19 @@ const os = require('os');
 
 const envFilePath = path.resolve(__dirname, ".env");
 
-try {
-  if (fs.existsSync(envFilePath)) {
+
+fs.access(envFilePath, fs.F_OK, (err) => {
+  if (err) {
+    exec('touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
+      if (errExecuting) {
+        console.log(errExecuting)
+      } else {
+        console.log('.env file created successfully');
+      }
+    });
   }
-} catch(err) {
-  exec('touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
-    if (errExecuting) {
-      console.log(errExecuting)
-    } else {
-      console.log('.env file created successfully');
-    }
-  });
-}
+  //file exists
+})
 
 
 const PORT = process.env.PORT || 3001;
