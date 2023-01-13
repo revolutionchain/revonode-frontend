@@ -10,7 +10,9 @@ const envFilePath = path.resolve(__dirname, ".env");
 
 
 fs.access(envFilePath, fs.F_OK, (err) => {
+  console.log('fs.access')
   if (err) {
+    console.log('error');
     exec('sudo touch .env', { cwd: '/home/revo/revonode-frontend/wizard' }, (errExecuting, stdout, stderr) => {
       if (errExecuting) {
         console.log(errExecuting)
