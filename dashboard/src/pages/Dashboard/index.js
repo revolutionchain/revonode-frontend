@@ -116,11 +116,11 @@ const Dashboard = props => {
 
               <div className="row justify-content-center">
                 <div className="col-xl-10">
-                  <h4 className="text-primary">Subscribe !</h4>
-                  <p className="text-muted font-size-14 mb-4">Subscribe our newletter and get notification to stay update.</p>
+                  <h4 className="text-primary">Join Early Adopters Airdrop!</h4>
+                  <p className="text-muted font-size-14 mb-4">Scan your personal NFC Revo tag, add your code and hit confirm to enroll!</p>
 
                   <div className="input-group bg-light rounded">
-                    <Input type="email" className="form-control bg-transparent border-0" placeholder="Enter Email address" />
+                    <Input type="email" className="form-control bg-transparent border-0" placeholder="Write your code here!" />
                     <Button color="primary" type="button" id="button-addon2">
                       <i className="bx bxs-paper-plane"></i>
                     </Button>

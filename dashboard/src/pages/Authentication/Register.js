@@ -71,7 +71,10 @@ const Register = props => {
     if (!value.user || !value.user.includes('@') || !value.user.split('@')[1].includes('.')) {
       setErrorMsg("You must write your email!");
       return openModal();
-    } else if (!value.pass) {
+    } else if (value.user.includes(' ')) {
+      setErrorMsg("you entered an invalid character!");
+      return openModal();
+    }else if (!value.pass) {
       setErrorMsg("You must write your password!");
       return openModal();
     } else if (value.pass !== value.rePass) {

@@ -15,10 +15,10 @@ import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown"
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown"
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu"
 
-import logoSm from "../../assets/images/logo-sm.png"
-import logoSmLight from "../../assets/images/logo-sm-light.png"
-import logoDark from "../../assets/images/logo-dark.png"
-import logoLight from "../../assets/images/logo-light.png"
+import logoSm from "../../assets/images/revo-light.svg"
+import logoSmLight from "../../assets/images/revo-light.svg"
+import logoDark from "../../assets/images/revo-light.svg"
+import logoLight from "../../assets/images/revo-light.svg"
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -92,12 +92,14 @@ const Header = props => {
 
             <form className="app-search d-none d-lg-block">
               <div className="position-relative">
+                {/*
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Search..."
-                />
+                />                
                 <span className="mdi mdi-magnify" />
+                */}
               </div>
             </form>
           </div>
@@ -216,6 +218,7 @@ const Header = props => {
             <NotificationDropdown />
 
             <ProfileMenu />
+            {/*
 
             <div className="dropdown d-inline-block">
               <button
@@ -227,7 +230,7 @@ const Header = props => {
               >
                 <i className="bx bx-cog bx-spin" />
               </button>
-            </div>
+            </div>*/}
           </div>
         </div>
       </header>
