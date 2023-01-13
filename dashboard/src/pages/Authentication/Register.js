@@ -196,7 +196,7 @@ const Register = props => {
         >
           { successMsg.length < 1 && <img className='warning-icon' src={failedIcon} />}
           { successMsg.length > 1 && <img className='warning-icon' src={successIcon} />}
-          <div className="div-balance-title div-abm-title">{successMsg.length < 1 ? errorMsg : successMsg}</div>
+          <div className={ successMsg.length < 1 ? "div-balance-title div-abm-title" : "div-balance-title div-abm-title success-padding"}>{successMsg.length < 1 ? errorMsg : successMsg}</div>
           {successMsg < 1 && <button onClick={closeModal} className='button-style back-button modal-button'>Ok</button>}
         </Modal>
       </div>

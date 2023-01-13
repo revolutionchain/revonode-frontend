@@ -851,6 +851,10 @@ a {
 
 }
 
+.success-padding {
+  padding: 38px 0;
+}
+
 @media (max-width: 1200px) {
   
   .skip-button {
@@ -918,7 +922,9 @@ a {
     display: block;    
     text-align: center;
   }
-
+ .success-padding {
+  padding: 0;
+ }
   .signup-desc-content {
     position: relative;
     padding: 35px 25px 0 25px;
