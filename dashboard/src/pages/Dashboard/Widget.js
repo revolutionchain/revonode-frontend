@@ -49,9 +49,9 @@ const Widget = props => {
         <React.Fragment>
             <Row>
                 
-                    <Col md={6} xl={12}>
+                    <Col md={6} xl={12} className="d-flex">
                     {widget.map((widget, key) => (
-                        <Col xl={2} key={key}>
+                        <Col xl={3} key={key}>
                         <Card>
                             <CardBody>
                                 <div className="float-end">
