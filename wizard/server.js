@@ -440,7 +440,9 @@ app.get('/getdashboarddata', async (req, res, next) => {
   let response = [];
   for(let i = 0 ; i < types.length ; i ++){
     let data = await globalDashboardFunction(types[i]);
-    response.push(data)
+
+
+    response.push(data.replaceAll("\\", "").replaceAll("\n",""));
   }
   console.log(response);
   res.send(response);
