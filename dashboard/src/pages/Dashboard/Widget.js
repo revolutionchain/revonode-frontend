@@ -48,9 +48,10 @@ const Widget = props => {
     return (
         <React.Fragment>
             <Row>
-                {widget.map((widget, key) => (
-                    <Col md={6} xl={3} key={key}>
-                        <Card>
+                
+                    <Col md={6} xl={12}>
+                    {widget.map((widget, key) => (
+                        <Card key={key}>
                             <CardBody>
                                 <div className="float-end">
                                     <div className="avatar-sm mx-auto mb-4">
@@ -78,8 +79,8 @@ const Widget = props => {
                             </p>
                             </CardBody>
                         </Card>
-                    </Col>
                 ))}
+                    </Col>
             </Row>
         </React.Fragment>
     );
