@@ -92,7 +92,7 @@ const SidebarContent = props => {
       <SimpleBar style={{ maxHeight: "100%" }} ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">{props.t("Menu")} </li>
+            <li className="menu-title">{props.t("Menu")} </li>{/*
             <li>
               <Link to="/dashboard">
                 <i className='bx bxs-dashboard'></i>
@@ -100,12 +100,18 @@ const SidebarContent = props => {
               </Link>
             </li>
 
-            <li className="menu-title mt-3">More</li>
+            <li className="menu-title mt-3">More</li>*/}
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("Menu")}</span>
+              </Link>
+            </li>
 
             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className='bx bxs-grid'></i>
-                <span>{props.t("Apps")}</span>
+                <span>{props.t("Peers")}</span>
               </Link>
               <ul className="sub-menu">
                 <li><Link to="/calendar"><span>{props.t("Calendar")}</span></Link></li>
@@ -119,6 +125,66 @@ const SidebarContent = props => {
                 </li>
               </ul>
             </li>
+            
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("Ban list")}</span>
+              </Link>
+            </li>
+            
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className='bx bxs-grid'></i>
+                <span>{props.t("Blocks")}</span>
+              </Link>
+              <ul className="sub-menu">
+                <li><Link to="/calendar"><span>{props.t("Calendar")}</span></Link></li>
+                <li><Link to="/chat"><span>{props.t("Chat")}</span></Link></li>
+                <li>
+                  <Link to="/#" className="has-arrow"><span>{props.t("Email")}</span></Link>
+                  <ul className="sub-menu">
+                    <li><Link to="/email-inbox">{props.t("Inbox")}</Link></li>
+                    <li><Link to="/email-read">{props.t("Read Email")}</Link></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            
+            
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("Memory Pool")}</span>
+              </Link>
+            </li>
+
+            
+            
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("Wallet")}</span>
+              </Link>
+            </li>
+            
+            
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("Settings")}</span>
+              </Link>
+            </li>
+
+            
+            
+            <li>
+              <Link to="/ui-components" className="waves-effect">
+                <i className='bx bx-briefcase'></i>
+                <span key="t-ui-elements">{props.t("About")}</span>
+              </Link>
+            </li>{/*
 
             <li>
               <Link to="/#" className="waves-effect">
@@ -258,7 +324,7 @@ const SidebarContent = props => {
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li>*/}
           </ul>
         </div>
       </SimpleBar>
