@@ -76,7 +76,7 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <header id="page-topbar">
-        <div className="navbar-header">
+        <div style={{alignItems: `flex-start`}} className="navbar-header">
           <div className="d-flex">
             <div style={{height: `100px`}} className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
@@ -86,7 +86,6 @@ const Header = (props) => {
                 <span className="logo-lg">
                   <img src={logoDark} alt="" height="23" />
                 </span>
-                <h4>Node Manager</h4>
               </Link>
 
               <Link to="/" className="logo logo-light">
@@ -96,7 +95,8 @@ const Header = (props) => {
                 <span className="logo-lg">
                   <img src={logoLight} alt="" height="23" />
                 </span>
-              </Link>
+              </Link>              
+              <h4>Node Manager</h4>
             </div>
             <button
               type="button"
