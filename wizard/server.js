@@ -429,13 +429,13 @@ function globalDashboardFunction(type) {/*
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
   } catch (error) {
-    return message
+    return error
   }
 
 }
 
 
-app.get('/getDashboardData', async (req, res, next) => {
+app.get('/getdashboarddata', async (req, res, next) => {
   const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', '-getblockchaininfo', '-getpeer'];
   let response = [];
   for(let i = 0 ; i < types.length ; i ++){
