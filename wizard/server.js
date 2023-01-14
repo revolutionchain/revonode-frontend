@@ -416,6 +416,38 @@ app.post('/createwallet', (req, res, next) => {
   });
 })
 
+
+function globalDashboardFunction(type) {/*
+  let message;
+  if (type == '-delwificonfig' || type == '-getwificonfig') {
+    message = 'Error: Wifi config file not found';
+  } else if (type == '-delrevoconf' || type == '-getrevoconf') {
+    message = 'Error: Revo rpc config file not found';
+  } else if (type == '-stopdaemon' || type == '-startdaemon') {
+    message = 'Daemon error on start/stop'
+  }*/
+  try {
+    return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
+  } catch (error) {
+    return message
+  }
+
+}
+
+
+app.get('/getDashboardData', async (req, res, next) => {
+  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', '-getblockchaininfo', '-getpeer'];
+  let response = [];
+  for(let i = 0 ; i < types.length ; i ++){
+    let data = await globalDashboardFunction(types[i]);
+    response.push(data)
+  }
+  console.log(response);
+  res.send(response);
+})
+
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {
