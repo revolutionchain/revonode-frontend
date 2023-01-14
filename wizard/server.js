@@ -436,7 +436,7 @@ function globalDashboardFunction(type) {/*
 
 
 app.get('/getdashboarddata', async (req, res, next) => {
-  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', '-getblockchaininfo', '-getpeer'];
+  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', '-getblockchaininfo'];
   let response = [];
   for(let i = 0 ; i < types.length ; i ++){
     let data = await globalDashboardFunction(types[i]);
