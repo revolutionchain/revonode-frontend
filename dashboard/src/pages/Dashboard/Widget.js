@@ -51,7 +51,8 @@ const Widget = props => {
                 
                     <Col md={6} xl={12}>
                     {widget.map((widget, key) => (
-                        <Card key={key}>
+                        <Col xl={2} key={key}>
+                        <Card>
                             <CardBody>
                                 <div className="float-end">
                                     <div className="avatar-sm mx-auto mb-4">
@@ -79,6 +80,7 @@ const Widget = props => {
                             </p>
                             </CardBody>
                         </Card>
+                        </Col>
                 ))}
                     </Col>
             </Row>
