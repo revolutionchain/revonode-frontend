@@ -79,7 +79,7 @@ const Header = (props) => {
         <div style={{alignItems: `flex-start`}} className="navbar-header">
           <div className="d-flex">
             <div style={props.leftSideBarType === "default" ? {height: `100px`} : {height: `70px`}} className="navbar-brand-box">
-              <Link to="/" className="logo logo-dark">
+              <span className="logo logo-dark">
                 <span className="logo-sm" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
                   props.leftSideBarType === "default" ? <img src={logoSm} alt="" height="22" /> : <img src={logoSm} alt="" height="22" width="60" />
                   
@@ -88,7 +88,7 @@ const Header = (props) => {
                 <span className="logo-lg">
                   <img src={logoDark} alt="" height="23" />
                 </span>
-              </Link>
+              </span>
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm">
