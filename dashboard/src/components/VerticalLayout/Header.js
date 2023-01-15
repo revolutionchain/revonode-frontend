@@ -90,8 +90,9 @@ const Header = (props) => {
               </span>
 
               <Link to="/" className="logo logo-light">
-                <span className="logo-sm">
-                  <img src={logoSmLight} alt="" height="22" />
+                <span className="logo-sm">{
+                  props.leftSideBarType === "default" ? <img src={logoSmLight} alt="" height="22" /> : <img src={logoSmLight} alt="" height="22" width="60" />                  
+                  }
                 </span>
                 <span className="logo-lg">{
                   props.leftSideBarType === "default" ? <img src={logoLight} alt="" height="22" /> : <img src={logoLight} alt="" height="22" width="60" />                  
