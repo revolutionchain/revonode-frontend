@@ -81,8 +81,7 @@ const Header = (props) => {
             <div style={props.leftSideBarType === "default" ? {height: `100px`} : {height: `70px`}} className="navbar-brand-box">
               <span className="logo logo-dark">
                 <span className="logo-sm" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
-                  props.leftSideBarType === "default" ? <img src={logoSm} alt="" height="22" /> : <img src={logoSm} alt="" height="22" width="60" />
-                  
+                  props.leftSideBarType === "default" ? <img src={logoSm} alt="" height="22" /> : <img src={logoSm} alt="" height="22" width="60" />                  
                   }
                 </span>
                 <span className="logo-lg">
@@ -94,8 +93,9 @@ const Header = (props) => {
                 <span className="logo-sm">
                   <img src={logoSmLight} alt="" height="22" />
                 </span>
-                <span className="logo-lg">
-                  <img src={logoLight} alt="" height="23" />
+                <span className="logo-lg">{
+                  props.leftSideBarType === "default" ? <img src={logoLight} alt="" height="22" /> : <img src={logoLight} alt="" height="22" width="60" />                  
+                  }
                 </span>
               </Link>              
               <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`}}>Node Manager</h4>
