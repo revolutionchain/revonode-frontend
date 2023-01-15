@@ -80,8 +80,8 @@ const Header = (props) => {
           <div className="d-flex">
             <div style={props.leftSideBarType === "default" ? {height: `100px`} : {height: `70px`}} className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
-                <span className="logo-sm">
-                  <img src={logoSm} alt="" height="22" style={props.leftSideBarType === "default" ? {} : {width: `60px`, marginLeft: `-20px`}} />
+                <span className="logo-sm" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>
+                  <img src={logoSm} alt="" height="22" width={props.leftSideBarType === "default" ? "" : "60"} />
                 </span>
                 <span className="logo-lg">
                   <img src={logoDark} alt="" height="23" />
