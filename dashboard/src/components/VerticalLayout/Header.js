@@ -96,7 +96,7 @@ const Header = (props) => {
                   <img src={logoLight} alt="" height="23" />
                 </span>
               </Link>              
-              <h4>Node Manager</h4>
+              <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`}}>Node Manager</h4>
             </div>
             <button
               type="button"

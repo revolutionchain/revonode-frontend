@@ -443,12 +443,12 @@ app.get('/getdashboarddata', async (req, res, next) => {
     let result
     if(typeof(data) == "string"){
       result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"');
+      result = JSON.parse(result);
     }else {
       result = data
     }
     response.push(result);
   }
-  console.log(response);
   res.send(response);
 })
 
