@@ -84,21 +84,6 @@ useEffect(()=>{
             <Col xl={8}>
                 <Card className="card-height-100">
                     <CardBody>
-                        <div className="float-end">
-                            <Dropdown isOpen={menu}
-                                toggle={() => setMenu(!menu)}>
-                                <DropdownToggle className="dropdown-toggle text-reset" tag="a">
-                                    <span className="fw-semibold">Sort By:</span> <span className="text-muted">Yearly<i className="mdi mdi-chevron-down ms-1"></i></span>
-                                </DropdownToggle>
-
-                                <DropdownMenu className="dropdown-menu dropdown-menu-end">
-                                    <DropdownItem>Yearly</DropdownItem>
-                                    <DropdownItem>Monthly</DropdownItem>
-                                    <DropdownItem>Weekly</DropdownItem>
-                                    <DropdownItem>Today</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
-                        </div>
                         <h4 className="card-title mb-4">Nodes</h4>
 
                         <div className="mt-1">
