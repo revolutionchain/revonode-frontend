@@ -441,20 +441,12 @@ app.get('/getdashboarddata', async (req, res, next) => {
   for(let i = 0 ; i < types.length ; i ++){
     let data;
     if(types[i] == "date"){
-      data = exec('date', {}, (err, stdout, stderr) => {
-        if (err) {
-          return "";
-        } else {
-          console.log(stdout)
-          return stdout;
-        }
-      });
-      console.log(data);
+      data = execSync('date', {encoding: 'utf8'});
     }else{
       data = await globalDashboardFunction(types[i]);
     }
     let result
-    if(typeof(data) == "string"){
+    if(typeof(data) == "string" && types[i] !== "date"){
       result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"');
       result = JSON.parse(result);
     }else {
