@@ -34,6 +34,16 @@ const widget = [
         upArrow: true
     },
     {
+        id: 4,
+        title: 'Banned Peers',
+        count: '9582',
+        dollor: false,
+        icon: 'mdi mdi-cart-check text-success',
+        percentage: '0.55%',
+        color: 'warning',
+        upArrow: true
+    },
+    {
         id: 5,
         title: 'TX in Mempool',
         count: '9582',
@@ -85,20 +95,20 @@ useEffect(()=>{
                     {widget.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
-                            <CardBody>
+                            <CardBody>{/*
                                 <div className="float-end">
                                     <div className="avatar-sm mx-auto mb-4">
                                         <span className="avatar-title rounded-circle bg-light font-size-24">
                                             <i className={widget.icon}></i>
                                         </span>
                                     </div>
-                                </div>
+                                </div>*/}
                                 <div>
-                                    <p className="text-muted text-uppercase fw-semibold">{widget.title}</p>
+                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase ">{widget.title}</p>
                                     <h4 className="mb-1 mt-1">
-                                        {widget.dollor === true ? '$' : ''}
+                                        {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.count}
+                                            {widget.id == (2 || 3) ? (widget.count/1000000000).toFixed(2) : widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
