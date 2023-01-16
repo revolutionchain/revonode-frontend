@@ -107,7 +107,6 @@ useEffect(()=>{
                                         {e.title}
                                     </div>
                                     <div style={{width: "50%"}}>
-                                        {e.value}
                                     </div>
                                 </div>)
                             })
