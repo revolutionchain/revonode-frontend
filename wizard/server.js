@@ -441,7 +441,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
   for(let i = 0 ; i < types.length ; i ++){
     let data;
     if(types[i] == "date"){
-      data = execFileSync('date', [], { encoding: 'utf8' });
+      data = execFileSync('bash', ['date'], { encoding: 'utf8' });
     }else{
       data = await globalDashboardFunction(types[i]);
     }
