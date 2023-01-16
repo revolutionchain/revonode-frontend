@@ -102,14 +102,14 @@ useEffect(()=>{
 
                         <div className="mt-1">
                             {nodeInfo.map(e => {
-                                <div className="d-flex">
+                                return (<div className="d-flex">
                                     <div style={{width: "50%"}}>
                                         {e.title}
                                     </div>
                                     <div style={{width: "50%"}}>
                                         {e.value}
                                     </div>
-                                </div>
+                                </div>)
                             })
                             }
                             {
@@ -132,7 +132,7 @@ useEffect(()=>{
                         </div>
 
                         <div className="mt-3">
-                            <SalesAnalyticsChart />
+                            {/*<SalesAnalyticsChart />*/}
                         </div>
                     </CardBody>
                 </Card>
