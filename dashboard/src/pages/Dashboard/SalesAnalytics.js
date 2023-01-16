@@ -101,7 +101,7 @@ useEffect(()=>{
                         <h4 className="card-title mb-4">Nodes</h4>
 
                         <div className="mt-1">
-                            {nodeInfo.map(e => {
+                            {props.nodeData.length && nodeInfo.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{width: "50%"}}>
                                         {e.title}
