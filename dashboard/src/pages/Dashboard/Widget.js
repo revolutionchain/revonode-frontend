@@ -69,22 +69,13 @@ const widget = [
 const Widget = props => {
 
     
-useEffect(()=>{    
-    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        widget[0].count = res[0].connections.total;
-        widget[1].count = res[1].totalbytessent;
-        widget[2].count = res[1].totalbytesrecv;
-        widget[3].count = res[2].length > 0 ? res[2].length : "0";
-        widget[4].count = res[3].size;
-        widget[5].count = res[0].headers;
-      });
+useEffect(()=>{        
+    widget[0].count = props.nodeData[0].connections.total;
+    widget[1].count = props.nodeData[1].totalbytessent;
+    widget[2].count = props.nodeData[1].totalbytesrecv;
+    widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
+    widget[4].count = props.nodeData[3].size;
+    widget[5].count = props.nodeData[0].headers;
 })
 
     return (

@@ -35,10 +35,22 @@ const Dashboard = props => {
     setSubscribemodal(!setSubscribemodal)
   }
 
+  const [nodeData, setNodeData] = useState(false);
+
   useEffect(() => {
     if(!isLogged){      
       props.history.push('/login');
     }
+    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        nodeData = res
+      });
     setTimeout(() => {
       setSubscribemodal(true)
     }, 2000);
@@ -46,7 +58,7 @@ const Dashboard = props => {
 
   return (
     <React.Fragment>
-      <div className="page-content">
+      {nodeData?.length && <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Samply - React Admin & Dashboard Template</title>
@@ -71,10 +83,10 @@ const Dashboard = props => {
             />
           }
           {/* import Widget */}
-          <Widget />
+          <Widget nodeData={nodeData} />
 
           <Row>
-            <SalesAnalytics />
+            <SalesAnalytics nodeData={nodeData} />
             <EarningReports />
           </Row>
           <Row>
@@ -88,7 +100,7 @@ const Dashboard = props => {
           <RecentUsers />
         </Container>
       </div>
-      <Modal
+      }<Modal
         isOpen={subscribemodal}
         role="dialog"
         autoFocus={true}

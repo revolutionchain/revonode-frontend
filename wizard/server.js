@@ -436,10 +436,15 @@ function globalDashboardFunction(type) {/*
 
 
 app.get('/getdashboarddata', async (req, res, next) => {
-  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', '-getblockchaininfo'];
+  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo'];
   let response = [];
   for(let i = 0 ; i < types.length ; i ++){
-    let data = await globalDashboardFunction(types[i]);
+    let data;
+    if(types[i] == "date"){
+      data = execFileSync('date', [], { encoding: 'utf8' });
+    }else{
+      data = await globalDashboardFunction(types[i]);
+    }
     let result
     if(typeof(data) == "string"){
       result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"');
