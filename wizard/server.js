@@ -447,7 +447,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
     }
     let result
     if(typeof(data) == "string" && types[i] !== "date"){
-      result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"');
+      result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-","_of_");
       result = JSON.parse(result);
     }else {
       result = data

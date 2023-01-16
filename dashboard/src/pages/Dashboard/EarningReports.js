@@ -1,18 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
+import { useEffect } from 'react';
+
 
 //import images 
 import widget from '../../assets/images/widget-img.png';
 import ApexRadial from '../AllCharts/ApexRadial';
 
+const blockchainInfo = [
+    {
+        title: "Chain",
+        value: ""
+    },
+    {
+        title: "Size",
+        value: ""
+    },
+    {
+        title: "Difficulty",
+        value: ""
+    },
+    {
+        title: "Mediantime",
+        value: ""
+    },
+]
+
 function EarningReports(props) {
+
+    
+useEffect(()=>{        
+    blockchainInfo[0].value = props.nodeData[0].chain;
+    blockchainInfo[1].value = ((props.nodeData[6].size_on_disk)/1000000000).toFixed(2) + "GB";
+    blockchainInfo[2].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
+    blockchainInfo[4].value = props.nodeData[6].mediantime;
+})
+
+
     return (
         <React.Fragment>
             <Col xl={4}>
                 <Card className="bg-pattern">
                     <CardBody>
-                        <Row className="align-items-center">
+                        
+                    <h4 className="card-title mb-4">Nodes</h4>
+                        <div className="mt-1">
+                            {props.nodeData.length && blockchainInfo.map(e => {
+                                return (<div className="d-flex">
+                                    <div style={{width: "50%"}}>
+                                        {e.title}
+                                    </div>
+                                    <div style={{width: "50%"}}>
+                                        {e?.value}
+                                    </div>
+                                </div>)
+                            })
+                            }
+                        </div>
+                        {/*<Row className="align-items-center">
                             <Col sm={8}>
                                 <div className="avatar-xs mb-3">
                                     <span className="avatar-title rounded-circle bg-light font-size-24">
@@ -29,7 +75,7 @@ function EarningReports(props) {
                                     <img src={widget} className="img-fluid" alt="" />
                                 </div>
                             </div>
-                        </Row>
+                        </Row>*/}
                     </CardBody>
                 </Card>
 

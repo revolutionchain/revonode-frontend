@@ -87,7 +87,7 @@ const Dashboard = props => {
 
           <Row>
             <SalesAnalytics nodeData={nodeData} />
-            <EarningReports />
+            <EarningReports nodeData={nodeData} />
           </Row>
           <Row>
             <Col xl={6}>

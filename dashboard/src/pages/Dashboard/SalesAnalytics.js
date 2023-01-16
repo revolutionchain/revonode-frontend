@@ -4,27 +4,27 @@ import SalesAnalyticsChart from '../AllCharts/SalesAnalyticsChart';
 
 const nodeInfo = [
     {
-        title: "client",
+        title: "Client",
         value: ""
     },
     {
-        title: "protocol",
+        title: "Protocol",
         value: ""
     },
     {
-        title: "port",
+        title: "Port",
         value: ""
     },
     {
-        title: "services",
+        title: "Services",
         value: ""
     },
     {
-        title: "uptime",
+        title: "Uptime",
         value: ""
     },
     {
-        title: "nodeTime",
+        title: "NodeTime",
         value: ""
     },
     {
@@ -36,23 +36,23 @@ const nodeInfo = [
         value: ""
     },
     {
-        title: "tor",
+        title: "Tor",
         value: ""
     },
     {
-        title: "pruningMode",
+        title: "Pruning Mode",
         value: ""
     },
     {
-        title: "blockOnlyMode",
+        title: "Block Only Mode",
         value: ""
     },
     {
-        title: "mempoolLimited",
+        title: "Mempool Limited",
         value: ""
     },
     {
-        title: "trafficLimitSet",
+        title: "Traffic Limit Set",
         value: ""
     }
 ]
