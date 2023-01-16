@@ -63,13 +63,13 @@ const SalesAnalytics = props => {
     
 useEffect(()=>{        
     nodeInfo[0].value = props.nodeData[4].subversion;
-    nodeInfo[1].value = props.nodeData[4].protocol;
+    nodeInfo[1].value = props.nodeData[4].protocolversion;
     nodeInfo[2].value = "6969";
-    nodeInfo[3].value = props.nodeData[4].localserviceslist;
+    nodeInfo[3].value = props.nodeData[4].localservicesnames;
     nodeInfo[4].value = props.nodeData[5];
     nodeInfo[5].value = props.nodeData[6];
-    nodeInfo[6].value = props.nodeData[4].networks;
-    nodeInfo[7].value = props.nodeData[4].networks;
+    nodeInfo[6].value = props.nodeData[4].networks.ipv4;
+    nodeInfo[7].value = props.nodeData[4].networks.ipv6;
     nodeInfo[8].value = props.nodeData[7].pruned;
     nodeInfo[9].value = "false";
     nodeInfo[10].value = "false";
