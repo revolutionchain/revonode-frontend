@@ -49,7 +49,7 @@ const Dashboard = props => {
       },
     }).then(data => data.json())
       .then(res => {
-        nodeData = res
+        setNodeData(res);
       });
     setTimeout(() => {
       setSubscribemodal(true)
