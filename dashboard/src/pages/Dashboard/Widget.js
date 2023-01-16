@@ -1,11 +1,12 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
+import { useEffect, useState } from 'react';
 
 const widget = [
     {
         id: 1,
-        title: 'Total Revenue',
-        count: '58425',
+        title: 'Total Connections',
+        count: 'value',
         dollor: true,
         icon: 'mdi mdi-cash-multiple text-primary',
         percentage: '2.65%',
@@ -14,7 +15,7 @@ const widget = [
     },
     {
         id: 2,
-        title: 'Total Refunds',
+        title: 'Total Upload Traffic (GB)',
         count: '2568',
         dollor: true,
         icon: 'mdi mdi-refresh-circle text-success',
@@ -24,7 +25,7 @@ const widget = [
     },
     {
         id: 3,
-        title: 'Active Users',
+        title: 'Total Download Traffic (MB)',
         count: '258410',
         dollor: false,
         icon: 'mdi mdi-account-group text-primary',
@@ -33,8 +34,18 @@ const widget = [
         upArrow: true
     },
     {
-        id: 4,
-        title: 'All Time Orders',
+        id: 5,
+        title: 'TX in Mempool',
+        count: '9582',
+        dollor: false,
+        icon: 'mdi mdi-cart-check text-success',
+        percentage: '0.55%',
+        color: 'warning',
+        upArrow: true
+    },
+    {
+        id: 6,
+        title: 'Lastest Block',
         count: '9582',
         dollor: false,
         icon: 'mdi mdi-cart-check text-success',
@@ -44,6 +55,24 @@ const widget = [
     },
 ]
 
+useEffect(()=>{    
+    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        widget[0].count = data[0].connections.total;
+        widget[1].count = data[1].totalbytessent;
+        widget[2].count = data[1].totalbytesrecv;
+        widget[3].count = data[2].length > 0 ? data[2].length : "0";
+        widget[4].count = data[3].size;
+        widget[5].count = data[0].headers;
+      });
+})
+
 const Widget = props => {
     return (
         <React.Fragment>
@@ -51,7 +80,7 @@ const Widget = props => {
                 
                     <Col md={6} xl={12} className="d-flex">
                     {widget.map((widget, key) => (
-                        <Col xl={3} key={key}>
+                        <Col xl={2} key={key}>
                         <Card>
                             <CardBody>
                                 <div className="float-end">
