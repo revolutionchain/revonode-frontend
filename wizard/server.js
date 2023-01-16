@@ -445,9 +445,11 @@ app.get('/getdashboarddata', async (req, res, next) => {
         if (err) {
           return "";
         } else {
+          console.log(stdout)
           return stdout;
         }
       });
+      console.log(data);
     }else{
       data = await globalDashboardFunction(types[i]);
     }
