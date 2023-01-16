@@ -55,6 +55,10 @@ const widget = [
     },
 ]
 
+
+const Widget = props => {
+
+    
 useEffect(()=>{    
     fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
       method: 'GET',
@@ -67,13 +71,12 @@ useEffect(()=>{
         widget[0].count = res[0].connections.total;
         widget[1].count = res[1].totalbytessent;
         widget[2].count = res[1].totalbytesrecv;
-        widget[3].count = res[2].length > 0 ? data[2].length : "0";
+        widget[3].count = res[2].length > 0 ? res[2].length : "0";
         widget[4].count = res[3].size;
         widget[5].count = res[0].headers;
       });
 })
 
-const Widget = props => {
     return (
         <React.Fragment>
             <Row>
