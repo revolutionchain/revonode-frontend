@@ -75,6 +75,7 @@ useEffect(()=>{
     nodeInfo[10].value = "false";
     nodeInfo[11].value = "false";
     nodeInfo[12].value = props.nodeData[0].chain;
+    console.log(nodeInfo);
 })
 
 
