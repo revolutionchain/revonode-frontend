@@ -24,7 +24,7 @@ const nodeInfo = [
         value: ""
     },
     {
-        title: "NodeTime",
+        title: "Node Time",
         value: ""
     },
     {
