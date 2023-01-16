@@ -104,11 +104,11 @@ useEffect(()=>{
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase ">{widget.title}</p>
+                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase ">{widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == (2 || 3) ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
@@ -118,7 +118,7 @@ useEffect(()=>{
                                             <i className="mdi mdi-arrow-up-bold me-1"></i> : <i className="mdi mdi-arrow-down-bold me-1"></i>
                                         }
                                         {widget.percentage}
-                                    </span> since last week
+                                    </span> 
                             </p>
                             </CardBody>
                         </Card>
