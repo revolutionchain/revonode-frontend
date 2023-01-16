@@ -62,15 +62,15 @@ const SalesAnalytics = props => {
 
     
 useEffect(()=>{        
-    nodeInfo[0].value = props.nodeData[4].subversion;
+    nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
     nodeInfo[1].value = props.nodeData[4].protocolversion;
     nodeInfo[2].value = "6969";
-    nodeInfo[3].value = props.nodeData[4].localservicesnames;
+    nodeInfo[3].value = props.nodeData[4].localservicesnames[0] + " " + props.nodeData[4].localservicesnames[1] + " " + props.nodeData[4].localservicesnames[2];
     nodeInfo[4].value = props.nodeData[5];
     nodeInfo[5].value = props.nodeData[6];
-    nodeInfo[6].value = props.nodeData[4].networks.ipv4;
-    nodeInfo[7].value = props.nodeData[4].networks.ipv6;
-    nodeInfo[8].value = props.nodeData[7].pruned;
+    nodeInfo[6].value = props.nodeData[4].networks[0].reachable;
+    nodeInfo[7].value = props.nodeData[4].networks[1].reachable;
+    nodeInfo[8].value = (props.nodeData[7].pruned).toString();
     nodeInfo[9].value = "false";
     nodeInfo[10].value = "false";
     nodeInfo[11].value = "false";
