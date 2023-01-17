@@ -70,7 +70,7 @@ const Dashboard = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && <div className="page-content">
+      {nodeData?.length && peersData?.length && <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Samply - React Admin & Dashboard Template</title>
