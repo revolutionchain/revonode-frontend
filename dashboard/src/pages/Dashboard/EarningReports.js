@@ -47,7 +47,7 @@ useEffect(()=>{
         }else {
             peersCount.push({name: e.subver.split("(")[0].replaceAll("/", ""), count: 1});
         }
-        peers = totalPeers + 1;
+        peers = peers + 1;
     });    
     peersCount.sort(function (a, b) {
         if (a.count < b.count) {
