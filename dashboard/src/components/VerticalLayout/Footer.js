@@ -7,10 +7,9 @@ const Footer = () => {
       <footer className="footer">
         <Container fluid={true}>
           <Row>
-            <Col md={6}>{new Date().getFullYear()} © Samply.</Col>
+            <Col md={6}>{new Date().getFullYear()} - Revo Node Manager.</Col>
             <Col md={6}>
               <div className="text-sm-end d-none d-sm-block">
-                Design & Develop by Pichforest
               </div>
             </Col>
           </Row>
