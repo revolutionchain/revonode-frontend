@@ -8,12 +8,12 @@ const geoUrl =
 export default function MapChart() {
   const width = 800
   const height = 600
-  
+  /*
   const projection = geoPattersonRaw()
   .translate([width / 2, height / 2])
-  .scale(150)
+  .scale(150)*/
   return (
-    <ComposableMap projection={projection}>
+    <ComposableMap projection="geoPattersonRaw">
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map((geo) => (
