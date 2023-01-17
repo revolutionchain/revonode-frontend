@@ -1,7 +1,7 @@
 import React from "react"
 import { ComposableMap, Geographies, Geography } from "react-simple-maps"
 import { geoPatterson } from "d3-geo-projection";
-import {d3, map} from "@d3/world-map"
+//import {d3, map} from "@d3/world-map"
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
