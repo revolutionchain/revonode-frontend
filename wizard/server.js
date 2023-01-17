@@ -455,6 +455,11 @@ app.get('/getdashboarddata', async (req, res, next) => {
     response.push(result);
   }
   res.send(response);
+});
+
+app.get('/getpeers', (req,res,next) => {
+  let data = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
+  res.send(data);
 })
 
 

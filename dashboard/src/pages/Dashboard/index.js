@@ -36,6 +36,7 @@ const Dashboard = props => {
   }
 
   const [nodeData, setNodeData] = useState(false);
+  const [peersData, setPeersData] = useState(false);
 
   useEffect(() => {
     if(!isLogged){      
@@ -50,6 +51,17 @@ const Dashboard = props => {
     }).then(data => data.json())
       .then(res => {
         setNodeData(res);
+      });
+      
+    fetch(`http://${window.location.hostname}:3001/getpeers`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        setPeersData(res);
       });
     setTimeout(() => {
       setSubscribemodal(true)
@@ -87,7 +99,7 @@ const Dashboard = props => {
 
           <Row>
             <SalesAnalytics nodeData={nodeData} />
-            <EarningReports nodeData={nodeData} />
+            <EarningReports nodeData={nodeData} peersData={peersData} />
           </Row>
           <Row>
             <Col xl={6}>

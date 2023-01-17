@@ -36,6 +36,10 @@ const nodeInfo = [
         value: ""
     },
     {
+        title: "i2p",
+        value: ""
+    },
+    {
         title: "Tor",
         value: ""
     },
@@ -70,12 +74,12 @@ useEffect(()=>{
     nodeInfo[5].value = props.nodeData[6];
     nodeInfo[6].value = props.nodeData[4].networks[0].reachable;
     nodeInfo[7].value = props.nodeData[4].networks[1].reachable;
-    nodeInfo[8].value = (props.nodeData[7].pruned).toString();
-    nodeInfo[9].value = "false";
-    nodeInfo[10].value = "false";
+    nodeInfo[8].value = props.nodeData[4].networks[3].reachable;
+    nodeInfo[9].value = props.nodeData[4].networks[2].reachable;
+    nodeInfo[10].value = (props.nodeData[7].pruned).toString();
     nodeInfo[11].value = "false";
-    nodeInfo[12].value = props.nodeData[0].chain;
-    console.log(nodeInfo);
+    nodeInfo[12].value = "false";
+    nodeInfo[13].value = "false";
 })
 
 

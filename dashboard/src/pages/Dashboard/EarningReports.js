@@ -27,6 +27,8 @@ const blockchainInfo = [
     },
 ]
 
+let peersCount = [];
+
 function EarningReports(props) {
 
     
@@ -35,6 +37,23 @@ useEffect(()=>{
     blockchainInfo[1].value = ((props.nodeData[7].size_on_disk)/1000000000).toFixed(2) + "GB";
     blockchainInfo[2].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
     blockchainInfo[3].value = props.nodeData[7].mediantime;
+    props.peersData.map(e => {
+        let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/"));
+        if(target){
+            target.count = target.count + 1;
+        }else {
+            peersCount.push({name: e.subver.split("(")[0].replaceAll("/"), count: 1});
+        }
+    });    
+    peersCount.sort(function (a, b) {
+        if (a.count < b.count) {
+          return 1;
+        }
+        if (a.count > b.count) {
+          return -1;
+        }
+        return 0;
+      });
 })
 
 
@@ -81,7 +100,7 @@ useEffect(()=>{
 
                 <Card>
                     <CardBody>
-                        <div className="float-end">
+                        {/*<div className="float-end">
                             <UncontrolledDropdown>
                                 <DropdownToggle className="text-reset" tag="a" id="dropdownMenuButton2">
                                     <span className="fw-semibold">Report By:</span> <span className="text-muted">Monthly<i className="mdi mdi-chevron-down ms-1"></i></span>
@@ -94,9 +113,23 @@ useEffect(()=>{
                                     <DropdownItem>Today</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                        </div>
+                    </div>*/}
 
-                        <h4 className="card-title mb-4">Earning Reports</h4>
+                        <h4 className="card-title mb-4">Top Peer Clients</h4>
+                        <div className="mt-1">
+                            {props.peersData.length && peersCount.map(e => {
+                                return (<div className="d-flex">
+                                    <div style={{width: "50%"}}>
+                                        {e.name}
+                                    </div>
+                                    <div style={{width: "50%"}}>
+                                        {e?.count}
+                                    </div>
+                                </div>)
+                            })
+                            }
+                        </div>
+                        {/*
                         <Row>
                             <Col sm={6}>
                                 <Row className="mb-3">
@@ -121,7 +154,7 @@ useEffect(()=>{
                                     <ApexRadial />
                                 </div>
                             </Col>
-                        </Row>
+                        </Row>*/}
                     </CardBody>
                 </Card>
 
