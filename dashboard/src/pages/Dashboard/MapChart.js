@@ -13,7 +13,8 @@ export default function MapChart() {
   const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
   return (
     <ComposableMap projection={projection}>
-      <Geographies geography={geoUrl}>
+      <Geographies geography={geoUrl} style={{default: {fill: "#CCCCCC",
+          stroke: "#000000"}}}>
         {({ geographies }) =>
           geographies.map((geo) => (
             <Geography key={geo.rsmKey} geography={geo} />

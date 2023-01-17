@@ -33,8 +33,8 @@ const LatestTranaction = (props) => {
                         </UncontrolledDropdown>
                     </div>*/}
                     <CardTitle className="mb-4">Global Peer Distribution</CardTitle>
-                        <div className="mt-1">
-                            <MapChart className="col-xl-6" />
+                        <div className="mt-1 col-xl-6">
+                            <MapChart />
                         </div>{/*
                     <div className="table-responsive">
                         <table className="table align-middle table-striped table-nowrap mb-0">
