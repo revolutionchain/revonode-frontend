@@ -14,7 +14,7 @@ export default function MapChart() {
   return (
     <ComposableMap projection={projection}>
       <Geographies geography={geoUrl} style={{default: {fill: "#CCCCCC",
-          stroke: "#000000"}}}>
+          stroke: "#FFFFFF"}}}>
         {({ geographies }) =>
           geographies.map((geo) => (
             <Geography key={geo.rsmKey} geography={geo} />
