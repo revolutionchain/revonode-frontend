@@ -43,7 +43,7 @@ useEffect(()=>{
         if(target){
             target.count = target.count + 1;
         }else {
-            peersCount.push({name: e.subver.split("(")[0].replaceAll("/"), count: 1});
+            peersCount.push({name: e.subver.split("(")[0].replaceAll("/", ""), count: 1});
         }
     });    
     peersCount.sort(function (a, b) {
@@ -119,8 +119,8 @@ useEffect(()=>{
 
                         <h4 className="card-title mb-4">Top Peer Clients</h4>
                         <div className="mt-1">
-                            {props.peersData.length && peersState.length && peersState?.map(e => {
-                                return (<div className="d-flex">
+                            {props.peersData.length && peersState.length && peersState?.map((e, i) => {
+                                return (<div key={i} className="d-flex">
                                     <div style={{width: "50%"}}>
                                         {e.name}
                                     </div>
