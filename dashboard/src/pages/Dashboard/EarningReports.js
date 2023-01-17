@@ -119,7 +119,7 @@ useEffect(()=>{
 
                         <h4 className="card-title mb-4">Top Peer Clients</h4>
                         <div className="mt-1">
-                            {props.peersData.length && peersState.map(e => {
+                            {props.peersData.length && peersState.length && peersState?.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{width: "50%"}}>
                                         {e.name}
