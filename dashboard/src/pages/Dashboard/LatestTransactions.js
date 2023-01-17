@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getLatestTransaction } from "../../store/actions";
+import MapChart from "./MapChart";
 
 const LatestTranaction = (props) => {
 
@@ -17,7 +18,7 @@ const LatestTranaction = (props) => {
     return (
         <React.Fragment>
             <Card>
-                <CardBody>
+                <CardBody>{/*
                     <div className="float-end">
                         <UncontrolledDropdown>
                             <DropdownToggle className="text-reset" tag="a" id="dropdownMenuButton3">
@@ -30,8 +31,11 @@ const LatestTranaction = (props) => {
                                 <DropdownItem>Minimum</DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                    </div>
-                    <CardTitle className="mb-4">Latest Transaction</CardTitle>
+                    </div>*/}
+                    <CardTitle className="mb-4">Global Peer Distribution</CardTitle>
+                        <div className="mt-1">
+                            <MapChart />
+                        </div>{/*
                     <div className="table-responsive">
                         <table className="table align-middle table-striped table-nowrap mb-0">
                             <tbody>
@@ -58,7 +62,7 @@ const LatestTranaction = (props) => {
 
                             </tbody>
                         </table>
-                    </div>
+                    </div>*/}
                 </CardBody>
             </Card>
         </React.Fragment>
