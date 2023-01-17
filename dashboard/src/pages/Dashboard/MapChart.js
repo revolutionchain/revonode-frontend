@@ -7,13 +7,13 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
 export default function MapChart() {
-  const width = 800
-  const height = 600
+  const width = 600
+  const height = 400
 
   const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
   return (
-    <ComposableMap projection={projection}>
-      <Geographies geography={geoUrl} style={{default: {fill: "#CCCCCC",
+    <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={projection}>
+      <Geographies geography={geoUrl} fill="#CCC" style={{default: {fill: "#CCCCCC",
           stroke: "#FFFFFF"}}}>
         {({ geographies }) =>
           geographies.map((geo) => (
