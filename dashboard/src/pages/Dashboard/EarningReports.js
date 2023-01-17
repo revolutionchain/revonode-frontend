@@ -31,6 +31,7 @@ const blockchainInfo = [
 function EarningReports(props) {
 
     const [ peersState, setPeersState ] = useState(false);
+    const [ totalPeers, setTotalPeers ] = useState(false);
     
 useEffect(()=>{        
     blockchainInfo[0].value = props.nodeData[0].chain;
@@ -38,6 +39,7 @@ useEffect(()=>{
     blockchainInfo[2].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
     blockchainInfo[3].value = props.nodeData[7].mediantime;
     let peersCount = [];
+    let peers = 0;
     props.peersData.map(e => {
         let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/", ""));
         if(target){
@@ -45,6 +47,7 @@ useEffect(()=>{
         }else {
             peersCount.push({name: e.subver.split("(")[0].replaceAll("/", ""), count: 1});
         }
+        peers = totalPeers + 1;
     });    
     peersCount.sort(function (a, b) {
         if (a.count < b.count) {
@@ -56,6 +59,7 @@ useEffect(()=>{
         return 0;
       });
     setPeersState(peersCount);
+    setTotalPeers(peers);
 })
 
 
@@ -125,7 +129,7 @@ useEffect(()=>{
                                         {e.name}
                                     </div>
                                     <div style={{width: "50%"}}>
-                                        {e?.count}
+                                        {totalPeers && totalPeers >= 1 ?  e?.count / totalPeers * 100 +  "%" : '100%'}
                                     </div>
                                 </div>)
                             })
