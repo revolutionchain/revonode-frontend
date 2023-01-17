@@ -1,6 +1,5 @@
 import React from "react"
 import { ComposableMap, Geographies, Geography } from "react-simple-maps"
-import {d3, map} from "@d3/world-map";
 import { geoPattersonRaw } from "d3-geo-projection";
 
 const geoUrl =
