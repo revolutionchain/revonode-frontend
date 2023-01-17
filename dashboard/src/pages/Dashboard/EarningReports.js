@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
 import { useEffect } from 'react';
@@ -27,16 +27,17 @@ const blockchainInfo = [
     },
 ]
 
-let peersCount = [];
 
 function EarningReports(props) {
 
+    const [ peersState, setPeersState ] = useState(false);
     
 useEffect(()=>{        
     blockchainInfo[0].value = props.nodeData[0].chain;
     blockchainInfo[1].value = ((props.nodeData[7].size_on_disk)/1000000000).toFixed(2) + "GB";
     blockchainInfo[2].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
     blockchainInfo[3].value = props.nodeData[7].mediantime;
+    let peersCount = [];
     props.peersData.map(e => {
         let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/"));
         if(target){
@@ -54,6 +55,7 @@ useEffect(()=>{
         }
         return 0;
       });
+    setPeersState(peersCount);
 })
 
 
@@ -117,7 +119,7 @@ useEffect(()=>{
 
                         <h4 className="card-title mb-4">Top Peer Clients</h4>
                         <div className="mt-1">
-                            {props.peersData.length && peersCount.map(e => {
+                            {props.peersData.length && peersState.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{width: "50%"}}>
                                         {e.name}
