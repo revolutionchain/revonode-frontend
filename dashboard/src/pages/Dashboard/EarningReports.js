@@ -39,7 +39,7 @@ useEffect(()=>{
     blockchainInfo[3].value = props.nodeData[7].mediantime;
     let peersCount = [];
     props.peersData.map(e => {
-        let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/"));
+        let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/", ""));
         if(target){
             target.count = target.count + 1;
         }else {
