@@ -7,9 +7,11 @@ const widget = [
     {
         id: 1,
         title: 'Total Connections',
+        test: 'New Peers',
         count: 'value',
         dollor: true,
-        icon: 'mdi mdi-cash-multiple text-primary',
+        icon: 'bx bxs-user text-primary',
+        secondIcon: 'bx bx-plus-medical text-primary',
         percentage: '2.65%',
         color: 'success',
         upArrow: true
@@ -17,9 +19,11 @@ const widget = [
     {
         id: 2,
         title: 'Total Upload Traffic (GB)',
+        test: 'Current Peers',
         count: '2568',
         dollor: true,
-        icon: 'mdi mdi-refresh-circle text-success',
+        icon: 'bx bxs-cloud-upload text-success',
+        secondIcon: 'bx bx-chevron-right text-primary',
         percentage: '4.58%',
         color: 'danger',
         upArrow: false
@@ -27,9 +31,11 @@ const widget = [
     {
         id: 3,
         title: 'Total Download Traffic (MB)',
+        test: 'Current Peers',
         count: '258410',
         dollor: false,
-        icon: 'mdi mdi-account-group text-primary',
+        icon: 'bx bxs-cloud-download text-primary',
+        secondIcon: 'bx bx-chevron-right text-primary',
         percentage: '14.33%',
         color: 'success',
         upArrow: true
@@ -37,9 +43,11 @@ const widget = [
     {
         id: 4,
         title: 'Banned Peers',
+        test: 'Last 24h',
         count: '9582',
         dollor: false,
-        icon: 'mdi mdi-cart-check text-success',
+        icon: 'mdi-cancel text-success',
+        secondIcon: 'bx bx-plus-medical text-primary',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
@@ -47,9 +55,11 @@ const widget = [
     {
         id: 5,
         title: 'TX in Mempool',
+        test: 'Usage',
         count: '9582',
         dollor: false,
-        icon: 'mdi mdi-cart-check text-success',
+        icon: 'bx bxs-data text-success',
+        secondIcon: 'dripicons-battery-low text-primary',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
@@ -57,9 +67,11 @@ const widget = [
     {
         id: 6,
         title: 'Lastest Block',
+        test: 'Ago',
         count: '9582',
         dollor: false,
-        icon: 'mdi mdi-cart-check text-success',
+        icon: ' bx bxs-cube-alt text-success',
+        secondIcon: 'mdi-clock-time-nine-outline text-primary',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
@@ -108,10 +120,10 @@ const icons = []
                                 <p className="text-muted mt-3 mb-0">
                                     <span className={"badge badge-soft-" + widget.color + " me-1"}>
 
-                                        {widget.upArrow === true ?
+                                        {/*widget.upArrow === true ?
                                             <i className="mdi mdi-arrow-up-bold me-1"></i> : <i className="mdi mdi-arrow-down-bold me-1"></i>
-                                        }
-                                        {widget.percentage}
+                                        */}
+                                        {widget.secondIcon}
                                     </span> 
                             </p>
                             </CardBody>
