@@ -91,15 +91,14 @@ const Header = (props) => {
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
-                  props.leftSideBarType === "default" ? <img src={logoSmLight} alt="" height="22" /> : <img src={logoSmLight} alt="" height="22" width="60" />                  
+                  props.leftSideBarType === "default" ? <img src={logoSmLight} alt="" /> : <img src={logoSmLight} alt="" height="22" width="60" />                  
                   }
                 </span>
                 <span className="logo-lg" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
-                  props.leftSideBarType === "default" ? <img src={logoLight} alt="" height="22" /> : <img src={logoLight} alt="" height="22" width="60" />                  
+                  props.leftSideBarType === "default" ? <img src={logoLight} alt="" /> : <img src={logoLight} alt="" height="22" width="60" />                  
                   }
                 </span>
               </Link>              
-              <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`}}>Node Manager</h4>
             </div>
             <button
               type="button"
@@ -112,15 +111,17 @@ const Header = (props) => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
-            <form className="app-search d-none d-lg-block">{/*
-              <div className="position-relative">
+            <form className="app-search d-none d-lg-block">
+              <div className="position-relative">              
+              <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`}}>Node Manager</h4>
+              {/*
                 <input
                   type="text"
                   className="form-control"
                   placeholder={props.t("Search") + "..."}
                 />
-                <span className="mdi mdi-magnify" />
-              </div>*/}
+                <span className="mdi mdi-magnify" />*/}
+              </div>
             </form>
           </div>
           <div className="d-flex">
@@ -178,7 +179,7 @@ const Header = (props) => {
 
             <NotificationDropdown />
             <ProfileMenu />
-
+{/*
             <div
               onClick={() => {
                 props.showRightSidebarAction(!props.showRightSidebar);
@@ -191,7 +192,7 @@ const Header = (props) => {
               >
                 <i className="bx bx-cog bx-spin" />
               </button>
-            </div>
+            </div>*/}
           </div>
         </div>
       </header>

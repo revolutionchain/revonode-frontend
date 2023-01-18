@@ -290,7 +290,7 @@ const Navbar = props => {
                         </Link>
                         <Link to="/pages-lock-screen" className="dropdown-item">
                           {props.t("Lock Screen")}
-                        </Link>
+                      </Link>
                         <Link to="/pages-confirm-mail" className="dropdown-item">
                           {props.t("Confirm Mail")}
                         </Link>
