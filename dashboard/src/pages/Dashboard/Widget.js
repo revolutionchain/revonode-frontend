@@ -7,7 +7,7 @@ const widget = [
     {
         id: 1,
         title: 'Total Connections',
-        test: 'New Peers',
+        text: 'New Peers',
         count: 'value',
         dollor: true,
         icon: 'bx bxs-user text-primary',
@@ -19,7 +19,7 @@ const widget = [
     {
         id: 2,
         title: 'Total Upload Traffic (GB)',
-        test: 'Current Peers',
+        text: 'Current Peers',
         count: '2568',
         dollor: true,
         icon: 'bx bxs-cloud-upload text-success',
@@ -31,7 +31,7 @@ const widget = [
     {
         id: 3,
         title: 'Total Download Traffic (MB)',
-        test: 'Current Peers',
+        text: 'Current Peers',
         count: '258410',
         dollor: false,
         icon: 'bx bxs-cloud-download text-primary',
@@ -43,7 +43,7 @@ const widget = [
     {
         id: 4,
         title: 'Banned Peers',
-        test: 'Last 24h',
+        text: 'Last 24h',
         count: '9582',
         dollor: false,
         icon: 'mdi-cancel text-success',
@@ -55,7 +55,7 @@ const widget = [
     {
         id: 5,
         title: 'TX in Mempool',
-        test: 'Usage',
+        text: 'Usage',
         count: '9582',
         dollor: false,
         icon: 'bx bxs-data text-success',
@@ -67,7 +67,7 @@ const widget = [
     {
         id: 6,
         title: 'Lastest Block',
-        test: 'Ago',
+        text: 'Ago',
         count: '9582',
         dollor: false,
         icon: ' bx bxs-cube-alt text-success',
@@ -110,7 +110,7 @@ const icons = []
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{widget.title}</p>
+                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
@@ -123,7 +123,7 @@ const icons = []
                                         {/*widget.upArrow === true ?
                                             <i className="mdi mdi-arrow-up-bold me-1"></i> : <i className="mdi mdi-arrow-down-bold me-1"></i>
                                         */}
-                                        {widget.secondIcon}
+                                        <i className={widget.secondIcon}></i>{" " + widget.text}
                                     </span> 
                             </p>
                             </CardBody>

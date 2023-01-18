@@ -78,7 +78,7 @@ useEffect(()=>{
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{width: "50%"}}>
-                                        {e.title}
+                                    <i className={e.icon}></i>{" " + e.title}
                                     </div>
                                     <div style={{width: "50%"}}>
                                         {e?.value}
