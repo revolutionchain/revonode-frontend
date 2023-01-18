@@ -96,8 +96,8 @@ const icons = []
                                         </span>
                                     </div>
                                 </div>*/}
-                                <div>
-                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i classname="bx bx-meh-blank"></i>{widget.title}</p>
+                                <div><i classname="bx bx-droplet"></i>
+                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase ">{widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
