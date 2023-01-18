@@ -99,7 +99,7 @@ useEffect(()=>{
 
     return (
         <React.Fragment>
-            <Col xl={8}>
+            <Col xl={4}>
                 <Card className="card-height-100">
                     <CardBody>
                         <h4 className="card-title mb-4">Nodes</h4>
