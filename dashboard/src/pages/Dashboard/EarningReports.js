@@ -69,11 +69,11 @@ useEffect(()=>{
 
     return (
         <React.Fragment>
-            <Col xl={4}>
+            <Col xl={3}>
                 <Card className="bg-pattern">
                     <CardBody>
                         
-                    <h4 className="card-title mb-4">Blockchain</h4>
+                    <h4 className="card-title mb-3">Blockchain</h4>
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
@@ -107,7 +107,7 @@ useEffect(()=>{
                         </Row>*/}
                     </CardBody>
                 </Card>
-
+{/*
                 <Card>
                     <CardBody>
                         {/*<div className="float-end">
@@ -123,7 +123,7 @@ useEffect(()=>{
                                     <DropdownItem>Today</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                    </div>*/}
+                    </div>}
 
                         <h4 className="card-title mb-4">Top Peer Clients</h4>
                         <div className="mt-1">
@@ -139,7 +139,7 @@ useEffect(()=>{
                             })
                             }
                         </div>
-                        {/*
+                        {
                         <Row>
                             <Col sm={6}>
                                 <Row className="mb-3">
@@ -164,11 +164,32 @@ useEffect(()=>{
                                     <ApexRadial />
                                 </div>
                             </Col>
-                        </Row>*/}
+                        </Row>}
                     </CardBody>
-                </Card>
-
+                </Card>*/
+}
             </Col>
+            <Col xl={5}>
+                <Card className="bg-pattern">
+                    <CardBody>
+
+<h4 className="card-title mb-6">Top Peer Clients</h4>
+<div className="mt-1">
+    {props.peersData.length && peersState.length && peersState?.map((e, i) => {
+        return (<div key={i} className="d-flex">
+            <div style={{width: "50%"}}>
+                {e.name}
+            </div>
+            <div style={{width: "50%"}}>
+                {totalPeers && totalPeers >= 1 ?  e?.count / totalPeers * 100 +  "%" : '100%'}
+            </div>
+        </div>)
+    })
+    }
+</div>
+                    </CardBody>
+                    </Card>
+                    </Col>
         </React.Fragment>
     );
 }
