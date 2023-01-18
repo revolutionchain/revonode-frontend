@@ -30,11 +30,12 @@ export default function MapChart({ipLocationData}) {
         {({ geographies }) =>
           geographies.map((geo) => {
             const country = ipLocationData.find(d => d.countryCode === geo.properties["Alpha-2"]);
+            return(
             <Geography             
-            fill={country ? customScale(country.val) : "#CCCCCC"}
+            fill={country ? customScale(maxValue) : "#CCCCCC"}
             key={geo.rsmKey} 
             geography={geo} 
-            />
+            />)
           })
         }
       </Geographies>
