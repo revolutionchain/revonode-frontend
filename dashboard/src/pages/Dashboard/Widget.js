@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
     {
@@ -96,8 +97,8 @@ const icons = []
                                         </span>
                                     </div>
                                 </div>*/}
-                                <div><i classname="bx bx-droplet"></i>
-                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase ">{widget.title}</p>
+                                <div>
+                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
