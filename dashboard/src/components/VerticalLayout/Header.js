@@ -91,11 +91,11 @@ const Header = (props) => {
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
-                  props.leftSideBarType === "default" ? <img src={logoSmLight} alt="" /> : <img src={logoSmLight} alt="" height="22" width="60" />                  
+                  props.leftSideBarType === "default" ? <img style={{maxHeight: `50px`, marginTop: `30px`}} src={logoSmLight} alt="" /> : <img src={logoSmLight} alt="" height="22" width="60" />                  
                   }
                 </span>
                 <span className="logo-lg" style={props.leftSideBarType === "default" ? {} : {marginLeft: `-20px`}}>{
-                  props.leftSideBarType === "default" ? <img src={logoLight} alt="" /> : <img src={logoLight} alt="" height="22" width="60" />                  
+                  props.leftSideBarType === "default" ? <img style={{maxHeight: `50px`, marginTop: `30px`}} src={logoLight} alt="" /> : <img src={logoLight} alt="" height="22" width="60" />                  
                   }
                 </span>
               </Link>              
@@ -111,9 +111,9 @@ const Header = (props) => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
-            <form className="app-search d-none d-lg-block">
+            <form style={{display: `flex`, alignItems: `center`}} className="font-size-16 header-item">
               <div className="position-relative">              
-              <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`}}>Node Manager</h4>
+              <h4 style={props.leftSideBarType === "default" ? {} : {display: `none`, marginBottom: `0`}}>Node Manager</h4>
               {/*
                 <input
                   type="text"
