@@ -25,52 +25,52 @@ const nodeInfo = [
     },
     {
         title: "Uptime",
-        icon: "mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-primary",
         value: ""
     },
     {
         title: "Node Time",
-        icon: "mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-primary",
         value: ""
     },
     {
         title: "IPv4",
-        icon: "mdi-checkbox-marked-outline text-primary",
+        icon: "mdi mdi-checkbox-marked-outline text-primary",
         value: ""
     },
     {
         title: "IPv6",
-        icon: "mdi-checkbox-marked-outline text-primary",
+        icon: "mdi mdi-checkbox-marked-outline text-primary",
         value: ""
     },
     {
         title: "i2p",
-        icon: "mdi-checkbox-marked-outline text-primary",
+        icon: "mdi mdi-checkbox-marked-outline text-primary",
         value: ""
     },
     {
         title: "Tor",
-        icon: "mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-primary",
         value: ""
     },
     {
         title: "Pruning Mode",
-        icon: "mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-primary",
         value: ""
     },
     {
         title: "Block Only Mode",
-        icon: "mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-primary",
         value: ""
     },
     {
         title: "Mempool Limited",
-        icon: "mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-primary",
         value: ""
     },
     {
         title: "Traffic Limit Set",
-        icon: "mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-primary",
         value: ""
     }
 ]

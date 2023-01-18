@@ -11,7 +11,7 @@ import ApexRadial from '../AllCharts/ApexRadial';
 const blockchainInfo = [
     {
         title: "Chain",
-        icon: "mdi-checkbox-multiple-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-multiple-blank-outline text-primary",
         value: ""
     },
     {
@@ -21,12 +21,12 @@ const blockchainInfo = [
     },
     {
         title: "Difficulty",
-        icon: "mdi-key-variant text-primary",
+        icon: "mdi mdi-key-variant text-primary",
         value: ""
     },
     {
         title: "Mediantime",
-        icon: "mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-primary",
         value: ""
     },
 ]

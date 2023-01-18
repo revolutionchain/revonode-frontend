@@ -71,7 +71,7 @@ const widget = [
         count: '9582',
         dollor: false,
         icon: ' bx bxs-cube-alt text-success',
-        secondIcon: 'mdi-clock-time-nine-outline text-primary',
+        secondIcon: 'mdi mdi-clock-time-nine-outline text-primary',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
