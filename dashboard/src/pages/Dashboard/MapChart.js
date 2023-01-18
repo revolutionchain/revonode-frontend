@@ -6,19 +6,35 @@ import { geoPatterson } from "d3-geo-projection";
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
-export default function MapChart() {
+export default function MapChart({ipLocationData}) {
   const width = 600
   const height = 400
 
+  const minValue = 5 // based on the data array above
+  const maxValue = 16 // based on the data array above
+  
+  const minColor = "#CFD8DC"
+  const maxColor = "#37474F"
+
+  const customScale = scaleLinear()
+    .domain([minValue,maxValue])
+    .range([minColor,maxColor])
+  
+  
   const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
   return (
     <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={projection}>
       <Geographies geography={geoUrl} fill="#CCC" style={{default: {fill: "#CCCCCC",
           stroke: "#FFFFFF"}}}>
         {({ geographies }) =>
-          geographies.map((geo) => (
-            <Geography key={geo.rsmKey} geography={geo} />
-          ))
+          geographies.map((geo) => {
+            const country = ipLocationData.find(d => d.countryCode === geo.properties.ISO_A2);
+            <Geography             
+            fill={country ? customScale(country.val) : "#CCCCCC"}
+            key={geo.rsmKey} 
+            geography={geo} 
+            />
+          })
         }
       </Geographies>
     </ComposableMap>

@@ -37,6 +37,7 @@ const Dashboard = props => {
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
+  const [ipLocationData, setIpLocationData] = useState(false);
 
   useEffect(() => {
     if(!isLogged){      
@@ -51,8 +52,7 @@ const Dashboard = props => {
     }).then(data => data.json())
       .then(res => {
         setNodeData(res);
-      });
-      
+      });      
     fetch(`http://${window.location.hostname}:3001/getpeers`, {
       method: 'GET',
       headers: {
@@ -63,6 +63,19 @@ const Dashboard = props => {
       .then(res => {
         setPeersData(res);
       });
+      fetch(`http://ip-api.com/batch`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([
+          {"query": "190.138.11.19"}
+      ])
+      }).then(data => data.json())
+        .then(res => {
+          setIpLocationData(res);
+        })
     setTimeout(() => {
       setSubscribemodal(true)
     }, 2000);
@@ -99,11 +112,11 @@ const Dashboard = props => {
 
           <Row>
             <SalesAnalytics nodeData={nodeData} />
-            <EarningReports nodeData={nodeData} peersData={peersData} />
+            <EarningReports nodeData={nodeData} peersData={peersData}  />
           </Row>
           <Row>
             <Col xl={10}>
-              <LatestTransactions />
+              {ipLocationData && <LatestTransactions ipLocationData={ipLocationData} />}
             </Col>{/*
             <Col xl={6}>
               <LatestOrders />
