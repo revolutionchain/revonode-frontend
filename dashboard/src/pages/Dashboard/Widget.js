@@ -78,6 +78,8 @@ useEffect(()=>{
     widget[5].count = props.nodeData[0].headers;
 })
 
+const icons = []
+
     return (
         <React.Fragment>
             <Row>
@@ -95,7 +97,7 @@ useEffect(()=>{
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase ">{widget.title}</p>
+                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i classname="bx bx-meh-blank"></i>{widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
