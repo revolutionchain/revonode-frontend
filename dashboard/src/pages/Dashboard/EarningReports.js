@@ -81,10 +81,21 @@ function EarningReports(props) {
             return 0;
         });
         let randomColors = [];
-        peersCount.map(e => {
-            let color = Math.floor(Math.random() * 1000)
-            let colorRandom = customScale(color);
-            randomColors.push(colorRandom);
+        peersCount.map((e, i) => {
+            let colorRandom;
+            if(i == 0){
+                colorRandom = customScale(e.count+5);
+                randomColors.push(colorRandom);
+            }else if(peersCount[i-1].count == e.count){
+                colorRandom = customScale(e.count+4);
+                randomColors.push(colorRandom);
+            }else if(peersCount[i-1].count !== e.count && colorRandom[i-1] !== e.count + 5){
+                colorRandom = customScale(e.count+5);
+                randomColors.push(colorRandom);
+            }else if(peersCount[i-1].count !== e.count && colorRandom[i-1] !== e.count + 5){
+                colorRandom = customScale(e.count+4);
+                randomColors.push(colorRandom);
+            }
         })
         setRandomColorsState(randomColors);        
         setPeersState(peersCount);
