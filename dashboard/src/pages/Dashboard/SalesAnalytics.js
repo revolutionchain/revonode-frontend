@@ -84,24 +84,25 @@ const SalesAnalytics = props => {
 
 
     useEffect(() => {
-        nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
-        nodeInfo[1].value = props.nodeData[4].protocolversion;
-        nodeInfo[2].value = "6969";
-        nodeInfo[3].value = <div>{
+        nodeInfo[0].value = props.nodeData[4].subversion;
+        nodeInfo[1].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
+        nodeInfo[2].value = props.nodeData[4].protocolversion;
+        nodeInfo[3].value = "6969";
+        nodeInfo[4].value = <div>{
             props.nodeData[4].localservicesnames.map(e => {
                 return (<button style={{fontSize: "10px"}} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
-        nodeInfo[4].value = props.nodeData[5];
-        nodeInfo[5].value = props.nodeData[6];
-        nodeInfo[6].value = props.nodeData[4].networks[0].reachable;
-        nodeInfo[7].value = props.nodeData[4].networks[1].reachable;
-        nodeInfo[8].value = props.nodeData[4].networks[3].reachable;
-        nodeInfo[9].value = props.nodeData[4].networks[2].reachable;
-        nodeInfo[10].value = (props.nodeData[7].pruned).toString();
-        nodeInfo[11].value = "false";
-        nodeInfo[12].value = "false";
-        nodeInfo[13].value = "false";
+        nodeInfo[5].value = props.nodeData[5];
+        nodeInfo[6].value = props.nodeData[6];
+        nodeInfo[7].value = props.nodeData[4].networks[0].reachable;
+        nodeInfo[8].value = props.nodeData[4].networks[1].reachable;
+        nodeInfo[9].value = props.nodeData[4].networks[3].reachable;
+        nodeInfo[10].value = props.nodeData[4].networks[2].reachable;
+        nodeInfo[11].value = (props.nodeData[7].pruned).toString();
+        nodeInfo[12].value = "No";
+        nodeInfo[13].value = "No";
+        nodeInfo[14].value = "No";
     })
 
 
