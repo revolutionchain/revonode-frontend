@@ -71,7 +71,7 @@ function EarningReports(props) {
             return 0;
         });
         let randomColors = [];
-        peers.map(e => {
+        peersCount.map(e => {
             let colorRandom = customScale(Math.floor(Math.random() * 1000));
             randomColors.push(colorRandom);
         })
