@@ -67,7 +67,7 @@ const widget = [
     {
         id: 6,
         title: 'Lastest Block',
-        text: 'Ago',
+        text: 'm ago',
         count: '0',
         dollor: false,
         icon: ' bx bxs-cube-alt text-warning',
