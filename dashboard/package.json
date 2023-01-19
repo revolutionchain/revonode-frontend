@@ -76,6 +76,7 @@
     "react-jvectormap": "^0.0.16",
     "react-leaflet": "^3.0.5",
     "react-meta-tags": "^1.0.1",
+    "react-minimal-pie-chart": "^8.4.0",
     "react-modal": "^3.16.1",
     "react-modal-video": "^1.2.8",
     "react-perfect-scrollbar": "^1.5.8",
