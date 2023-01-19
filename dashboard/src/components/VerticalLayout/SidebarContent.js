@@ -109,7 +109,21 @@ const SidebarContent = props => {
             </li>
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
+              <Link to="/staking" className="waves-effect">
+                <i className='mdi-pickaxe'></i>
+                <span key="t-ui-elements">{props.t("Staking")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/wallet" className="waves-effect">
+                <i className='bx bx-wallet'></i>
+                <span key="t-ui-elements">{props.t("Wallet")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/transactions" className="waves-effect">
                 <i className='bx bx-transfer'></i>
                 <span key="t-ui-elements">{props.t("Transactions")}</span>
               </Link>
@@ -117,7 +131,7 @@ const SidebarContent = props => {
                    
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
+              <Link to="/blocks" className="waves-effect">
                 <i className='bx bxs-component'></i>
                 <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
@@ -125,7 +139,7 @@ const SidebarContent = props => {
             
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
+              <Link to="/peers" className="waves-effect">
                 <i className='bx bx-radar'></i>
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
