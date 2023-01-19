@@ -111,7 +111,7 @@ const SalesAnalytics = props => {
             <Col xl={4}>
                 <Card className="card-height-100">
                     <CardBody>
-                        <h4 className="card-title mb-4">Node</h4>
+                        <h4 className="card-title mb-2">Node</h4>
                         <hr />
                         <div className="mt-1">
                             {props.nodeData.length && nodeInfo.map(e => {
