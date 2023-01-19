@@ -84,7 +84,7 @@ const SalesAnalytics = props => {
 
 
     useEffect(() => {
-        nodeInfo[0].value = props.nodeData[4].subversion;
+        nodeInfo[0].value = "My Node Name"
         nodeInfo[1].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
         nodeInfo[2].value = props.nodeData[4].protocolversion;
         nodeInfo[3].value = "6969";
@@ -98,7 +98,7 @@ const SalesAnalytics = props => {
         nodeInfo[7].value = props.nodeData[4].networks[0].reachable;
         nodeInfo[8].value = props.nodeData[4].networks[1].reachable;
         nodeInfo[9].value = props.nodeData[4].networks[3].reachable;
-        nodeInfo[10].value = props.nodeData[4].networks[2].reachable;
+        nodeInfo[10].value = "No"
         nodeInfo[11].value = (props.nodeData[7].pruned).toString();
         nodeInfo[12].value = "No";
         nodeInfo[13].value = "No";

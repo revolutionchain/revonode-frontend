@@ -148,7 +148,7 @@ const Dashboard = props => {
               <div className="avatar-md mx-auto mb-4">
                 {/* style={{ backgroundColor:"#eff2f7" }}  */}
                 <div className="avatar-title bg-light  rounded-circle text-primary h1">
-                  <i className="mdi mdi-email-open"></i>
+                  <i className="fas fa-parachute-box"></i>
                 </div>
               </div>
 
