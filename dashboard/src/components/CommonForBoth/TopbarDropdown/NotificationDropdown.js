@@ -29,7 +29,7 @@ const NotificationDropdown = props => {
           id="page-header-notifications-dropdown"
         >
           <i className="mdi mdi-bell" />
-          <span className="badge bg-danger rounded-pill">3</span>
+          {/*<span className="badge bg-danger rounded-pill">3</span>*/}
         </DropdownToggle>
 
         <DropdownMenu className="dropdown-menu dropdown-menu-lg p-0 dropdown-menu-end">
