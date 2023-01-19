@@ -194,7 +194,7 @@ function EarningReports(props) {
                                     animationDuration={500}
                                     animationEasing="ease-out"
                                     center={[50, 50]}
-                                    data={totalPeers.map(e => {
+                                    data={peersState.map(e => {
                                         /*[
                                             {
                                                 color: "#5668e2",
