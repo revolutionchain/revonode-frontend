@@ -189,7 +189,7 @@ function EarningReports(props) {
                         <h4 className="card-title mb-6">Top Peer Clients</h4>
                         <div className="mt-1 d-flex">
                             <div className='col-xl-6'>
-                                <PieChart
+                                {totalPeers && <PieChart
                                     animation
                                     animationDuration={500}
                                     animationEasing="ease-out"
@@ -227,7 +227,7 @@ function EarningReports(props) {
                                     radius={50}
                                     startAngle={0}
                                     viewBoxSize={[100, 100]}
-                                />
+                                />}
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
                                 return (<div key={i} className="d-flex col-xl-6">
