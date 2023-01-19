@@ -103,30 +103,44 @@ const SidebarContent = props => {
             <li className="menu-title mt-3">More</li>*/}
             <li>
               <Link to="/dashboard" className="waves-effect">
-                <i className='bx bx-dashboard'></i>
+                <i className='bx bxs-dashboard'></i>
                 <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
             </li>
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-transfer-alt'></i>
+              <Link to="/staking" className="waves-effect">
+                <i className='mdi mdi-pickaxe'></i>
+                <span key="t-ui-elements">{props.t("Staking")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/wallet" className="waves-effect">
+                <i className='bx bx-wallet'></i>
+                <span key="t-ui-elements">{props.t("Wallet")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/transactions" className="waves-effect">
+                <i className='bx bx-transfer'></i>
                 <span key="t-ui-elements">{props.t("Transactions")}</span>
               </Link>
             </li>
                    
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-component'></i>
+              <Link to="/blocks" className="waves-effect">
+                <i className='bx bxs-component'></i>
                 <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
             </li>
             
             
             <li>
-              <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-network-chart'></i>
+              <Link to="/peers" className="waves-effect">
+                <i className='bx bx-radar'></i>
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
