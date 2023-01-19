@@ -45,6 +45,16 @@ function EarningReports(props) {
     const [totalPeers, setTotalPeers] = useState(false);
     const [randomColorsState, setRandomColorsState] = useState (false);
 
+    const minValue = 0 // based on the data array above
+    const maxValue = 1000 // based on the data array above
+    
+    const minColor = "#56aee2"
+    const maxColor = "#5668e2"
+  
+    const customScale = scaleLinear()
+      .domain([minValue,maxValue])
+      .range([minColor,maxColor])
+
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + "GB";
@@ -72,7 +82,8 @@ function EarningReports(props) {
         });
         let randomColors = [];
         peersCount.map(e => {
-            let colorRandom = customScale(Math.floor(Math.random() * 1000));
+            let color = Math.floor(Math.random() * 1000)
+            let colorRandom = customScale(color);
             randomColors.push(colorRandom);
         })
         setRandomColorsState(randomColors);        
@@ -81,16 +92,6 @@ function EarningReports(props) {
     })
 
     
-
-  const minValue = 0 // based on the data array above
-  const maxValue = 1000 // based on the data array above
-  
-  const minColor = "#56aee2"
-  const maxColor = "#5668e2"
-
-  const customScale = scaleLinear()
-    .domain([minValue,maxValue])
-    .range([minColor,maxColor])
 
     return (
         <React.Fragment>
