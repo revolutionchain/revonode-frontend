@@ -134,7 +134,7 @@ const DatatableTables = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Data Table | Samply - React Admin & Dashboard Template</title>
+          <title>Data Table | Revo Node Manager</title>
         </MetaTags>
         <div className="container-fluid">
           <Breadcrumbs title="Tables" breadcrumbItem="Data Table" />

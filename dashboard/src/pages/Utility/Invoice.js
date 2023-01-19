@@ -16,7 +16,7 @@ const Invoice = props => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Invoice | Samply - React Admin & Dashboard Template</title>
+                    <title>Invoice | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}

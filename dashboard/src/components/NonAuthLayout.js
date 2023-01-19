@@ -19,7 +19,7 @@ class NonAuthLayout extends Component {
     let currentage = this.capitalizeFirstLetter(this.props.location.pathname)
 
     document.title =
-      currentage + " | Samply - React Admin & Dashboard Template"
+      currentage + " | Revo Node Manager"
 
       if(this.props.layoutMode === "dark"){
           document.body.setAttribute("data-layout-mode", "dark")

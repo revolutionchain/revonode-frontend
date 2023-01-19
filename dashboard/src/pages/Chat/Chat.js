@@ -160,7 +160,7 @@ const Chat = props => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Chat | Samply - React Admin & Dashboard Template</title>
+          <title>Chat | Revo Node Manager</title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumb */}

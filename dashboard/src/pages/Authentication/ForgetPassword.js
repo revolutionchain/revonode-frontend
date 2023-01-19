@@ -26,7 +26,7 @@ const ForgetPasswordPage = props => {
   return (
     <React.Fragment>
       <MetaTags>
-        <title>Recover Password | Samply - React Admin & Dashboard Template</title>
+        <title>Recover Password | Revo Node Manager</title>
       </MetaTags>
       <div className="home-btn d-none d-sm-block">
         <Link to="/" className="text-dark">

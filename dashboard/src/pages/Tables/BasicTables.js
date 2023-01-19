@@ -17,7 +17,7 @@ const BasicTable = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Basic Tables | Samply - React Admin & Dashboard Template</title>
+          <title>Basic Tables | Revo Node Manager</title>
         </MetaTags>
         <div className="container-fluid">
           <Breadcrumbs title="Tables" breadcrumbItem="Basic Tables" />

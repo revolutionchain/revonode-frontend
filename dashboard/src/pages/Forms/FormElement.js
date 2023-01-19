@@ -10,7 +10,7 @@ function FormElement(props) {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Form Elements | Samply - React Admin & Dashboard Template</title>
+                    <title>Form Elements | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}

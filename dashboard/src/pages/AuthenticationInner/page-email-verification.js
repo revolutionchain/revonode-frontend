@@ -11,7 +11,7 @@ const PageEmailVerification = props => {
     return (
         <React.Fragment>
         <MetaTags>
-          <title>Email Verification | Samply - React Admin & Dashboard Template</title>
+          <title>Email Verification | Revo Node Manager</title>
         </MetaTags>
             <div className="account-pages my-5 pt-sm-5">
             <Container>

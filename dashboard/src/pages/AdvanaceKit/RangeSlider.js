@@ -41,7 +41,7 @@ const RangeSlider = () => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Range Slider | Samply - React Admin & Dashboard Template</title>
+                    <title>Range Slider | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid={true}>
                     <Breadcrumbs title="Advanced Kit" breadcrumbItem="Range Slider" />

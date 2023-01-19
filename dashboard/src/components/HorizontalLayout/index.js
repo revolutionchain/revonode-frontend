@@ -49,7 +49,7 @@ class Layout extends Component {
     let currentage = title.charAt(1).toUpperCase() + title.slice(2)
 
     document.title =
-      currentage + " | Samply - React Admin & Dashboard Template"
+      currentage + " | Revo Node Manager"
 
     this.props.changeLayout("horizontal")
     if (this.props.topbarTheme) {

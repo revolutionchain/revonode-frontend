@@ -11,7 +11,7 @@ const Error500 = props => {
         <React.Fragment>
             <div className="my-5 pt-sm-5">
                 <MetaTags>
-                    <title>500 Error | Samply - React Admin & Dashboard Template</title>
+                    <title>500 Error | Revo Node Manager</title>
                 </MetaTags>
                 <Container>
                     <Row>

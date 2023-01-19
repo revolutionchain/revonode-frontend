@@ -29,7 +29,7 @@ const Preloader = props => {
                 </div>
             </div>
             <MetaTags>
-                <title>Preloader | Samply - React Admin & Dashboard Template</title>
+                <title>Preloader | Revo Node Manager</title>
             </MetaTags>
             <Dashboard isTitle={true} />
         </React.Fragment>

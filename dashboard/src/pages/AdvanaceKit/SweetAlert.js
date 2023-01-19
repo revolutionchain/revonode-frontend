@@ -53,7 +53,7 @@ const UiSweetAlert = () => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Sweet Alert | Samply - React Admin & Dashboard Template</title>
+                    <title>Sweet Alert | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid={true}>
                     <Breadcrumbs title="Advanced Kit" breadcrumbItem="Sweet Alert" />

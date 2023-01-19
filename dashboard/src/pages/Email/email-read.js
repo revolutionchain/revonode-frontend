@@ -22,7 +22,7 @@ const EmailRead = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Read Email | Samply - React Admin & Dashboard Template</title>
+          <title>Read Email | Revo Node Manager</title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumbs */}

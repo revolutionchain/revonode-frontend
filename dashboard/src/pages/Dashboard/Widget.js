@@ -46,7 +46,7 @@ const widget = [
         text: 'Last 24h',
         count: '0',
         dollor: false,
-        icon: 'mdi-cancel text-success',
+        icon: 'bx bx-error-alt text-success',
         secondIcon: 'bx bx-plus-medical text-danger',
         percentage: '0.55%',
         color: 'warning',

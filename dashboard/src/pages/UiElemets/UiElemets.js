@@ -61,7 +61,7 @@ const UiElements = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Ui Elements | Samply - React Admin & Dashboard Template</title>
+          <title>Ui Elements | Revo Node Manager</title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumbs */}
