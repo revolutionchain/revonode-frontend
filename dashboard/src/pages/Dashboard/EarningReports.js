@@ -43,6 +43,7 @@ function EarningReports(props) {
 
     const [peersState, setPeersState] = useState(false);
     const [totalPeers, setTotalPeers] = useState(false);
+    const [randomColorsState, setRandomColorsState] = useState (false);
 
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
@@ -69,6 +70,12 @@ function EarningReports(props) {
             }
             return 0;
         });
+        let randomColors = [];
+        peersCount.map(e => {
+            let colorRandom = customScale(Math.floor(Math.random() * 1000));
+            randomColors.push(colorRandom);
+        })
+        setRandomColorsState(randomColors);        
         setPeersState(peersCount);
         setTotalPeers(peers);
     })
@@ -201,7 +208,7 @@ function EarningReports(props) {
                                     animationDuration={500}
                                     animationEasing="ease-out"
                                     center={[50, 50]}
-                                    data={peersState.map(e => {
+                                    data={peersState.map((e, i) => {
                                         /*[
                                             {
                                                 color: "#5668e2",
@@ -219,9 +226,9 @@ function EarningReports(props) {
                                                 value: 20,
                                             },
                                         ]*/
-                                        let colorRandom = customScale(Math.floor(Math.random() * 1000))
+                                        
                                         return  {
-                                            color: colorRandom,
+                                            color: randomColorsState[i],
                                             title: e.name,
                                             value: e.count
                                         }
