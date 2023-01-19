@@ -109,9 +109,9 @@ function EarningReports(props) {
             }
             getRandomColor()
         })
-        setRandomColorsState(randomColors);        
         setPeersState(peersCount);
         setTotalPeers(peers);
+        !randomColorsState && setRandomColorsState(randomColors);         
     })
 
     
