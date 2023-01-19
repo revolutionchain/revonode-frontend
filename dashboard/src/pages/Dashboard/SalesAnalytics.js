@@ -84,7 +84,7 @@ const SalesAnalytics = props => {
         nodeInfo[1].value = props.nodeData[4].protocolversion;
         nodeInfo[2].value = "6969";
         nodeInfo[3].value = <div>{
-            props.nodeData[4].map(e => {
+            props.nodeData[4].localservicesnames.map(e => {
                 return (<button type="button" class="btn btn-default btn-xs">{e}</button>)
             }
             )}</div>
