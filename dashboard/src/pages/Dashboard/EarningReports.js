@@ -195,7 +195,7 @@ function EarningReports(props) {
                                     animationEasing="ease-out"
                                     center={[50, 50]}
                                     data={totalPeers.map(e => {
-                                        [
+                                        /*[
                                             {
                                                 color: "#5668e2",
                                                 title: "One",
@@ -211,7 +211,7 @@ function EarningReports(props) {
                                                 title: "Three",
                                                 value: 20,
                                             },
-                                        ]
+                                        ]*/
                                         let colorRandom = customScale(Math.floor(Math.random() * 1000))
                                         return  {
                                             color: colorRandom,
