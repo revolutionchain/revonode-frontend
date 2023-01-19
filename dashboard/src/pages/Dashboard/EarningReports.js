@@ -12,22 +12,22 @@ import ApexRadial from '../AllCharts/ApexRadial';
 const blockchainInfo = [
     {
         title: "Chain",
-        icon: "mdi mdi-checkbox-multiple-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-multiple-blank-outline text-info",
         value: ""
     },
     {
         title: "Blocks Size",
-        icon: "far fa-hdd text-primary",
+        icon: "far fa-hdd text-info",
         value: ""
     },
     {
         title: "Difficulty",
-        icon: "mdi mdi-key-variant text-primary",
+        icon: "mdi mdi-key-variant text-info",
         value: ""
     },
     {
         title: "Mediantime",
-        icon: "mdi mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-info",
         value: ""
     },
 ]
@@ -92,7 +92,7 @@ function EarningReports(props) {
                             <Col sm={8}>
                                 <div className="avatar-xs mb-3">
                                     <span className="avatar-title rounded-circle bg-light font-size-24">
-                                        <i className="mdi mdi-bullhorn-outline text-primary"></i>
+                                        <i className="mdi mdi-bullhorn-outline text-info"></i>
                                     </span>
                                 </div>
                                 <p className="font-size-18">Enhance your <b>Campaign</b> for better outreach <i className="mdi mdi-arrow-right"></i></p>

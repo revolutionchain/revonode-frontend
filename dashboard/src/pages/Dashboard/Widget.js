@@ -23,7 +23,7 @@ const widget = [
         count: '2568',
         dollor: true,
         icon: 'bx bxs-cloud-upload text-success',
-        secondIcon: 'bx bx-chevron-right text-primary',
+        secondIcon: 'bx bx-chevron-right text-info',
         percentage: '4.58%',
         color: 'danger',
         upArrow: false
@@ -35,7 +35,7 @@ const widget = [
         count: '258410',
         dollor: false,
         icon: 'bx bxs-cloud-download text-primary',
-        secondIcon: 'bx bx-chevron-right text-primary',
+        secondIcon: 'bx bx-chevron-right text-info',
         percentage: '14.33%',
         color: 'success',
         upArrow: true
@@ -47,7 +47,7 @@ const widget = [
         count: '9582',
         dollor: false,
         icon: 'mdi-cancel text-success',
-        secondIcon: 'bx bx-plus-medical text-primary',
+        secondIcon: 'bx bx-plus-medical text-danger',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
@@ -70,8 +70,8 @@ const widget = [
         text: 'Ago',
         count: '9582',
         dollor: false,
-        icon: ' bx bxs-cube-alt text-success',
-        secondIcon: 'mdi mdi-clock-time-nine-outline text-primary',
+        icon: ' bx bxs-cube-alt text-warning',
+        secondIcon: 'mdi mdi-clock-time-nine-outline text-info',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
@@ -110,7 +110,7 @@ const icons = []
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{" " + widget.title}</p>
+                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">

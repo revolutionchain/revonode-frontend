@@ -5,32 +5,32 @@ import SalesAnalyticsChart from '../AllCharts/SalesAnalyticsChart';
 const nodeInfo = [
     {
         title: "Client",
-        icon: "far fa-id-card text-primary",
+        icon: "far fa-id-card text-info",
         value: ""
     },
     {
         title: "Protocol",
-        icon: "bx bx-transfer text-primary",
+        icon: "bx bx-transfer text-info",
         value: ""
     },
     {
         title: "Port",
-        icon: "bx bx-wifi text-primary",
+        icon: "bx bx-wifi text-info",
         value: ""
     },
     {
         title: "Services",
-        icon: "fas fa-bullhorn text-primary",
+        icon: "fas fa-bullhorn text-info",
         value: ""
     },
     {
         title: "Uptime",
-        icon: "mdi mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-info",
         value: ""
     },
     {
         title: "Node Time",
-        icon: "mdi mdi-clock-time-nine-outline text-primary",
+        icon: "mdi mdi-clock-time-nine-outline text-info",
         value: ""
     },
     {
@@ -45,32 +45,32 @@ const nodeInfo = [
     },
     {
         title: "i2p",
-        icon: "mdi mdi-checkbox-marked-outline text-primary",
+        icon: "mdi mdi-checkbox-marked-outline text-info",
         value: ""
     },
     {
         title: "Tor",
-        icon: "mdi mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-info",
         value: ""
     },
     {
         title: "Pruning Mode",
-        icon: "mdi mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-info",
         value: ""
     },
     {
         title: "Block Only Mode",
-        icon: "mdi mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-info",
         value: ""
     },
     {
         title: "Mempool Limited",
-        icon: "mdi mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-info",
         value: ""
     },
     {
         title: "Traffic Limit Set",
-        icon: "mdi mdi-checkbox-blank-outline text-primary",
+        icon: "mdi mdi-checkbox-blank-outline text-info",
         value: ""
     }
 ]
@@ -124,7 +124,7 @@ const SalesAnalytics = props => {
                         /*
                             <ul className="list-inline main-chart mb-0">
                                 <li className="list-inline-item chart-border-left me-0 border-0">
-                                    <h3 className="text-primary">$<span data-plugin="counterup">2,371</span><span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Income</span></h3>
+                                    <h3 className="text-info">$<span data-plugin="counterup">2,371</span><span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Income</span></h3>
                                 </li>
                                 <li className="list-inline-item chart-border-left me-0">
                                     <h3><span data-plugin="counterup">258</span><span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Sales</span>
