@@ -63,11 +63,11 @@ function EarningReports(props) {
         let peersCount = [];
         let peers = 0;
         props.peersData.map(e => {
-            let target = peersCount.find(elem => elem?.name == e.subver.split("(")[0].replaceAll("/", ""));
+            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1]);
             if (target) {
                 target.count = target.count + 1;
             } else {
-                peersCount.push({ name: e.subver.split("(")[0].replaceAll("/", ""), count: 1 });
+                peersCount.push({ name: e.subver.split("/")[1], count: 1 });
             }
             peers = peers + 1;
         });
@@ -80,22 +80,24 @@ function EarningReports(props) {
             }
             return 0;
         });
-        let randomColors = [];
+        var randomColors = [];
         peersCount.map((e, i) => {
-            let colorRandom;
-            if(i == 0){
-                colorRandom = customScale(e.count+5);
-                randomColors.push(colorRandom);
-            }else if(peersCount[i-1].count == e.count){
-                colorRandom = customScale(e.count+4);
-                randomColors.push(colorRandom);
-            }else if(peersCount[i-1].count !== e.count && colorRandom[i-1] !== e.count + 5){
-                colorRandom = customScale(e.count+5);
-                randomColors.push(colorRandom);
-            }else if(peersCount[i-1].count !== e.count && colorRandom[i-1] !== e.count + 5){
-                colorRandom = customScale(e.count+4);
-                randomColors.push(colorRandom);
+            function getRandomColor() {
+                var num=Math.floor(Math.random() * 256);
+                var color = [];
+                color[0] = 86;
+                color[1] = num;
+                color[2] = 226;                
+
+                if(randomColors.includes(color)){
+                  return getRandomColor();
+                }
+                else{
+                  let definedColor = rgbToHex(color[0], color[1], color[2]);
+                  randomColors.push(definedColor)
+                }                       
             }
+            getRandomColor()
         })
         setRandomColorsState(randomColors);        
         setPeersState(peersCount);
