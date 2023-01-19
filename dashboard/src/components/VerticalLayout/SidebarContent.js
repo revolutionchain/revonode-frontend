@@ -110,7 +110,7 @@ const SidebarContent = props => {
             
             <li>
               <Link to="/staking" className="waves-effect">
-                <i className='mdi-pickaxe'></i>
+                <i className='mdi mdi-pickaxe'></i>
                 <span key="t-ui-elements">{props.t("Staking")}</span>
               </Link>
             </li>
