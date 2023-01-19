@@ -86,11 +86,11 @@ const Dashboard = props => {
       {nodeData?.length && peersData?.length && <div className="page-content">
         {props.isTitle ?
           <MetaTags>
-            <title>Preloader | Samply - React Admin & Dashboard Template</title>
+            <title>Preloader | Revo Node Manager</title>
           </MetaTags>
           :
           <MetaTags>
-            <title>Dashboard | Samply - React Admin & Dashboard Template</title>
+            <title>Dashboard | Revo Node Manager</title>
           </MetaTags>
         }
 

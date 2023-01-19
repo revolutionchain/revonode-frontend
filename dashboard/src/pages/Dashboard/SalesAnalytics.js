@@ -4,6 +4,10 @@ import SalesAnalyticsChart from '../AllCharts/SalesAnalyticsChart';
 
 const nodeInfo = [
     {
+        title: "Name",
+        icon: "far fa-id-card text-info",
+        value: "My Node Name"
+    },{
         title: "Client",
         icon: "far fa-id-card text-info",
         value: ""

@@ -103,88 +103,35 @@ const SidebarContent = props => {
             <li className="menu-title mt-3">More</li>*/}
             <li>
               <Link to="/dashboard" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("Main")}</span>
+                <i className='bx bx-dashboard'></i>
+                <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
-            </li>
-
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className='bx bxs-grid'></i>
-                <span>{props.t("Peers")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li><Link to="/calendar"><span>{props.t("Calendar")}</span></Link></li>
-                <li><Link to="/chat"><span>{props.t("Chat")}</span></Link></li>
-                <li>
-                  <Link to="/#" className="has-arrow"><span>{props.t("Email")}</span></Link>
-                  <ul className="sub-menu">
-                    <li><Link to="/email-inbox">{props.t("Inbox")}</Link></li>
-                    <li><Link to="/email-read">{props.t("Read Email")}</Link></li>
-                  </ul>
-                </li>
-              </ul>
             </li>
             
             <li>
               <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("Ban list")}</span>
+                <i className='bx bx-transfer-alt'></i>
+                <span key="t-ui-elements">{props.t("Transactions")}</span>
               </Link>
             </li>
-            
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className='bx bxs-grid'></i>
-                <span>{props.t("Blocks")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li><Link to="/calendar"><span>{props.t("Calendar")}</span></Link></li>
-                <li><Link to="/chat"><span>{props.t("Chat")}</span></Link></li>
-                <li>
-                  <Link to="/#" className="has-arrow"><span>{props.t("Email")}</span></Link>
-                  <ul className="sub-menu">
-                    <li><Link to="/email-inbox">{props.t("Inbox")}</Link></li>
-                    <li><Link to="/email-read">{props.t("Read Email")}</Link></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-
-            
+                   
             
             <li>
               <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("Memory Pool")}</span>
-              </Link>
-            </li>
-
-            
-            
-            <li>
-              <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("Wallet")}</span>
+                <i className='bx bx-component'></i>
+                <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
             </li>
             
             
             <li>
               <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("Settings")}</span>
+                <i className='bx bx-network-chart'></i>
+                <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
-
             
-            
-            <li>
-              <Link to="/ui-components" className="waves-effect">
-                <i className='bx bx-briefcase'></i>
-                <span key="t-ui-elements">{props.t("About")}</span>
-              </Link>
-            </li>{/*
+            {/*
 
             <li>
               <Link to="/#" className="waves-effect">
