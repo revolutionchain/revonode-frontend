@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
 import { useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
+import { scaleLinear } from "d3-scale";
 
 
 //import images 
@@ -67,6 +68,17 @@ function EarningReports(props) {
         setTotalPeers(peers);
     })
 
+    
+
+  const minValue = 0 // based on the data array above
+  const maxValue = 1000 // based on the data array above
+  
+  const minColor = "#56aee2"
+  const maxColor = "#5668e2"
+
+  const customScale = scaleLinear()
+    .domain([minValue,maxValue])
+    .range([minColor,maxColor])
 
     return (
         <React.Fragment>
@@ -182,23 +194,32 @@ function EarningReports(props) {
                                     animationDuration={500}
                                     animationEasing="ease-out"
                                     center={[50, 50]}
-                                    data={[
-                                        {
-                                            color: "#5668e2",
-                                            title: "One",
-                                            value: 10,
-                                        },
-                                        {
-                                            color: "#56e2cf",
-                                            title: "Two",
-                                            value: 15,
-                                        },
-                                        {
-                                            color: "#56aee2",
-                                            title: "Three",
-                                            value: 20,
-                                        },
-                                    ]}
+                                    data={totalPeers.map(e => {
+                                        [
+                                            {
+                                                color: "#5668e2",
+                                                title: "One",
+                                                value: 10,
+                                            },
+                                            {
+                                                color: "#56e2cf",
+                                                title: "Two",
+                                                value: 15,
+                                            },
+                                            {
+                                                color: "#56aee2",
+                                                title: "Three",
+                                                value: 20,
+                                            },
+                                        ]
+                                        let colorRandom = customScale(Math.floor(Math.random() * 1000))
+                                        return  {
+                                            color: colorRandom,
+                                            title: e.name,
+                                            value: e.count
+                                        }
+                                        
+                                    })}
                                     labelPosition={50}
                                     lengthAngle={360}
                                     lineWidth={50}
