@@ -22,6 +22,11 @@ const blockchainInfo = [
         value: ""
     },
     {
+        title: "Blockchain Size",
+        icon: "far fa-hdd text-info",
+        value: ""
+    },
+    {
         title: "Difficulty",
         icon: "mdi mdi-key-variant text-info",
         value: ""
@@ -186,7 +191,7 @@ function EarningReports(props) {
                 <Card className="bg-pattern">
                     <CardBody>
 
-                        <h4 className="card-title mb-6">Top Peer Clients</h4>
+                        <h4 className="card-title mb-6">Top Clients</h4>
                         <div className="mt-1 d-flex">
                             <div className='col-xl-6'>
                                 {totalPeers && <PieChart
