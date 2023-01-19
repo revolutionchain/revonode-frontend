@@ -178,12 +178,35 @@ function EarningReports(props) {
                         <div className="mt-1 d-flex">
                             <div className='col-xl-6'>
                                 <PieChart
+                                    animation
+                                    animationDuration={500}
+                                    animationEasing="ease-out"
+                                    center={[50, 50]}
                                     data={[
-                                        { title: 'One', value: 10, color: '#E38627' },
-                                        { title: 'Two', value: 15, color: '#C13C37' },
-                                        { title: 'Three', value: 20, color: '#6A2135' },
+                                        {
+                                            color: "#E38627",
+                                            title: "One",
+                                            value: 10,
+                                        },
+                                        {
+                                            color: "#C13C37",
+                                            title: "Two",
+                                            value: 15,
+                                        },
+                                        {
+                                            color: "#6A2135",
+                                            title: "Three",
+                                            value: 20,
+                                        },
                                     ]}
-                                />;
+                                    labelPosition={50}
+                                    lengthAngle={360}
+                                    lineWidth={50}
+                                    paddingAngle={1}
+                                    radius={50}
+                                    startAngle={0}
+                                    viewBoxSize={[100, 100]}
+                                />
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
                                 return (<div key={i} className="d-flex col-xl-6">
