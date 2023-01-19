@@ -55,6 +55,16 @@ function EarningReports(props) {
       .domain([minValue,maxValue])
       .range([minColor,maxColor])
 
+      function componentToHex(c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+      }
+      
+      function rgbToHex(r, g, b) {
+        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+      }
+      
+
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + "GB";
