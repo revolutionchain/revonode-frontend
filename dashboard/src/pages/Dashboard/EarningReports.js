@@ -92,6 +92,7 @@ function EarningReports(props) {
                     <CardBody>
 
                         <h4 className="card-title mb-3">Blockchain</h4>
+                        <hr />
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
@@ -191,7 +192,8 @@ function EarningReports(props) {
                 <Card className="bg-pattern">
                     <CardBody>
 
-                        <h4 className="card-title mb-6">Top Clients</h4>
+                        <h4 className="card-title mb-6">Top Peer Clients</h4>
+                        <hr />
                         <div className="mt-1 d-flex">
                             <div className='col-xl-6'>
                                 {totalPeers && <PieChart

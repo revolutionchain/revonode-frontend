@@ -67,8 +67,7 @@ const ProfileMenu = props => {
             <i className="bx bx-wallet font-size-16 align-middle me-1"/>
             {props.t("My Wallet")}
           </DropdownItem>
-          <DropdownItem tag="a" href="#">
-            <span className="badge bg-success float-end">11</span>
+          <DropdownItem tag="a" href="#">            
             <i className="bx bx-wrench font-size-16 align-middle me-1"/>
             {props.t("Settings")}
           </DropdownItem>{/*
