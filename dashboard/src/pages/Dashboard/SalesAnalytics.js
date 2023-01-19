@@ -85,7 +85,7 @@ const SalesAnalytics = props => {
         nodeInfo[2].value = "6969";
         nodeInfo[3].value = <div>{
             props.nodeData[4].localservicesnames.map(e => {
-                return (<button type="button" class="btn btn-default btn-xs">{e}</button>)
+                return (<button style={{fontSize: "10px"}} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
         nodeInfo[4].value = props.nodeData[5];
