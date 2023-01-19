@@ -110,7 +110,7 @@ const icons = []
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '8px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{" " + widget.title}</p>
+                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase "><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
@@ -118,7 +118,7 @@ const icons = []
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
-                                    <span className={"badge badge-soft-" + widget.color + " me-1"}>
+                                    <span className={""}>
 
                                         {/*widget.upArrow === true ?
                                             <i className="mdi mdi-arrow-up-bold me-1"></i> : <i className="mdi mdi-arrow-down-bold me-1"></i>

@@ -16,7 +16,7 @@ const blockchainInfo = [
         value: ""
     },
     {
-        title: "Size",
+        title: "Blocks Size",
         icon: "far fa-hdd text-primary",
         value: ""
     },
@@ -184,17 +184,17 @@ function EarningReports(props) {
                                     center={[50, 50]}
                                     data={[
                                         {
-                                            color: "#E38627",
+                                            color: "#5668e2",
                                             title: "One",
                                             value: 10,
                                         },
                                         {
-                                            color: "#C13C37",
+                                            color: "#56e2cf",
                                             title: "Two",
                                             value: 15,
                                         },
                                         {
-                                            color: "#6A2135",
+                                            color: "#56aee2",
                                             title: "Three",
                                             value: 20,
                                         },

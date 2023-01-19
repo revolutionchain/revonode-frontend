@@ -78,23 +78,27 @@ const nodeInfo = [
 const SalesAnalytics = props => {
     const [menu, setMenu] = useState(false);
 
-    
-useEffect(()=>{        
-    nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
-    nodeInfo[1].value = props.nodeData[4].protocolversion;
-    nodeInfo[2].value = "6969";
-    nodeInfo[3].value = props.nodeData[4].localservicesnames[0] + " " + props.nodeData[4].localservicesnames[1] + " " + props.nodeData[4].localservicesnames[2];
-    nodeInfo[4].value = props.nodeData[5];
-    nodeInfo[5].value = props.nodeData[6];
-    nodeInfo[6].value = props.nodeData[4].networks[0].reachable;
-    nodeInfo[7].value = props.nodeData[4].networks[1].reachable;
-    nodeInfo[8].value = props.nodeData[4].networks[3].reachable;
-    nodeInfo[9].value = props.nodeData[4].networks[2].reachable;
-    nodeInfo[10].value = (props.nodeData[7].pruned).toString();
-    nodeInfo[11].value = "false";
-    nodeInfo[12].value = "false";
-    nodeInfo[13].value = "false";
-})
+
+    useEffect(() => {
+        nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
+        nodeInfo[1].value = props.nodeData[4].protocolversion;
+        nodeInfo[2].value = "6969";
+        nodeInfo[3].value = <div>{
+            props.nodeData[4].map(e => {
+                return (<button type="button" class="btn btn-default btn-xs">{e}</button>)
+            }
+            )}</div>
+        nodeInfo[4].value = props.nodeData[5];
+        nodeInfo[5].value = props.nodeData[6];
+        nodeInfo[6].value = props.nodeData[4].networks[0].reachable;
+        nodeInfo[7].value = props.nodeData[4].networks[1].reachable;
+        nodeInfo[8].value = props.nodeData[4].networks[3].reachable;
+        nodeInfo[9].value = props.nodeData[4].networks[2].reachable;
+        nodeInfo[10].value = (props.nodeData[7].pruned).toString();
+        nodeInfo[11].value = "false";
+        nodeInfo[12].value = "false";
+        nodeInfo[13].value = "false";
+    })
 
 
     return (
@@ -107,10 +111,10 @@ useEffect(()=>{
                         <div className="mt-1">
                             {props.nodeData.length && nodeInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{width: "50%"}}>
-                                    <i className={e.icon}></i>{" " + e.title}
+                                    <div style={{ width: "50%" }}>
+                                        <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{width: "50%"}}>
+                                    <div style={{ width: "50%" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
