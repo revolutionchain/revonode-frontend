@@ -11,7 +11,7 @@ const PageLogin = props => {
     return (
         <React.Fragment>
             <MetaTags>
-                <title>Login | Samply - React Admin & Dashboard Template</title>
+                <title>Login |R</title>
             </MetaTags>
             <div className="account-pages my-5 pt-sm-5">
                 <Container>
