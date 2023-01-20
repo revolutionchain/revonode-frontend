@@ -45,16 +45,13 @@ export default function MapChart({ ipLocationData }) {
     setCountriesData(countryValuesArray);
 
     let colorValues = {
-      minValue: countryValuesArray[0]?.value,
+      minValue: 0,
       maxValue: 0
     };
 
     countryValuesArray.map(e => {
       if(colorValues.maxValue < e.value){
         colorValues.maxValue = e.value;
-      }
-      if(colorValues.minValue > e.value){
-        colorValues.minValue = e.value
       }
     })
     setMinMaxValue(colorValues);
