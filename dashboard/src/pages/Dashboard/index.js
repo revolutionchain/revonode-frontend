@@ -71,17 +71,21 @@ const Dashboard = props => {
       },
     }).then(data => data.json())
       .then(res => {
-        fetch(`https://ip-api.com/batch`, {
-          method: 'POST',
+        let ipArrData = [];
+        res.map(e => {
+          fetch(`https://ipapi.co/${e.query}/json/`, {
+          method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(res)
         }).then(ipData => ipData.json())
           .then(ipRes => {
-            setIpLocationData(ipRes);
+            ipArrData.push(ipRes);
           })
+
+        })
+        
       });
 
     setTimeout(() => {
