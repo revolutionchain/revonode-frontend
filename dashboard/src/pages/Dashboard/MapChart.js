@@ -29,7 +29,7 @@ export default function MapChart({ipLocationData}) {
           stroke: "#FFFFFF"}}}>
         {({ geographies }) =>
           geographies.map((geo) => {
-            const country = ipLocationData.find(d => d.countryCode === geo.properties["Alpha-2"]);
+            const country = ipLocationData.find(d => d.country_code === geo.properties["Alpha-2"]);
             return(
             <Geography             
             fill={country ? customScale(maxValue) : "#CCCCCC"}
