@@ -16,11 +16,6 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 import { withTranslation } from "react-i18next";
 
 import Widget from './Widget';
-import SalesAnalytics from './SalesAnalytics';
-import EarningReports from './EarningReports';
-import LatestTransactions from './LatestTransactions';
-import LatestOrders from './LatestOrders';
-import RecentUsers from './RecentUsers';
 
 import { useSelector } from 'react-redux';
 
@@ -78,7 +73,7 @@ const Dashboard = props => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(res)
-        }).then(ipData => ipData.json())
+        }).then(data => data.json())
           .then(ipRes => {
             setIpLocationData(ipRes);
           })
@@ -117,21 +112,6 @@ const Dashboard = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
-
-          <Row>
-            <SalesAnalytics nodeData={nodeData} />
-            <EarningReports nodeData={nodeData} peersData={peersData} />
-          </Row>
-          <Row>
-            <Col xl={10}>
-              {ipLocationData && <LatestTransactions ipLocationData={ipLocationData} />}
-            </Col>{/*
-            <Col xl={6}>
-              <LatestOrders />
-        </Col>*/}
-          </Row>{/*
-          <RecentUsers />
-      */}
         </Container>
       </div>
       }<Modal

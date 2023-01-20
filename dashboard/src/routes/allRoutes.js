@@ -32,6 +32,9 @@ import TwostepVerification from "../pages/AuthenticationInner/page-two-step-veri
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
 
+// Peers
+import Peers from "../pages/Peers/index"
+
 // Charts
 import ChartApex from "../pages/Charts/Apexcharts"
 
@@ -76,6 +79,9 @@ import Typography from "../pages/Typography";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
+
+  { path: "/peers", component: Peers },
+
 
   //chat
   { path: "/chat", component: Chat },
