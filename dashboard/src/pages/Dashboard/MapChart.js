@@ -23,7 +23,7 @@ export default function MapChart({ ipLocationData }) {
       if (countryCounter[e.country_code]) {
         countryCounter = {
           ...countryCounter,
-          [e.country_code]: countryCounter.country_code + 1
+          [e.country_code]: countryCounter[e.country_code] + 1
         }
       } else {
         countryCounter = {
