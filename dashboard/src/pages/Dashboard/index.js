@@ -61,6 +61,7 @@ const Dashboard = props => {
       },
     }).then(data => data.json())
       .then(res => {
+        console.log(res);
         setPeersData(res);
       });
     fetch(`http://${window.location.hostname}:3001/getpeersip`, {
