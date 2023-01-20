@@ -328,9 +328,11 @@ body {
   font-weight: 400;
   font-family: 'Poppins' !important;
   margin: 0px;
+}
+
+.bg-logreg {  
   background: url("./nebula.png");
   background-size: cover;
-
 }
 
 

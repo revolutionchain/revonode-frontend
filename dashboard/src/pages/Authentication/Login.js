@@ -40,6 +40,7 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
   useEffect(async () => {
+    document.body.classList.add('bg-reglog');
     try {
       fetch(`http://${window.location.hostname}:3001/checklocalip`)
         .then(response => response)

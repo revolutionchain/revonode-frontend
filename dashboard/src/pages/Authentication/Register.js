@@ -40,6 +40,7 @@ const Register = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    document.body.classList.add('bg-reglog');
     props.apiError("")
     document.body.className = "authentication-bg";
     fetch(`http://${window.location.hostname}:3001/checkuser`)

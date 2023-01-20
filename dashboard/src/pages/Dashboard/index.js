@@ -40,6 +40,7 @@ const Dashboard = props => {
   const [ipLocationData, setIpLocationData] = useState(false);
 
   useEffect(() => {
+    document.body.classList.remove('bg-reglog');
     if (!isLogged) {
       props.history.push('/login');
     }
