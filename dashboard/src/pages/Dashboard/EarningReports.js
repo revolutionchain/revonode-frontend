@@ -74,11 +74,11 @@ function EarningReports(props) {
         let peersCount = [];
         let peers = 0;
         props.peersData.map(e => {
-            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
+            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1]);
             if (target) {
                 target.count = target.count + 1;
             } else {
-                peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
+                peersCount.push({ name: e.subver.split("/")[1], count: 1 });
             }
             peers = peers + 1;
         });
@@ -127,7 +127,7 @@ function EarningReports(props) {
                         <hr />
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
-                                return (<div style="padding:10px;"className="d-flex">
+                                return (<div className="d-flex">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
