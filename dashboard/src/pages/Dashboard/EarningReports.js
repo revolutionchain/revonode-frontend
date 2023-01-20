@@ -74,11 +74,11 @@ function EarningReports(props) {
         let peersCount = [];
         let peers = 0;
         props.peersData.map(e => {
-            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
+            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1]);
             if (target) {
                 target.count = target.count + 1;
             } else {
-                peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
+                peersCount.push({ name: e.subver.split("/")[1], count: 1 });
             }
             peers = peers + 1;
         });
