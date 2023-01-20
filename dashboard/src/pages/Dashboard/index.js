@@ -85,6 +85,7 @@ const Dashboard = props => {
           })
 
         })
+        setIpLocationData(ipArrData);
         
       });
 
