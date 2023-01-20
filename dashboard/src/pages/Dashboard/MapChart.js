@@ -20,7 +20,7 @@ export default function MapChart({ ipLocationData }) {
 
     let countryCounter = {};
     ipLocationData.map(e => {
-      if (countryCounter[e.country_code]?.length > 0) {
+      if (countryCounter[e.country_code]) {
         countryCounter = {
           ...countryCounter,
           [e.country_code]: countryCounter.country_code + 1
@@ -45,7 +45,7 @@ export default function MapChart({ ipLocationData }) {
     setCountriesData(countryValuesArray);
 
     let colorValues = {
-      minValue: countryValuesArray[0].value,
+      minValue: countryValuesArray[0]?.value,
       maxValue: 0
     };
 
@@ -87,7 +87,7 @@ export default function MapChart({ ipLocationData }) {
             const country = countriesData.find(d => d.country_code === geo.properties["Alpha-2"]);
             return (
               <Geography
-                fill={country ? customScale(d.value) : "#CCCCCC"}
+                fill={country ? customScale(country.value) : "#CCCCCC"}
                 key={geo.rsmKey}
                 geography={geo}
               />)
