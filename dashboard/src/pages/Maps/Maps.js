@@ -34,7 +34,7 @@ class MapsGoogle extends Component {
             <React.Fragment>
                 <div className="page-content">
                     <MetaTags>
-                        <title>Maps | Samply - React Admin & Dashboard Template</title>
+                        <title>Maps | Revo Node Manager</title>
                     </MetaTags>
                     <div className="container-fluid">
                         <Breadcrumbs title="Maps" breadcrumbItem="Maps" />

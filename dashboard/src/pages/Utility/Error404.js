@@ -10,7 +10,7 @@ const Profile = props => {
         <React.Fragment>
             <div className="my-5 pt-sm-5">
                 <MetaTags>
-                    <title>404 Error | Samply - React Admin & Dashboard Template</title>
+                    <title>404 Error | Revo Node Manager</title>
                 </MetaTags>
                 <Container>
                     <Row>

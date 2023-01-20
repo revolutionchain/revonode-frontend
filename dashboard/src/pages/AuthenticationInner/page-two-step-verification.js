@@ -14,7 +14,7 @@ function PageTwoStepVerification(props) {
     return (
         <React.Fragment>
             <MetaTags>
-                <title>Two Step Verification | Samply - React Admin & Dashboard Template</title>
+                <title>Two Step Verification | Revo Node Manager</title>
             </MetaTags>
             <div className="account-pages my-5 pt-sm-5">
                 <Container>

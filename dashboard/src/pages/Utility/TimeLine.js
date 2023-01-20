@@ -15,7 +15,7 @@ const Profile = props => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Timeline | Samply - React Admin & Dashboard Template</title>
+                    <title>Timeline | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}

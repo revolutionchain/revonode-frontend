@@ -46,7 +46,7 @@ class IconMaterialdesign extends Component {
             <React.Fragment>
                 <div className="page-content">
                     <MetaTags>
-                        <title>Material Design | Samply - React Admin & Dashboard Template</title>
+                        <title>Material Design | Revo Node Manager</title>
                     </MetaTags>
                     <Container fluid>
                         <Breadcrumbs title="Icons" breadcrumbItem="MDI" />

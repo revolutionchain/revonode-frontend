@@ -63,7 +63,7 @@ class IconFontawesome extends Component {
             <React.Fragment>
                 <div className="page-content">
                     <MetaTags>
-                        <title>Font awesome | Samply - React Admin & Dashboard Template</title>
+                        <title>Font awesome | Revo Node Manager</title>
                     </MetaTags>
                     <Container fluid={true}>
                         <Breadcrumbs title="Icons" breadcrumbItem="Font awesome" />

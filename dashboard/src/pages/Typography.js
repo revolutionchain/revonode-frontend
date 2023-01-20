@@ -10,7 +10,7 @@ const Typography = props => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Typography | Samply - React Admin & Dashboard Template</title>
+                    <title>Typography | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}
@@ -44,7 +44,7 @@ const Typography = props => {
 
                                     <h3 className="mb-3">h3. Bootstrap heading <small className="text-muted">1.53125rem (24.5px)</small></h3>
 
-                                    <h4 className="mb-3">h4. Bootstrap heading <small className="text-muted">1.3125rem (21px)</small></h4>
+                                    <h4 className="mb-3">h4. Bootstrap heading <small className="text-muted">2.0rem (21px)</small></h4>
 
                                     <h5 className="mb-3">h5. Bootstrap heading <small className="text-muted">1.09375rem (17.5)</small></h5>
 

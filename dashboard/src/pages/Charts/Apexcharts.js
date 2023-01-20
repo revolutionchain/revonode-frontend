@@ -44,7 +44,7 @@ const Apexchart = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Charts | Samply - React Admin & Dashboard Template</title>
+          <title>Charts | Revo Node Manager</title>
         </MetaTags>
         <div className="container-fluid">
           <Breadcrumbs title="Charts" breadcrumbItem="Charts" />

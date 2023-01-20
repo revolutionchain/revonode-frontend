@@ -60,7 +60,7 @@ const UserProfile = props => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Profile | Samply - React Admin & Dashboard Template</title>
+          <title>Profile | Revo Node Manager</title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumb */}

@@ -7,8 +7,8 @@ const widget = [
     {
         id: 1,
         title: 'Total Connections',
-        text: 'New Peers',
-        count: 'value',
+        text: '0 New Peers',
+        count: '0',
         dollor: true,
         icon: 'bx bxs-user text-primary',
         secondIcon: 'bx bx-plus-medical text-primary',
@@ -19,8 +19,8 @@ const widget = [
     {
         id: 2,
         title: 'Total Upload Traffic (GB)',
-        text: 'Current Peers',
-        count: '2568',
+        text: '0 GB Current Peers',
+        count: '0',
         dollor: true,
         icon: 'bx bxs-cloud-upload text-success',
         secondIcon: 'bx bx-chevron-right text-info',
@@ -30,9 +30,9 @@ const widget = [
     },
     {
         id: 3,
-        title: 'Total Download Traffic (MB)',
-        text: 'Current Peers',
-        count: '258410',
+        title: 'Total Download Traffic (GB)',
+        text: '0 GB Current Peers',
+        count: '0',
         dollor: false,
         icon: 'bx bxs-cloud-download text-primary',
         secondIcon: 'bx bx-chevron-right text-info',
@@ -44,9 +44,9 @@ const widget = [
         id: 4,
         title: 'Banned Peers',
         text: 'Last 24h',
-        count: '9582',
+        count: '0',
         dollor: false,
-        icon: 'mdi-cancel text-success',
+        icon: 'bx bx-error-alt text-success',
         secondIcon: 'bx bx-plus-medical text-danger',
         percentage: '0.55%',
         color: 'warning',
@@ -55,8 +55,8 @@ const widget = [
     {
         id: 5,
         title: 'TX in Mempool',
-        text: 'Usage',
-        count: '9582',
+        text: '0% Usage',
+        count: '0',
         dollor: false,
         icon: 'bx bxs-data text-success',
         secondIcon: 'dripicons-battery-low text-primary',
@@ -67,8 +67,8 @@ const widget = [
     {
         id: 6,
         title: 'Lastest Block',
-        text: 'Ago',
-        count: '9582',
+        text: 'm ago',
+        count: '0',
         dollor: false,
         icon: ' bx bxs-cube-alt text-warning',
         secondIcon: 'mdi mdi-clock-time-nine-outline text-info',
@@ -110,7 +110,7 @@ const icons = []
                                     </div>
                                 </div>*/}
                                 <div>
-                                    <p style={{fontSize: '9px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
+                                    <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">

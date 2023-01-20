@@ -339,7 +339,7 @@ const FormAdvanaced = () => {
       <div className="page-content">
         <MetaTags>
           <title>
-            Form Advanced | Samply - React Admin & Dashboard Template
+            Form Advanced | Revo Node Manager
           </title>
         </MetaTags>
         <Container fluid>

@@ -18,7 +18,7 @@ const EmailInbox = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Inbox | Samply - React Admin & Dashboard Template</title>
+          <title>Inbox | Revo Node Manager</title>
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumbs */}

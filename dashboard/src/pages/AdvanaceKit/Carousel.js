@@ -23,7 +23,7 @@ const Carousel = () => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Carousel | Samply - React Admin & Dashboard Template</title>
+                    <title>Carousel | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid={true}>
                     <Breadcrumbs title="Advanced Kit" breadcrumbItem="Carousel" />

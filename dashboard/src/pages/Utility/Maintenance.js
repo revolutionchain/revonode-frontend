@@ -14,7 +14,7 @@ const Maintenance = props => {
             <div className="my-5 pt-sm-5">
                 <Container>
                     <MetaTags>
-                        <title>Maintenance | Samply - React Admin & Dashboard Template</title>
+                        <title>Maintenance | Revo Node Manager</title>
                     </MetaTags>
                     <Row>
                         <Col md={12}>

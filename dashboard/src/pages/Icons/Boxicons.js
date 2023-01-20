@@ -10,7 +10,7 @@ const Boxicons = props => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Boxicons | Samply - React Admin & Dashboard Template</title>
+                    <title>Boxicons | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}

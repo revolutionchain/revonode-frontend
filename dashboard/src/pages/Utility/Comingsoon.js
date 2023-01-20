@@ -38,7 +38,7 @@ const Comingsoon = props => {
         <React.Fragment>
             <div className="my-5 pt-sm-5">
                 <MetaTags>
-                    <title>Coming Soon | Samply - React Admin & Dashboard Template</title>
+                    <title>Coming Soon | Revo Node Manager</title>
                 </MetaTags>
                 <Container>
                     <Row>

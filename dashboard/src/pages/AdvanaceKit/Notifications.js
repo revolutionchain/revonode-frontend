@@ -34,7 +34,7 @@ const Notifications = props => {
         <React.Fragment>
             <div className="page-content">
                 <MetaTags>
-                    <title>Notifications | Samply - React Admin & Dashboard Template</title>
+                    <title>Notifications | Revo Node Manager</title>
                 </MetaTags>
                 <Container fluid>
                     {/* Render Breadcrumbs */}
