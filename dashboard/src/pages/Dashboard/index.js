@@ -61,7 +61,7 @@ const Dashboard = props => {
       },
     }).then(data => data.json())
       .then(res => {
-        console.log(res);
+        console.log("peers data: " + res);
         setPeersData(res);
       });
     fetch(`http://${window.location.hostname}:3001/getpeersip`, {
@@ -82,6 +82,7 @@ const Dashboard = props => {
           },
         }).then(ipData => ipData.json())
           .then(ipRes => {
+            console.log("ip location: " + ipRes);
             ipArrData.push(ipRes);
           })
 
