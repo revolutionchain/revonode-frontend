@@ -63,28 +63,27 @@ const Dashboard = props => {
       .then(res => {
         setPeersData(res);
       });
-      let peersIp;
-      fetch(`http://${window.location.hostname}:3001/getpeersip`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }).then(data => data.json())
-        .then(res => {
-          peersIp = res;
-        });
-    fetch(`http://ip-api.com/batch`, {
-      method: 'POST',
+    fetch(`http://${window.location.hostname}:3001/getpeersip`, {
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(peersIp)
     }).then(data => data.json())
       .then(res => {
-        setIpLocationData(res);
-      })
+        fetch(`https://ip-api.com/batch`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(res)
+        }).then(data => data.json())
+          .then(ipRes => {
+            setIpLocationData(ipRes);
+          })
+      });
+
     setTimeout(() => {
       setSubscribemodal(true)
     }, 2000);
