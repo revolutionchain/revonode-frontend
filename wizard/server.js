@@ -466,16 +466,15 @@ app.get('/getpeersip', (req,res,next) => {
   let data = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
   let ips = [];
   data.map(e => {        
-    if((ip.addr).split(".").length < 4){
+    if((e.addr).split(".").length < 4){
       result = execSync(`dig ${e.addr} +short`, {encoding: 'utf8'});
-      ips.push({addr: e.addr, ip: result});
+      ips.push({query: result});
     }else {
-      ips.push({addr: e.addr, ip: (e.addr).split(":")[0]});
+      ips.push({query: (e.addr).split(":")[0]});
     }
   })
   res.send(ips);
 })
-
 
 
 app.use(express.static(path.resolve(__dirname, "./build")))
