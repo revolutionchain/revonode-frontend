@@ -464,6 +464,8 @@ app.get('/getpeers', (req,res,next) => {
 
 app.get('/getpeersip', (req,res,next) => {
   let data = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
+  data = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-","_of_");
+  data = JSON.parse(data);
   let ips = [];
   data.map(e => {        
     if((e.addr).split(".").length < 4){
