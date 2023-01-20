@@ -127,7 +127,7 @@ function EarningReports(props) {
                         <hr />
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
-                                return (<div className="d-flex">
+                                return (<div style="padding:10px;"className="d-flex">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
