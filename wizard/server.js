@@ -470,7 +470,7 @@ app.get('/getpeersip', (req,res,next) => {
   data.map(e => {        
     if((e.addr).split(".").length < 4){
       result = execSync(`dig ${e.addr} +short`, {encoding: 'utf8'});
-      ips.push({query: result});
+      ips.push({query: result.replaceAll("\n","")});
     }else {
       ips.push({query: (e.addr).split(":")[0]});
     }
