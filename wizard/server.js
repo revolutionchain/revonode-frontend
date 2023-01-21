@@ -483,54 +483,32 @@ function checkPeersData() {
   for (let i = 0; i < peersData.length; i++) {
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
-      //let ips = [];
       let peersIpData = [];
-      
-      peersData.map((e,j) => {
+
+      peersData.map((e, j) => {
         let currentIp;
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
           currentIp = { query: result.replaceAll("\n", "") };
-          //ips.push({ query: result.replaceAll("\n", "") });
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
-          //ips.push({ query: (e.addr).split(":")[0] });
-        }        
+        }
         axios.get(`https://ipapi.co/${currentIp.query}/json/`)
-          .then(res => {
-            peersIpData[j] = res.data;
-            console.log(res.data);
-            setTimeout(()=>{
-              if (j == peersData.length - 1) {
-                peersIpData = JSON.stringify(peersIpData);
-                fs.writeFileSync('peersIp.json', peersIpData);
-                peersData = JSON.stringify(peersData)
-                fs.writeFileSync('peers.json', peersData);
-              }
-            }, 1000)
-          })
-      })/*
-      ips.map((e, j) => {
-        axios.get(`https://ipapi.co/${e.query}/json/`)
-          .then(res => {
-            peersIpData[i] = res.data;
-
+          .then(res => res.data)
+          .then(data => {
+            peersIpData[j] = data;
             if (j == peersData.length - 1) {
-              console.log(peersIpData);
               peersIpData = JSON.stringify(peersIpData);
-              console.log(peersIpData)
               fs.writeFileSync('peersIp.json', peersIpData);
               peersData = JSON.stringify(peersData)
               fs.writeFileSync('peers.json', peersData);
             }
           })
-      })*/
-      
+      })
       break;
-    }else {
+    } else {
     }
   }
-
 }
 
 
@@ -538,7 +516,7 @@ function checkPeersData() {
 exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
   if (err) {
   } else {
-    if(stdout.includes("master")){
+    if (stdout.includes("master")) {
       checkPeersData();
     }
   }
@@ -547,15 +525,15 @@ exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
 
 
 cron.schedule("*/60 * * * * *", function () {
-  
-exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
-  if (err) {
-  } else {
-    if(stdout.includes("master")){
-      checkPeersData();
+
+  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+    if (err) {
+    } else {
+      if (stdout.includes("master")) {
+        checkPeersData();
+      }
     }
-  }
-});
+  });
 });
 
 
