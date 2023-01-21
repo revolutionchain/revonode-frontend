@@ -483,7 +483,6 @@ async function checkPeersData (){
 
   for(let i = 0 ; i < peersData.length ; i++){
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
-    console.log(currentPeer);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
       let ips = [];
       peersData.map(e => {
@@ -497,22 +496,9 @@ async function checkPeersData (){
       peersData = JSON.stringify(peersData)
       fs.writeFileSync('peers.json', peersData);      
       let peersIpData = [];
-      ips.map(async e => {
-        await axios.get(`https://ipapi.co/${e.query}/json/`)
-        .then(ipData => ipData.data)
-        .then(ipRes => {
-          peersIpData.push(ipRes)
-        })
-        /*fetch(`https://ipapi.co/${e.query}/json/`, {
-            method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-          }).then(ipData => ipData.json())
-            .then(ipRes => {
-              peersIpData.push(ipRes);
-            })*/
+      ips.map(async (e,i) => {
+        let result = await axios.get(`https://ipapi.co/${e.query}/json/`);
+        peersData[i] = result.data;
       })
       peersIpData = JSON.stringify(peersIpData);
       fs.writeFileSync('peersIp.json', peersIpData);
