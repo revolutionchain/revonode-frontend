@@ -62,7 +62,6 @@ const Dashboard = props => {
       },
     }).then(data => data.json())
       .then(res => {
-        console.log("peers data: " + res);
         setPeersData(res);
       });
     fetch(`http://${window.location.hostname}:3001/getpeersip`, {
@@ -72,24 +71,8 @@ const Dashboard = props => {
         'Content-Type': 'application/json',
       },
     }).then(data => data.json())
-      .then(res => {
-        let ipArrData = [];
-        res.map(e => {
-          fetch(`https://ipapi.co/${e.query}/json/`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }).then(ipData => ipData.json())
-          .then(ipRes => {
-            console.log("ip location: " + ipRes);
-            ipArrData.push(ipRes);
-          })
-
-        })
-        setIpLocationData(ipArrData);
-        
+      .then(res => {        
+        setIpLocationData(res);        
       });
 
     setTimeout(() => {

@@ -5,14 +5,24 @@ const { exec, execSync, execFile, execFileSync } = require("child_process");
 const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
+var cron = require('node-cron');
 
 const envFilePath = path.resolve(__dirname, ".env");
+const peersJsonFilePath = path.resolve(__dirname, "peers.json");
+const peersIpJsonFilePath = path.resolve(__dirname, "peersIp.json");
 
 
-if(!fs.existsSync(envFilePath)){
+if (!fs.existsSync(envFilePath)) {
   execSync('touch .env')
 }
 
+if (!fs.existsSync(peersJsonFilePath)) {
+  execSync('touch peers.json')
+}
+
+if (!fs.existsSync(peersIpJsonFilePath)) {
+  execSync('touch peersIp.json')
+}
 
 const PORT = process.env.PORT || 3001;
 
@@ -84,7 +94,7 @@ function checkLocalIpAddress() {
 checkLocalIpAddress();
 
 
-function getAllowedDomains () {
+function getAllowedDomains() {
   let allowedDomains = []
   let ethDomain = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiDomain = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
@@ -101,8 +111,8 @@ app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (allowedDomains.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
-  }else {
-    checkLocalIpAddress();    
+  } else {
+    checkLocalIpAddress();
     let allowedDomains = getAllowedDomains();
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
@@ -129,11 +139,11 @@ app.get('/getwalletaddress', (req, res, next) => {
 })
 
 
-app.post('/login', (req,res) => {  
+app.post('/login', (req, res) => {
   const { user, pass } = req.body;
   console.log(req.body);
-  
-    console.log('Body user: ' + user + ' Body pass: ' + pass);
+
+  console.log('Body user: ' + user + ' Body pass: ' + pass);
   let dashUser = getEnvValue('DASHBOARD_USER');
   let dashPass = getEnvValue('DASHBOARD_PASS');
   if ((dashUser && dashUser?.length > 2) && (dashPass && dashPass?.length > 2)) {
@@ -142,21 +152,21 @@ app.post('/login', (req,res) => {
   }
 
   console.log('user: ' + dashUser + ' pass: ' + dashPass);
-  if(dashUser == user && dashPass == pass){    
+  if (dashUser == user && dashPass == pass) {
     res.send(true);
-  }else if(dashUser !== user || dashPass !== pass){
+  } else if (dashUser !== user || dashPass !== pass) {
     res.send(false);
   }
 })
 
-app.post('/register', (req,res) => {  
+app.post('/register', (req, res) => {
   const { user, pass } = req.body;
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
     setEnvValue('DASHBOARD_USER', user);
     setEnvValue('DASHBOARD_PASS', pass);
     res.send(true)
-  }else {
+  } else {
     res.send(false);
   }
 })
@@ -166,7 +176,7 @@ app.get('/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
     res.send(false)
-  }else {
+  } else {
     res.send(true);
   }
 })
@@ -199,7 +209,7 @@ app.get('/checkmaster', (req, res, next) => {
 })
 
 app.post('/getprivkey', (req, res, next) => {
-  const { walletKey } = req.body;  
+  const { walletKey } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
     if (errWalletUnlock) {
       res.status(404).send(errWalletUnlock);
@@ -208,12 +218,12 @@ app.post('/getprivkey', (req, res, next) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
         } else {
-          console.log( 'ShowMaster: ' + stdoutShowMaster);
+          console.log('ShowMaster: ' + stdoutShowMaster);
           execFile('bash', ['/home/revo/nodeutils', '-getprivkey', stdoutShowMaster], (errGetPrivKey, stdoutGetPrivKey, stderrGetPrivKey) => {
             if (errGetPrivKey) {
               res.status(404).send(errGetPrivKey);
             } else {
-              console.log( 'PrivKey: ' + stdoutGetPrivKey);
+              console.log('PrivKey: ' + stdoutGetPrivKey);
               res.send(stdoutGetPrivKey);
             }
           });
@@ -438,18 +448,18 @@ function globalDashboardFunction(type) {/*
 app.get('/getdashboarddata', async (req, res, next) => {
   const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo'];
   let response = [];
-  for(let i = 0 ; i < types.length ; i ++){
+  for (let i = 0; i < types.length; i++) {
     let data;
-    if(types[i] == "date"){
-      data = execSync('date', {encoding: 'utf8'});
-    }else{
+    if (types[i] == "date") {
+      data = execSync('date', { encoding: 'utf8' });
+    } else {
       data = await globalDashboardFunction(types[i]);
     }
     let result
-    if(typeof(data) == "string" && types[i] !== "date"){
-      result = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-","_of_");
+    if (typeof (data) == "string" && types[i] !== "date") {
+      result = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
       result = JSON.parse(result);
-    }else {
+    } else {
       result = data
     }
     response.push(result);
@@ -457,25 +467,61 @@ app.get('/getdashboarddata', async (req, res, next) => {
   res.send(response);
 });
 
-app.get('/getpeers', (req,res,next) => {
-  let data = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
-  res.send(data);
+
+cron.schedule("*/60 * * * * *", function () {
+  let peersData = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
+  peersData = ((peersData).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
+  peersData = JSON.parse(peersData);
+
+  let peersJsonFileData = fs.readFileSync('peers.json');
+  peersJsonFileData = JSON.parse(peersJsonFileData);
+
+  for(let i = 0 ; i < peersData.length ; i++){
+    const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
+    console.log(currentPeer);
+    if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
+      let ips = [];
+      peersData.map(e => {
+        if ((e.addr).split(".").length < 4) {
+          result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
+          ips.push({ query: result.replaceAll("\n", "") });
+        } else {
+          ips.push({ query: (e.addr).split(":")[0] });
+        }
+      })
+      peersData = JSON.stringify(peersData)
+      fs.writeFileSync('peers.json', peersData);      
+      let peersIpData = [];
+      ips.map(e => {
+        fetch(`https://ipapi.co/${e.query}/json/`, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }).then(ipData => ipData.json())
+            .then(ipRes => {
+              peersIpData.push(ipRes);
+            })
+      })
+      peersIpData = JSON.stringify(peersIpData);
+      fs.writeFileSync('peersIp.json', peersIpData);
+      break;
+    }
+  }
+});
+
+
+app.get('/getpeers', (req, res, next) => {
+  let peersJsonFileData = fs.readFileSync('peers.json');
+  peersJsonFileData = JSON.parse(peersJsonFileData);
+  res.send(peersJsonFileData);
 })
 
-app.get('/getpeersip', (req,res,next) => {
-  let data = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
-  data = ((data).replaceAll("\\", "")).replaceAll("\n","").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-","_of_");
-  data = JSON.parse(data);
-  let ips = [];
-  data.map(e => {        
-    if((e.addr).split(".").length < 4){
-      result = execSync(`dig ${e.addr} +short`, {encoding: 'utf8'});
-      ips.push({query: result.replaceAll("\n","")});
-    }else {
-      ips.push({query: (e.addr).split(":")[0]});
-    }
-  })
-  res.send(ips);
+app.get('/getpeersip', (req, res, next) => {
+  let peersIpJsonFileData = fs.readFileSync('peers.json');
+  peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
+  res.send(peersIpJsonFileData);
 })
 
 

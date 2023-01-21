@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardBody, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
+import { Card, CardBody, Col } from 'reactstrap';
 import { useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
-import { scaleLinear } from "d3-scale";
 
-
-//import images 
-import widget from '../../assets/images/widget-img.png';
-import ApexRadial from '../AllCharts/ApexRadial';
 
 const blockchainInfo = [
     {
@@ -45,16 +39,6 @@ function EarningReports(props) {
     const [totalPeers, setTotalPeers] = useState(false);
     const [randomColorsState, setRandomColorsState] = useState (false);
 
-    const minValue = 0 // based on the data array above
-    const maxValue = 1000 // based on the data array above
-    
-    const minColor = "#56aee2"
-    const maxColor = "#5668e2"
-  
-    const customScale = scaleLinear()
-      .domain([minValue,maxValue])
-      .range([minColor,maxColor])
-
       function componentToHex(c) {
         var hex = c.toString(16);
         return hex.length == 1 ? "0" + hex : hex;
@@ -74,11 +58,11 @@ function EarningReports(props) {
         let peersCount = [];
         let peers = 0;
         props.peersData.map(e => {
-            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1]);
+            let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
             if (target) {
                 target.count = target.count + 1;
             } else {
-                peersCount.push({ name: e.subver.split("/")[1], count: 1 });
+                peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
             }
             peers = peers + 1;
         });
@@ -138,87 +122,8 @@ function EarningReports(props) {
                             })
                             }
                         </div>
-                        {/*<Row className="align-items-center">
-                            <Col sm={8}>
-                                <div className="avatar-xs mb-3">
-                                    <span className="avatar-title rounded-circle bg-light font-size-24">
-                                        <i className="mdi mdi-bullhorn-outline text-info"></i>
-                                    </span>
-                                </div>
-                                <p className="font-size-18">Enhance your <b>Campaign</b> for better outreach <i className="mdi mdi-arrow-right"></i></p>
-                                <div className="mt-4">
-                                    <Link to="/pages-pricing" className="btn btn-success waves-effect waves-light">Upgrade Account!</Link>
-                                </div>
-                            </Col>
-                            <div className="col-sm-4">
-                                <div className="mt-4 mt-sm-0">
-                                    <img src={widget} className="img-fluid" alt="" />
-                                </div>
-                            </div>
-                        </Row>*/}
                     </CardBody>
                 </Card>
-                {/*
-                <Card>
-                    <CardBody>
-                        {/*<div className="float-end">
-                            <UncontrolledDropdown>
-                                <DropdownToggle className="text-reset" tag="a" id="dropdownMenuButton2">
-                                    <span className="fw-semibold">Report By:</span> <span className="text-muted">Monthly<i className="mdi mdi-chevron-down ms-1"></i></span>
-                                </DropdownToggle>
-
-                                <DropdownMenu className="dropdown-menu-end">
-                                    <DropdownItem>Yearly</DropdownItem>
-                                    <DropdownItem>Monthly</DropdownItem>
-                                    <DropdownItem>Weekly</DropdownItem>
-                                    <DropdownItem>Today</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                    </div>}
-
-                        <h4 className="card-title mb-4">Top Peer Clients</h4>
-                        <div className="mt-1">
-                            {props.peersData.length && peersState.length && peersState?.map((e, i) => {
-                                return (<div key={i} className="d-flex">
-                                    <div style={{width: "50%"}}>
-                                        {e.name}
-                                    </div>
-                                    <div style={{width: "50%"}}>
-                                        {totalPeers && totalPeers >= 1 ?  e?.count / totalPeers * 100 +  "%" : '100%'}
-                                    </div>
-                                </div>)
-                            })
-                            }
-                        </div>
-                        {
-                        <Row>
-                            <Col sm={6}>
-                                <Row className="mb-3">
-                                    <Col xs={6}>
-                                        <p className="text-muted mb-1">This Month</p>
-                                        <h5 className="mt-0">$12,582<small className="badge badge-light-success font-13">+15%</small></h5>
-                                    </Col>
-
-                                    <Col xs={6}>
-                                        <p className="text-muted mb-1">Last Month</p>
-                                        <h5 className="mt-0">$98,741 <small className="badge badge-light-danger font-13">-5%</small></h5>
-                                    </Col>
-                                </Row>
-                                <p className="text-muted"><span className="text-success me-1"> 12%<i className="mdi mdi-arrow-up"></i></span>From previous period</p>
-
-                                <div className="mt-4">
-                                    <Link to="#" className="btn btn-primary waves-effect waves-light btn-sm">Generate Reports <i className="mdi mdi-arrow-right ms-1"></i></Link>
-                                </div>
-                            </Col>
-                            <Col sm={6}>
-                                <div className="mt-4 mt-sm-0">
-                                    <ApexRadial />
-                                </div>
-                            </Col>
-                        </Row>}
-                    </CardBody>
-                </Card>*/
-                }
             </Col>
             <Col xl={5}>
                 <Card className="bg-pattern">
@@ -233,25 +138,7 @@ function EarningReports(props) {
                                     animationDuration={500}
                                     animationEasing="ease-out"
                                     center={[50, 50]}
-                                    data={peersState.map((e, i) => {
-                                        /*[
-                                            {
-                                                color: "#5668e2",
-                                                title: "One",
-                                                value: 10,
-                                            },
-                                            {
-                                                color: "#56e2cf",
-                                                title: "Two",
-                                                value: 15,
-                                            },
-                                            {
-                                                color: "#56aee2",
-                                                title: "Three",
-                                                value: 20,
-                                            },
-                                        ]*/
-                                        
+                                    data={peersState.map((e, i) => {                                        
                                         return  {
                                             color: randomColorsState[i],
                                             title: e.name,

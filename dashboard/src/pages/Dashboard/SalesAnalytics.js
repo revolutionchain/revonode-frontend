@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, Col, Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
-import SalesAnalyticsChart from '../AllCharts/SalesAnalyticsChart';
+import { Card, CardBody, Col } from 'reactstrap';
 
 const nodeInfo = [
     {
         title: "Name",
         icon: "far fa-id-card text-info",
         value: "My Node Name"
-    },{
+    }, {
         title: "Client",
         icon: "far fa-id-card text-info",
         value: ""
@@ -82,6 +81,16 @@ const nodeInfo = [
 const SalesAnalytics = props => {
     const [menu, setMenu] = useState(false);
 
+    function secondsToString(seconds) {
+        var numyears = Math.floor(seconds / 31536000);
+        var numdays = Math.floor((seconds % 31536000) / 86400);
+        var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600);
+        var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+        var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;
+        return numyears + " years " + numdays + " days " + numhours + " hours " + numminutes + " minutes " + numseconds + " seconds";
+
+    }
+
 
     useEffect(() => {
         nodeInfo[0].value = "My Node Name"
@@ -90,10 +99,10 @@ const SalesAnalytics = props => {
         nodeInfo[3].value = "6969";
         nodeInfo[4].value = <div>{
             props.nodeData[4].localservicesnames.map(e => {
-                return (<button style={{fontSize: "10px"}} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
+                return (<button style={{ fontSize: "10px" }} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
-        nodeInfo[5].value = props.nodeData[5];
+        nodeInfo[5].value = secondsToString(props.nodeData[5]);
         nodeInfo[6].value = props.nodeData[6];
         nodeInfo[7].value = props.nodeData[4].networks[0].reachable;
         nodeInfo[8].value = props.nodeData[4].networks[1].reachable;
@@ -115,7 +124,7 @@ const SalesAnalytics = props => {
                         <hr />
                         <div className="mt-1">
                             {props.nodeData.length && nodeInfo.map(e => {
-                                return (<div className="d-flex">
+                                return (<div className="d-flex mb-2">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
@@ -125,27 +134,9 @@ const SalesAnalytics = props => {
                                 </div>)
                             })
                             }
-                            {
-                        /*
-                            <ul className="list-inline main-chart mb-0">
-                                <li className="list-inline-item chart-border-left me-0 border-0">
-                                    <h3 className="text-info">$<span data-plugin="counterup">2,371</span><span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Income</span></h3>
-                                </li>
-                                <li className="list-inline-item chart-border-left me-0">
-                                    <h3><span data-plugin="counterup">258</span><span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Sales</span>
-                                    </h3>
-                                </li>
-                                <li className="list-inline-item chart-border-left me-0">
-                                    <h3><span data-plugin="counterup">3.6</span>%<span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Conversation Ratio</span></h3>
-                                </li>
-                                <li className="list-inline-item chart-border-left me-0">
-                                    <h3><span data-plugin="counterup">52</span>k<span className="text-muted d-inline-block fw-normal font-size-15 ms-3">Users</span></h3>
-                                </li>
-                            </ul>*/}
                         </div>
 
                         <div className="mt-3">
-                            {/*<SalesAnalyticsChart />*/}
                         </div>
                     </CardBody>
                 </Card>

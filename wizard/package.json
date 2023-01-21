@@ -12,6 +12,7 @@
     "envfile": "^6.18.0",
     "html-react-parser": "^1.4.8",
     "linux-blockutils": "^0.2.0",
+    "node-cron": "^3.0.2",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^17.0.1",

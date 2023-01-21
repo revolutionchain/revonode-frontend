@@ -26,8 +26,6 @@ import { AvForm, AvField } from "availity-reactstrap-validation"
 import { loginUser, apiError, socialLogin, startLogin } from "../../store/actions"
 
 // import images
-import logo from "../../assets/images/logo-dark.png"
-import logolight from "../../assets/images/logo-light.png"
 
 import { useDispatch } from 'react-redux';
 

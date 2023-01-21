@@ -101,18 +101,10 @@ const icons = []
                     {widget.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
-                            <CardBody>{/*
-                                <div className="float-end">
-                                    <div className="avatar-sm mx-auto mb-4">
-                                        <span className="avatar-title rounded-circle bg-light font-size-24">
-                                            <i className={widget.icon}></i>
-                                        </span>
-                                    </div>
-                                </div>*/}
+                            <CardBody>
                                 <div>
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
-                                        {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
                                             {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
                                         </span></h4>
