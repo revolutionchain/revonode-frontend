@@ -495,9 +495,9 @@ async function checkPeersData (){
       })
       peersData = JSON.stringify(peersData)
       fs.writeFileSync('peers.json', peersData);      
-      let peersIpData = ips.map(async (e,i) => {
-        let result = await axios.get(`https://ipapi.co/${e.query}/json/`);
-        return result.data;
+      let peersIpData = ips.map((e,i) => {
+        let result = axios.get(`https://ipapi.co/${e.query}/json/`)
+        .then(res => console.log(res.data))
       })
       //peersIpData = JSON.stringify(peersIpData);
       fs.writeFileSync('peersIp.json', peersIpData);
