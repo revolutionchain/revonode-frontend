@@ -546,7 +546,7 @@ app.get('/getpeers', (req, res, next) => {
 })
 
 app.get('/getpeersip', (req, res, next) => {
-  let peersIpJsonFileData = fs.readFileSync('peers.json');
+  let peersIpJsonFileData = fs.readFileSync('peersIp.json');
   peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
   res.send(peersIpJsonFileData);
 })
