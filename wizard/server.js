@@ -495,13 +495,13 @@ async function checkPeersData (){
       })
       peersData = JSON.stringify(peersData)
       fs.writeFileSync('peers.json', peersData);      
-      let peersIpData = ips.map((e,i) => {
-        let result = axios.get(`https://ipapi.co/${e.query}/json/`)
+      let peersIpData = [];
+      ips.map((e,i) => {
+        axios.get(`https://ipapi.co/${e.query}/json/`)
         .then(res => {
           console.log(res.data)
-          return res.data;
+          peersIpData[i] = res.data;
         })
-        return result;
       })
       console.log(peersIpData);
       peersIpData = JSON.stringify(peersIpData);
