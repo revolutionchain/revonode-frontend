@@ -468,49 +468,69 @@ app.get('/getdashboarddata', async (req, res, next) => {
   res.send(response);
 });
 
-
-async function checkPeersData (){  
+function checkPeersData() {
   let peersData = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
   peersData = ((peersData).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
-  if(peersData.length > 0){
+  if (peersData.length > 0) {
     peersData = JSON.parse(peersData);
   }
 
   let peersJsonFileData = fs.readFileSync('peers.json');
-  if(peersJsonFileData.length){
+  if (peersJsonFileData.length) {
     peersJsonFileData = JSON.parse(peersJsonFileData);
   }
 
-  for(let i = 0 ; i < peersData.length ; i++){
+  for (let i = 0; i < peersData.length; i++) {
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
-      let ips = [];
-      peersData.map(e => {
+      //let ips = [];
+      let peersIpData = [];
+      
+      peersData.map((e,j) => {
+        let currentIp;
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
-          ips.push({ query: result.replaceAll("\n", "") });
+          currentIp = { query: result.replaceAll("\n", "") };
+          //ips.push({ query: result.replaceAll("\n", "") });
         } else {
-          ips.push({ query: (e.addr).split(":")[0] });
-        }
-      })
-      peersData = JSON.stringify(peersData)
-      fs.writeFileSync('peers.json', peersData);      
-      let peersIpData = [];
-      ips.map((e,i) => {
+          currentIp = { query: (e.addr).split(":")[0] };
+          //ips.push({ query: (e.addr).split(":")[0] });
+        }        
+        axios.get(`https://ipapi.co/${currentIp.query}/json/`)
+          .then(res => {
+            peersIpData[j] = res.data;
+
+            if (j == peersData.length - 1) {
+              peersIpData = JSON.stringify(peersIpData);
+              fs.writeFileSync('peersIp.json', peersIpData);
+              peersData = JSON.stringify(peersData)
+              fs.writeFileSync('peers.json', peersData);
+            }
+          })
+      })/*
+      ips.map((e, j) => {
         axios.get(`https://ipapi.co/${e.query}/json/`)
-        .then(res => {
-          console.log(res.data)
-          peersIpData[i] = res.data;
-        })
-      })
-      console.log(peersIpData);
-      peersIpData = JSON.stringify(peersIpData);
-      console.log(peersIpData)
-      fs.writeFileSync('peersIp.json', peersIpData);
+          .then(res => {
+            peersIpData[i] = res.data;
+
+            if (j == peersData.length - 1) {
+              console.log(peersIpData);
+              peersIpData = JSON.stringify(peersIpData);
+              console.log(peersIpData)
+              fs.writeFileSync('peersIp.json', peersIpData);
+              peersData = JSON.stringify(peersData)
+              fs.writeFileSync('peers.json', peersData);
+            }
+          })
+      })*/
+      
       break;
+    }else {
     }
   }
+
 }
+
 
 checkPeersData();
 
