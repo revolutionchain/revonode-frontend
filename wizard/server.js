@@ -532,10 +532,28 @@ function checkPeersData() {
 }
 
 
-checkPeersData();
+
+exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+  if (err) {
+  } else {
+    if(stdout.includes("master")){
+      checkPeersData();
+    }
+  }
+});
+
+
 
 cron.schedule("*/60 * * * * *", function () {
-  checkPeersData();
+  
+exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+  if (err) {
+  } else {
+    if(stdout.includes("master")){
+      checkPeersData();
+    }
+  }
+});
 });
 
 
