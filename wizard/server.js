@@ -468,13 +468,17 @@ app.get('/getdashboarddata', async (req, res, next) => {
 });
 
 
-cron.schedule("*/60 * * * * *", function () {
+function checkPeersData (){  
   let peersData = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
   peersData = ((peersData).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
-  peersData = JSON.parse(peersData);
+  if(peersData.length > 0){
+    peersData = JSON.parse(peersData);
+  }
 
   let peersJsonFileData = fs.readFileSync('peers.json');
-  peersJsonFileData = JSON.parse(peersJsonFileData);
+  if(peersJsonFileData.length){
+    peersJsonFileData = JSON.parse(peersJsonFileData);
+  }
 
   for(let i = 0 ; i < peersData.length ; i++){
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
@@ -509,6 +513,12 @@ cron.schedule("*/60 * * * * *", function () {
       break;
     }
   }
+}
+
+checkPeersData();
+
+cron.schedule("*/60 * * * * *", function () {
+  checkPeersData();
 });
 
 
