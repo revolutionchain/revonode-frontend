@@ -501,9 +501,9 @@ async function checkPeersData (){
           console.log(res.data)
           return res.data;
         })
-        return JSON.stringify(result);
+        return result;
       })
-      //peersIpData = JSON.stringify(peersIpData);
+      peersIpData = JSON.stringify(peersIpData);
       fs.writeFileSync('peersIp.json', peersIpData);
       break;
     }
