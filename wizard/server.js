@@ -6,6 +6,7 @@ const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
 var cron = require('node-cron');
+const { default: axios } = require("axios");
 
 const envFilePath = path.resolve(__dirname, ".env");
 const peersJsonFilePath = path.resolve(__dirname, "peers.json");
@@ -468,7 +469,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
 });
 
 
-function checkPeersData (){  
+async function checkPeersData (){  
   let peersData = execFileSync('bash', ['/home/revo/nodeutils', '-getpeers'], { encoding: 'utf8' });
   peersData = ((peersData).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
   if(peersData.length > 0){
@@ -496,8 +497,13 @@ function checkPeersData (){
       peersData = JSON.stringify(peersData)
       fs.writeFileSync('peers.json', peersData);      
       let peersIpData = [];
-      ips.map(e => {
-        fetch(`https://ipapi.co/${e.query}/json/`, {
+      ips.map(async e => {
+        await axios.get(`https://ipapi.co/${e.query}/json/`)
+        .then(ipData => ipData.data)
+        .then(ipRes => {
+          peersIpData.push(ipRes)
+        })
+        /*fetch(`https://ipapi.co/${e.query}/json/`, {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
@@ -507,7 +513,7 @@ function checkPeersData (){
             .then(ipRes => {
               peersIpData.push(ipRes);
             })
-      })
+      })*/
       peersIpData = JSON.stringify(peersIpData);
       fs.writeFileSync('peersIp.json', peersIpData);
       break;
