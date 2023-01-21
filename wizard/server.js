@@ -496,6 +496,7 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
           //ips.push({ query: (e.addr).split(":")[0] });
         }        
+        console.log(currentIp);
         axios.get(`https://ipapi.co/${currentIp.query}/json/`)
           .then(res => {
             peersIpData[j] = res.data;
