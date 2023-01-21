@@ -512,8 +512,8 @@ async function checkPeersData (){
           }).then(ipData => ipData.json())
             .then(ipRes => {
               peersIpData.push(ipRes);
-            })
-      })*/
+            })*/
+      })
       peersIpData = JSON.stringify(peersIpData);
       fs.writeFileSync('peersIp.json', peersIpData);
       break;
