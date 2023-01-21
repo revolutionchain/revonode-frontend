@@ -496,17 +496,18 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
           //ips.push({ query: (e.addr).split(":")[0] });
         }        
-        console.log(currentIp);
         axios.get(`https://ipapi.co/${currentIp.query}/json/`)
           .then(res => {
             peersIpData[j] = res.data;
-
-            if (j == peersData.length - 1) {
-              peersIpData = JSON.stringify(peersIpData);
-              fs.writeFileSync('peersIp.json', peersIpData);
-              peersData = JSON.stringify(peersData)
-              fs.writeFileSync('peers.json', peersData);
-            }
+            console.log(res.data);
+            setTimeout(()=>{
+              if (j == peersData.length - 1) {
+                peersIpData = JSON.stringify(peersIpData);
+                fs.writeFileSync('peersIp.json', peersIpData);
+                peersData = JSON.stringify(peersData)
+                fs.writeFileSync('peers.json', peersData);
+              }
+            }, 1000)
           })
       })/*
       ips.map((e, j) => {
