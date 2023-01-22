@@ -63,8 +63,8 @@ export default function MapChart({ ipLocationData }) {
   const height = 400
 
 
-  const minColor = "#CFD8DC"
-  const maxColor = "#37474F"
+  const minColor = "#cae6ba"
+  const maxColor = "#389403"
 
   const customScale = scaleLinear()
     .domain([minMaxValue.minValue, minMaxValue.maxValue])
@@ -75,8 +75,8 @@ export default function MapChart({ ipLocationData }) {
     <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={projection}>
       {countriesData && <Geographies geography={geoUrl} fill="#CCC" style={{
         default: {
-          fill: "#CCCCCC",
-          stroke: "#FFFFFF"
+          fill: "#FFFFFF",
+          stroke: "#CCCCCC"
         }
       }}>
         {({ geographies }) =>
