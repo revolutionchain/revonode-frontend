@@ -139,7 +139,7 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "50%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
                                     <div style={{ width: "50%" }}>
@@ -159,7 +159,7 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && walletInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "50%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
                                     <div style={{ width: "50%" }}>
