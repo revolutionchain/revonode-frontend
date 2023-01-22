@@ -40,22 +40,22 @@ const walletInfo = [
     {
         title: "Balance",
         icon: "bx bx-money text-info",
-        value: "balance"
+        value: "0.00000000 RVO"
     },
     {
         title: "Stake",
         icon: "mdi mdi-pickaxe text-info",
-        value: "stake"
+        value: "0.00000000 RVO"
     },
     {
         title: "Unconfirmed",
         icon: "bx bxs-time-five text-info",
-        value: "unconfirmed"
+        value: "0.00000000 RVO"
     },
     {
         title: "Immature",
         icon: "bx bx-time text-info",
-        value: "immature"
+        value: "0.00000000 RVO"
     }
 ]
 
@@ -151,7 +151,7 @@ function EarningReports(props) {
                         </div>
                     </CardBody>
                 </Card>
-                <Card className="bg-pattern">
+                <Card>
                     <CardBody>
 
                         <h4 className="card-title mb-2">Wallet</h4>
