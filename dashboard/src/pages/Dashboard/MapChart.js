@@ -85,6 +85,7 @@ export default function MapChart({ ipLocationData }) {
             return (
               <Geography
                 fill={country ? customScale(country.value) : "#FFFFFF"}
+                stroke= "#CCCCCC"
                 key={geo.rsmKey}
                 geography={geo}
               />)
