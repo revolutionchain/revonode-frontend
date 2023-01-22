@@ -3,7 +3,6 @@ import { Card, CardBody, Col } from 'reactstrap';
 import { useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
-const { execSync } = require("child_process");
 const blockchainInfo = [
     {
         title: "Chain",
@@ -52,7 +51,7 @@ function EarningReports(props) {
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
-        blockchainInfo[2].value = execSync('sudo du -sh /mnt/storage/.revo/', { encoding: 'utf8' }).slice(0,-20);
+        blockchainInfo[2].value = props.nodeData[0].chain;
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
         blockchainInfo[4].value = props.nodeData[7].mediantime;
         let peersCount = [];
@@ -162,7 +161,7 @@ function EarningReports(props) {
                                     </div>
                                     <div style={{ width: "50%" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
-                                    </div>
+                                    </div><hr />
                                 </div>)
                             })
                             }
