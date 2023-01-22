@@ -51,8 +51,8 @@ function EarningReports(props) {
 
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
-        blockchainInfo[1].value = props.nodeData[0].chain;
-        blockchainInfo[2].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + "GB";
+        blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + "GB";
+        blockchainInfo[2].value = props.nodeData[0].chain;
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
         blockchainInfo[4].value = props.nodeData[7].mediantime;
         let peersCount = [];

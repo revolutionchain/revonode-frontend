@@ -93,13 +93,13 @@ const SalesAnalytics = props => {
 
 
     useEffect(() => {
-        nodeInfo[0].value = "My Node Name"
+        nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[1].slice(0,(props.nodeData[4].subversion).length - 1)
         nodeInfo[1].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
         nodeInfo[2].value = props.nodeData[4].protocolversion;
         nodeInfo[3].value = "6969";
         nodeInfo[4].value = <div>{
             props.nodeData[4].localservicesnames.map(e => {
-                return (<button style={{ fontSize: "10px" }} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
+                return (<button style={{ fontSize: "10px", marginLeft: "5px", marginBottom: "5px" }} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
         nodeInfo[5].value = secondsToString(props.nodeData[5]);
