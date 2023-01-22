@@ -3,7 +3,7 @@ import { Card, CardBody, Col } from 'reactstrap';
 import { useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
-
+const { execSync } = require("child_process");
 const blockchainInfo = [
     {
         title: "Chain",
