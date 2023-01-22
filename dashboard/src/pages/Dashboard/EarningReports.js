@@ -54,7 +54,7 @@ const walletInfo = [
     },
     {
         title: "Immature",
-        icon: "bx bx-time text-info",
+        icon: "bx bx-left-down-arrow-circle text-info",
         value: "0.00000000 RVO"
     }
 ]
@@ -131,7 +131,7 @@ function EarningReports(props) {
     return (
         <React.Fragment>
             <Col xl={3}>
-                <Card className="bg-pattern">
+                <Card>
                     <CardBody>
 
                         <h4 className="card-title mb-2">Blockchain</h4>
