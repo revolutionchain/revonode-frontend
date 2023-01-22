@@ -63,8 +63,8 @@ export default function MapChart({ ipLocationData }) {
   const height = 400
 
 
-  const minColor = "#cae6ba"
-  const maxColor = "#389403"
+  const minColor = "#ebfce1"
+  const maxColor = "#2474ed"
 
   const customScale = scaleLinear()
     .domain([minMaxValue.minValue, minMaxValue.maxValue])
@@ -73,7 +73,7 @@ export default function MapChart({ ipLocationData }) {
   const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
   return (
     <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={projection}>
-      {countriesData && <Geographies geography={geoUrl} fill="#CCC" style={{
+      {countriesData && <Geographies geography={geoUrl} fill="#FFFFFF" style={{
         default: {
           fill: "#FFFFFF",
           stroke: "#CCCCCC"
@@ -84,7 +84,7 @@ export default function MapChart({ ipLocationData }) {
             const country = countriesData.find(d => d.country_code === geo.properties["Alpha-2"]);
             return (
               <Geography
-                fill={country ? customScale(country.value) : "#CCCCCC"}
+                fill={country ? customScale(country.value) : "#FFFFFF"}
                 key={geo.rsmKey}
                 geography={geo}
               />)
