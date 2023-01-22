@@ -483,9 +483,29 @@ function checkPeersData() {
   for (let i = 0; i < peersData.length; i++) {
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
-      let peersIpData = [];
 
-      peersData.map((e, j) => {
+      /*
+      let currentIp;
+      if ((e.addr).split(".").length < 4) {
+        result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
+        currentIp = { query: result.replaceAll("\n", "") };
+      } else {
+        currentIp = { query: (e.addr).split(":")[0] };
+      }
+      axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
+        .then(res => res.data)
+        .then(data => {
+          peersIpData[j] = data;
+          if (j == peersData.length - 1) {
+            peersIpData = JSON.stringify(peersIpData);
+            fs.writeFileSync('peersIp.json', peersIpData);
+            peersData = JSON.stringify(peersData)
+            fs.writeFileSync('peers.json', peersData);
+          }
+        })
+    })*/
+
+      Promise.all(peersData.map((e, j) => {
         let currentIp;
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
@@ -493,17 +513,14 @@ function checkPeersData() {
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
         }
-        axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
-          .then(res => res.data)
-          .then(data => {
-            peersIpData[j] = data;
-            if (j == peersData.length - 1) {
-              peersIpData = JSON.stringify(peersIpData);
-              fs.writeFileSync('peersIp.json', peersIpData);
-              peersData = JSON.stringify(peersData)
-              fs.writeFileSync('peers.json', peersData);
-            }
-          })
+        return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
+      })
+      )
+      .then(peersIpData => {
+        peersIpData = JSON.stringify(peersIpData);
+        fs.writeFileSync('peersIp.json', peersIpData);
+        peersData = JSON.stringify(peersData)
+        fs.writeFileSync('peers.json', peersData);        
       })
       break;
     } else {
