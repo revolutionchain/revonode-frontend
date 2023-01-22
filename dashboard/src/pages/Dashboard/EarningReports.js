@@ -124,6 +124,28 @@ function EarningReports(props) {
                     </CardBody>
                 </Card>
             </Col>
+            <Col xl={3}>
+                <Card className="bg-pattern">
+                    <CardBody>
+
+                        <h4 className="card-title mb-2">Wallet</h4>
+                        <hr />
+                        <div className="mt-1">
+                            {props.nodeData.length && blockchainInfo.map(e => {
+                                return (<div className="d-flex">
+                                    <div style={{ width: "50%" }}>
+                                        <i className={e.icon}></i>{" " + e.title}
+                                    </div>
+                                    <div style={{ width: "50%" }}>
+                                        {e?.value}
+                                    </div>
+                                </div>)
+                            })
+                            }
+                        </div>
+                    </CardBody>
+                </Card>
+            </Col>
             <Col xl={5}>
                 <Card className="bg-pattern">
                     <CardBody>
@@ -161,7 +183,7 @@ function EarningReports(props) {
                                     </div>
                                     <div style={{ width: "50%" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
-                                    </div><hr />
+                                    </div>
                                 </div>)
                             })
                             }
