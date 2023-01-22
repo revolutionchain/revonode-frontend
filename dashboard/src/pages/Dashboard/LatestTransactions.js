@@ -23,7 +23,7 @@ const LatestTranaction = (props) => {
                     <hr />
                         <div className="d-flex mt-1 col-xl-12">
                             <div className="col-xl-6"></div>
-                            <MapChart ipLocationData={props.ipLocationData}/>
+                            {/*<MapChart ipLocationData={props.ipLocationData}/>*/}
                         </div>
                 </CardBody>
             </Card>
