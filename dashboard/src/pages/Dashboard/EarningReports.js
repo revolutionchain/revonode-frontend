@@ -31,6 +31,34 @@ const blockchainInfo = [
     },
 ]
 
+const walletInfo = [
+    {
+        title: "Name",
+        icon: "bx bx-wallet text-info",
+        value: "walletname"
+    },
+    {
+        title: "Balance",
+        icon: "bx bx-money text-info",
+        value: "balance"
+    },
+    {
+        title: "Stake",
+        icon: "mdi mdi-pickaxe text-info",
+        value: "stake"
+    },
+    {
+        title: "Unconfirmed",
+        icon: "bx bxs-time-five text-info",
+        value: "unconfirmed"
+    },
+    {
+        title: "Immature",
+        icon: "bx bx-time text-info",
+        value: "immature"
+    }
+]
+
 
 function EarningReports(props) {
 
@@ -123,15 +151,13 @@ function EarningReports(props) {
                         </div>
                     </CardBody>
                 </Card>
-            </Col>
-            <Col xl={3}>
                 <Card className="bg-pattern">
                     <CardBody>
 
                         <h4 className="card-title mb-2">Wallet</h4>
                         <hr />
                         <div className="mt-1">
-                            {props.nodeData.length && blockchainInfo.map(e => {
+                            {props.nodeData.length && walletInfo.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}
