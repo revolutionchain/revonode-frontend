@@ -221,7 +221,7 @@ function EarningReports(props) {
                 }
             </Col>
             <Col xl={5}>
-                <Card className="bg-pattern">
+                <Card>
                     <CardBody>
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>

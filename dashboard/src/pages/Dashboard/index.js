@@ -135,7 +135,7 @@ const Dashboard = props => {
           setSubscribemodal(!subscribemodal)
         }}
       >
-        <div className="modal-content bg-pattern">
+        <div className="modal-content">
           <div className="modal-header border-bottom-0">
             <button type="button" className="btn-close"
               onClick={() => {

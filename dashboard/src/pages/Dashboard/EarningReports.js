@@ -3,7 +3,6 @@ import { Card, CardBody, Col } from 'reactstrap';
 import { useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
-
 const blockchainInfo = [
     {
         title: "Chain",
@@ -32,6 +31,34 @@ const blockchainInfo = [
     },
 ]
 
+const walletInfo = [
+    {
+        title: "Name",
+        icon: "bx bx-wallet text-info",
+        value: "walletname"
+    },
+    {
+        title: "Balance",
+        icon: "bx bx-money text-info",
+        value: "0.00000000 RVO"
+    },
+    {
+        title: "Stake",
+        icon: "mdi mdi-pickaxe text-info",
+        value: "0.00000000 RVO"
+    },
+    {
+        title: "Unconfirmed",
+        icon: "bx bxs-time-five text-info",
+        value: "0.00000000 RVO"
+    },
+    {
+        title: "Immature",
+        icon: "bx bx-left-down-arrow-circle text-info",
+        value: "0.00000000 RVO"
+    }
+]
+
 
 function EarningReports(props) {
 
@@ -51,7 +78,7 @@ function EarningReports(props) {
 
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
-        blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + "GB";
+        blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
         blockchainInfo[2].value = props.nodeData[0].chain;
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
         blockchainInfo[4].value = props.nodeData[7].mediantime;
@@ -104,7 +131,7 @@ function EarningReports(props) {
     return (
         <React.Fragment>
             <Col xl={3}>
-                <Card className="bg-pattern">
+                <Card>
                     <CardBody>
 
                         <h4 className="card-title mb-2">Blockchain</h4>
@@ -112,7 +139,27 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
+                                    <div style={{ width: "50%", padding:"5px" }}>
+                                        <i className={e.icon}></i>{" " + e.title}
+                                    </div>
                                     <div style={{ width: "50%" }}>
+                                        {e?.value}
+                                    </div>
+                                </div>)
+                            })
+                            }
+                        </div>
+                    </CardBody>
+                </Card>
+                <Card>
+                    <CardBody>
+
+                        <h4 className="card-title mb-2">Wallet</h4>
+                        <hr />
+                        <div className="mt-1">
+                            {props.nodeData.length && walletInfo.map(e => {
+                                return (<div className="d-flex">
+                                    <div style={{ width: "50%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
                                     <div style={{ width: "50%" }}>
@@ -126,7 +173,7 @@ function EarningReports(props) {
                 </Card>
             </Col>
             <Col xl={5}>
-                <Card className="bg-pattern">
+                <Card>
                     <CardBody>
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>

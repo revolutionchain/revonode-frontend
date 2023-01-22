@@ -5,7 +5,7 @@ const nodeInfo = [
     {
         title: "Name",
         icon: "far fa-id-card text-info",
-        value: "My Node Name"
+        value: ""
     }, {
         title: "Client",
         icon: "far fa-id-card text-info",
@@ -93,7 +93,7 @@ const SalesAnalytics = props => {
 
 
     useEffect(() => {
-        nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[1].slice(0,(props.nodeData[4].subversion).length - 1)
+        nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[1].slice(0,(props.nodeData[4].subversion).length - 1).slice(0,-2)
         nodeInfo[1].value = (props.nodeData[4].subversion).split("(")[0].slice(1);
         nodeInfo[2].value = props.nodeData[4].protocolversion;
         nodeInfo[3].value = "6969";
