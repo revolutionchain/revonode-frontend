@@ -149,7 +149,7 @@ function EarningReports(props) {
                                     <div style={{ width: "60%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "40%" }}>
+                                    <div style={{ width: "40%", padding: "5px" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
@@ -169,7 +169,7 @@ function EarningReports(props) {
                                     <div style={{ width: "50%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "50%", padding: "5px" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
@@ -211,10 +211,10 @@ function EarningReports(props) {
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
                                 return (<div key={i} className="d-flex col-xl-6">
-                                    <div style={{ width: "70%" }}>
-                                        {e.name}
+                                    <div style={{ width: "50%" }}>
+                                        {(e.name).split(":")[1]}
                                     </div>
-                                    <div style={{ width: "30%" }}>
+                                    <div style={{ width: "50%" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
                                     </div>
                                 </div>)
