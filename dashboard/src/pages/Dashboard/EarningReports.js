@@ -210,12 +210,14 @@ function EarningReports(props) {
                                 />}
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
-                                return (<div key={i} className="d-flex col-xl-6">
+                                return (<div key={i} className="col-xl-6">
+                                    <div className='d-flex col-xl-12 mb-2 pl-1 pr-1' style={{borderBottom: "1px solid #CCC"}}>
                                     <div style={{ width: "70%" }}>
                                         {`${i+1}. ${e.name}`}
                                     </div>
-                                    <div style={{ width: "30%" }}>
+                                    <div style={{ width: "30%", textAlign: "right" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
+                                    </div>
                                     </div>
                                 </div>)
                             })
