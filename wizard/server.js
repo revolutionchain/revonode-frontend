@@ -441,7 +441,10 @@ function globalDashboardFunction(type) {/*
     let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
     let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
     let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
+    getBlock = getBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
+    getBlock = JSON.parse(getBlock)
     getBlock.time = Math.floor(Date.now()/1000) - getBlock.time;
+    getBlock = JSON.stringify(getBlock);
     return getBlock;
   }
   try {
