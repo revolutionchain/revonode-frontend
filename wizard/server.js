@@ -463,7 +463,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
       data = await globalDashboardFunction(types[i]);
     }
     let result
-    if (typeof (data) == "string" && types[i] !== "date") {
+    if (typeof (data) == "string" && types[i] !== "date" && i !== (types.length -3)) {
       result = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
       result = JSON.parse(result);
     } else {
