@@ -60,7 +60,7 @@ const LatestTranaction = (props) => {
                                         if(c.value >= 1){
                                             return (
                                                 <div className="col-xl-12">
-                                                    <div className="d-flex">
+                                                    <div className="d-flex col-xl-8 mb-2" style={{borderBottom: "1px solid #CCC"}}>
                                                         <div style={{textAlign: center}} className="col-xl-2">
                                                             {i+1}
                                                         </div>
