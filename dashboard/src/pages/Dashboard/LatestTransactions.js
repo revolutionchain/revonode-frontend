@@ -61,7 +61,7 @@ const LatestTranaction = (props) => {
                                             return (
                                                 <div className="col-xl-12">
                                                     <div className="d-flex col-xl-8 mb-2" style={{borderBottom: "1px solid #CCC"}}>
-                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                        <div style={{textAlign: "center"}} className="col-xl-2">
                                                             {i+1}
                                                         </div>
                                                         <div className="col-xl-2">
@@ -70,10 +70,10 @@ const LatestTranaction = (props) => {
                                                         <div className="col-xl-4">
                                                             {c.country}
                                                         </div>
-                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                        <div style={{textAlign: "center"}} className="col-xl-2">
                                                             {c.value}
                                                         </div>
-                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                        <div style={{textAlign: "center"}} className="col-xl-2">
                                                             {(c.value * 100) / peersAmount + "%"}
                                                         </div>
                                                     </div>
