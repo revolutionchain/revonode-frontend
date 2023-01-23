@@ -74,14 +74,21 @@ function EarningReports(props) {
       function rgbToHex(r, g, b) {
         return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
       }
+
+      
       
 
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
-        blockchainInfo[2].value = props.nodeData[0].chain;
+        blockchainInfo[2].value = props.nodeData[8];
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
-        blockchainInfo[4].value = props.nodeData[7].mediantime;
+        blockchainInfo[4].value = props.secondsToString((props.nodeData[7].mediantime)/1000);
+        walletInfo[0].value = props.nodeData[9].walletname
+        walletInfo[1].value = (props.nodeData[9].balance).toFixed(8) + " RVO"
+        walletInfo[2].value = (props.nodeData[9].stake).toFixed(8) + " RVO"
+        walletInfo[3].value = (props.nodeData[9].unconfirmed_balance).toFixed(8) + " RVO"
+        walletInfo[4].value = (props.nodeData[9].immature_balance).toFixed(8) + " RVO"
         let peersCount = [];
         let peers = 0;
         props.peersData.map(e => {

@@ -89,6 +89,7 @@ useEffect(()=>{
     widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     widget[4].count = props.nodeData[3].size;
     widget[5].count = props.nodeData[0].headers;
+    widget[5].text = props.secondsToString((props.nodeData[10].time)/1000) + " ago";
 })
 
 const icons = []

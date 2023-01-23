@@ -437,6 +437,12 @@ function globalDashboardFunction(type) {/*
   } else if (type == '-stopdaemon' || type == '-startdaemon') {
     message = 'Daemon error on start/stop'
   }*/
+  if(type == '-getblockcount'){
+    let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
+    let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getBlockHash', getBlockCountResponse], { encoding: 'utf8' });
+    let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
+    return getBlock
+  }
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
   } catch (error) {
@@ -447,7 +453,7 @@ function globalDashboardFunction(type) {/*
 
 
 app.get('/getdashboarddata', async (req, res, next) => {
-  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo'];
+  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo', '-gettotalsize', '-getwalletinfo', '-getblockcount'];
   let response = [];
   for (let i = 0; i < types.length; i++) {
     let data;
