@@ -516,7 +516,11 @@ function checkPeersData() {
         return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
       })
       )
-      .then(peersIpData => {
+      .then(axiosResults => {
+        let peersIpData = [];
+        axiosResults.map(result => {
+          peersData.push(result.data)
+        })
         peersIpData = JSON.stringify(peersIpData);
         fs.writeFileSync('peersIp.json', peersIpData);
         peersData = JSON.stringify(peersData)
