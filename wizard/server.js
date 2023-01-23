@@ -437,6 +437,12 @@ function globalDashboardFunction(type) {/*
   } else if (type == '-stopdaemon' || type == '-startdaemon') {
     message = 'Daemon error on start/stop'
   }*/
+  if(type == '-getblockcount'){
+    let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
+    let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
+    let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
+    return getBlock
+  }
   try {
     return execFileSync('bash', ['/home/revo/nodeutils', type], { encoding: 'utf8' });
   } catch (error) {
@@ -447,7 +453,7 @@ function globalDashboardFunction(type) {/*
 
 
 app.get('/getdashboarddata', async (req, res, next) => {
-  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo'];
+  const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo', '-gettotalsize', '-getwalletinfo', '-getblockcount'];
   let response = [];
   for (let i = 0; i < types.length; i++) {
     let data;
@@ -457,7 +463,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
       data = await globalDashboardFunction(types[i]);
     }
     let result
-    if (typeof (data) == "string" && types[i] !== "date") {
+    if (typeof (data) == "string" && types[i] !== "date" && i !== (types.length -3)) {
       result = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
       result = JSON.parse(result);
     } else {
@@ -483,9 +489,8 @@ function checkPeersData() {
   for (let i = 0; i < peersData.length; i++) {
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
-      let peersIpData = [];
 
-      peersData.map((e, j) => {
+      Promise.all(peersData.map((e, j) => {
         let currentIp;
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
@@ -493,17 +498,20 @@ function checkPeersData() {
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
         }
-        axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
-          .then(res => res.data)
-          .then(data => {
-            peersIpData[j] = data;
-            if (j == peersData.length - 1) {
-              peersIpData = JSON.stringify(peersIpData);
-              fs.writeFileSync('peersIp.json', peersIpData);
-              peersData = JSON.stringify(peersData)
-              fs.writeFileSync('peers.json', peersData);
-            }
-          })
+        return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
+      })
+      )
+      .then(axiosResults => {
+        let peersIpData = [];
+        axiosResults.map(result => {
+          if(result.data !== null){
+            peersIpData.push(result.data)
+          }
+        })
+        peersIpData = JSON.stringify(peersIpData);
+        fs.writeFileSync('peersIp.json', peersIpData);
+        peersData = JSON.stringify(peersData)
+        fs.writeFileSync('peers.json', peersData);        
       })
       break;
     } else {

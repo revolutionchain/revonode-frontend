@@ -89,6 +89,7 @@ useEffect(()=>{
     widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     widget[4].count = props.nodeData[3].size;
     widget[5].count = props.nodeData[0].headers;
+    widget[5].text = props.secondsToString((props.nodeData[10].time)) + " ago";
 })
 
 const icons = []
@@ -109,7 +110,7 @@ const icons = []
                                             {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
                                         </span></h4>
                                 </div>
-                                <p className="text-muted mt-3 mb-0">
+                                <p style={{position: `absolute`, bottom: `0`}} className="text-muted mt-3 mb-4">
                                     <span className={""}>
 
                                         {/*widget.upArrow === true ?

@@ -81,15 +81,6 @@ const nodeInfo = [
 const SalesAnalytics = props => {
     const [menu, setMenu] = useState(false);
 
-    function secondsToString(seconds) {
-        var numyears = Math.floor(seconds / 31536000);
-        var numdays = Math.floor((seconds % 31536000) / 86400);
-        var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600);
-        var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
-        var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;
-        return numyears + " years " + numdays + " days " + numhours + " hours " + numminutes + " minutes " + numseconds + " seconds";
-
-    }
 
 
     useEffect(() => {
@@ -102,7 +93,7 @@ const SalesAnalytics = props => {
                 return (<button style={{ fontSize: "10px", marginLeft: "5px", marginBottom: "5px" }} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
-        nodeInfo[5].value = secondsToString(props.nodeData[5]);
+        nodeInfo[5].value = props.secondsToString(props.nodeData[5]);
         nodeInfo[6].value = props.nodeData[6];
         nodeInfo[7].value = props.nodeData[4].networks[0].reachable;
         nodeInfo[8].value = props.nodeData[4].networks[1].reachable;

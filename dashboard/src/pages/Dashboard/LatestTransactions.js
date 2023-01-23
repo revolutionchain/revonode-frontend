@@ -1,5 +1,7 @@
-import React, { useEffect } from "react"
-import { Card, CardBody, CardTitle, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap"
+import React, { useEffect, useState } from "react"
+import { Card, CardBody, CardTitle, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+
+import Flag from 'react-world-flags'
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -11,9 +13,38 @@ const LatestTranaction = (props) => {
 
     const { latestTransaction, onLatestTransactions } = props;
 
+    const [countriesData, setCountriesData] = useState(false);
     useEffect(() => {
         onLatestTransactions();
     }, [onLatestTransactions]);
+
+    const [orderedCountries, setOrderedCountries] = useState(false);
+    const [peersAmount, setPeersAmount] = useState(1);
+
+    const sortCountries = () => {
+        let countries = countriesData;
+        
+        countries.sort(function (a, b) {
+            if (a.value < b.value) {
+                return 1;
+            }
+            if (a.value > b.value) {
+                return -1;
+            }
+            return 0;
+        });
+        let peersCount = 0;
+        countries.map((c,i) => {            
+            const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
+            c.country = currentCountry.country.names.en;
+            peersCount = peersCount + c.value;
+        });
+       
+        setPeersAmount(peersCount);
+        setOrderedCountries(countries);
+    }
+
+    countriesData && !orderedCountries && sortCountries();
 
     return (
         <React.Fragment>
@@ -22,8 +53,37 @@ const LatestTranaction = (props) => {
                     <CardTitle className="mb-4">Global Peer Distribution</CardTitle>
                     <hr />
                         <div className="d-flex mt-1 col-xl-12">
-                            <div className="col-xl-6"></div>
-                            {/*<MapChart ipLocationData={props.ipLocationData}/>*/}
+                            <div className="col-xl-6">
+                                {
+                                    
+                                    orderedCountries && orderedCountries.map((c,i) => {
+                                        if(c.value >= 1){
+                                            return (
+                                                <div className="col-xl-12">
+                                                    <div className="d-flex col-xl-9 mb-2" style={{borderBottom: "1px solid #CCC"}}>
+                                                        <div style={{textAlign: "center"}} className="col-xl-1">
+                                                            {i+1 + "."}
+                                                        </div>
+                                                        <div className="col-xl-2" style={{textAlign: "center"}}>
+                                                            <Flag code={c.country_code} height="12" />  
+                                                        </div>
+                                                        <div className="col-xl-5">
+                                                            {c.country}
+                                                        </div>
+                                                        <div style={{textAlign: "right"}} className="col-xl-1">
+                                                            {c.value}
+                                                        </div>
+                                                        <div style={{textAlign: "center"}} className="col-xl-3">
+                                                            {((c.value * 100) / peersAmount).toFixed(2) + "%"}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                }                     
+                            </div>
+                            {<MapChart ipLocationData={props.ipLocationData} setCountriesData={setCountriesData} countriesData={countriesData} />}
                         </div>
                 </CardBody>
             </Card>
