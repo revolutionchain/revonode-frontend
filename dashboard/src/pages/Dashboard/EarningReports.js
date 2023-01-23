@@ -83,7 +83,9 @@ function EarningReports(props) {
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
         blockchainInfo[2].value = (props.nodeData[8]).split("G")[0] + " GB";
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
-        blockchainInfo[4].value = (((props.nodeData[7].mediantime)*1000));
+        let mediantimeValue = ((props.nodeData[7].mediantime)*1000);
+        console.log(mediantimeValue);
+        blockchainInfo[4].value = new Date(mediantimeValue);
         walletInfo[0].value = props.nodeData[9].walletname
         walletInfo[1].value = (props.nodeData[9].balance).toFixed(8) + " RVO"
         walletInfo[2].value = (props.nodeData[9].stake).toFixed(8) + " RVO"
