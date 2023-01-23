@@ -19,6 +19,7 @@ const LatestTranaction = (props) => {
     }, [onLatestTransactions]);
 
     const [orderedCountries, setOrderedCountries] = useState(false);
+    const [peersAmount, setPeersAmount] = useState(1);
 
     const sortCountries = () => {
         let countries = countriesData;
@@ -32,12 +33,14 @@ const LatestTranaction = (props) => {
             }
             return 0;
         });
-
+        let peersCount = 0;
         countries.map((c,i) => {            
             const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
             countries[i] == { ...countries[i], country: currentCountry.country.names.en};
+            peersCount = peersCount + c.value;
         });
-
+       
+        setPeersAmount(peersCount);
         setOrderedCountries(countries);
     }
 
@@ -54,23 +57,25 @@ const LatestTranaction = (props) => {
                                 {
                                     
                                     orderedCountries && orderedCountries.map((c,i) => {
-                                        if(c.value > 1){
+                                        if(c.value >= 1){
                                             return (
-                                                <div className="d-flex col-xl-12">
-                                                    <div>
-                                                        {i+1}
-                                                    </div>
-                                                    <div>
-                                                        <Flag code={c.country_code} />  
-                                                    </div>
-                                                    <div>
-                                                        {c.country}
-                                                    </div>
-                                                    <div>
-                                                        {c.value}
-                                                    </div>
-                                                    <div>
-                                                        {(c.value * 100) / orderedCountries.length + "%"}
+                                                <div className="col-xl-12">
+                                                    <div className="d-flex">
+                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                            {i+1}
+                                                        </div>
+                                                        <div className="col-xl-2">
+                                                            <Flag code={c.country_code} height="12" />  
+                                                        </div>
+                                                        <div className="col-xl-4">
+                                                            {c.country}
+                                                        </div>
+                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                            {c.value}
+                                                        </div>
+                                                        <div style={{textAlign: center}} className="col-xl-2">
+                                                            {(c.value * 100) / peersAmount + "%"}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )
