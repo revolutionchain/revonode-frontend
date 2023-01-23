@@ -519,7 +519,7 @@ function checkPeersData() {
       .then(axiosResults => {
         let peersIpData = [];
         axiosResults.map(result => {
-          peersData.push(result.data)
+          peersIpData.push(result.data)
         })
         peersIpData = JSON.stringify(peersIpData);
         fs.writeFileSync('peersIp.json', peersIpData);
