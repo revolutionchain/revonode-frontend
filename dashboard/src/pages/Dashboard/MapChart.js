@@ -7,9 +7,8 @@ import { scaleLinear } from "d3-scale";
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
-export default function MapChart({ ipLocationData }) {
+export default function MapChart({ ipLocationData, setCountriesData, countriesData }) {
 
-  const [countriesData, setCountriesData] = useState(false);
   const [minMaxValue, setMinMaxValue] = useState({
     minValue: 0,
     maxValue: 0
