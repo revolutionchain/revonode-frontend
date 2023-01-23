@@ -36,7 +36,7 @@ const LatestTranaction = (props) => {
         let peersCount = 0;
         countries.map((c,i) => {            
             const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
-            countries[i] == { ...countries[i], country: currentCountry.country.names.en};
+            c.country = currentCountry.country.names.en;
             peersCount = peersCount + c.value;
         });
        
