@@ -439,7 +439,7 @@ function globalDashboardFunction(type) {/*
   }*/
   if(type == '-getblockcount'){
     let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
-    let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getBlockHash', getBlockCountResponse], { encoding: 'utf8' });
+    let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
     let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
     return getBlock
   }
