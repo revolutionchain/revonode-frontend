@@ -54,14 +54,14 @@ const LatestTranaction = (props) => {
                     <hr />
                         <div className="mapchart-container mt-1 col-xl-12 col-12">
                             {<MapChart ipLocationData={props.ipLocationData} setCountriesData={setCountriesData} countriesData={countriesData} />}
-                            <div className="col-xl-6 col-6">
+                            <div className="col-xl-6 col-12">
                                 {
                                     
                                     orderedCountries && orderedCountries.map((c,i) => {
                                         if(c.value >= 1){
                                             return (
                                                 <div className="col-xl-12 col-12">
-                                                    <div className="d-flex col-9 col-xl-9 mb-2" style={{borderBottom: "1px solid #CCC"}}>
+                                                    <div className="d-flex col-12 col-xl-9 mb-2" style={{borderBottom: "1px solid #CCC"}}>
                                                         <div style={{textAlign: "center"}} className="col-xl-1 col-1">
                                                             {i+1 + "."}
                                                         </div>
