@@ -81,7 +81,7 @@ function EarningReports(props) {
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
-        blockchainInfo[2].value = props.nodeData[8];
+        blockchainInfo[2].value = (props.nodeData[8]).split("G")[0] + " GB";
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
         blockchainInfo[4].value = props.secondsToString((props.nodeData[7].mediantime)/1000);
         walletInfo[0].value = props.nodeData[9].walletname
@@ -146,10 +146,10 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{ width: "60%", padding:"5px" }}>
+                                    <div style={{ width: "60%", padding:"3px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "40%", padding: "5px" }}>
+                                    <div style={{ width: "40%", padding: "3px" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
@@ -166,10 +166,10 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && walletInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{ width: "50%", padding:"5px" }}>
+                                    <div style={{ width: "50%", padding:"3px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "50%", padding: "5px" }}>
+                                    <div style={{ width: "50%", padding: "3px" }}>
                                         {e?.value}
                                     </div>
                                 </div>)

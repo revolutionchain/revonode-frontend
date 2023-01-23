@@ -110,7 +110,7 @@ const icons = []
                                             {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
                                         </span></h4>
                                 </div>
-                                <p className="text-muted mt-3 mb-0">
+                                <p style={{position: `absolute`, bottom: `0`}} className="text-muted mt-3 mb-4">
                                     <span className={""}>
 
                                         {/*widget.upArrow === true ?
