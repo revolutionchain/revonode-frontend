@@ -33,9 +33,9 @@ const LatestTranaction = (props) => {
             return 0;
         });
 
-        countries.map(c => {            
+        countries.map(c,i => {            
             const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
-            c.country == currentCountry.country.names.en;
+            countries[i] == { ...countries[i], country: currentCountry.country.names.en};
         });
 
         setOrderedCountries(countries);
