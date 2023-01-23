@@ -20,7 +20,7 @@ export default function MapChart({ ipLocationData }) {
 
     let countryCounter = {};
     ipLocationData.map(e => {
-      if (countryCounter[e?.country?.iso_code]) {
+      if (countryCounter[e.country.iso_code]) {
         countryCounter = {
           ...countryCounter,
           [e.country.iso_code]: countryCounter[e.country.iso_code] + 1
