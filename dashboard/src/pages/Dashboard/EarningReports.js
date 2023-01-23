@@ -169,7 +169,7 @@ function EarningReports(props) {
                                     <div style={{ width: "50%", padding:"3px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "50%", padding: "3px" }}>
+                                    <div style={{ width: "50%", padding: "3px 0" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
@@ -185,13 +185,13 @@ function EarningReports(props) {
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>
                         <hr />
-                        <div className="mt-1 d-flex">
-                            <div className='col-xl-6'>
+                        <div className="mt-1 piechart-container">
+                            <div className='col-xl-6 '>
                                 {totalPeers && <PieChart
                                     animation
                                     animationDuration={500}
                                     animationEasing="ease-out"
-                                    center={[50, 50]}
+                                    center={[75, 75]}
                                     data={peersState.map((e, i) => {                                        
                                         return  {
                                             color: randomColorsState[i],
@@ -206,16 +206,16 @@ function EarningReports(props) {
                                     paddingAngle={1}
                                     radius={50}
                                     startAngle={0}
-                                    viewBoxSize={[100, 100]}
+                                    viewBoxSize={[150, 150]}
                                 />}
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
                                 return (<div key={i} className="col-xl-6">
-                                    <div className='d-flex col-xl-12 mb-2 pl-1 pr-1' style={{borderBottom: "1px solid #CCC"}}>
-                                    <div style={{ width: "70%" }}>
+                                    <div className='d-flex col-xl-12 mb-2 ' style={{borderBottom: "1px solid #CCC", padding: "0 5px"}}>
+                                    <div style={{ width: "80%" }}>
                                         {`${i+1}. ${e.name}`}
                                     </div>
-                                    <div style={{ width: "30%", textAlign: "right" }}>
+                                    <div style={{ width: "20%", textAlign: "right" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
                                     </div>
                                     </div>

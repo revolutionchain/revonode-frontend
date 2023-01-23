@@ -52,28 +52,29 @@ const LatestTranaction = (props) => {
                 <CardBody>
                     <CardTitle className="mb-4">Global Peer Distribution</CardTitle>
                     <hr />
-                        <div className="d-flex mt-1 col-xl-12">
-                            <div className="col-xl-6">
+                        <div className="mapchart-container mt-1 col-xl-12 col-12">
+                            {<MapChart ipLocationData={props.ipLocationData} setCountriesData={setCountriesData} countriesData={countriesData} />}
+                            <div className="col-xl-6 col-6">
                                 {
                                     
                                     orderedCountries && orderedCountries.map((c,i) => {
                                         if(c.value >= 1){
                                             return (
-                                                <div className="col-xl-12">
-                                                    <div className="d-flex col-xl-9 mb-2" style={{borderBottom: "1px solid #CCC"}}>
-                                                        <div style={{textAlign: "center"}} className="col-xl-1">
+                                                <div className="col-xl-12 col-12">
+                                                    <div className="d-flex col-9 col-xl-9 mb-2" style={{borderBottom: "1px solid #CCC"}}>
+                                                        <div style={{textAlign: "center"}} className="col-xl-1 col-1">
                                                             {i+1 + "."}
                                                         </div>
-                                                        <div className="col-xl-2" style={{textAlign: "center"}}>
+                                                        <div className="col-xl-2 col-2" style={{textAlign: "center"}}>
                                                             <Flag code={c.country_code} height="12" />  
                                                         </div>
-                                                        <div className="col-xl-5">
+                                                        <div className="col-xl-5 col-5">
                                                             {c.country}
                                                         </div>
-                                                        <div style={{textAlign: "right"}} className="col-xl-1">
+                                                        <div style={{textAlign: "right"}} className="col-xl-1 col-1">
                                                             {c.value}
                                                         </div>
-                                                        <div style={{textAlign: "center"}} className="col-xl-3">
+                                                        <div style={{textAlign: "center"}} className="col-xl-3 col-3">
                                                             {((c.value * 100) / peersAmount).toFixed(2) + "%"}
                                                         </div>
                                                     </div>
@@ -83,7 +84,6 @@ const LatestTranaction = (props) => {
                                     })
                                 }                     
                             </div>
-                            {<MapChart ipLocationData={props.ipLocationData} setCountriesData={setCountriesData} countriesData={countriesData} />}
                         </div>
                 </CardBody>
             </Card>

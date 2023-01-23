@@ -918,6 +918,15 @@ a {
 }
 
 
+.piechart-container{
+  display: flex;
+}
+
+.mapchart-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 
 @media (max-width: 550px) {
   .signup-desc{
@@ -992,6 +1001,13 @@ a {
     bottom: 0px;
     left: 0px;  
     height: 45%;
+  }
+
+  .mapchart-container{
+    display: initial;
+  }
+  .piechart-container {
+    display: initial;
   }
 
 }
