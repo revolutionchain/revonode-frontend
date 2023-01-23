@@ -70,10 +70,10 @@ const LatestTranaction = (props) => {
                                                         <div className="col-xl-5">
                                                             {c.country}
                                                         </div>
-                                                        <div style={{textAlign: "right"}} className="col-xl-2">
+                                                        <div style={{textAlign: "right"}} className="col-xl-1">
                                                             {c.value}
                                                         </div>
-                                                        <div style={{textAlign: "center"}} className="col-xl-2">
+                                                        <div style={{textAlign: "center"}} className="col-xl-3">
                                                             {((c.value * 100) / peersAmount).toFixed(2) + "%"}
                                                         </div>
                                                     </div>

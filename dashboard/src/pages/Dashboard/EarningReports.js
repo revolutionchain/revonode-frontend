@@ -139,10 +139,10 @@ function EarningReports(props) {
                         <div className="mt-1">
                             {props.nodeData.length && blockchainInfo.map(e => {
                                 return (<div className="d-flex">
-                                    <div style={{ width: "50%", padding:"5px" }}>
+                                    <div style={{ width: "60%", padding:"5px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
                                     </div>
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "40%" }}>
                                         {e?.value}
                                     </div>
                                 </div>)
@@ -204,10 +204,10 @@ function EarningReports(props) {
                             </div>
                             {props.peersData.length && peersState.length && peersState?.map((e, i) => {
                                 return (<div key={i} className="d-flex col-xl-6">
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "70%" }}>
                                         {e.name}
                                     </div>
-                                    <div style={{ width: "50%" }}>
+                                    <div style={{ width: "30%" }}>
                                         {totalPeers && totalPeers >= 1 ? e?.count / totalPeers * 100 + "%" : '100%'}
                                     </div>
                                 </div>)
