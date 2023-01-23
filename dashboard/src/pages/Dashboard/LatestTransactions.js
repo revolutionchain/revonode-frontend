@@ -33,7 +33,7 @@ const LatestTranaction = (props) => {
             return 0;
         });
 
-        countries.map(c,i => {            
+        countries.map((c,i) => {            
             const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
             countries[i] == { ...countries[i], country: currentCountry.country.names.en};
         });
@@ -53,7 +53,7 @@ const LatestTranaction = (props) => {
                             <div className="col-xl-6">
                                 {
                                     
-                                    orderedCountries && orderedCountries.map(c,i => {
+                                    orderedCountries && orderedCountries.map((c,i) => {
                                         if(c.value > 1){
                                             return (
                                                 <div className="d-flex col-xl-12">
