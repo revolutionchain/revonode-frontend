@@ -19,7 +19,7 @@ const widget = [
     {
         id: 2,
         title: 'Last Block',
-        text: '0 Peers',
+        text: '0',
         count: '284532',
         dollor: true,
         icon: 'bx bxs-star text-warning',
@@ -32,7 +32,7 @@ const widget = [
         id: 3,
         title: 'Size',
         text: '0 MB avg. block size',
-        count: '0.02 MB',
+        count: '0.02',
         dollor: false,
         icon: 'bx bx-world text-secondary',
         secondIcon: '',
