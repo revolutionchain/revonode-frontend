@@ -112,6 +112,36 @@ const Dashboard = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
+
+
+          <div class="table-responsive">
+            <table class="table mb-0 table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Country</th>
+                  <th>ISP</th>
+                  <th>Services</th>
+                  <th>Age(h)</th>
+                  <th>Client</th>
+                  <th>Traffic (MB)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>79</td>
+                  <td>FLAG + Argentina</td>
+                  <td>Telecom Argentina S</td>
+                  <td>NETWORK - WITNESS - NETWORK LIMITED</td>
+                  <td>36.6</td>
+                  <td>Revo-Mercury 0.22.1(Node Name)</td>
+                  <td>1.4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </Container>
       </div>
       }<Modal
@@ -142,7 +172,7 @@ const Dashboard = props => {
 
               <div className="row justify-content-center">
                 <div className="col-xl-10">
-                <h4 className="text-primary">Early Adopters Airdrop!</h4>
+                  <h4 className="text-primary">Early Adopters Airdrop!</h4>
                   <p className="text-muted font-size-14 mb-4">Scan your personal NFC Revo tag to enroll!</p>
 
                   <div className="input-group bg-light rounded">
