@@ -22,30 +22,26 @@ const icons = []
 <h4 className="card-title mb-2">My UTXOs</h4>
 <hr />
                 
-          <div class="table-responsive">
+<div class="table-responsive">
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th>TX Id</th>
+                  <th>Amount</th>
+                  <th>Address</th>
+                  <th>Vout</th>
+                  <th>Label</th>
+                  <th>Confirms</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th style={{borderBottom: "none"}} scope="row">1</th>
-                  <td style={{borderBottom: "none"}}>79</td>
-                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
-                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
-                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td style={{borderBottom: "none"}}>36.6</td>
-                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td style={{borderBottom: "none"}}>1.4</td>
+                  <th style={{borderBottom: "none"}} scope="row"><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></th>
+                  <td style={{borderBottom: "none"}}>34.65 RVO</td>
+                  <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
+                  <td style={{borderBottom: "none"}}>8</td>
+                  <td style={{borderBottom: "none"}}>Label</td>
+                  <td style={{borderBottom: "none"}}>127</td>
                 </tr>
               </tbody>
             </table>
