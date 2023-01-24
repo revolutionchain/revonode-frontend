@@ -87,7 +87,6 @@ import SweetAlert from '../pages/AdvanaceKit/SweetAlert';
 import RangeSlider from "../pages/AdvanaceKit/RangeSlider"
 import Notification from "../pages/AdvanaceKit/Notifications";
 import Carousel from "../pages/AdvanaceKit/Carousel";
-import Typography from "../pages/Typography";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -144,7 +143,6 @@ const userRoutes = [
   { path: "/advanced-rangeslider", component: RangeSlider },
   { path: "/advanced-notifications", component: Notification },
   { path: "/advanced-carousel", component: Carousel },
-  { path: "/typography", component: Typography },
 
   //Utility
   { path: "/pages-starter", component: PagesStarter },

@@ -205,12 +205,7 @@ const SidebarContent = props => {
               </ul>
             </li>
 
-            <li>
-              <Link to="/typography" className="waves-effect">
-                <i className='bx bx-text'></i>
-                <span>{props.t("Typography")}</span>
-              </Link>
-            </li>
+            
 
             <li>
               <Link to="/#" className="waves-effect">
