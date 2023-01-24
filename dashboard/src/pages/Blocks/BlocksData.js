@@ -19,7 +19,7 @@ const icons = []
                         <Col xl={12} >
                         <Card>
                             <CardBody>
-<h4 className="card-title mb-2">Peers</h4>
+<h4 className="card-title mb-2">Blocks - Received</h4>
 <hr />
                 
           <div class="table-responsive">
