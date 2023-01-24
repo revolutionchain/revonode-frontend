@@ -164,7 +164,7 @@ const Wallet = props => {
   );
 }
 
-Dashboard.propTypes = {
+Wallet.propTypes = {
   t: PropTypes.any
 }
 

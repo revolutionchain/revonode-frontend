@@ -164,7 +164,7 @@ const Peers = props => {
   );
 }
 
-Dashboard.propTypes = {
+Peers.propTypes = {
   t: PropTypes.any
 }
 

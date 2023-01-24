@@ -164,7 +164,7 @@ const Staking = props => {
   );
 }
 
-Dashboard.propTypes = {
+Staking.propTypes = {
   t: PropTypes.any
 }
 

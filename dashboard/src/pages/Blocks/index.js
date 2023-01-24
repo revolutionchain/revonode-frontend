@@ -164,7 +164,7 @@ const Blocks = props => {
   );
 }
 
-Dashboard.propTypes = {
+Blocks.propTypes = {
   t: PropTypes.any
 }
 

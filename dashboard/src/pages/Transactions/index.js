@@ -164,7 +164,7 @@ const Transactions = props => {
   );
 }
 
-Dashboard.propTypes = {
+Transactions.propTypes = {
   t: PropTypes.any
 }
 
