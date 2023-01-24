@@ -3,13 +3,14 @@ import MockAdapter from "axios-mock-adapter";
 import * as url from "../url_helper";
 import accessToken from "../jwt-token-access/accessToken";
 
+
 let users = [
   {
     uid: 1,
     username: "admin",
     role: "admin",
     password: "123456",
-    email: "mail@myloginemail.mail",
+    email: "admin@themesbrand.com",
   },
 ];
 
@@ -193,7 +194,8 @@ const fakeBackend = () => {
       });
     });
   });
-    
+
+  
 };
 
 export default fakeBackend;
