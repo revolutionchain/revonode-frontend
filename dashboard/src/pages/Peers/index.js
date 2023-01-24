@@ -18,6 +18,7 @@ import { withTranslation } from "react-i18next";
 import Widget from './Widget';
 
 import { useSelector } from 'react-redux';
+import PeersData from './PeersData';
 
 
 const Dashboard = props => {
@@ -112,36 +113,8 @@ const Dashboard = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
+          <PeersData />
 
-
-          <div class="table-responsive">
-            <table class="table mb-0 table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>79</td>
-                  <td>FLAG + Argentina</td>
-                  <td>Telecom Argentina S</td>
-                  <td>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td>36.6</td>
-                  <td>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td>1.4</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </Container>
       </div>
       }<Modal
