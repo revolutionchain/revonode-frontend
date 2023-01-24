@@ -16,11 +16,9 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 import { withTranslation } from "react-i18next";
 
 import Widget from './Widget';
-import SalesAnalytics from './SalesAnalytics';
-import EarningReports from './EarningReports';
-import LatestTransactions from './LatestTransactions';
-import LatestOrders from './LatestOrders';
-import RecentUsers from './RecentUsers';
+import NodeInfo from './NodeInfo';
+import WalletChainInfo from './WalletChainInfo';
+import PeersInfo from './PeersInfo';
 
 import { useSelector } from 'react-redux';
 
@@ -121,12 +119,12 @@ const Dashboard = props => {
           <Widget nodeData={nodeData} secondsToString={secondsToString} />
 
           <Row>
-            <SalesAnalytics nodeData={nodeData} secondsToString={secondsToString} />
-            <EarningReports nodeData={nodeData} peersData={peersData} secondsToString={secondsToString} />
+            <NodeInfo nodeData={nodeData} secondsToString={secondsToString} />
+            <WalletChainInfo nodeData={nodeData} peersData={peersData} secondsToString={secondsToString} />
           </Row>
           <Row>
             <Col xl={10}>
-              {ipLocationData && <LatestTransactions ipLocationData={ipLocationData} />}
+              {ipLocationData && <PeersInfo ipLocationData={ipLocationData} />}
             </Col>{/*
             <Col xl={6}>
               <LatestOrders />
