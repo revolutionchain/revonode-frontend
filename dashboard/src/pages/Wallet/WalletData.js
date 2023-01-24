@@ -26,22 +26,22 @@ const icons = []
             <table class="table mb-0 table">
               <thead>
                 <tr>
+                  <th>Type</th>
+                  <th>Sender</th>
+                  <th>Receiver</th>
+                  <th>Time</th>
                   <th>TX Id</th>
                   <th>Amount</th>
-                  <th>Address</th>
-                  <th>Vout</th>
-                  <th>Label</th>
-                  <th>Confirms</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th style={{borderBottom: "none"}} scope="row"><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></th>
-                  <td style={{borderBottom: "none"}}>34.65 RVO</td>
+                  <th style={{borderBottom: "none"}} scope="row">incoming/outgoing/staked</th>
                   <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
-                  <td style={{borderBottom: "none"}}>8</td>
-                  <td style={{borderBottom: "none"}}>Label</td>
-                  <td style={{borderBottom: "none"}}>127</td>
+                  <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>                  
+                  <td style={{borderBottom: "none"}}>2023-01-22 22:40:12 (0 m ago)</td>
+                  <td style={{borderBottom: "none"}}><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></td>
+                  <td style={{borderBottom: "none"}}>186.932 RVO</td>
                 </tr>
               </tbody>
             </table>

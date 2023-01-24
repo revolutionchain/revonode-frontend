@@ -41,9 +41,6 @@ import Blocks from "../pages/Blocks/index"
 // Staking
 import Staking from "../pages/Staking/index"
 
-// Transactions
-import Transactions from "../pages/Transactions/index"
-
 // Wallet
 import Wallet from "../pages/Wallet/index"
 
@@ -96,8 +93,6 @@ const userRoutes = [
   { path: "/blocks", component: Blocks },
 
   { path: "/staking", component: Staking },
-
-  { path: "/transactions", component: Transactions },
 
   { path: "/wallet", component: Wallet },
 
