@@ -10,7 +10,7 @@ const widget = [
         text: 'blocks',
         count: '25',
         dollor: true,
-        icon: 'bx bxs-cube',
+        icon: 'bx bxs-component',
         secondIcon: '',
         percentage: '2.65%',
         color: 'success',
@@ -19,10 +19,10 @@ const widget = [
     {
         id: 2,
         title: 'Last Block',
-        text: '0',
+        text: '0 seconds ago',
         count: '284532',
         dollor: true,
-        icon: 'bx bxs-star text-warning',
+        icon: 'bx bxs-cube',
         secondIcon: '',
         percentage: '4.58%',
         color: 'success',
@@ -34,7 +34,7 @@ const widget = [
         text: '0 MB avg. block size',
         count: '0.02',
         dollor: false,
-        icon: 'bx bx-world text-secondary',
+        icon: 'mdi mdi-database text-secondary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
@@ -71,11 +71,11 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    widget[0].count = props.nodeData[0].connections.total;
-    widget[1].count = props.nodeData[1].totalbytessent;
-    widget[2].count = props.nodeData[1].totalbytesrecv;
-    widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    widget[4].count = props.nodeData[3].size;
+    //widget[0].count = props.nodeData[0].connections.total;
+    //widget[1].count = props.nodeData[1].totalbytessent;
+    //widget[2].count = props.nodeData[1].totalbytesrecv;
+    //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
+    //widget[4].count = props.nodeData[3].size;
 })
 
 const icons = []
