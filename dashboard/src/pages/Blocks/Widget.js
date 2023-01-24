@@ -76,7 +76,6 @@ useEffect(()=>{
     widget[2].count = props.nodeData[1].totalbytesrecv;
     widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     widget[4].count = props.nodeData[3].size;
-    widget[5].count = props.nodeData[0].headers;
 })
 
 const icons = []
