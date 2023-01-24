@@ -21,7 +21,7 @@ import { useSelector } from 'react-redux';
 import PeersData from './PeersData';
 
 
-const Peers = props => {
+const Staking = props => {
 
   const [subscribemodal, setSubscribemodal] = useState(false)
 
@@ -168,4 +168,4 @@ Dashboard.propTypes = {
   t: PropTypes.any
 }
 
-export default withTranslation()(Peers)
+export default withTranslation()(Staking)

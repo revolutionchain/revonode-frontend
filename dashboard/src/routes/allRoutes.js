@@ -35,6 +35,18 @@ import Dashboard from "../pages/Dashboard/index"
 // Peers
 import Peers from "../pages/Peers/index"
 
+// Blocks
+import Blocks from "../pages/Blocks/index"
+
+// Staking
+import Staking from "../pages/Staking/index"
+
+// Transactions
+import Transactions from "../pages/Transactions/index"
+
+// Wallet
+import Wallet from "../pages/Wallet/index"
+
 // Charts
 import ChartApex from "../pages/Charts/Apexcharts"
 
@@ -81,6 +93,14 @@ const userRoutes = [
   { path: "/dashboard", component: Dashboard },
 
   { path: "/peers", component: Peers },
+
+  { path: "/blocks", component: Blocks },
+
+  { path: "/staking", component: Staking },
+
+  { path: "/transactions", component: Transactions },
+
+  { path: "/wallet", component: Wallet },
 
 
   //chat
