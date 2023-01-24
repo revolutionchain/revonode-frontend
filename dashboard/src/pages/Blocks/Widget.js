@@ -6,7 +6,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const widget = [
     {
         id: 1,
-        title: 'Last',
+        title: 'Showing last',
         text: 'blocks',
         count: '25',
         dollor: true,

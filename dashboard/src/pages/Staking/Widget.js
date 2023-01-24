@@ -6,11 +6,11 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const widget = [
     {
         id: 1,
-        title: 'Total Peers',
-        text: '0 New Peers',
+        title: 'Total UTXO',
+        text: '',
         count: '0',
         dollor: true,
-        icon: 'bx bxs-user text-secondary',
+        icon: 'bx bx-transfer-alt text-secondary',
         secondIcon: 'bx bx-plus-medical text-primary',
         percentage: '2.65%',
         color: 'success',
@@ -18,11 +18,11 @@ const widget = [
     },
     {
         id: 2,
-        title: 'Most Popular Client Version',
-        text: '0 Peers',
-        count: '0',
+        title: 'Currently Staking',
+        text: '',
+        count: '0.00000000',
         dollor: true,
-        icon: 'bx bxs-star text-warning',
+        icon: 'mdi-pickaxe text-warning',
         secondIcon: '',
         percentage: '4.58%',
         color: 'danger',
@@ -30,52 +30,16 @@ const widget = [
     },
     {
         id: 3,
-        title: 'Most Popular Country',
-        text: '0 Peers',
+        title: 'Validated Blocks',
+        text: '',
         count: '0',
         dollor: false,
-        icon: 'bx bx-world text-secondary',
+        icon: 'bx bxs-component text-secondary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
         upArrow: true
-    },
-    {
-        id: 4,
-        title: 'Most Populars ISP',
-        text: '0 Peers',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-server text-danger',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
-    {
-        id: 5,
-        title: 'Total Traffic (GB)',
-        text: 'Upload',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-apple-icloud text-secondary',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
-    {
-        id: 6,
-        title: 'Traffic by Current Peers (GB)',
-        text: 'of toal Traffic',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-apple-icloud text-info',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
+    }
 ]
 
 
@@ -83,12 +47,9 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    widget[0].count = props.nodeData[0].connections.total;
-    widget[1].count = props.nodeData[1].totalbytessent;
-    widget[2].count = props.nodeData[1].totalbytesrecv;
-    widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    widget[4].count = props.nodeData[3].size;
-    widget[5].count = props.nodeData[0].headers;
+    //widget[0].count = props.nodeData[0].connections.total;
+    //widget[1].count = props.nodeData[1].totalbytessent;
+    //widget[2].count = props.nodeData[1].totalbytesrecv;
 })
 
 const icons = []
