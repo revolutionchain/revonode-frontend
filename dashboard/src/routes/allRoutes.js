@@ -24,9 +24,6 @@ import Blocks from "../pages/Blocks/index"
 // Staking
 import Staking from "../pages/Staking/index"
 
-// Transactions
-import Transactions from "../pages/Transactions/index"
-
 // Wallet
 import Wallet from "../pages/Wallet/index"
 
