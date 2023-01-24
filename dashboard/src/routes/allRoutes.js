@@ -36,8 +36,6 @@ const userRoutes = [
 
   { path: "/staking", component: Staking },
 
-  { path: "/transactions", component: Transactions },
-
   { path: "/wallet", component: Wallet },
 
   // //profile
