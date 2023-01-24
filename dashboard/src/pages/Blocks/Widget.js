@@ -6,12 +6,12 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const widget = [
     {
         id: 1,
-        title: 'Total Peers',
-        text: '0 New Peers',
-        count: '0',
+        title: 'Last',
+        text: 'blocks',
+        count: '25',
         dollor: true,
-        icon: 'bx bxs-user text-secondary',
-        secondIcon: 'bx bx-plus-medical text-primary',
+        icon: 'bx bxs-cube',
+        secondIcon: '',
         percentage: '2.65%',
         color: 'success',
         upArrow: true
@@ -63,19 +63,7 @@ const widget = [
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
-    },
-    {
-        id: 6,
-        title: 'Traffic by Current Peers (GB)',
-        text: 'of toal Traffic',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-apple-icloud text-info',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
+    }
 ]
 
 
