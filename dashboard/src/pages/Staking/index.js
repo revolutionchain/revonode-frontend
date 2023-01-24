@@ -18,7 +18,7 @@ import { withTranslation } from "react-i18next";
 import Widget from './Widget';
 
 import { useSelector } from 'react-redux';
-import PeersData from './PeersData';
+import StakingData from './StakingData';
 
 
 const Staking = props => {
@@ -113,7 +113,7 @@ const Staking = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
-          <PeersData />
+          <StakingData />
 
         </Container>
       </div>

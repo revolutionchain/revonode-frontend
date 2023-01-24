@@ -26,26 +26,22 @@ const icons = []
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th>Block</th>
+                  <th>Hash</th>
+                  <th>Time</th>
+                  <th>Size</th>
+                  <th>Fees (RVO)</th>
+                  <th>TXs</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th style={{borderBottom: "none"}} scope="row">1</th>
-                  <td style={{borderBottom: "none"}}>79</td>
-                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
-                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
-                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td style={{borderBottom: "none"}}>36.6</td>
-                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td style={{borderBottom: "none"}}>1.4</td>
+                  <th style={{borderBottom: "none"}} scope="row">274888</th>
+                  <td style={{borderBottom: "none"}}><a href="https://mainnet.revo.network/block/b8e66f1aba990d8c25399fe8bb6a8b8b1fdb2996a08223a0339f76c5d7903b18">b8e66f1aba990d8c25399fe8bb6a8b8b1fdb2996a08223a0339f76c5d7903b18</a></td>
+                  <td style={{borderBottom: "none"}}>2023-01-22 22:40:12 (0 m ago)</td>
+                  <td style={{borderBottom: "none"}}>0.1</td>
+                  <td style={{borderBottom: "none"}}>00001291</td>
+                  <td style={{borderBottom: "none"}}>3</td>
                 </tr>
               </tbody>
             </table>

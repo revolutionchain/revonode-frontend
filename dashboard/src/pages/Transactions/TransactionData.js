@@ -26,26 +26,22 @@ const icons = []
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th>Type</th>
+                  <th>Sender</th>
+                  <th>Receiver</th>
+                  <th>Time</th>
+                  <th>TX Id</th>
+                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th style={{borderBottom: "none"}} scope="row">1</th>
-                  <td style={{borderBottom: "none"}}>79</td>
-                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
-                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
-                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td style={{borderBottom: "none"}}>36.6</td>
-                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td style={{borderBottom: "none"}}>1.4</td>
+                  <th style={{borderBottom: "none"}} scope="row">incoming/outgoing</th>
+                  <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
+                  <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>                  
+                  <td style={{borderBottom: "none"}}>2023-01-22 22:40:12 (0 m ago)</td>
+                  <td style={{borderBottom: "none"}}><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></td>
+                  <td style={{borderBottom: "none"}}>186.932 RVO</td>
                 </tr>
               </tbody>
             </table>

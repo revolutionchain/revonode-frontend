@@ -18,7 +18,7 @@ import { withTranslation } from "react-i18next";
 import Widget from './Widget';
 
 import { useSelector } from 'react-redux';
-import PeersData from './PeersData';
+import WalletData from './WalletData';
 
 
 const Wallet = props => {
@@ -113,7 +113,7 @@ const Wallet = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
-          <PeersData />
+          <WalletData />
 
         </Container>
       </div>
