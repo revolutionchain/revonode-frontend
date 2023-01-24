@@ -29,8 +29,7 @@ const icons = []
                   <th>Block</th>
                   <th>Hash</th>
                   <th>Time</th>
-                  <th>Size</th>
-                  <th>Fees (RVO)</th>
+                  <th>Size (Bytes)</th>
                   <th>TXs</th>
                 </tr>
               </thead>
@@ -40,7 +39,6 @@ const icons = []
                   <td style={{borderBottom: "none"}}><a href="https://mainnet.revo.network/block/b8e66f1aba990d8c25399fe8bb6a8b8b1fdb2996a08223a0339f76c5d7903b18">b8e66f1aba990d8c25399fe8bb6a8b8b1fdb2996a08223a0339f76c5d7903b18</a></td>
                   <td style={{borderBottom: "none"}}>2023-01-22 22:40:12 (0 m ago)</td>
                   <td style={{borderBottom: "none"}}>0.1</td>
-                  <td style={{borderBottom: "none"}}>00001291</td>
                   <td style={{borderBottom: "none"}}>3</td>
                 </tr>
               </tbody>
