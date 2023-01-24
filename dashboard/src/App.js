@@ -9,6 +9,7 @@ import { userRoutes, authRoutes } from "./routes/allRoutes"
 
 // Import all middleware
 import Authmiddleware from "./routes/middleware/Authmiddleware"
+import { useSelector } from 'react-redux'
 
 // layouts Format
 import VerticalLayout from "./components/VerticalLayout/"

@@ -158,7 +158,42 @@ const fakeBackend = () => {
         }
       });
     });
-  });   
+  });
+
+  mock.onPost("/jwt-forget-pwd").reply((config) => {
+    // User needs to check that user is eXist or not and send mail for Reset New password
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([200, "Check you mail and reset your password."]);
+      });
+    });
+  });
+
+  mock.onPost("/social-login").reply((config) => {
+    const user = JSON.parse(config["data"]);
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (user && user.token) {
+          // You have to generate AccessToken by jwt. but this is fakeBackend so, right now its dummy
+          const token = accessToken;
+
+          // JWT AccessToken
+          const tokenObj = { accessToken: token }; // Token Obj
+          const validUserObj = { ...user[0], ...tokenObj }; // validUser Obj
+
+          resolve([200, validUserObj]);
+        } else {
+          reject([
+            400,
+            "Username and password are invalid. Please enter correct username and password",
+          ]);
+        }
+      });
+    });
+  });
+    
 };
 
 export default fakeBackend;
