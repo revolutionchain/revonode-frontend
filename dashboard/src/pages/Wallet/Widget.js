@@ -6,23 +6,23 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const widget = [
     {
         id: 1,
-        title: 'Total Peers',
-        text: '0 New Peers',
-        count: '0',
+        title: 'Balance',
+        text: '',
+        count: '0.00000000',
         dollor: true,
-        icon: 'bx bxs-user text-secondary',
-        secondIcon: 'bx bx-plus-medical text-primary',
+        icon: 'bx bx-wallet text-secondary',
+        secondIcon: '',
         percentage: '2.65%',
         color: 'success',
         upArrow: true
     },
     {
         id: 2,
-        title: 'Most Popular Client Version',
-        text: '0 Peers',
-        count: '0',
+        title: 'Unconfirmed',
+        text: '',
+        count: '0.00000000',
         dollor: true,
-        icon: 'bx bxs-star text-warning',
+        icon: 'bx bxs-time-five text-secondary',
         secondIcon: '',
         percentage: '4.58%',
         color: 'danger',
@@ -30,11 +30,11 @@ const widget = [
     },
     {
         id: 3,
-        title: 'Most Popular Country',
-        text: '0 Peers',
-        count: '0',
+        title: 'Immature',
+        text: '',
+        count: '0.00000000',
         dollor: false,
-        icon: 'bx bx-world text-secondary',
+        icon: 'bx bx-left-down-arrow-circle text-secondary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
@@ -42,11 +42,11 @@ const widget = [
     },
     {
         id: 4,
-        title: 'Most Populars ISP',
-        text: '0 Peers',
-        count: '0',
+        title: 'Stake',
+        text: '',
+        count: '0.00000000',
         dollor: false,
-        icon: 'mdi mdi-server text-danger',
+        icon: 'mdi mdi-pickaxe text-secondary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
@@ -54,9 +54,9 @@ const widget = [
     },
     {
         id: 5,
-        title: 'Total Traffic (GB)',
-        text: 'Upload',
-        count: '0',
+        title: 'Wallet Version',
+        text: '',
+        count: '169900',
         dollor: false,
         icon: 'mdi mdi-apple-icloud text-secondary',
         secondIcon: '',
@@ -66,16 +66,16 @@ const widget = [
     },
     {
         id: 6,
-        title: 'Traffic by Current Peers (GB)',
-        text: 'of toal Traffic',
+        title: 'TX Count',
+        text: '',
         count: '0',
         dollor: false,
-        icon: 'mdi mdi-apple-icloud text-info',
+        icon: 'mdi mdi-database text-secondary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
-    },
+    }
 ]
 
 
@@ -83,12 +83,12 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    widget[0].count = props.nodeData[0].connections.total;
-    widget[1].count = props.nodeData[1].totalbytessent;
-    widget[2].count = props.nodeData[1].totalbytesrecv;
-    widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    widget[4].count = props.nodeData[3].size;
-    widget[5].count = props.nodeData[0].headers;
+    //widget[0].count = props.nodeData[0].connections.total;
+    //widget[1].count = props.nodeData[1].totalbytessent;
+    //widget[2].count = props.nodeData[1].totalbytesrecv;
+    //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
+    //widget[4].count = props.nodeData[3].size;
+    //widget[5].count = props.nodeData[0].headers;
 })
 
 const icons = []
