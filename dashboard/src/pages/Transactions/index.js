@@ -108,7 +108,7 @@ const Transactions = props => {
             :
             <Breadcrumbs
               title={props.t("Dashboard")}
-              breadcrumbItem={props.t("Dashboard")}
+              breadcrumbItem={props.t("Transactions")}
             />
           }
           {/* import Widget */}

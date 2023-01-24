@@ -108,7 +108,7 @@ const Staking = props => {
             :
             <Breadcrumbs
               title={props.t("Dashboard")}
-              breadcrumbItem={props.t("Dashboard")}
+              breadcrumbItem={props.t("Staking")}
             />
           }
           {/* import Widget */}

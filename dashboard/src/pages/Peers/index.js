@@ -108,7 +108,7 @@ const Peers = props => {
             :
             <Breadcrumbs
               title={props.t("Dashboard")}
-              breadcrumbItem={props.t("Dashboard")}
+              breadcrumbItem={props.t("Peers")}
             />
           }
           {/* import Widget */}
