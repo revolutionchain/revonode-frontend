@@ -41,6 +41,9 @@ import Blocks from "../pages/Blocks/index"
 // Staking
 import Staking from "../pages/Staking/index"
 
+// Transactions
+import Transactions from "../pages/Transactions/index"
+
 // Wallet
 import Wallet from "../pages/Wallet/index"
 
@@ -94,6 +97,8 @@ const userRoutes = [
 
   { path: "/staking", component: Staking },
 
+  { path: "/transactions", component: Transactions },
+
   { path: "/wallet", component: Wallet },
 
 
@@ -138,6 +143,7 @@ const userRoutes = [
   { path: "/advanced-rangeslider", component: RangeSlider },
   { path: "/advanced-notifications", component: Notification },
   { path: "/advanced-carousel", component: Carousel },
+  { path: "/typography", component: Typography },
 
   //Utility
   { path: "/pages-starter", component: PagesStarter },
