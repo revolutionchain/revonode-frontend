@@ -117,49 +117,7 @@ const Peers = props => {
 
         </Container>
       </div>
-      }<Modal
-        isOpen={subscribemodal}
-        role="dialog"
-        autoFocus={true}
-        centered
-        data-toggle="modal"
-        toggle={() => {
-          setSubscribemodal(!subscribemodal)
-        }}
-      >
-        <div className="modal-content">
-          <div className="modal-header border-bottom-0">
-            <button type="button" className="btn-close"
-              onClick={() => {
-                tog_standard()
-              }}></button>
-          </div>
-          <div className="modal-body">
-            <div className="text-center mb-4">
-              <div className="avatar-md mx-auto mb-4">
-                {/* style={{ backgroundColor:"#eff2f7" }}  */}
-                <div className="avatar-title bg-light  rounded-circle text-primary h1">
-                  <i className="fas fa-parachute-box"></i>
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-xl-10">
-                  <h4 className="text-primary">Early Adopters Airdrop!</h4>
-                  <p className="text-muted font-size-14 mb-4">Scan your personal NFC Revo tag to enroll!</p>
-
-                  <div className="input-group bg-light rounded">
-                    <Input type="email" className="form-control bg-transparent border-0" placeholder="Write your code here!" />
-                    <Button color="primary" type="button" id="button-addon2">
-                      <i className="bx bxs-paper-plane"></i>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
+      }
     </React.Fragment>
   );
 }
