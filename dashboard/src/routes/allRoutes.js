@@ -9,7 +9,6 @@ import UserProfile from "../pages/Authentication/user-profile"
 import Login from "../pages/Authentication/Login"
 import Logout from "../pages/Authentication/Logout"
 import Register from "../pages/Authentication/Register"
-import ForgetPwd from "../pages/Authentication/ForgetPassword"
 
 
 // Dashboard
