@@ -2,37 +2,6 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import * as url from "../url_helper";
 import accessToken from "../jwt-token-access/accessToken";
-import {
-  calenderDefaultCategories,
-  cartData,
-  chats,
-  comments,
-  contacts,
-  cryptoOrders,
-  customerData,
-  events,
-  groups,
-  invoiceList,
-  messages,
-  orders,
-  productsData,
-  projects,
-  inboxmails,
-  starredmails,
-  importantmails,
-  draftmails,
-  sentmails,
-  trashmails,
-  recentProducts,
-  shops,
-  tasks,
-  userProfile,
-  users as members,
-  wallet,
-  recentUsers,
-  latestTransaction,
-  latestOrders
-} from "../../common/data";
 
 let users = [
   {
@@ -40,7 +9,7 @@ let users = [
     username: "admin",
     role: "admin",
     password: "123456",
-    email: "admin@themesbrand.com",
+    email: "mail@myloginemail.mail",
   },
 ];
 
