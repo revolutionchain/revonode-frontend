@@ -38,14 +38,14 @@ const icons = []
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>79</td>
-                  <td>FLAG + Argentina</td>
-                  <td>Telecom Argentina S</td>
-                  <td>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td>36.6</td>
-                  <td>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td>1.4</td>
+                  <th style={{borderBottom: "none"}} scope="row">1</th>
+                  <td style={{borderBottom: "none"}}>79</td>
+                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
+                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
+                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
+                  <td style={{borderBottom: "none"}}>36.6</td>
+                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
+                  <td style={{borderBottom: "none"}}>1.4</td>
                 </tr>
               </tbody>
             </table>

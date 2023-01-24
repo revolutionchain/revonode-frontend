@@ -95,8 +95,7 @@ const icons = []
 
     return (
         <React.Fragment>
-            <Row>
-                
+            <Row>                
                     <Col md={6} xl={12} className="d-flex">
                     {widget.map((widget, key) => (
                         <Col xl={2} key={key}>
