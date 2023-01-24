@@ -20,14 +20,6 @@ import Logout from "../pages/Authentication/Logout"
 import Register from "../pages/Authentication/Register"
 import ForgetPwd from "../pages/Authentication/ForgetPassword"
 
-//  // Inner Authentication
-import Login1 from "../pages/AuthenticationInner/Page-login"
-import Register1 from "../pages/AuthenticationInner/page-register"
-import Recoverpw from "../pages/AuthenticationInner/page-recoverpw"
-import LockScreen from "../pages/AuthenticationInner/page-lock-screen"
-import ConfirmMail from "../pages/AuthenticationInner/page-confirm-mail"
-import EmailVerification from "../pages/AuthenticationInner/page-email-verification"
-import TwostepVerification from "../pages/AuthenticationInner/page-two-step-verification"
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
@@ -101,57 +93,8 @@ const userRoutes = [
 
   { path: "/wallet", component: Wallet },
 
-
-  //chat
-  { path: "/chat", component: Chat },
-
-  // //calendar
-  { path: "/calendar", component: Calendar },
-
   // //profile
   { path: "/profile", component: UserProfile },
-
-  //Email
-  { path: "/email-inbox", component: EmailInbox },
-  { path: "/email-read", component: EmailRead },
-
-  //Charts
-  { path: "/charts", component: ChartApex },
-
-  // Icons
-  { path: "/icons-boxicons", component: IconBoxicons },
-  { path: "/icons-dripicons", component: IconDripicons },
-  { path: "/icons-materialdesign", component: IconMaterialdesign },
-  { path: "/icons-fontawesome", component: IconFontawesome },
-
-  // Tables
-  { path: "/tables-basic", component: BasicTables },
-  { path: "/tables-datatable", component: DatatableTables },
-
-  // Maps
-  { path: "/maps", component: Maps },
-
-  // Forms
-  { path: "/form-elements", component: FormElements },
-  { path: "/form-advanced", component: FormAdvanced },
-
-  // Ui
-  { path: '/ui-components', component: UiElements },
-
-  //Advanace kit
-  { path: "/advanced-sweet-alert", component: SweetAlert },
-  { path: "/advanced-rangeslider", component: RangeSlider },
-  { path: "/advanced-notifications", component: Notification },
-  { path: "/advanced-carousel", component: Carousel },
-  { path: "/typography", component: Typography },
-
-  //Utility
-  { path: "/pages-starter", component: PagesStarter },
-  { path: "/pages-preloader", component: Preloader },
-  { path: "/pages-profile", component: Profile },
-  { path: "/pages-invoice", component: Invoice },
-  { path: "/pages-timeline", component: Timeline },
-  { path: "/pages-pricing", component: Pricing },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -162,20 +105,6 @@ const authRoutes = [
   { path: "/login", component: Login },
   { path: "/forgot-password", component: ForgetPwd },
   { path: "/register", component: Register },
-
-  { path: "/pages-maintenance", component: Maintenance },
-  { path: "/pages-comingsoon", component: PagesComingsoon },
-  { path: "/pages-404", component: Error404 },
-  { path: "/pages-500", component: Error500 },
-
-  //   // Authentication Inner
-  { path: "/pages-login", component: Login1 },
-  { path: "/pages-register", component: Register1 },
-  { path: "/pages-recoverpw", component: Recoverpw },
-  { path: "/pages-lock-screen", component: LockScreen },
-  { path: "/pages-confirm-mail", component: ConfirmMail },
-  { path: "/pages-email-verification", component: EmailVerification },
-  { path: "/pages-two-step-verification", component: TwostepVerification },
 ]
 
 export { userRoutes, authRoutes }
