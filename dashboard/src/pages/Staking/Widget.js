@@ -6,7 +6,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const widget = [
     {
         id: 1,
-        title: 'Total UTXO',
+        title: 'Total UTXOs',
         text: '',
         count: '0',
         dollor: true,
