@@ -88,8 +88,8 @@ const UserProfile = props => {
                     <div className="flex-1 align-self-center">
                       <div className="text-muted">
                         <h5>{name}</h5>
-                        <p style="padding:5px" className="mb-1">{email}</p>
-                        <p style="padding:5px" className="mb-0">Id no: #{idx}</p>
+                        <p className="mb-1">{email}</p>
+                        <p className="mb-0">Id no: #{idx}</p>
                       </div>
                     </div>
                   </div>
