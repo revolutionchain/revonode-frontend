@@ -341,11 +341,11 @@ body {
 }
 
 .container-g {
-  width: 70vw ;
+  width: 55vw ;
   position: relative;
   margin: 0 auto;
   background: #efeeff;
-  min-height: calc(92vh - 50px);
+  min-height: calc(52vh - 50px);
   overflow: hidden;
 }
 
@@ -377,8 +377,8 @@ fieldset {
 
 .signup-desc {
   background-color: var(--second-color);
-  width: 35%;
-  min-height: calc(92vh - 50px);
+  width: 40%;
+  min-height: calc(52vh - 50px);
   position: relative;
 }
 
@@ -388,7 +388,7 @@ fieldset {
 }
 
 .signup-form-conent {
-  width: 65%;
+  width: 60%;
   background-color: white;
 }
 
@@ -444,7 +444,7 @@ input:valid+label {
 
 .form-group-principal {
   position: relative;
-  min-height: 72vh;
+  min-height: 42vh;
   padding: 0 50px;
 }
 
@@ -761,7 +761,7 @@ h3 {
 }
 
 .content-container {
-  min-height: calc(72vh - 50px);
+  min-height: calc(42vh - 50px);
 }
 
 .buttons-container {
