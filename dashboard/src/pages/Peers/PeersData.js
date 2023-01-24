@@ -15,7 +15,10 @@ const icons = []
     return (
         <React.Fragment>
             <Row>
-<div className='card' style={{display: "initial"}}>
+                    <Col md={12} xl={12} className="">
+                        <Col xl={12} >
+                        <Card>
+                            <CardBody>
 <h4 className="card-title mb-2">Peers</h4>
 <hr />
                 
@@ -47,7 +50,10 @@ const icons = []
               </tbody>
             </table>
           </div>
-          </div>
+          </CardBody>
+          </Card>
+          </Col>
+          </Col>
             </Row>
         </React.Fragment>
     );
