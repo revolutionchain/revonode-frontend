@@ -41,13 +41,13 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> }
 ]
 
 const authRoutes = [
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
-  { path: "/register", component: Register },
+  { path: "/register", component: Register }
 ]
 
 export { userRoutes, authRoutes }

@@ -126,7 +126,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
   }else {
-    res.status(404).send("Error: Route not found")
+    res.status(404).send("Error: Route protected")
   }
 
   //res.header('Access-Control-Allow-Origin', `http://${domain}`); // update to match the domain you will make the request from
