@@ -22,7 +22,7 @@ const widget = [
         text: '',
         count: '0.00000000',
         dollor: true,
-        icon: 'mdi-pickaxe text-warning',
+        icon: 'mdi mdi-pickaxe text-warning',
         secondIcon: '',
         percentage: '4.58%',
         color: 'danger',
