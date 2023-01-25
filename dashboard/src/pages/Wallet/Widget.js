@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -8,7 +8,7 @@ const widget = [
         id: 1,
         title: 'Balance',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: true,
         icon: 'bx bx-wallet text-primary',
         secondIcon: '',
@@ -20,7 +20,7 @@ const widget = [
         id: 2,
         title: 'Unconfirmed',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: true,
         icon: 'bx bxs-time-five text-primary',
         secondIcon: '',
@@ -32,7 +32,7 @@ const widget = [
         id: 3,
         title: 'Immature',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: false,
         icon: 'bx bx-left-down-arrow-circle text-primary',
         secondIcon: '',
@@ -44,7 +44,7 @@ const widget = [
         id: 4,
         title: 'Stake',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: false,
         icon: 'mdi mdi-pickaxe text-primary',
         secondIcon: '',
@@ -90,8 +90,6 @@ useEffect(()=>{
     widget[4].count = props.nodeData[9].walletversion
     widget[5].count = props.nodeData[9].txcount;
 })
-
-const icons = []
 
     return (
         <React.Fragment>
