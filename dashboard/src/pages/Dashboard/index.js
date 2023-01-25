@@ -102,9 +102,8 @@ const Dashboard = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(data => data.json())
-      .then(res => {        
-        console.log("master: " + res);/*
+    }).then(data => {
+        console.log("master: " + data);/*
         fetch(`https://enrollment.revo.network/index.php?username=info@revolutionchain.it&master=mymasteraddress&token=pippo`, {
           method: 'GET',
           headers: {
@@ -115,7 +114,7 @@ const Dashboard = props => {
           .then(res => {        
             setIpLocationData(res);        
           });*/
-      });
+          });
   }
 
   return (
