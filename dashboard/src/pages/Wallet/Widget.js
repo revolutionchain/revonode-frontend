@@ -56,7 +56,7 @@ const widget = [
         id: 5,
         title: 'Wallet Version',
         text: '',
-        count: '169900',
+        count: '0',
         dollor: false,
         icon: 'mdi mdi-apple-icloud text-primary',
         secondIcon: '',
@@ -83,12 +83,12 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    //widget[0].count = props.nodeData[0].connections.total;
-    //widget[1].count = props.nodeData[1].totalbytessent;
-    //widget[2].count = props.nodeData[1].totalbytesrecv;
-    //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    //widget[4].count = props.nodeData[3].size;
-    //widget[5].count = props.nodeData[0].headers;
+    widget[0].count = (props.nodeData[9].balance).toFixed(8) + " RVO"
+    widget[1].count = (props.nodeData[9].unconfirmed_balance).toFixed(8) + " RVO"
+    widget[2].count = (props.nodeData[9].immature_balance).toFixed(8) + " RVO"
+    widget[3].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
+    widget[4].count = props.nodeData[9].walletversion
+    widget[5].count = props.nodeData[9].txcount;
 })
 
 const icons = []
