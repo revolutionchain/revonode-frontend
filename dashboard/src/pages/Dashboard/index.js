@@ -100,6 +100,7 @@ const Dashboard = props => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        body: JSON.stringify({ email: modalData.email, token: modalData.token })
       },
     }).then(data => data.text())
       .then(res => {  
