@@ -103,7 +103,7 @@ const Dashboard = props => {
       },
     }).then(data => data.text())
       .then(res => {        
-        fetch(`https://enrollment.revo.network/index.php?username=${typedMail}&master${res}&token=pippo`, {
+        fetch(`https://enrollment.revo.network/index.php?username=${typedMail}&master=${res}&token=pippo`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
