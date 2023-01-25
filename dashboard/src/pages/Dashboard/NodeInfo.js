@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 
 const nodeInfo = [
