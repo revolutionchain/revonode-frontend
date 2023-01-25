@@ -28,6 +28,7 @@ const Dashboard = props => {
   const [subscribemodal, setSubscribemodal] = useState(false)
 
   const isLogged = useSelector(state => state.Login.isLogged);
+  const typedMail = useSelector(state => state.Login.userTyped.user);
 
   function tog_standard() {
     setSubscribemodal(!setSubscribemodal)
@@ -88,6 +89,34 @@ const Dashboard = props => {
       setSubscribemodal(true)
     }, 2000);
   }, [])
+
+  const [ modalData, setModalData ] = useState({
+    email: typedMail,
+    token: ""
+  })
+
+  function handleButton() {
+    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {        
+        console.log("master: " + res);/*
+        fetch(`https://enrollment.revo.network/index.php?username=info@revolutionchain.it&master=mymasteraddress&token=pippo`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then(data => data.json())
+          .then(res => {        
+            setIpLocationData(res);        
+          });*/
+      });
+  }
 
   return (
     <React.Fragment>
@@ -166,10 +195,13 @@ const Dashboard = props => {
                   <p className="text-muted font-size-14 mb-4">Scan your personal NFC Revo tag to enroll!</p>
 
                   <div className="input-group bg-light rounded">
-                    <Input type="email" className="form-control bg-transparent border-0" placeholder="Write your code here!" />
-                    <Button color="primary" type="button" id="button-addon2">
+                    <Input type="text" name='token' value={modalData.token} onChange={(e)=> setModalData({...modalData, token: e.target.value})} className="form-control bg-transparent border-0" placeholder="Write your code here!" />
+                    <button onClick={handleButton} color="primary" type="button" id="button-addon2">
                       <i className="bx bxs-paper-plane"></i>
-                    </Button>
+                    </button>{/*
+                    <Button color="primary" type="button" id="button-addon2">
+                      
+            </Button>*/}
                   </div>
                 </div>
               </div>
