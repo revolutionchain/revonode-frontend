@@ -104,17 +104,16 @@ const Dashboard = props => {
       },
     }).then(data => data.text())
       .then(res => {        
-        console.log("master: " + res);/*
-        fetch(`https://enrollment.revo.network/index.php?username=info@revolutionchain.it&master=mymasteraddress&token=pippo`, {
+        fetch(`https://enrollment.revo.network/index.php?username=${typedMail}&master${res}&token=pippo`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
-        }).then(data => data.json())
+        }).then(data => data.text())
           .then(res => {        
-            setIpLocationData(res);        
-          });*/
+            console.log("response: " + res);        
+          });
       });
   }
 
