@@ -33,22 +33,11 @@ const Peers = props => {
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
-  const [ipLocationData, setIpLocationData] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
       props.history.push('/login');
     }
-    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        setNodeData(res);
-      });
     fetch(`http://${window.location.hostname}:3001/getpeers`, {
       method: 'GET',
       headers: {
@@ -58,26 +47,6 @@ const Peers = props => {
     }).then(data => data.json())
       .then(res => {
         setPeersData(res);
-      });
-    fetch(`http://${window.location.hostname}:3001/getpeersip`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        fetch(`https://ip-api.com/batch`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(res)
-        }).then(data => data.json())
-          .then(ipRes => {
-            setIpLocationData(ipRes);
-          })
       });
 
     setTimeout(() => {
@@ -112,7 +81,7 @@ const Peers = props => {
             />
           }
           {/* import Widget */}
-          <Widget nodeData={nodeData} />
+          <Widget peersData={peersData} />
           <PeersData />
 
         </Container>

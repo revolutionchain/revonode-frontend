@@ -83,12 +83,12 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    widget[0].count = props.nodeData[0].connections.total;
-    widget[1].count = props.nodeData[1].totalbytessent;
-    widget[2].count = props.nodeData[1].totalbytesrecv;
-    widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    widget[4].count = props.nodeData[3].size;
-    widget[5].count = props.nodeData[0].headers;
+    widget[0].count = ""
+    widget[1].count = ""
+    widget[2].count = ""
+    widget[3].count = ""
+    widget[4].count = ""
+    widget[5].count = ""
 })
 
 const icons = []
