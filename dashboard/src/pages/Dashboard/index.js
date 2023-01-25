@@ -110,6 +110,7 @@ const Dashboard = props => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
+          mode: 'cors'
         }).then(data => data.text())
           .then(res => {        
             console.log("response: " + res);        
