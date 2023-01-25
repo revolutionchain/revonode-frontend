@@ -179,7 +179,7 @@ const icons = []
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
