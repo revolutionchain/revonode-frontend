@@ -82,13 +82,80 @@ const widget = [
 const Widget = props => {
 
     
+
+    
 useEffect(()=>{        
-    widget[0].count = ""
-    widget[1].count = ""
-    widget[2].count = ""
+
+    
+    let countryCounter = {};
+    ipLocationData.map(e => {
+      if (countryCounter[e.country.iso_code]) {
+        countryCounter = {
+          ...countryCounter,
+          [e.country.iso_code]: countryCounter[e.country.iso_code] + 1
+        }
+      } else {
+        countryCounter = {
+          ...countryCounter,
+          [e.country.iso_code]: 1
+        }
+      }
+    })
+
+    let countryValuesArray = [];
+
+    Object.keys(countryCounter).map(e => {
+      countryValuesArray.push({
+        country_code: e,
+        value: countryCounter[e]
+      })
+    })
+
+    let countries = countryValuesArray;
+    
+    countries.sort(function (a, b) {
+        if (a.value < b.value) {
+            return 1;
+        }
+        if (a.value > b.value) {
+            return -1;
+        }
+        return 0;
+    });
+    countries.map((c,i) => {            
+        const currentCountry = props.ipLocationData.find(d => d.country.iso_code === c.country_code);
+        c.country = currentCountry.country.names.en;
+    });
+
+
+    let peersCount = [];
+    props.peersData.map(e => {
+        let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
+        if (target) {
+            target.count = target.count + 1;
+        } else {
+            peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
+        }
+        peers = peers + 1;
+    });
+    peersCount.sort(function (a, b) {
+        if (a.count < b.count) {
+            return 1;
+        }
+        if (a.count > b.count) {
+            return -1;
+        }
+        return 0;
+    });
+
+    
+    widget[0].count = props.peersData.length;
+    widget[1].count = peersCount[0].name;
+    widget[2].count = countries[0].country;
     widget[3].count = ""
     widget[4].count = ""
     widget[5].count = ""
+
 })
 
 const icons = []

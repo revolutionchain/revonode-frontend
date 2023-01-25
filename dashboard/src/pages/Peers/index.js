@@ -33,6 +33,7 @@ const Peers = props => {
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
+  const [ipLocationData, setIpLocationData] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -48,6 +49,16 @@ const Peers = props => {
       .then(res => {
         setPeersData(res);
       });
+      fetch(`http://${window.location.hostname}:3001/getpeersip`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.json())
+        .then(res => {        
+          setIpLocationData(res);        
+        });
 
     setTimeout(() => {
       setSubscribemodal(true)
@@ -81,7 +92,7 @@ const Peers = props => {
             />
           }
           {/* import Widget */}
-          <Widget peersData={peersData} />
+          <Widget peersData={peersData} ipLocationData={ipLocationData}  />
           <PeersData />
 
         </Container>
