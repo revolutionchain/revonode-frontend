@@ -19,15 +19,8 @@ import PeersData from './PeersData';
 
 const Peers = props => {
 
-  const [subscribemodal, setSubscribemodal] = useState(false)
-
   const isLogged = useSelector(state => state.Login.isLogged);
 
-  function tog_standard() {
-    setSubscribemodal(!setSubscribemodal)
-  }
-
-  const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
 
@@ -54,11 +47,7 @@ const Peers = props => {
       }).then(data => data.json())
         .then(res => {        
           setIpLocationData(res);        
-        });
-
-    setTimeout(() => {
-      setSubscribemodal(true)
-    }, 2000);
+        });    
   }, [])
 
   return (

@@ -19,17 +19,11 @@ import StakingData from './StakingData';
 
 const Staking = props => {
 
-  const [subscribemodal, setSubscribemodal] = useState(false)
-
-  const isLogged = useSelector(state => state.Login.isLogged);
-
-  function tog_standard() {
-    setSubscribemodal(!setSubscribemodal)
-  }
+  const isLogged = useSelector(state => state.Login.isLogged);  
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
-  const [ipLocationData, setIpLocationData] = useState(false);
+  const [setIpLocationData] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -74,11 +68,7 @@ const Staking = props => {
           .then(ipRes => {
             setIpLocationData(ipRes);
           })
-      });
-
-    setTimeout(() => {
-      setSubscribemodal(true)
-    }, 2000);
+      });    
   }, [])
 
   return (
