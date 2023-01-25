@@ -34,7 +34,7 @@ const widget = [
         text: '0 Peers',
         count: '0',
         dollor: false,
-        icon: 'bx bx-world text-secondary',
+        icon: 'bx bx-world text-primary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
