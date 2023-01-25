@@ -95,25 +95,15 @@ const Dashboard = props => {
   })
 
   function handleButton() {
-    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
-      method: 'GET',
+    fetch(`http://${window.location.hostname}:3001/sendtokenmail`, {
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     }).then(data => data.text())
-      .then(res => {        
-        fetch(`https://enrollment.revo.network/index.php?username=${typedMail}&master${res}&token=pippo`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          mode: 'no-cors'
-        }).then(data => console.log(data))        
-          .then(res => {        
-            console.log("response: " + res);        
-          });
+      .then(res => {  
+        console.log(res);      
       });
   }
 

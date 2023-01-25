@@ -147,9 +147,7 @@ app.get('/getwalletaddress', (req, res, next) => {
 
 app.post('/login', (req, res) => {
   const { user, pass } = req.body;
-  console.log(req.body);
 
-  console.log('Body user: ' + user + ' Body pass: ' + pass);
   let dashUser = getEnvValue('DASHBOARD_USER');
   let dashPass = getEnvValue('DASHBOARD_PASS');
   if ((dashUser && dashUser?.length > 2) && (dashPass && dashPass?.length > 2)) {
@@ -157,7 +155,6 @@ app.post('/login', (req, res) => {
     dashPass = dashPass.replaceAll('"', '');
   }
 
-  console.log('user: ' + dashUser + ' pass: ' + dashPass);
   if (dashUser == user && dashPass == pass) {
     res.send(true);
   } else if (dashUser !== user || dashPass !== pass) {
@@ -566,6 +563,33 @@ app.get('/getpeersip', (req, res, next) => {
   res.send(peersIpJsonFileData);
 })
 
+app.post('/sendtokenmail', async (req, res, next) => {
+  const { email, token } = req.body;
+  let master;
+  
+  if(!email || !token){
+    return res.status(404).send('Error: Email or Token not found');
+  }
+  let envToken = getEnvValue('EMAIL_TOKEN');
+  envToken = envToken.replaceAll('"', '');
+  if(envToken == 'sent'){
+    return res.send('The mail has already been sent.');
+  }
+
+  exec('cat master', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+    if (err) {
+      return res.status(404).send(err);
+    } else {
+      master = stdout;
+    }
+  });
+
+  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master}&token=${token}`);
+  if(emailResponse.data == 'OK'){    
+    setEnvValue('EMAIL_TOKEN', 'sent');
+  }
+  res.send(emailResponse.data);
+})
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 
