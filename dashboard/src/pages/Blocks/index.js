@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MetaTags from 'react-meta-tags';
 import PropTypes from 'prop-types';
 import {
-  Col,
-  Container, Row,
-  Modal,
-  Input,
-  Button
+  Container
 } from "reactstrap"
 
 //Import Breadcrumb
