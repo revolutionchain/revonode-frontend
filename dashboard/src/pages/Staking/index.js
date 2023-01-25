@@ -22,8 +22,6 @@ const Staking = props => {
   const isLogged = useSelector(state => state.Login.isLogged);  
 
   const [nodeData, setNodeData] = useState(false);
-  const [peersData, setPeersData] = useState(false);
-  const [setIpLocationData] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -38,42 +36,12 @@ const Staking = props => {
     }).then(data => data.json())
       .then(res => {
         setNodeData(res);
-      });
-    fetch(`http://${window.location.hostname}:3001/getpeers`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        setPeersData(res);
-      });
-    fetch(`http://${window.location.hostname}:3001/getpeersip`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        fetch(`https://ip-api.com/batch`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(res)
-        }).then(data => data.json())
-          .then(ipRes => {
-            setIpLocationData(ipRes);
-          })
-      });    
+      });       
   }, [])
 
   return (
     <React.Fragment>
-      {nodeData?.length && peersData?.length && <div className="page-content">
+      {nodeData?.length && <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>

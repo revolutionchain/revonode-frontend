@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -8,9 +8,9 @@ const widget = [
         id: 1,
         title: 'Balance',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: true,
-        icon: 'bx bx-wallet text-secondary',
+        icon: 'bx bx-wallet text-primary',
         secondIcon: '',
         percentage: '2.65%',
         color: 'success',
@@ -20,9 +20,9 @@ const widget = [
         id: 2,
         title: 'Unconfirmed',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: true,
-        icon: 'bx bxs-time-five text-secondary',
+        icon: 'bx bxs-time-five text-primary',
         secondIcon: '',
         percentage: '4.58%',
         color: 'danger',
@@ -32,9 +32,9 @@ const widget = [
         id: 3,
         title: 'Immature',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: false,
-        icon: 'bx bx-left-down-arrow-circle text-secondary',
+        icon: 'bx bx-left-down-arrow-circle text-primary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
@@ -44,9 +44,9 @@ const widget = [
         id: 4,
         title: 'Stake',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: false,
-        icon: 'mdi mdi-pickaxe text-secondary',
+        icon: 'mdi mdi-pickaxe text-primary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
@@ -56,9 +56,9 @@ const widget = [
         id: 5,
         title: 'Wallet Version',
         text: '',
-        count: '169900',
+        count: '0',
         dollor: false,
-        icon: 'mdi mdi-apple-icloud text-secondary',
+        icon: 'mdi mdi-apple-icloud text-primary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
@@ -70,7 +70,7 @@ const widget = [
         text: '',
         count: '0',
         dollor: false,
-        icon: 'mdi mdi-database text-secondary',
+        icon: 'mdi mdi-database text-primary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
@@ -83,15 +83,13 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    //widget[0].count = props.nodeData[0].connections.total;
-    //widget[1].count = props.nodeData[1].totalbytessent;
-    //widget[2].count = props.nodeData[1].totalbytesrecv;
-    //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    //widget[4].count = props.nodeData[3].size;
-    //widget[5].count = props.nodeData[0].headers;
+    widget[0].count = (props.nodeData[9].balance).toFixed(8) + " RVO"
+    widget[1].count = (props.nodeData[9].unconfirmed_balance).toFixed(8) + " RVO"
+    widget[2].count = (props.nodeData[9].immature_balance).toFixed(8) + " RVO"
+    widget[3].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
+    widget[4].count = props.nodeData[9].walletversion
+    widget[5].count = props.nodeData[9].txcount;
 })
-
-const icons = []
 
     return (
         <React.Fragment>
@@ -113,7 +111,7 @@ const icons = []
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">

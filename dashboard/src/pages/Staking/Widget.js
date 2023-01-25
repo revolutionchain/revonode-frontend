@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -10,8 +10,8 @@ const widget = [
         text: '',
         count: '0',
         dollor: true,
-        icon: 'bx bx-transfer-alt text-secondary',
-        secondIcon: 'bx bx-plus-medical text-primary',
+        icon: 'bx bx-transfer-alt text-primary',
+        secondIcon: '',
         percentage: '2.65%',
         color: 'success',
         upArrow: true
@@ -34,7 +34,7 @@ const widget = [
         text: '',
         count: '0',
         dollor: false,
-        icon: 'bx bxs-component text-secondary',
+        icon: 'bx bxs-component text-primary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
@@ -51,8 +51,6 @@ useEffect(()=>{
     //widget[1].count = props.nodeData[1].totalbytessent;
     //widget[2].count = props.nodeData[1].totalbytesrecv;
 })
-
-const icons = []
 
     return (
         <React.Fragment>

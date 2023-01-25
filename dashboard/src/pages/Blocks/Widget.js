@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -10,7 +10,7 @@ const widget = [
         text: 'blocks',
         count: '25',
         dollor: true,
-        icon: 'bx bxs-component',
+        icon: 'bx bxs-component text-primary',
         secondIcon: '',
         percentage: '2.65%',
         color: 'success',
@@ -34,7 +34,7 @@ const widget = [
         text: '0 MB avg. block size',
         count: '0.02',
         dollor: false,
-        icon: 'mdi mdi-database text-secondary',
+        icon: 'mdi mdi-database text-primary',
         secondIcon: '',
         percentage: '14.33%',
         color: 'success',
@@ -58,7 +58,7 @@ const widget = [
         text: '0.31 KB avg. TX size',
         count: '0',
         dollor: false,
-        icon: 'bx bx-line-chart text-secondary',
+        icon: 'bx bx-line-chart text-primary',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
@@ -77,8 +77,6 @@ useEffect(()=>{
     //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     //widget[4].count = props.nodeData[3].size;
 })
-
-const icons = []
 
     return (
         <React.Fragment>

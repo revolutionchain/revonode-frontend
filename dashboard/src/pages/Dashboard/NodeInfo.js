@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 
 const nodeInfo = [
@@ -78,10 +78,7 @@ const nodeInfo = [
     }
 ]
 
-const SalesAnalytics = props => {
-    const [menu, setMenu] = useState(false);
-
-
+const NodeInfoWidget = props => {
 
     useEffect(() => {
         nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[1].slice(0,(props.nodeData[4].subversion).length - 1).slice(0,-2)
@@ -136,4 +133,4 @@ const SalesAnalytics = props => {
     );
 }
 
-export default SalesAnalytics;
+export default NodeInfoWidget;

@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { getLatestTransaction } from "../../store/actions";
 import MapChart from "./MapChart";
 
-const LatestTranaction = (props) => {
+const PeersInfoWidget = (props) => {
 
     const { latestTransaction, onLatestTransactions } = props;
 
@@ -91,7 +91,7 @@ const LatestTranaction = (props) => {
     )
 }
 
-LatestTranaction.propTypes = {
+PeersInfoWidget.propTypes = {
     latestTransaction: PropTypes.array,
     onLatestTransactions: PropTypes.func,
 };
@@ -104,4 +104,4 @@ const mapDispatchToProps = (dispatch) => ({
     onLatestTransactions: () => dispatch(getLatestTransaction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LatestTranaction);
+export default connect(mapStateToProps, mapDispatchToProps)(PeersInfoWidget);
