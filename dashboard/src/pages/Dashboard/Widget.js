@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -92,9 +92,8 @@ useEffect(()=>{
     widget[5].text = props.secondsToString((props.nodeData[10].time)) + " ago";
 })
 
-const icons = []
 
-    return (
+return (
         <React.Fragment>
             <Row>
                 

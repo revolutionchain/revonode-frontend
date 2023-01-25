@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -143,8 +143,6 @@ useEffect(()=>{
     widget[4].count = ""
 
 })
-
-const icons = []
 
     return (
         <React.Fragment>
