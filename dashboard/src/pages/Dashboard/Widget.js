@@ -106,7 +106,7 @@ return (
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1073741824).toFixed(3) : widget.count}
                                         </span></h4>
                                 </div>
                                 <p style={{position: `absolute`, bottom: `0`}} className="text-muted mt-3 mb-4">
