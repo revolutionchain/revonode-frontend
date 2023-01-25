@@ -88,7 +88,7 @@ useEffect(()=>{
 
     
     let countryCounter = {};
-    ipLocationData.map(e => {
+    props.ipLocationData.map(e => {
       if (countryCounter[e.country.iso_code]) {
         countryCounter = {
           ...countryCounter,
@@ -136,7 +136,6 @@ useEffect(()=>{
         } else {
             peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
         }
-        peers = peers + 1;
     });
     peersCount.sort(function (a, b) {
         if (a.count < b.count) {

@@ -39,7 +39,6 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
         country_code: e,
         value: countryCounter[e]
       })
-
     })
     setCountriesData(countryValuesArray);
 
