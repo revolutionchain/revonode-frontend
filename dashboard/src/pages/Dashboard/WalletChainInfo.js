@@ -60,7 +60,7 @@ const walletInfo = [
 ]
 
 
-function EarningReports(props) {
+function WalletChainInfoWidget(props) {
 
     const [peersState, setPeersState] = useState(false);
     const [totalPeers, setTotalPeers] = useState(false);
@@ -230,4 +230,4 @@ function EarningReports(props) {
     );
 }
 
-export default EarningReports;
+export default WalletChainInfoWidget;

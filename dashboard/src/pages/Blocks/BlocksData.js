@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
-const PeersData = props => {
+const BlocksDataWidget = props => {
 
     
 useEffect(()=>{        
@@ -51,4 +51,4 @@ useEffect(()=>{
     );
 }
 
-export default PeersData;
+export default BlocksDataWidget;

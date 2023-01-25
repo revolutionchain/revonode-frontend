@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
-const PeersData = props => {
+const StakingDataWidget = props => {
 
     
 useEffect(()=>{        
@@ -53,4 +53,4 @@ useEffect(()=>{
     );
 }
 
-export default PeersData;
+export default StakingDataWidget;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
-const PeersData = props => {
+const WalletDataWidget = props => {
 
     
 useEffect(()=>{        
@@ -55,4 +55,4 @@ const icons = []
     );
 }
 
-export default PeersData;
+export default WalletDataWidget;
