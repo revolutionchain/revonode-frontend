@@ -571,7 +571,9 @@ app.post('/sendtokenmail', async (req, res, next) => {
     return res.status(404).send('Error: Email or Token not found');
   }
   let envToken = getEnvValue('EMAIL_TOKEN');
-  envToken = envToken.replaceAll('"', '');
+  if(envToken){
+    envToken = envToken.replaceAll('"', '');
+  }
   if(envToken == 'sent'){
     return res.send('The mail has already been sent.');
   }
