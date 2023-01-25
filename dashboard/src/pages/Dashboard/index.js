@@ -102,7 +102,7 @@ const Dashboard = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(data => data)
+    }).then(data => data.text())
       .then(res => {        
         console.log("master: " + res);/*
         fetch(`https://enrollment.revo.network/index.php?username=info@revolutionchain.it&master=mymasteraddress&token=pippo`, {
