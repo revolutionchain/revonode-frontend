@@ -58,24 +58,12 @@ const widget = [
         text: 'Upload',
         count: '0',
         dollor: false,
-        icon: 'mdi mdi-apple-icloud text-secondary',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
-    {
-        id: 6,
-        title: 'Traffic by Current Peers (GB)',
-        text: 'of toal Traffic',
-        count: '0',
-        dollor: false,
         icon: 'mdi mdi-apple-icloud text-info',
         secondIcon: '',
         percentage: '0.55%',
         color: 'warning',
         upArrow: true
-    },
+    }
 ]
 
 
@@ -153,7 +141,6 @@ useEffect(()=>{
     widget[2].count = countries[0].country;
     widget[3].count = ""
     widget[4].count = ""
-    widget[5].count = ""
 
 })
 
