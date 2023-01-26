@@ -117,7 +117,9 @@ useEffect(()=>{
 
 
     let peersCount = [];
+    let totalTraffic = 0;
     props.peersData.map(e => {
+        totalTraffic = totalTraffic + e.bytesrecv + e.bytessent;
         let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
         if (target) {
             target.count = target.count + 1;
@@ -135,12 +137,13 @@ useEffect(()=>{
         return 0;
     });
 
+
     
     widget[0].count = props.peersData.length;
     widget[1].count = peersCount[0].name;
     widget[2].count = countries[0].country;
     widget[3].count = ""
-    widget[4].count = ""
+    widget[4].count = (totalTraffic / 1000000000).toFixed(3) + " GB";
 
 })
 
