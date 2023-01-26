@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
@@ -81,6 +81,7 @@ const widget = [
 
 const Widget = props => {
 
+const [updateStates, setUpdateStates] = useState(false);
     
 useEffect(()=>{        
     widget[0].count = (props.nodeData[9].balance).toFixed(8) + " RVO"
@@ -89,13 +90,15 @@ useEffect(()=>{
     widget[3].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     widget[4].count = props.nodeData[9].walletversion
     widget[5].count = props.nodeData[9].txcount;
+
+    updateStates ? setUpdateStates(false) : setUpdateStates(true);
 })
 
     return (
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {widget.map((widget, key) => (
+                    {widget[1].count > 1 && widget.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
