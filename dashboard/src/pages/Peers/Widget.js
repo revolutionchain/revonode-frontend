@@ -179,7 +179,7 @@ useEffect(()=>{
     widget[1].count = peersCount[0].name;
     widget[2].count = countries[0].country;
     widget[3].count = ispValuesArray[0].isp;
-    widget[4].count = (totalTraffic / 1000000000).toFixed(3) + " GB";
+    widget[4].count = (totalTraffic / 1073741824).toFixed(3) + " GB";
 
     updateStates ? setUpdateStates(false) : setUpdateStates(true);
 
