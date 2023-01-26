@@ -89,8 +89,39 @@ useEffect(()=>{
           [e.country.iso_code]: 1
         }
       }
+      
+      if(ispCounter[e.traits.isp]){
+        ispCounter = {                
+      ...ispCounter,
+      [e.traits.isp]: ispCounter[e.traits.isp] + 1
+        }
+    }else {
+        ispCounter = {
+            ...ispCounter,
+            [e.traits.isp]: 1
+        }
+    }
 
     })
+    
+    let ispValuesArray = [];
+
+    Object.keys(ispCounter).map(e => {
+      ispValuesArray.push({
+        isp: e,
+        value: ispCounter[e]
+      })
+    })
+
+    ispValuesArray.sort(function (a, b) {
+        if (a.value < b.value) {
+            return 1;
+        }
+        if (a.value > b.value) {
+            return -1;
+        }
+        return 0;
+    });
 
     let countryValuesArray = [];
 
@@ -122,17 +153,6 @@ useEffect(()=>{
     let totalTraffic = 0;
     props.peersData.map(e => {
         
-        if(ispCounter[e.traits.isp]){
-            ispCounter = {                
-          ...ispCounter,
-          [e.traits.isp]: ispCounter[e.traits.isp] + 1
-            }
-        }else {
-            ispCounter = {
-                ...ispCounter,
-                [e.traits.isp]: 1
-            }
-        }
 
         totalTraffic = totalTraffic + e.bytesrecv + e.bytessent;
         let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
@@ -144,24 +164,6 @@ useEffect(()=>{
     });
 
     
-    let ispValuesArray = [];
-
-    Object.keys(ispCounter).map(e => {
-      ispValuesArray.push({
-        isp: e,
-        value: ispCounter[e]
-      })
-    })
-
-    ispValuesArray.sort(function (a, b) {
-        if (a.value < b.value) {
-            return 1;
-        }
-        if (a.value > b.value) {
-            return -1;
-        }
-        return 0;
-    });
 
     peersCount.sort(function (a, b) {
         if (a.count < b.count) {
