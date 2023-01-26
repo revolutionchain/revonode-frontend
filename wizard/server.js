@@ -563,6 +563,20 @@ app.get('/getpeersip', (req, res, next) => {
   res.send(peersIpJsonFileData);
 })
 
+
+app.get('/checktokenmail', (req, res, next) => {
+  let envToken = getEnvValue('EMAIL_TOKEN');
+  if(envToken){
+    envToken = envToken.replaceAll('"', '');
+  }
+  if(envToken == 'sent'){
+    return res.send('The mail has already been sent.');
+  }else {
+    res.send("the mail has not been sent yet");
+  }
+})
+
+
 app.post('/sendtokenmail', async (req, res, next) => {
   const { email, token } = req.body;
   let master;

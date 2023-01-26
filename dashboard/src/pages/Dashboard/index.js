@@ -83,10 +83,19 @@ const Dashboard = props => {
       .then(res => {        
         setIpLocationData(res);        
       });
+      fetch(`http://${window.location.hostname}:3001/checktokenmail`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.text())
+        .then(res => {        
+          if(res.includes("the mail has not been sent yet")){
+            setSubscribemodal(true)
+          }        
+        });
 
-    setTimeout(() => {
-      setSubscribemodal(true)
-    }, 2000);
   }, [])
 
   const [ modalData, setModalData ] = useState({
