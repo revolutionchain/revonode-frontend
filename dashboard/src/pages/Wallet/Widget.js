@@ -95,7 +95,7 @@ useEffect(()=>{
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {widget[1].count > 1 && widget.map((widget, key) => (
+                    {widget.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
