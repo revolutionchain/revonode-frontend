@@ -197,7 +197,7 @@ const Dashboard = props => {
               <div className="row justify-content-center">
                 <div className="col-xl-10">
                   <h4 className="text-primary">Early Adopters Airdrop!</h4>
-                  <p className={errorMsg.length > 1 ? "text-muted font-size-14 mb-4 text-danger" : "text-muted font-size-14 mb-4"}>{errorMsg.length > 1 ? errorMsg : "Scan your personal NFC Revo tag to enroll!"} </p>
+                  <p className={errorMsg.length > 1 ? "font-size-14 mb-4 text-danger" : "text-muted font-size-14 mb-4"}>{errorMsg.length > 1 ? errorMsg : "Scan your personal NFC Revo tag to enroll!"} </p>
 
                   { errorMsg.length < 1 ? <div className="input-group bg-light rounded">
                     <Input type="text" name='token' value={modalData.token} onChange={(e)=> setModalData({...modalData, token: e.target.value})} className="form-control bg-transparent border-0" placeholder="Write your code here!" />
