@@ -117,6 +117,7 @@ const Dashboard = props => {
     }).then(data => data.text())
       .then(res => {  
         if(res.includes("OK")){
+          setSubscribemodal(false)
         } else {
           setErrorMsg("You entered an invalid token!");
         }

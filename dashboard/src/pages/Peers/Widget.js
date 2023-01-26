@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
@@ -70,7 +70,7 @@ const widget = [
 const Widget = props => {
 
     
-
+const [updateStates, setUpdateStates] = useState(false);
     
 useEffect(()=>{        
 
@@ -144,6 +144,8 @@ useEffect(()=>{
     widget[2].count = countries[0].country;
     widget[3].count = ""
     widget[4].count = (totalTraffic / 1000000000).toFixed(3) + " GB";
+
+    updateStates ? setUpdateStates(false) : setUpdateStates(true);
 
 })
 
