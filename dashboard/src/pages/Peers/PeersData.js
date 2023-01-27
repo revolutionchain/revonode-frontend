@@ -77,7 +77,7 @@ useEffect(()=>{
                 {
                   props.peersData.length && (props.ipLocationData).map((e, i) => {
                     let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
-                    if(currentPeerData == "not_publicly_routable" ){
+                    if(currentPeerData.network == "not_publicly_routable" ){
                       return (
                         <tr>
                           <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
