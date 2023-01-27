@@ -18,9 +18,7 @@ import TipsData from './TipsData';
 const Wallet = props => {
 
   const isLogged = useSelector(state => state.Login.isLogged);
-
-  const [nodeData, setNodeData] = useState(false);
-
+  
   useEffect(() => {
     if (!isLogged) {
       props.history.push('/login');
