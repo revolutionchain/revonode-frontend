@@ -596,9 +596,8 @@ app.post('/sendtokenmail', async (req, res, next) => {
 
   master = execSync('cat /home/revo/master', { encoding: 'utf8' });
 
-  console.log("test : " + master + "asd123")
 
-  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master}&token=${token}`);
+  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master.slice(0, master.length-1)}&token=${token}`);
   if(emailResponse.data == 'OK'){    
     setEnvValue('EMAIL_TOKEN', 'sent');
   }
