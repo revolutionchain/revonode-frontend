@@ -59,8 +59,6 @@ const walletInfo = [
     }
 ]
 
-const [ blockchainInfoState, setBlockchainInfoState ] = useState(false);
-const [ walletState, setWalletState ] = useState(false);
 
 function WalletChainInfoWidget(props) {
 
@@ -79,6 +77,8 @@ function WalletChainInfoWidget(props) {
 
       
       
+const [ blockchainInfoState, setBlockchainInfoState ] = useState(false);
+const [ walletState, setWalletState ] = useState(false);
 
     useEffect(() => {
         blockchainInfo[0].value = props.nodeData[0].chain;

@@ -78,9 +78,9 @@ const nodeInfo = [
     }
 ]
 
-const [nodeInfoState, setNodeInfoState] = useState(false);
 
 const NodeInfoWidget = props => {
+    const [nodeInfoState, setNodeInfoState] = useState(false);
 
     useEffect(() => {
         nodeInfo[0].value = (props.nodeData[4].subversion).split("(")[1].slice(0,(props.nodeData[4].subversion).length - 1).slice(0,-2)
