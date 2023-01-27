@@ -20,7 +20,7 @@ const widget = [
         id: 2,
         title: 'Currently Staking',
         text: '',
-        count: '0.00000000',
+        count: '0',
         dollor: true,
         icon: 'mdi mdi-pickaxe text-warning',
         secondIcon: '',
