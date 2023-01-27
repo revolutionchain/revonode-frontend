@@ -75,8 +75,8 @@ useEffect(()=>{
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">1</th>
                       <td style={{borderBottom: "none"}}>local ip </td>
-                      <td style={{borderBottom: "none"}}>Unknown Data</td>
-                      <td style={{borderBottom: "none"}}>Unknown Data</td>
+                      <td style={{borderBottom: "none"}}>Unknown Country</td>
+                      <td style={{borderBottom: "none"}}>Unknown ISP</td>
                       <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED </td>
                       <td style={{borderBottom: "none"}}>57 Minutes</td>
                       <td style={{borderBottom: "none"}}>Revo-Mercury:0.22.1(Default)</td>
