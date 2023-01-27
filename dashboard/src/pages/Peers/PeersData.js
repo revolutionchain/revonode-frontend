@@ -54,6 +54,36 @@ useEffect(()=>{
               </tbody>
             </table>
           </div>
+          <h4 className="card-title mb-2">Local Peers - Connected</h4>
+          <hr />
+          <div class="table-responsive">
+            <table class="table mb-0 table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Country</th>
+                  <th>ISP</th>
+                  <th>Services</th>
+                  <th>Age(h)</th>
+                  <th>Client</th>
+                  <th>Traffic (MB)</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <tr>
+                      <th style={{borderBottom: "none"}} scope="row">1</th>
+                      <td style={{borderBottom: "none"}}>local ip </td>
+                      <td style={{borderBottom: "none"}}>unknown</td>
+                      <td style={{borderBottom: "none"}}>unknown</td>
+                      <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED </td>
+                      <td style={{borderBottom: "none"}}>57 Minutes</td>
+                      <td style={{borderBottom: "none"}}>Revo-Mercury:0.22.1(Default)</td>
+                      <td style={{borderBottom: "none"}}>0.16 MB</td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
           </CardBody>
           </Card>
           </Col>
