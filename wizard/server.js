@@ -499,19 +499,22 @@ function checkPeersData() {
       Promise.all(peersData.map((e, j) => {
         let currentIp;
         if ((e.addr).split(".").length < 4) {
-          result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
+          let result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
           currentIp = { query: result.replaceAll("\n", "") };
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
         }
-        return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`)
+        let results = { axiosRes: axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`), addr: e.addr}
+        return results
       })
       )
       .then(axiosResults => {
         let peersIpData = [];
-        axiosResults.map(result => {
-          if(result.data !== null){
-            peersIpData.push(result.data)
+        axiosResults.map((result, pos) => {
+          if(result.axiosRes.data !== null){
+            let resultObj = result.axiosRes.data;
+            resultObj = { ...resultObj, addr: result.addr }
+            peersIpData.push(resultObj)
           }
         })
         peersIpData = JSON.stringify(peersIpData);
