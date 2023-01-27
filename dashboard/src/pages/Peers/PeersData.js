@@ -44,7 +44,7 @@ useEffect(()=>{
                       <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>
-                      <td style={{borderBottom: "none"}}>{props.secondsToString(currentPeerData.conntime)}</td>
+                      <td style={{borderBottom: "none"}}>{props.timePassed(currentPeerData.conntime)}</td>
                       <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
                       <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"} </td>
                     </tr>
