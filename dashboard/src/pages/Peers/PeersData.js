@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
+import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
@@ -41,7 +42,7 @@ useEffect(()=>{
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
                       <td style={{borderBottom: "none"}}>{e.addr} </td>
-                      <td style={{borderBottom: "none"}}>{ e.country.names.en} </td>
+                      <td style={{borderBottom: "none"}}><Flag code={c.country_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>
                       <td style={{borderBottom: "none"}}>36.6</td>
@@ -51,16 +52,6 @@ useEffect(()=>{
                 )
               })
                 }
-                <tr>
-                  <th style={{borderBottom: "none"}} scope="row">1</th>
-                  <td style={{borderBottom: "none"}}>79</td>
-                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
-                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
-                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td style={{borderBottom: "none"}}>36.6</td>
-                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td style={{borderBottom: "none"}}>1.4</td>
-                </tr>
               </tbody>
             </table>
           </div>
