@@ -38,7 +38,7 @@ useEffect(()=>{
               <tbody>{ props.peersData.length && (props.ipLocationData).map((e,i) => {
                 let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
                 
-                if(currentPeerData.network !== 'not_publicly_routable' && (currentPeerData.addrlocal).split(":")[0] !== (currentPeerData.addr).split(":")[0]){
+                if(currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal).split(":")[0] !== (currentPeerData.addr).split(":")[0]){
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
@@ -77,11 +77,11 @@ useEffect(()=>{
                 {
                   props.peersData.length && (props.ipLocationData).map((e, i) => {
                     let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
-                    if(currentPeerData.network == "not_publicly_routable" || (currentPeerData.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]){
+                    if(currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]){
                       return (
                         <tr>
                           <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
-                          <td style={{borderBottom: "none"}}>{(currentPeerData.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0] ? currentPeerData.addrbind.split(":")[0] : currentPeerData.addr.split(":")[0]} </td>
+                          <td style={{borderBottom: "none"}}>{(currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0] ? currentPeerData.addrbind.split(":")[0] : currentPeerData.addr.split(":")[0]} </td>
                           <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en}  </td>
                           <td style={{borderBottom: "none"}}>{e.traits.isp}</td>
                           <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )}</td>
