@@ -11,8 +11,6 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 //i18n
 import { withTranslation } from "react-i18next";
 
-import Widget from './Widget';
-
 import { useSelector } from 'react-redux';
 import TipsData from './TipsData';
 
