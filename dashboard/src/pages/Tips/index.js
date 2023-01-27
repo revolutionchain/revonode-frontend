@@ -28,7 +28,16 @@ const Wallet = props => {
       props.history.push('/login');
     }
 
-    //request api things here
+    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        setNodeData(res);
+      });
            
   }, [])
 
