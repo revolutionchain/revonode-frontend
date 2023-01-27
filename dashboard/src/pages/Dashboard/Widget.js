@@ -91,7 +91,7 @@ useEffect(()=>{
     widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     widget[4].count = props.nodeData[3].size;
     widget[5].count = props.nodeData[0].blocks;
-    widget[5].text = props.showUptime(props.nodeData[10].time);
+    widget[5].text = props.farAway((props.nodeData[10].time)) + " ago";
 
     setWidgetState(widget);
 })

@@ -47,8 +47,31 @@ const Dashboard = props => {
     if(remainingHours > 0) output += ` ${remainingHours} hours`;
     if(remainingMinutes > 0) output += ` ${remainingMinutes} minutes`;
     return output;
-}
+ }
 
+ function farAway(timestamp) {
+  const currentTime = Date.now() / 1000;
+  const timeDiff = currentTime - timestamp;
+  const yearsPassed = Math.floor(timeDiff / 31536000);
+  const remainingTime = timeDiff % 31536000;
+  const daysPassed = Math.floor(remainingTime / 86400);
+  const hoursPassed = Math.floor((remainingTime % 86400) / 3600);
+  const minutesPassed = Math.floor((remainingTime % 3600) / 60);
+  let output = '';
+  if(yearsPassed > 0){
+     output += `${yearsPassed} Years `
+  }
+  if (daysPassed > 0 || yearsPassed > 0) {
+      output += `${daysPassed} Days `;
+  }
+  if (hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+      output += `${hoursPassed} Hours `;
+  }
+  if (minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+      output += `${minutesPassed} Minutes `;
+  }
+  return output;
+  }
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
@@ -158,7 +181,7 @@ const Dashboard = props => {
             />
           }
           {/* import Widget */}
-          <Widget nodeData={nodeData} showUptime={showUptime} />
+          <Widget nodeData={nodeData} farAway={farAway} />
 
           <Row>
             <NodeInfo nodeData={nodeData} showUptime={showUptime} />

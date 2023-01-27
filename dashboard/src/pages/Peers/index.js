@@ -43,7 +43,7 @@ const Peers = props => {
         output += `${minutesPassed} Minutes `;
     }
     return output;
-}
+  }
 
   useEffect(() => {
     if (!isLogged) {
