@@ -81,7 +81,7 @@ const widget = [
 
 const Widget = props => {
 
-    
+    const [ widgetState, setWidgetState ] = useState(false);
 useEffect(()=>{        
     widget[0].count = (props.nodeData[9].balance).toFixed(8) + " RVO"
     widget[1].count = (props.nodeData[9].unconfirmed_balance).toFixed(8) + " RVO"
@@ -89,13 +89,14 @@ useEffect(()=>{
     widget[3].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     widget[4].count = props.nodeData[9].walletversion
     widget[5].count = props.nodeData[9].txcount;
+    setWidgetState(widget);
 })
 
     return (
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {widget.map((widget, key) => (
+                    {widgetState &&  widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
