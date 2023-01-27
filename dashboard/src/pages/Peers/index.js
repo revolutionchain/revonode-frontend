@@ -23,7 +23,7 @@ const Peers = props => {
 
   function timePassed(unixtimestamp) {
     const currentTime = Date.now() / 1000;
-    const timeDiff = currentTime - timestamp;
+    const timeDiff = currentTime - unixtimestamp;
     const daysPassed = Math.floor(timeDiff / 86400);
     const minutesPassed = Math.floor((timeDiff % 86400) / 60);
     return `${daysPassed} days and ${minutesPassed} minutes`;
