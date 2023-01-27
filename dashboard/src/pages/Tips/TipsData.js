@@ -24,26 +24,14 @@ const icons = []
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Description list alignment</h4>
-              <p class="card-title-desc">Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a <code class="highlighter-rouge">.text-truncate</code> class to truncate the text with an ellipsis. </p>
-              <dl class="row mb-0">
-                <dt class="col-sm-3">Description lists</dt>
-                <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
-                <dt class="col-sm-3">Euismod</dt>
-                <dd class="col-sm-9">Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                <dd class="col-sm-9 offset-sm-3">Donec id elit non mi porta gravida at eget metus.</dd>
-                <dt class="col-sm-3">Malesuada porta</dt>
-                <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
-                <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
-                <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-                <dt class="col-sm-3">Nesting</dt>
-                <dd class="col-sm-9 mb-0">
-                  <dl class="row mb-0">
-                    <dt class="col-sm-4">Nested definition list</dt>
-                    <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-                  </dl>
-                </dd>
-              </dl>
+              <h4 class="card-title">Backup your wallet!</h4>
+              <p class="card-title-desc">
+              Backing up your Revo blockchain wallet is essential because it allows you to <b>restore your wallet</b> in case of any issues or hardware failures. <br></br>
+              The backup file, named <b>wallet.dat</b>, contains all of the information needed to access your funds and transactions on the Revo network. Your file is encrypted with the wallet password you choosed during the node installation wizard. Without the password, you will not be able to access your funds. <br></br>
+              It's important to note that the only way to restore a wallet without the encryption password is by having the address private key. <br></br>
+              Without a backup, you risk losing access to your funds <b>permanently</b> if your wallet node becomes broken or corrupt. By regularly creating and securely storing a backup of your wallet.dat file, you can ensure that your funds will always be safe and accessible. It is highly recommended to backup your wallet.dat file after every transaction and store it in a secure location.
+              </p>
+              <a href="/backup">Backup my wallet!</a>              
             </div>
           </div>
         </div>        
