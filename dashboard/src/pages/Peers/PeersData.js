@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
 import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const PeersDataWidget = props => {
+
+
+  const [ idCounter, setIdCounter ] = useState(0);
 
     
 useEffect(()=>{        
@@ -75,12 +78,14 @@ useEffect(()=>{
               </thead>
               <tbody>
                 {
-                  props.peersData.length && (props.ipLocationData).map((e, i) => {
+                  props.peersData.length && (props.ipLocationData).map((e) => {
                     let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
                     if(currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]){
+                      let counter = idCounter + 1;
+                      setIdCounter(idCounter+1);
                       return (
                         <tr>
-                          <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
+                          <th style={{borderBottom: "none"}} scope="row">{counter}</th>
                           <td style={{borderBottom: "none"}}>{(currentPeerData?.addrlocal)?.split(":")[0] == (currentPeerData.addr).split(":")[0] ? currentPeerData.addrbind.split(":")[0] : currentPeerData.addr.split(":")[0]} </td>
                           <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en}  </td>
                           <td style={{borderBottom: "none"}}>{e.traits.isp}</td>
