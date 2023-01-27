@@ -71,12 +71,12 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    //widget[0].count = props.nodeData[0].connections.total;
+    //widget[0].count = "";
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
-    //widget[2].count = props.nodeData[1].totalbytesrecv;
-    //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
-    //widget[4].count = props.nodeData[3].size;
+    //widget[2].count = "";
+    //widget[3].count = "";
+    //widget[4].count = "";
 
     
     
@@ -102,7 +102,7 @@ useEffect(()=>{
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.id == 2 ? <a href={"https://mainnet.revo.network/block/" + widget.count} target="_blank" >{widget.count}</a> : widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
