@@ -33,12 +33,31 @@ const Dashboard = props => {
     setSubscribemodal(!setSubscribemodal)
   }
   
-  function secondsToString(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const days = Math.floor(minutes / 1440);
-    const remainingMinutes = minutes % 1440;
-    return `${days} days and ${remainingMinutes} minutes`;
- }
+  function showUptime(seconds) {
+    const timestamp = seconds + (new Date("1970-01-01")).getTime() / 1000;
+    const currentTime = Date.now() / 1000;
+    const timeDiff = currentTime - timestamp;
+    const yearsPassed = Math.floor(timeDiff / 31536000);
+    const remainingTime = timeDiff % 31536000;
+    const daysPassed = Math.floor(remainingTime / 86400);
+    const hoursPassed = Math.floor((remainingTime % 86400) / 3600);
+    const minutesPassed = Math.floor((remainingTime % 3600) / 60);
+    let output = '';
+    if(yearsPassed > 0){
+       output += `${yearsPassed} Years `
+    }
+    if (daysPassed > 0 || yearsPassed > 0) {
+        output += `${daysPassed} Days `;
+    }
+    if (hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+        output += `${hoursPassed} Hours `;
+    }
+    if (minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+        output += `${minutesPassed} Minutes `;
+    }
+    return output;
+}
+
 
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
@@ -151,8 +170,8 @@ const Dashboard = props => {
           <Widget nodeData={nodeData} secondsToString={secondsToString} />
 
           <Row>
-            <NodeInfo nodeData={nodeData} secondsToString={secondsToString} />
-            <WalletChainInfo nodeData={nodeData} peersData={peersData} secondsToString={secondsToString} />
+            <NodeInfo nodeData={nodeData} showUptime={showUptime} />
+            <WalletChainInfo nodeData={nodeData} peersData={peersData} showUptime={showUptime} />
           </Row>
           <Row>
             <Col xl={10}>

@@ -92,7 +92,7 @@ const NodeInfoWidget = props => {
                 return (<button style={{ fontSize: "10px", marginLeft: "5px", marginBottom: "5px" }} type="button" className="btn btn-light btn-sm">{e[0] + e.slice(1).toLowerCase().replace("_", " ")}</button>)
             }
             )}</div>
-        nodeInfo[5].value = props.secondsToString(props.nodeData[5]);
+        nodeInfo[5].value = props.showUptime(props.nodeData[5]);
         nodeInfo[6].value = props.nodeData[6];
         nodeInfo[7].value = props.nodeData[4].networks[0].reachable;
         nodeInfo[8].value = props.nodeData[4].networks[1].reachable;
