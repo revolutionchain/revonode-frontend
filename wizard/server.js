@@ -503,7 +503,7 @@ function checkPeersData() {
           currentIp = { query: result.replaceAll("\n", "") };
         }else if((e.network == 'not_publicly_routable')){
           result = execSync(`dig TXT +short o-o.myaddr.l.google.com @ns1.google.com`, { encoding: 'utf8' });
-          currentIp = { query: result.replaceAll("\n", "") };
+          currentIp = { query: result.replaceAll("\n", "").replaceAll('"', '') };
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
         }

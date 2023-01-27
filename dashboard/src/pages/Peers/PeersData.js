@@ -76,12 +76,13 @@ useEffect(()=>{
               <tbody>
                 {
                   props.peersData.length && (props.ipLocationData).map((e, i) => {
-                    let currentPeerData = (props.peersData).find(j => j.network == 'not_publicly_routable');
-                    if(currentPeerData.network == 'not_publicly_routable'){
+                    let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
+                    if(!currentPeerData){
+                      currentPeerData = (props.peersData).find(j => j.network == 'not_publicly_routable');
                       return (
                         <tr>
                           <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
-                          <td style={{borderBottom: "none"}}>{e.addr.split(":")[0]} </td>
+                          <td style={{borderBottom: "none"}}>{currentPeerData.addr} </td>
                           <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en}  </td>
                           <td style={{borderBottom: "none"}}>{e.traits.isp}</td>
                           <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )}</td>
