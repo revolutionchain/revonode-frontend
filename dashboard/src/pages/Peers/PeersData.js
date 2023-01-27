@@ -43,10 +43,10 @@ useEffect(()=>{
                       <td style={{borderBottom: "none"}}>{e.addr} </td>
                       <td style={{borderBottom: "none"}}>{ e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
-                      <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length ? j + " - " : j )} </td>
+                      <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", "") )} </td>
                       <td style={{borderBottom: "none"}}>36.6</td>
                       <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
-                      <td style={{borderBottom: "none"}}>{currentPeerData.bytessent + currentPeerData.bytesrecv / 1000000000 + " GB"} </td>
+                      <td style={{borderBottom: "none"}}>{(currentPeerData.bytessent + currentPeerData.bytesrecv / 1000000000) + " GB"} </td>
                     </tr>
                 )
               })
