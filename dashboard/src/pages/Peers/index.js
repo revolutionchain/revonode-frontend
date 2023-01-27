@@ -27,7 +27,8 @@ const Peers = props => {
     const yearsPassed = Math.floor(timeDiff / 31536000);
     const remainingTime = timeDiff % 31536000;
     const daysPassed = Math.floor(remainingTime / 86400);
-    const minutesPassed = Math.floor((remainingTime % 86400) / 60);
+    const hoursPassed = Math.floor((remainingTime % 86400) / 3600);
+    const minutesPassed = Math.floor((remainingTime % 3600) / 60);
     let output = '';
     if(yearsPassed > 0){
        output += `${yearsPassed} Years `
@@ -35,11 +36,14 @@ const Peers = props => {
     if (daysPassed > 0 || yearsPassed > 0) {
         output += `${daysPassed} Days `;
     }
-    if (minutesPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+    if (hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+        output += `${hoursPassed} Hours `;
+    }
+    if (minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
         output += `${minutesPassed} Minutes `;
     }
     return output;
-  }
+}
 
   useEffect(() => {
     if (!isLogged) {
