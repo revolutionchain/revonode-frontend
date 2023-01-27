@@ -21,12 +21,24 @@ const Peers = props => {
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
 
-  function timePassed(unixtimestamp) {
+  function timePassed(timestamp) {
     const currentTime = Date.now() / 1000;
-    const timeDiff = currentTime - unixtimestamp;
-    const daysPassed = Math.floor(timeDiff / 86400);
-    const minutesPassed = Math.floor((timeDiff % 86400) / 60);
-    return `${daysPassed} days and ${minutesPassed} minutes`;
+    const timeDiff = currentTime - timestamp;
+    const yearsPassed = Math.floor(timeDiff / 31536000);
+    const remainingTime = timeDiff % 31536000;
+    const daysPassed = Math.floor(remainingTime / 86400);
+    const minutesPassed = Math.floor((remainingTime % 86400) / 60);
+    let output = '';
+    if(yearsPassed > 0){
+       output += `${yearsPassed} Years `
+    }
+    if (daysPassed > 0 || yearsPassed > 0) {
+        output += `${daysPassed} Days `;
+    }
+    if (minutesPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
+        output += `${minutesPassed} Minutes `;
+    }
+    return output;
   }
 
   useEffect(() => {
