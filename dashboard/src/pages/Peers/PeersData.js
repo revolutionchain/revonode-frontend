@@ -41,13 +41,13 @@ useEffect(()=>{
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
-                      <td style={{borderBottom: "none"}}>{e.addr} </td>
+                      <td style={{borderBottom: "none"}}>{e.addr.slice(0,-5)} </td>
                       <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>
-                      <td style={{borderBottom: "none"}}>36.6</td>
+                      <td style={{borderBottom: "none"}}>{currentPeerData.conntime}</td>
                       <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
-                      <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1000000).toFixed(2) + " MB"} </td>
+                      <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"} </td>
                     </tr>
                 )
               })
