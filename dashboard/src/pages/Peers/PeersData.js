@@ -54,7 +54,7 @@ useEffect(()=>{
               </tbody>
             </table>
           </div>
-          <br>
+          <br></br>
           <h4 className="card-title mb-2">Local Peers - Connected</h4>
           <hr />
           <div class="table-responsive">
