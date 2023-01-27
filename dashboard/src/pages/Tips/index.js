@@ -14,7 +14,7 @@ import { withTranslation } from "react-i18next";
 import Widget from './Widget';
 
 import { useSelector } from 'react-redux';
-import WalletData from './TipsData';
+import TipsData from './TipsData';
 
 
 const Wallet = props => {
