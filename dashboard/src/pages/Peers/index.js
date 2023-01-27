@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MetaTags from 'react-meta-tags';
 import PropTypes from 'prop-types';
-import {
-  Container
-} from "reactstrap"
+import { Container } from "reactstrap"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
@@ -22,6 +20,17 @@ const Peers = props => {
 
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
+
+  function secondsToString(seconds) {
+    var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "" ;
+    var numdays = Math.floor((seconds % 31536000) / 86400) > 0 ? (Math.floor((seconds % 31536000) / 86400) + (Math.floor((seconds % 31536000) / 86400) > 1 ? " days, " : " day, ")) : "" ;
+    var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600) > 0 ? (Math.floor(((seconds % 31536000) % 86400) / 3600) + (Math.floor(((seconds % 31536000) % 86400) / 3600) > 1 ? " hours, " : " hour, ")) : "" ;
+    var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 0 ? (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) + ( Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 1 ? " minutes, " : " minute, ")) : "";
+    var numseconds = Math.floor((((seconds % 31536000) % 86400) % 3600) % 60);
+    let result =  numyears + numdays + numhours + numminutes + numseconds + " seconds"
+    return result;
+  
+  }
 
   useEffect(() => {
     if (!isLogged) {
@@ -76,8 +85,8 @@ const Peers = props => {
             />
           }
           {/* import Widget */}
-          {ipLocationData && <Widget peersData={peersData} ipLocationData={ipLocationData}  />}
-          {ipLocationData && <PeersData peersData={peersData} ipLocationData={ipLocationData} />}
+          {ipLocationData && <Widget peersData={peersData} ipLocationData={ipLocationData} secondsToString={secondsToString} />}
+          {ipLocationData && <PeersData peersData={peersData} ipLocationData={ipLocationData} secondsToString={secondsToString} />}
 
         </Container>
       </div>

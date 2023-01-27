@@ -4,17 +4,6 @@ import { useEffect } from 'react';
 import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
-function secondsToString(seconds) {
-  var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "" ;
-  var numdays = Math.floor((seconds % 31536000) / 86400) > 0 ? (Math.floor((seconds % 31536000) / 86400) + (Math.floor((seconds % 31536000) / 86400) > 1 ? " days, " : " day, ")) : "" ;
-  var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600) > 0 ? (Math.floor(((seconds % 31536000) % 86400) / 3600) + (Math.floor(((seconds % 31536000) % 86400) / 3600) > 1 ? " hours, " : " hour, ")) : "" ;
-  var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 0 ? (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) + ( Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 1 ? " minutes, " : " minute, ")) : "";
-  var numseconds = Math.floor((((seconds % 31536000) % 86400) % 3600) % 60);
-  let result =  numyears + numdays + numhours + numminutes + numseconds + " seconds"
-  return result;
-
-}
-
 const PeersDataWidget = props => {
 
     
@@ -55,7 +44,7 @@ useEffect(()=>{
                       <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>
-                      <td style={{borderBottom: "none"}}>{secondsToString(currentPeerData.conntime)}</td>
+                      <td style={{borderBottom: "none"}}>{props.secondsToString(currentPeerData.conntime)}</td>
                       <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
                       <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"} </td>
                     </tr>
