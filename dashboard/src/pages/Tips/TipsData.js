@@ -31,7 +31,11 @@ const icons = []
                                         </p>
                                         <a href="/backup">Backup my wallet!</a>              
                                       </div>
-                                      <br></br>
+                                    </div>
+                                  </div>      
+                                
+                                  <div class="col-12">
+                                    <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title">Become a Full Node!</h4>
                                         <p>
@@ -42,8 +46,12 @@ const icons = []
                                         <a target="_blank" href="https://www.yougetsignal.com/tools/open-ports/">Check if my port is open</a><br></br>
                                         <a target="_blank" href="https://letmegooglethat.com/?q=what+is+my+public+ip%3F&l=1">What is my public IP?</a><br></br>
                                         <a target="_blank" href="https://letmegooglethat.com/?q=how+to+open+ports+on+my+router">How to open ports on my router?</a><br></br>              
-                                      </div>
-                                      <br></br>
+                                      </div>                                      
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title">Ethernet or WiFi?</h4>
                                         <p >
@@ -51,8 +59,7 @@ const icons = []
                                         </p>                                        
                                       </div>
                                     </div>
-                                  </div>      
-                                
+                                  </div>
 
                                 </CardBody>
                               </Card>
