@@ -49,32 +49,14 @@ const Dashboard = props => {
     return output;
  }
 
- function farAway(timestamp) {
-    const currentTime = Date.now() / 1000;
-    const timeDiff = currentTime - timestamp;
-    const yearsPassed = Math.floor(timeDiff / 31536000);
-    const remainingTime = timeDiff % 31536000;
-    const daysPassed = Math.floor(remainingTime / 86400);
-    const hoursPassed = Math.floor((remainingTime % 86400) / 3600);
-    const minutesPassed = Math.floor((remainingTime % 3600) / 60);
-    const secondsPassed = Math.floor(remainingTime % 60);
-    let output = '';
-    if(yearsPassed > 0){
-      output += `${yearsPassed} Years `
-    }
-    if (daysPassed > 0 || yearsPassed > 0) {
-        output += `${daysPassed} Days `;
-    }
-    if (hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
-        output += `${hoursPassed} Hours `;
-    }
-    if (minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
-        output += `${minutesPassed} Minutes `;
-    }
-    if (secondsPassed > 0 || minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
-        output += `${secondsPassed} Seconds `;
-    }
-    return output;
+ function farAway(seconds) {
+  var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "" ;
+    var numdays = Math.floor((seconds % 31536000) / 86400) > 0 ? (Math.floor((seconds % 31536000) / 86400) + (Math.floor((seconds % 31536000) / 86400) > 1 ? " days, " : " day, ")) : "" ;
+    var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600) > 0 ? (Math.floor(((seconds % 31536000) % 86400) / 3600) + (Math.floor(((seconds % 31536000) % 86400) / 3600) > 1 ? " hours, " : " hour, ")) : "" ;
+    var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 0 ? (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) + ( Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 1 ? " minutes, " : " minute, ")) : "";
+    var numseconds = Math.floor((((seconds % 31536000) % 86400) % 3600) % 60);
+    let result =  numyears + numdays + numhours + numminutes + numseconds + " seconds"
+    return result;
   }
 
   const [nodeData, setNodeData] = useState(false);
