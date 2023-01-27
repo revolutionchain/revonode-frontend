@@ -34,27 +34,18 @@ const Dashboard = props => {
   }
   
   function showUptime(seconds) {
-    const timestamp = seconds + (new Date("1970-01-01")).getTime() / 1000;
-    const currentTime = Date.now() / 1000;
-    const timeDiff = currentTime - timestamp;
-    const yearsPassed = Math.floor(timeDiff / 31536000);
-    const remainingTime = timeDiff % 31536000;
-    const daysPassed = Math.floor(remainingTime / 86400);
-    const hoursPassed = Math.floor((remainingTime % 86400) / 3600);
-    const minutesPassed = Math.floor((remainingTime % 3600) / 60);
-    let output = '';
-    if(yearsPassed > 0){
-       output += `${yearsPassed} Years `
-    }
-    if (daysPassed > 0 || yearsPassed > 0) {
-        output += `${daysPassed} Days `;
-    }
-    if (hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
-        output += `${hoursPassed} Hours `;
-    }
-    if (minutesPassed > 0 || hoursPassed > 0 || daysPassed > 0 || yearsPassed > 0) {
-        output += `${minutesPassed} Minutes `;
-    }
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const years = Math.floor(days / 365);
+    const remainingDays = days % 365;
+    const remainingHours = hours % 24;
+    const remainingMinutes = minutes % 60;
+    let output = "";
+    if(years > 0) output += `${years} years`;
+    if(remainingDays > 0) output += ` ${remainingDays} days`;
+    if(remainingHours > 0) output += ` ${remainingHours} hours`;
+    if(remainingMinutes > 0) output += ` ${remainingMinutes} minutes`;
+    output += " have passed."
     return output;
 }
 
