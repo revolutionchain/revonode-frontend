@@ -602,6 +602,7 @@ app.post('/sendtokenmail', async (req, res, next) => {
     }
   });
 
+
   const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master}&token=${token}`);
   if(emailResponse.data == 'OK'){    
     setEnvValue('EMAIL_TOKEN', 'sent');
