@@ -35,17 +35,22 @@ useEffect(()=>{
                   <th>Traffic (MB)</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th style={{borderBottom: "none"}} scope="row">1</th>
-                  <td style={{borderBottom: "none"}}>79</td>
-                  <td style={{borderBottom: "none"}}>FLAG + Argentina</td>
-                  <td style={{borderBottom: "none"}}>Telecom Argentina S</td>
-                  <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED</td>
-                  <td style={{borderBottom: "none"}}>36.6</td>
-                  <td style={{borderBottom: "none"}}>Revo-Mercury 0.22.1(Node Name)</td>
-                  <td style={{borderBottom: "none"}}>1.4</td>
-                </tr>
+              <tbody>{ props.peersData.length && (props.ipLocationData).map((e,i) => {
+                let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
+                return (
+                    <tr>
+                      <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
+                      <td style={{borderBottom: "none"}}>{e.addr} </td>
+                      <td style={{borderBottom: "none"}}>{ e.country.names.en} </td>
+                      <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
+                      <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length ? j + " - " : j )} </td>
+                      <td style={{borderBottom: "none"}}>36.6</td>
+                      <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
+                      <td style={{borderBottom: "none"}}>{currentPeerData.bytessent + currentPeerData.bytesrecv / 1000000000 + " GB"} </td>
+                    </tr>
+                )
+              })
+                }
                 <tr>
                   <th style={{borderBottom: "none"}} scope="row">1</th>
                   <td style={{borderBottom: "none"}}>79</td>
