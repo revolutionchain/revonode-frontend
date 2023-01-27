@@ -19,8 +19,8 @@ const widget = [
     {
         id: 2,
         title: 'Last Block',
-        text: '0 seconds ago',
-        count: '284532',
+        text: '',
+        count: '0',
         dollor: true,
         icon: 'bx bxs-cube',
         secondIcon: '',
@@ -72,10 +72,14 @@ const Widget = props => {
     
 useEffect(()=>{        
     //widget[0].count = props.nodeData[0].connections.total;
-    //widget[1].count = props.nodeData[1].totalbytessent;
+    widget[1].count = props.nodeData[0].blocks;
+    widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     //widget[2].count = props.nodeData[1].totalbytesrecv;
     //widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     //widget[4].count = props.nodeData[3].size;
+
+    
+    
 })
 
     return (

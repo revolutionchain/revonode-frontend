@@ -63,11 +63,15 @@ const ProfileMenu = props => {
             <i className="bx bx-user font-size-16 align-middle me-1"/>
             {props.t("Profile")}{" "}
           </DropdownItem>
-          <DropdownItem tag="a" href="#">            
+          <DropdownItem tag="a" href="/settings">            
             <i className="bx bx-wrench font-size-16 align-middle me-1"/>
             {props.t("Settings")}
           </DropdownItem>
-          <DropdownItem tag="a" href="#">            
+          <DropdownItem tag="a" href="/backup">            
+            <i className="bx bx-save font-size-16 align-middle me-1"/>
+            {props.t("Backup")}
+          </DropdownItem>
+          <DropdownItem tag="a" href="/update">            
             <i className="bx bx bx-planet font-size-16 align-middle me-1"/>
             {props.t("Update")}
           </DropdownItem>
