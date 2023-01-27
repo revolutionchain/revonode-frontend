@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 
 const nodeInfo = [
@@ -78,6 +78,8 @@ const nodeInfo = [
     }
 ]
 
+const [nodeInfoState, setNodeInfoState] = useState(false);
+
 const NodeInfoWidget = props => {
 
     useEffect(() => {
@@ -100,6 +102,7 @@ const NodeInfoWidget = props => {
         nodeInfo[12].value = "No";
         nodeInfo[13].value = "No";
         nodeInfo[14].value = "No";
+        setNodeInfoState(nodeInfo);
     })
 
 
@@ -111,7 +114,7 @@ const NodeInfoWidget = props => {
                         <h4 className="card-title mb-2">Node</h4>
                         <hr />
                         <div className="mt-1">
-                            {props.nodeData.length && nodeInfo.map(e => {
+                            {props.nodeData.length && nodeInfoState.map(e => {
                                 return (<div className="d-flex mb-2">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}

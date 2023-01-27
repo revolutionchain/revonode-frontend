@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
@@ -81,6 +81,8 @@ const widget = [
 
 const Widget = props => {
 
+    const [ widgetState, setWidgetState ] = useState(false);
+
     
 useEffect(()=>{        
     widget[0].count = props.nodeData[0].connections.total;
@@ -90,6 +92,8 @@ useEffect(()=>{
     widget[4].count = props.nodeData[3].size;
     widget[5].count = props.nodeData[0].headers;
     widget[5].text = props.secondsToString((props.nodeData[10].time)) + " ago";
+
+    setWidgetState(widget);
 })
 
 
@@ -98,7 +102,7 @@ return (
             <Row>
                 
                     <Col md={6} xl={12} className="d-flex">
-                    {widget.map((widget, key) => (
+                    {widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>

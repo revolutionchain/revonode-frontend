@@ -70,7 +70,7 @@ const widget = [
 const Widget = props => {
 
     
-const [updateStates, setUpdateStates] = useState(false);
+const [widgetState, setWidgetState] = useState(false);
     
 useEffect(()=>{        
 
@@ -183,7 +183,7 @@ useEffect(()=>{
     widget[3].count = ispValuesArray[0].isp;
     widget[4].count = (totalTraffic / 1073741824).toFixed(3) + " GB";
 
-    updateStates ? setUpdateStates(false) : setUpdateStates(true);
+    setWidgetState(widget);
 
 })
 
@@ -191,7 +191,7 @@ useEffect(()=>{
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {(widget[1].count).length > 1 && widget.map((widget, key) => (
+                    {widgetState && widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
