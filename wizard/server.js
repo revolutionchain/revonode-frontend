@@ -594,14 +594,9 @@ app.post('/sendtokenmail', async (req, res, next) => {
     return res.send('The mail has already been sent.');
   }
 
-  exec('cat master', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
-    if (err) {
-      return res.status(404).send(err);
-    } else {
-      master = stdout;
-    }
-  });
+  master = execSync('cat /home/revo/master', { encoding: 'utf8' });
 
+  console.log("test : " + master + "asd123")
 
   const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master}&token=${token}`);
   if(emailResponse.data == 'OK'){    
