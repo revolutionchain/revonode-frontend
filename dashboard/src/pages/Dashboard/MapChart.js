@@ -60,8 +60,8 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
   const height = 400
 
 
-  const minColor = "#ebfce1"
-  const maxColor = "#2474ed"
+  const minColor = "#d6f5d6"
+  const maxColor = "#145214"
 
   const customScale = scaleLinear()
     .domain([minMaxValue.minValue, minMaxValue.maxValue])
