@@ -47,9 +47,9 @@ const Widget = props => {
 
     
 useEffect(()=>{        
-    //widget[0].count = props.nodeData[0].connections.total;
-    //widget[1].count = props.nodeData[1].totalbytessent;
-    //widget[2].count = props.nodeData[1].totalbytesrecv;
+    //widget[0].count = "";
+    widget[1].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
+    //widget[2].count = "";
 })
 
     return (
@@ -72,7 +72,7 @@ useEffect(()=>{
                                     <h4 className="mb-1 mt-1">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1000000000).toFixed(2) : widget.count}
+                                            {widget.count}
                                         </span></h4>
                                 </div>
                                 <p className="text-muted mt-3 mb-0">
