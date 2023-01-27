@@ -46,7 +46,6 @@ const Dashboard = props => {
     if(remainingDays > 0) output += ` ${remainingDays} days`;
     if(remainingHours > 0) output += ` ${remainingHours} hours`;
     if(remainingMinutes > 0) output += ` ${remainingMinutes} minutes`;
-    output += " have passed."
     return output;
 }
 
