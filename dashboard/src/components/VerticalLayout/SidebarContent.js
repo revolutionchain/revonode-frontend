@@ -137,6 +137,13 @@ const SidebarContent = props => {
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
+
+            <li>
+              <Link to="/tips" className="waves-effect">
+                <i className='bx bx bxs-rocket'></i>
+                <span key="t-ui-elements">{props.t("Docs")}</span>
+              </Link>
+            </li>
             
             {/*
 

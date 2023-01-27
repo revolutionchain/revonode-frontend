@@ -26,6 +26,9 @@ import Staking from "../pages/Staking/index"
 // Wallet
 import Wallet from "../pages/Wallet/index"
 
+// Wallet
+import Tips from "../pages/Tips/index"
+
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
 
@@ -36,6 +39,8 @@ const userRoutes = [
   { path: "/staking", component: Staking },
 
   { path: "/wallet", component: Wallet },
+
+  { path: "/tips", component: Tips },
 
   // //profile
   { path: "/profile", component: UserProfile },
