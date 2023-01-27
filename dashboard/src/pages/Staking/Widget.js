@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
@@ -45,11 +45,13 @@ const widget = [
 
 const Widget = props => {
 
+    const [ widgetState, setWidgetState ] = useState(false);
     
 useEffect(()=>{        
     //widget[0].count = "";
     widget[1].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     //widget[2].count = "";
+    setWidgetState(widget);
 })
 
     return (

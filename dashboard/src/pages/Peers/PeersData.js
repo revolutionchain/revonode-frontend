@@ -37,6 +37,8 @@ useEffect(()=>{
               </thead>
               <tbody>{ props.peersData.length && (props.ipLocationData).map((e,i) => {
                 let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
+                
+                if(currentPeerData.network !== 'not_publicly_routable'){
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
@@ -48,7 +50,7 @@ useEffect(()=>{
                       <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
                       <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"} </td>
                     </tr>
-                )
+                )}
               })
                 }
               </tbody>
@@ -72,16 +74,25 @@ useEffect(()=>{
                 </tr>
               </thead>
               <tbody>
-                    <tr>
-                      <th style={{borderBottom: "none"}} scope="row">1</th>
-                      <td style={{borderBottom: "none"}}>local ip </td>
-                      <td style={{borderBottom: "none"}}>Unknown Country</td>
-                      <td style={{borderBottom: "none"}}>Unknown ISP</td>
-                      <td style={{borderBottom: "none"}}>NETWORK - WITNESS - NETWORK LIMITED </td>
-                      <td style={{borderBottom: "none"}}>57 Minutes</td>
-                      <td style={{borderBottom: "none"}}>Revo-Mercury:0.22.1(Default)</td>
-                      <td style={{borderBottom: "none"}}>0.16 MB</td>
-                    </tr>
+                {
+                  props.peersData.length && (props.ipLocationData).map((e, i) => {
+                    let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
+                    if(currentPeerData.network == 'not_publicly_routable'){
+                      return (
+                        <tr>
+                          <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
+                          <td style={{borderBottom: "none"}}>{currentPeerData.addr} </td>
+                          <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en}  </td>
+                          <td style={{borderBottom: "none"}}>{e.traits.isp}</td>
+                          <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )}</td>
+                          <td style={{borderBottom: "none"}}>{props.timePassed(currentPeerData.conntime)}</td>
+                          <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")}</td>
+                          <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"}</td>
+                        </tr>                        
+                      )
+                    }
+                  })
+                }
               </tbody>
             </table>
           </div>
