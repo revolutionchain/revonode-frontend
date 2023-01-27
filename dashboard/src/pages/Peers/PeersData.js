@@ -18,7 +18,7 @@ useEffect(()=>{
                         <Col xl={12} >
                         <Card>
                             <CardBody>
-<h4 className="card-title mb-2">Peers - Connected</h4>
+<h4 className="card-title mb-2">External Peers - Connected</h4>
 <hr />
                 
           <div class="table-responsive">
