@@ -114,7 +114,7 @@ const NodeInfoWidget = props => {
                         <h4 className="card-title mb-2">Node</h4>
                         <hr />
                         <div className="mt-1">
-                            {props.nodeData.length && nodeInfoState.map(e => {
+                            {nodeInfoState && nodeInfoState.map(e => {
                                 return (<div className="d-flex mb-2">
                                     <div style={{ width: "50%" }}>
                                         <i className={e.icon}></i>{" " + e.title}

@@ -148,7 +148,7 @@ const [ walletState, setWalletState ] = useState(false);
                         <h4 className="card-title mb-2">Blockchain</h4>
                         <hr />
                         <div className="mt-1">
-                            {props.nodeData.length && blockchainInfoState.map((e,i) => {
+                            {blockchainInfoState && blockchainInfoState.map((e,i) => {
                                 return (<div className="d-flex">
                                     <div style={{ width: "60%", padding:"3px" }}>
                                         <i className={e.icon}></i>{" " + e.title}

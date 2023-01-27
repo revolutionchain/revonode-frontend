@@ -102,7 +102,7 @@ return (
             <Row>
                 
                     <Col md={6} xl={12} className="d-flex">
-                    {widgetState.map((widget, key) => (
+                    {widgetState && widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>
