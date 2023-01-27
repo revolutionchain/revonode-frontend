@@ -27,23 +27,13 @@ const Wallet = props => {
     if (!isLogged) {
       props.history.push('/login');
     }
-
-    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        setNodeData(res);
-      });
+    
            
   }, [])
 
   return (
     <React.Fragment>
-      {nodeData?.length && <div className="page-content">
+      {<div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -67,8 +57,6 @@ const Wallet = props => {
               breadcrumbItem={props.t("Tips")}
             />
           }
-          {/* import Widget */}
-          <Widget nodeData={nodeData} />
           <TipsData />
 
         </Container>
