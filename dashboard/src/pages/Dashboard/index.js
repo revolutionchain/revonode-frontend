@@ -167,7 +167,7 @@ const Dashboard = props => {
             />
           }
           {/* import Widget */}
-          <Widget nodeData={nodeData} secondsToString={secondsToString} />
+          <Widget nodeData={nodeData} showUptime={showUptime} />
 
           <Row>
             <NodeInfo nodeData={nodeData} showUptime={showUptime} />
