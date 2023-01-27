@@ -88,7 +88,7 @@ const Peers = props => {
             />
           }
           {/* import Widget */}
-          {ipLocationData && <Widget peersData={peersData} ipLocationData={ipLocationData}  />}
+          {ipLocationData && <Widget peersData={peersData} ipLocationData={ipLocationData} secondsToString={secondsToString} />}
           {ipLocationData && <PeersData peersData={peersData} ipLocationData={ipLocationData} />}
 
         </Container>
