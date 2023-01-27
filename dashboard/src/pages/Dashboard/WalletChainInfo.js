@@ -168,7 +168,7 @@ const [ walletState, setWalletState ] = useState(false);
                         <h4 className="card-title mb-2">Wallet</h4>
                         <hr />
                         <div className="mt-1">
-                            {props.nodeData.length && walletState.map(e => {
+                            {walletState && walletState.map(e => {
                                 return (<div className="d-flex">
                                     <div style={{ width: "50%", padding:"3px" }}>
                                         <i className={e.icon}></i>{" " + e.title}
