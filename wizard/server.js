@@ -467,7 +467,7 @@ app.get('/getlastestblocks', async (req, res, next) => {
   getBlock = JSON.parse(getBlock)
   getBlock.time = Math.floor(Date.now()/1000) - getBlock.time;
   blocks.push(getBlock);
-  for(let i = 0 ; i < 24 ; i ++){
+  for(let i = 0 ; i < 49 ; i ++){
     let currentBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', blocks[i].previousblockhash], { encoding: 'utf8' }); 
     currentBlock = currentBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");   
     currentBlock = JSON.parse(currentBlock);
