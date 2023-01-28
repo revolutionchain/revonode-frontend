@@ -29,7 +29,7 @@ const icons = []
                                         It's important to note that the only way to restore a wallet without the encryption password is by having the address private key. <br></br>
                                         Without a backup, you risk losing access to your funds <b>permanently</b> if your wallet node becomes broken or corrupt. By regularly creating and securely storing a backup of your wallet.dat file, you can ensure that your funds will always be safe and accessible. It is highly recommended to backup your wallet.dat file after every transaction and store it in a secure location.
                                         </p>
-                                        <a href="/backup">Backup my wallet!</a>              
+                                        <Link to="/backup">Backup my wallet!</Link>              
                                       </div>
                                     </div>
                                   </div>      
@@ -68,7 +68,7 @@ const icons = []
                                         <p >
                                         Splitting UTXOs, or "unspent transaction outputs," can increase the chances of staking more coins in a Proof of Stake (PoS) blockchain because it allows for a greater number of smaller stakes to be made rather than a single large stake. This is because in PoS, the probability of validating a block is proportional to the stake held by the validator. By splitting UTXOs into smaller amounts, an individual can spread their stake across multiple smaller stakes, increasing their overall chances of being selected to validate a block and earn rewards. Additionally, if the stake is spread among multiple UTXOs, it becomes harder for an attacker to target and compromise a specific stake.
                                         </p>
-                                        <p>You can split your UTXOs in your <a href="/staking">staking page</a>.</p>
+                                        <p>You can split your UTXOs in your <Link to="/staking">staking page</Link>.</p>
                                       </div>
                                     </div>
                                   </div> 
