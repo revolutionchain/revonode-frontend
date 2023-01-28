@@ -22,7 +22,7 @@ const icons = []
                                   <div class="col-12">
                                     <div class="card">
                                       <div class="card-body">
-                                        <h4 class="card-title">Backup your wallet!</h4>
+                                        <h4 class="card-title"><i className="bx bx-wallet"></i> Backup your wallet!</h4>
                                         <p>
                                         Backing up your Revo blockchain wallet is essential because it allows you to <b>restore your wallet</b> in case of any issues or hardware failures. <br></br>
                                         The backup file, named <b>wallet.dat</b>, contains all of the information needed to access your funds and transactions on the Revo network. Your file is encrypted with the wallet password you choosed during the node installation wizard. Without the password, you will not be able to access your funds.
@@ -37,7 +37,7 @@ const icons = []
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
-                                        <h4 class="card-title">Become a Full Node!</h4>
+                                        <h4 class="card-title"><i className="bx bx-radar"></i> Become a Full Node!</h4>
                                         <p>
                                         Having a <b>public IP</b> (ipv4) and opening <b>port 6969</b> on your router is crucial for optimizing your Revo blockchain node's performance. With a public IP, your node is able to connect to up to 1000 peers on the network, increasing the possibility of staking RVO coins more frequently and providing greater reliability. On the other hand, nodes that are behind a NAT or firewall, with no public IP and open port, will only be able to connect to a maximum of 8 nodes as a relay node: limiting their ability to participate in the network effectively and reduces the chances of staking new coins. <br></br>
                                         Opening port 6969 for your Revo node and having a public IP is always recommended. If you can't open your port manually, you can contact your Internet Service Provider (ISP) for assistance.
@@ -53,7 +53,7 @@ const icons = []
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
-                                        <h4 class="card-title">Ethernet or WiFi?</h4>
+                                        <h4 class="card-title"><i className="mdi mdi-ethernet"></i> Ethernet or WiFi?</h4>
                                         <p >
                                         A wired ethernet connection is generally considered to be more <b>reliable and faster</b> than a wireless connection such as WiFi. This is because wired connections are not subject to interference from other wireless devices or networks, and the signal is not subject to degradation over distance. Additionally, wired connections are typically faster than wireless connections, as they have a larger bandwidth and lower latency. This makes them more suitable for use in blockchain node server applications, where reliability and speed are important factors.
                                         </p>                                        
@@ -64,7 +64,7 @@ const icons = []
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
-                                        <h4 class="card-title">UTXO Splitting - Increase your mining efficency</h4>
+                                        <h4 class="card-title"><i className="mdi mdi-pickaxe"></i> UTXO Splitting - Increase your mining efficency</h4>
                                         <p >
                                         Splitting UTXOs, or "unspent transaction outputs," can increase the chances of staking more coins in a Proof of Stake (PoS) blockchain because it allows for a greater number of smaller stakes to be made rather than a single large stake. This is because in PoS, the probability of validating a block is proportional to the stake held by the validator. By splitting UTXOs into smaller amounts, an individual can spread their stake across multiple smaller stakes, increasing their overall chances of being selected to validate a block and earn rewards. Additionally, if the stake is spread among multiple UTXOs, it becomes harder for an attacker to target and compromise a specific stake.
                                         </p>
