@@ -42,12 +42,12 @@ setExternalPeersState(externalPeers);
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th><i className="bx bx-hash"></i> ID</th>
-                  <th><i className=""></i> IP</th>
+                  <th><i className="bx bx-hash"></i></th>
+                  <th><i className="bx bx-flag"></i> IP Address</th>
                   <th><i className="bx bx-world"></i> Country</th>
                   <th><i className="bx bx-server"></i> ISP</th>
-                  <th><i className="bx bx-station"></i> Services</th>
-                  <th><i className="bx bx-timer"></i> Age(h)</th>
+                  <th><i className="bx bx-wifi"></i> Services</th>
+                  <th><i className="bx bx-time-five"></i> Age</th>
                   <th><i className="bx bx-id-card"></i> Client</th>
                   <th><i className="bx bxs-cloud"></i> Traffic (MB)</th>
                 </tr>
@@ -80,14 +80,14 @@ setExternalPeersState(externalPeers);
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th><i className="bx bx-hash"></i></th>
+                  <th><i className="bx bx-flag"></i> IP Address</th>
+                  <th><i className="bx bx-world"></i> Country</th>
+                  <th><i className="bx bx-server"></i> ISP</th>
+                  <th><i className="bx bx-wifi"></i> Services</th>
+                  <th><i className="bx bx-time-five"></i> Age</th>
+                  <th><i className="bx bx-id-card"></i> Client</th>
+                  <th><i className="bx bxs-cloud"></i> Traffic (MB)</th>
                 </tr>
               </thead>
               <tbody>
