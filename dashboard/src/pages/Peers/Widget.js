@@ -188,7 +188,7 @@ useEffect(()=>{
     widget[3].count = ispValuesArray[0].isp;
     widget[3].text = ispValuesArray[0].values + " Peers"
     widget[4].count = (totalTraffic / 1073741824).toFixed(3) + " GB";
-    widget[4].text = ((uploadTraffic * 100)/totalTraffic).toFixed(2) + "%";
+    widget[4].text = ((uploadTraffic * 100)/totalTraffic).toFixed(2) + "% Upload";
 
     setWidgetState(widget);
 
