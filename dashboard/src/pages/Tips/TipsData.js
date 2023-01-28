@@ -19,7 +19,7 @@ const icons = []
                         <Col xl={12} >
                             <Card>
                                 <CardBody>
-                                  <div class="col-12">
+                                  <div class="col-6">
                                     <div class="card">
                                       <div class="card-body">
                                         <h4 class="card-title">Backup your wallet!</h4>
@@ -34,7 +34,7 @@ const icons = []
                                     </div>
                                   </div>      
                                 
-                                  <div class="col-12">
+                                  <div class="col-6">
                                     <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title">Become a Full Node!</h4>
@@ -50,7 +50,7 @@ const icons = []
                                     </div>
                                   </div>
 
-                                  <div class="col-12">
+                                  <div class="col-6">
                                     <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title">Ethernet or WiFi?</h4>
@@ -60,6 +60,18 @@ const icons = []
                                       </div>
                                     </div>
                                   </div>
+
+                                  <div class="col-6">
+                                    <div class="card">                                      
+                                      <div class="card-body">
+                                        <h4 class="card-title">UTXO Splitting - Increase your mining efficency</h4>
+                                        <p >
+                                        Splitting UTXOs, or "unspent transaction outputs," can increase the chances of staking more coins in a Proof of Stake (PoS) blockchain because it allows for a greater number of smaller stakes to be made rather than a single large stake. This is because in PoS, the probability of validating a block is proportional to the stake held by the validator. By splitting UTXOs into smaller amounts, an individual can spread their stake across multiple smaller stakes, increasing their overall chances of being selected to validate a block and earn rewards. Additionally, if the stake is spread among multiple UTXOs, it becomes harder for an attacker to target and compromise a specific stake.
+                                        </p>
+                                        <p>You can split your UTXOs in your <a href="/stake">staking page</a>.</p>
+                                      </div>
+                                    </div>
+                                  </div> 
 
                                 </CardBody>
                               </Card>
