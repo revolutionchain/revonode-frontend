@@ -16,7 +16,7 @@ const fireBaseBackend = getFirebaseBackend()
 
 
 const fetchFunc = ({ url, options }) => {
-  console.log(options);
+  //console.log(options);
   return fetch(url, options).then(response => response.json());
 }
 

@@ -24,7 +24,7 @@ useEffect(()=>{
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th><i className="bx bx-hashtag"></i> TX id</th>
+                  <th><i className="bx bx-hash"></i> TX id</th>
                   <th><i className="fas fa-coins"></i> Amount</th>
                   <th><i className="bx bx-down-arrow-circle"></i> Address</th>
                   <th><i className="bx bx-data"></i> Vout</th>
