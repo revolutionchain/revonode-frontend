@@ -151,10 +151,13 @@ useEffect(()=>{
 
     let peersCount = [];
     let totalTraffic = 0;
+    let uploadTraffic = 0;
+    let downloadTraffic = 0;
     props.peersData.map(e => {
-        
+        uploadTraffic = uploadTraffic + e.bytessent;
+        downloadTraffic = downloadTraffic + e.bytesrecv;   
 
-        totalTraffic = totalTraffic + e.bytesrecv + e.bytessent;
+        totalTraffic = totalTraffic + uploadTraffic + downloadTraffic;
         let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
         if (target) {
             target.count = target.count + 1;
@@ -179,9 +182,13 @@ useEffect(()=>{
     
     widget[0].count = props.peersData.length;
     widget[1].count = peersCount[0].name;
+    widget[1].text = peersCount[0].count + " Peers";
     widget[2].count = countries[0].country;
+    widget[2].text = countries[0].value + " Peers";
     widget[3].count = ispValuesArray[0].isp;
+    widget[3].text = ispValuesArray[0].values + " Peers"
     widget[4].count = (totalTraffic / 1073741824).toFixed(3) + " GB";
+    widget[4].text = ((uploadTraffic * 100)/totalTraffic).toFixed(2) + "%";
 
     setWidgetState(widget);
 
