@@ -38,7 +38,7 @@ useEffect(()=>{
                 <tr key={e.hash}>
                 <th style={{borderBottom: "none"}} scope="row">{e.height} </th>
                 <td style={{borderBottom: "none"}}><a href={"https://mainnet.revo.network/block/" + e.hash}>{e.hash} </a></td>
-                <td style={{borderBottom: "none"}}>{e.time} </td>
+                <td style={{borderBottom: "none"}}>{farAway(e.time)} ago</td>
                 <td style={{borderBottom: "none"}}>{e.size} </td>
                 <td style={{borderBottom: "none"}}>{(e.tx).length} </td>
               </tr>)
