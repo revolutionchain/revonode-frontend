@@ -8,7 +8,7 @@ const widget = [
         id: 1,
         title: 'Showing last',
         text: 'blocks',
-        count: '25',
+        count: '50',
         dollor: true,
         icon: 'bx bxs-component text-primary',
         secondIcon: '',
