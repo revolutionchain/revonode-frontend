@@ -474,7 +474,7 @@ app.get('/getlastestblocks', async (req, res, next) => {
     currentBlock.time = Math.floor(Date.now()/1000) - currentBlock.time;
     blocks.push(currentBlock);
   }
-  console.log(blocks);
+  //console.log(blocks);
   res.send(blocks);
 })
 
