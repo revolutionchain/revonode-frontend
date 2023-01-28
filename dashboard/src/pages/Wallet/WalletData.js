@@ -26,12 +26,12 @@ const icons = []
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>Type</th>
-                  <th>Sender</th>
-                  <th>Receiver</th>
-                  <th>Time</th>
-                  <th>TX Id</th>
-                  <th>Amount</th>
+                  <th><i className="bx bx-transfer-alt"></i> Type</th>
+                  <th><i className="bx bx-right-top-arrow-circle"></i> Sender</th>
+                  <th><i className="bx bx-down-arrow-circle"></i> Receiver</th>
+                  <th><i className="bx bx-time-five"></i> Time</th>
+                  <th><i className="bx bx-hash"></i> TX Id</th>
+                  <th><i className="fas fa-coins"></i> Amount</th>
                 </tr>
               </thead>
               <tbody>

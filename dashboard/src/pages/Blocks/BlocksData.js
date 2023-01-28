@@ -24,11 +24,11 @@ useEffect(()=>{
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>Block</th>
-                  <th>Hash</th>
-                  <th>Time</th>
-                  <th>Size (Bytes)</th>
-                  <th>TXs</th>
+                  <th><i className="bx bxs-cube"></i> Block</th>
+                  <th><i className="bx bx-hash"></i> Hash</th>
+                  <th><i className="bx bx-time-five"></i> Time</th>
+                  <th><i className="mdi mdi-weight"></i> Size (Bytes)</th>  
+                  <th><i className="bx bx-transfer-alt"></i> TXs</th>
                 </tr>
               </thead>
               <tbody>

@@ -43,7 +43,7 @@ setExternalPeersState(externalPeers);
               <thead>
                 <tr>
                   <th><i className="bx bx-hash"></i></th>
-                  <th><i className="bx bx-flag"></i> IP Address</th>
+                  <th><i className="bx bx-flag"></i> Address</th>
                   <th><i className="bx bx-world"></i> Country</th>
                   <th><i className="bx bx-server"></i> ISP</th>
                   <th><i className="bx bx-wifi"></i> Services</th>
@@ -81,7 +81,7 @@ setExternalPeersState(externalPeers);
               <thead>
                 <tr>
                   <th><i className="bx bx-hash"></i></th>
-                  <th><i className="bx bx-flag"></i> IP Address</th>
+                  <th><i className="bx bx-flag"></i> Address</th>
                   <th><i className="bx bx-world"></i> Country</th>
                   <th><i className="bx bx-server"></i> ISP</th>
                   <th><i className="bx bx-wifi"></i> Services</th>
