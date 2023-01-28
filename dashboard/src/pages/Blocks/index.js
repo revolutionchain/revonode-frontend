@@ -47,6 +47,16 @@ const Blocks = props => {
       .then(res => {
         setNodeData(res);
       });    
+      fetch(`http://${window.location.hostname}:3001/getlastestblocks`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.json())
+        .then(res => {
+          console.log(res);
+        });    
     
   }, [])
 

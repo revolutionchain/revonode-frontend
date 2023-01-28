@@ -458,6 +458,26 @@ function globalDashboardFunction(type) {/*
 }
 
 
+app.get('/getlastestblocks', async (req, res, next) => {  
+  let blocks = [];
+  let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
+  let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
+  let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
+  getBlock = getBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
+  getBlock = JSON.parse(getBlock)
+  getBlock.time = Math.floor(Date.now()/1000) - getBlock.time;
+  blocks.push(getBlock);
+  for(let i = 0 ; i < 24 ; i ++){
+    let currentBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', blocks[i].previousblockhash], { encoding: 'utf8' }); 
+    currentBlock = currentBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");   
+    currentBlock = JSON.parse(currentBlock);
+    currentBlock.time = Math.floor(Date.now()/1000) - currentBlock.time;
+    blocks.push(currentBlock);
+  }
+  console.log(blocks);
+  res.send(blocks);
+})
+
 app.get('/getdashboarddata', async (req, res, next) => {
   const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo', '-gettotalsize', '-getwalletinfo', '-getblockcount'];
   let response = [];
