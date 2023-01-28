@@ -33,6 +33,7 @@ const Blocks = props => {
       return result;
     }
 
+    const [lastestBlocks, setLastestBlocks] = useState(false);
   useEffect(() => {
     if (!isLogged) {
       props.history.push('/login');
@@ -55,7 +56,7 @@ const Blocks = props => {
         },
       }).then(data => data.json())
         .then(res => {
-          console.log(res);
+          setLastestBlocks(res);
         });    
     
   }, [])
@@ -88,7 +89,7 @@ const Blocks = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} farAway={farAway} />
-          <BlocksData />
+          <BlocksData lastestBlocks={lastestBlocks} />
 
         </Container>
       </div>
