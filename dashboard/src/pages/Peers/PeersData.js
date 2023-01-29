@@ -42,14 +42,14 @@ setExternalPeersState(externalPeers);
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th><i className="bx bx-hash"></i></th>
+                  <th><i className="bx bx-flag"></i> Address</th>
+                  <th><i className="bx bx-world"></i> Country</th>
+                  <th><i className="bx bx-server"></i> ISP</th>
+                  <th><i className="bx bx-wifi"></i> Services</th>
+                  <th><i className="bx bx-time-five"></i> Age</th>
+                  <th><i className="bx bx-id-card"></i> Client</th>
+                  <th><i className="bx bxs-cloud"></i> Traffic (MB)</th>
                 </tr>
               </thead>
               <tbody>{ externalPeersState && externalPeersState.map((e,i) => {
@@ -64,7 +64,7 @@ setExternalPeersState(externalPeers);
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>
                       <td style={{borderBottom: "none"}}>{props.timePassed(currentPeerData.conntime)}</td>
-                      <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>
+                      <td style={{borderBottom: "none"}}>{(currentPeerData.subver).replaceAll("/", "")} </td>      
                       <td style={{borderBottom: "none"}}>{((currentPeerData.bytessent + currentPeerData.bytesrecv) / 1048576).toFixed(2) + " MB"} </td>
                     </tr>
                 )}
@@ -80,14 +80,14 @@ setExternalPeersState(externalPeers);
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>IP</th>
-                  <th>Country</th>
-                  <th>ISP</th>
-                  <th>Services</th>
-                  <th>Age(h)</th>
-                  <th>Client</th>
-                  <th>Traffic (MB)</th>
+                  <th><i className="bx bx-hash"></i></th>
+                  <th><i className="bx bx-flag"></i> Address</th>
+                  <th><i className="bx bx-world"></i> Country</th>
+                  <th><i className="bx bx-server"></i> ISP</th>
+                  <th><i className="bx bx-wifi"></i> Services</th>
+                  <th><i className="bx bx-time-five"></i> Age</th>
+                  <th><i className="bx bx-id-card"></i> Client</th>
+                  <th><i className="bx bxs-cloud"></i> Traffic (MB)</th>
                 </tr>
               </thead>
               <tbody>

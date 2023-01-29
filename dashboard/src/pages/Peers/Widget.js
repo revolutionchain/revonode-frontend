@@ -158,6 +158,7 @@ useEffect(()=>{
         downloadTraffic = downloadTraffic + e.bytesrecv;   
 
         totalTraffic = totalTraffic + uploadTraffic + downloadTraffic;
+        
         let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
         if (target) {
             target.count = target.count + 1;
@@ -177,7 +178,6 @@ useEffect(()=>{
         }
         return 0;
     });
-
 
     
     widget[0].count = props.peersData.length;

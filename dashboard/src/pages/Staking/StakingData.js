@@ -24,12 +24,12 @@ useEffect(()=>{
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>TX Id</th>
-                  <th>Amount</th>
-                  <th>Address</th>
-                  <th>Vout</th>
-                  <th>Label</th>
-                  <th>Confirms</th>
+                  <th><i className="bx bx-hash"></i> TX id</th>
+                  <th><i className="fas fa-coins"></i> Amount</th>
+                  <th><i className="bx bx-down-arrow-circle"></i> Address</th>
+                  <th><i className="bx bx-data"></i> Vout</th>
+                  <th><i className="bx bx bx-label"></i> Label</th>
+                  <th><i className="bx bx-check-shield"></i> Confirms</th>
                 </tr>
               </thead>
               <tbody>

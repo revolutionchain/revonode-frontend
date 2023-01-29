@@ -24,11 +24,11 @@ useEffect(()=>{
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th>Block</th>
-                  <th>Hash</th>
-                  <th>Time</th>
-                  <th>Size (Bytes)</th>
-                  <th>TXs</th>
+                  <th><i className="bx bxs-cube"></i> Block</th>
+                  <th><i className="bx bx-hash"></i> Hash</th>
+                  <th><i className="bx bx-time-five"></i> Time</th>
+                  <th><i className="mdi mdi-weight"></i> Size (Bytes)</th>  
+                  <th><i className="bx bx-transfer-alt"></i> TXs</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,7 +38,7 @@ useEffect(()=>{
                 <tr key={e.hash}>
                 <th style={{borderBottom: "none"}} scope="row">{e.height} </th>
                 <td style={{borderBottom: "none"}}><a href={"https://mainnet.revo.network/block/" + e.hash}>{e.hash} </a></td>
-                <td style={{borderBottom: "none"}}>{e.time} </td>
+                <td style={{borderBottom: "none"}}>{props.farAway(e.time)} ago</td>
                 <td style={{borderBottom: "none"}}>{e.size} </td>
                 <td style={{borderBottom: "none"}}>{(e.tx).length} </td>
               </tr>)
