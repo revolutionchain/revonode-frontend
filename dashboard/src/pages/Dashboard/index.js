@@ -112,7 +112,7 @@ const Dashboard = props => {
               setSubscribemodal(true)
             }
           });
-    }, MINUTE_MS);
+    }, 60000);
   
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   
