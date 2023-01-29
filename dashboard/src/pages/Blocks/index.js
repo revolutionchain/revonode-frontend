@@ -34,21 +34,9 @@ const Blocks = props => {
     }
 
     const [lastestBlocks, setLastestBlocks] = useState(false);
-  useEffect(() => {
-    if (!isLogged) {
-      props.history.push('/login');
-    }
-    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.json())
-      .then(res => {
-        setNodeData(res);
-      });    
-      fetch(`http://${window.location.hostname}:3001/getlastestblocks`, {
+
+    const getStatesData = () => {
+      fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -56,8 +44,33 @@ const Blocks = props => {
         },
       }).then(data => data.json())
         .then(res => {
-          setLastestBlocks(res);
+          setNodeData(res);
         });    
+        fetch(`http://${window.location.hostname}:3001/getlastestblocks`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then(data => data.json())
+          .then(res => {
+            setLastestBlocks(res);
+          });          
+    }
+
+  useEffect(() => {
+    if (!isLogged) {
+      props.history.push('/login');
+    }
+
+    getStatesData();
+
+    const interval = setInterval(() => {
+      getStatesData();
+    }, 60000);
+  
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  
     
   }, [])
 

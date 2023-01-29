@@ -63,11 +63,8 @@ const Dashboard = props => {
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
 
-  useEffect(() => {
-    document.body.classList.remove('bg-reglog');
-    if (!isLogged) {
-      props.history.push('/login');
-    }
+  const getStatesData = () => {
+    
     fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
       method: 'GET',
       headers: {
@@ -110,50 +107,18 @@ const Dashboard = props => {
             setSubscribemodal(true)
           }
         });
+  }
+
+  useEffect(() => {
+    document.body.classList.remove('bg-reglog');
+    if (!isLogged) {
+      props.history.push('/login');
+    }
+
+    getStatesData();
 
     const interval = setInterval(() => {
-      fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }).then(data => data.json())
-        .then(res => {
-          setNodeData(res);
-        });
-      fetch(`http://${window.location.hostname}:3001/getpeers`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }).then(data => data.json())
-        .then(res => {
-          setPeersData(res);
-        });
-      fetch(`http://${window.location.hostname}:3001/getpeersip`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }).then(data => data.json())
-        .then(res => {        
-          setIpLocationData(res);        
-        });
-        fetch(`http://${window.location.hostname}:3001/checktokenmail`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }).then(data => data.text())
-          .then(res => {        
-            if(res.includes("the mail has not been sent yet")){
-              setSubscribemodal(true)
-            }
-          });
+      getStatesData();
     }, 60000);
   
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.

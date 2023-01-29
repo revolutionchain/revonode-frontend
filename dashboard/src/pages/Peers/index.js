@@ -45,10 +45,7 @@ const Peers = props => {
     return output;
   }
 
-  useEffect(() => {
-    if (!isLogged) {
-      props.history.push('/login');
-    }
+  const getStatesData = () => {
     fetch(`http://${window.location.hostname}:3001/getpeers`, {
       method: 'GET',
       headers: {
@@ -69,6 +66,21 @@ const Peers = props => {
         .then(res => {        
           setIpLocationData(res);        
         });    
+  }
+
+  useEffect(() => {
+    if (!isLogged) {
+      props.history.push('/login');
+    }
+
+    getStatesData();
+
+    const interval = setInterval(() => {
+      getStatesData();
+    }, 60000);
+  
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  
   }, [])
 
   return (
