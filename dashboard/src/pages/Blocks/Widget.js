@@ -32,7 +32,7 @@ const widget = [
         id: 3,
         title: 'Size',
         text: '0 MB avg. block size',
-        count: '0.02',
+        count: '0',
         dollor: false,
         icon: 'mdi mdi-database text-primary',
         secondIcon: '',
@@ -55,7 +55,7 @@ const widget = [
     {
         id: 5,
         title: 'Transactions',
-        text: '0.31 KB avg. TX size',
+        text: '0 KB avg. TX size',
         count: '0',
         dollor: false,
         icon: 'bx bx-line-chart text-primary',
