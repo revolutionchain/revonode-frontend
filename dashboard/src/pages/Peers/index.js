@@ -77,7 +77,7 @@ const Peers = props => {
 
     const interval = setInterval(() => {
       getStatesData();
-    }, 60000);
+    }, 30000);
   
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   
