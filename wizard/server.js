@@ -534,7 +534,7 @@ function checkPeersData() {
       .then(axiosResults => {
         let peersIpData = [];
         axiosResults.map((result, pos) => {
-          if(result.data !== null){
+          if(result?.data){
             let resultObj = result.data;
             peersIpData.push({ ...resultObj, addr: peersData[pos].addr })
           }
