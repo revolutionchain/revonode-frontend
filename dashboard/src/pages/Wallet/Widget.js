@@ -42,7 +42,7 @@ const widget = [
     },
     {
         id: 4,
-        title: 'Stake',
+        title: 'Staking',
         text: '',
         count: '0',
         dollor: false,

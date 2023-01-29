@@ -42,7 +42,7 @@ const widget = [
     },
     {
         id: 4,
-        title: 'Banned Peers',
+        title: '0 Banned Peers',
         text: 'Last 24h',
         count: '0',
         dollor: false,

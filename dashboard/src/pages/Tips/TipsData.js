@@ -54,7 +54,7 @@ const icons = []
                                     <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title"><i className="mdi mdi-ethernet"></i> Ethernet or WiFi?</h4>
-                                        <p >
+                                        <p>
                                         A wired ethernet connection is generally considered to be more <b>reliable and faster</b> than a wireless connection such as WiFi. This is because wired connections are not subject to interference from other wireless devices or networks, and the signal is not subject to degradation over distance. Additionally, wired connections are typically faster than wireless connections, as they have a larger bandwidth and lower latency. This makes them more suitable for use in blockchain node server applications, where reliability and speed are important factors.
                                         </p>                                        
                                       </div>
@@ -65,10 +65,26 @@ const icons = []
                                     <div class="card">                                      
                                       <div class="card-body">
                                         <h4 class="card-title"><i className="mdi mdi-pickaxe"></i> UTXO Splitting - Increase your mining efficency</h4>
-                                        <p >
+                                        <p>
                                         Splitting UTXOs, or "unspent transaction outputs," can increase the chances of staking more coins in a Proof of Stake (PoS) blockchain because it allows for a greater number of smaller stakes to be made rather than a single large stake. This is because in PoS, the probability of validating a block is proportional to the stake held by the validator. By splitting UTXOs into smaller amounts, an individual can spread their stake across multiple smaller stakes, increasing their overall chances of being selected to validate a block and earn rewards. Additionally, if the stake is spread among multiple UTXOs, it becomes harder for an attacker to target and compromise a specific stake.
                                         </p>
                                         <p>You can split your UTXOs in your <Link to="/staking">staking page</Link>.</p>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="card">                                      
+                                      <div class="card-body">
+                                        <h4 class="card-title"><i className="bx bxs-terminal"></i> Change SSH default password</h4>
+                                        <p>
+                                          It's suggested to change the default password as soon as possible to secure your Revo blockchain node and protect your data. Remember that if you lose the new SSH password, you will need to fully reflash the node operating system to regain access. Here's an how to:
+                                        </p>
+                                        <ul>Open a terminal or command prompt on your local machine (Windows/Linux/Mac)</ul>
+                                        <ul>Use the <b>ssh</b> command to connect to the Revo node console. Default username is <i>revo</i> and the default password is <i>revo2023</i></ul>
+                                        <ul>Once logged in, use the <b>passwd</b> command to change the default password. You will be prompted to enter the current password, and then asked to enter a new password</ul>
+                                        <ul>After succesfully changing the password, use <b>exit</b> command to log out of the Revo node console.</ul>
+                                        <ul>To login again, use the new SSH password.</ul>
                                       </div>
                                     </div>
                                   </div> 
