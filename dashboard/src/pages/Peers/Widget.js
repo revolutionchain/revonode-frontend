@@ -153,17 +153,19 @@ useEffect(()=>{
     let totalTraffic = 0;
     let uploadTraffic = 0;
     let downloadTraffic = 0;
-    props.peersData.map(e => {
+    props.peersData.map((e,i) => {
         uploadTraffic = uploadTraffic + e.bytessent;
         downloadTraffic = downloadTraffic + e.bytesrecv;   
 
-        totalTraffic = totalTraffic + uploadTraffic + downloadTraffic;
         
         let target = peersCount.find(elem => elem?.name == e.subver.split("/")[1].split("(")[0]);
         if (target) {
             target.count = target.count + 1;
         } else {
             peersCount.push({ name: e.subver.split("/")[1].split("(")[0], count: 1 });
+        }
+        if(i == props.peersData.length - 1){            
+            totalTraffic = totalTraffic + uploadTraffic + downloadTraffic;
         }
     });
 
