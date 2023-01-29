@@ -80,11 +80,13 @@ const icons = []
                                         <p>
                                           It's suggested to change the default password as soon as possible to secure your Revo blockchain node and protect your data. Remember that if you lose the new SSH password, you will need to fully reflash the node operating system to regain access. Here's an how to:
                                         </p>
-                                        <ul>Open a terminal or command prompt on your local machine (Windows/Linux/Mac)</ul>
-                                        <ul>Use the <b>ssh</b> command to connect to the Revo node console. Default username is <i>revo</i> and the default password is <i>revo2023</i></ul>
-                                        <ul>Once logged in, use the <b>passwd</b> command to change the default password. You will be prompted to enter the current password, and then asked to enter a new password</ul>
-                                        <ul>After succesfully changing the password, use <b>exit</b> command to log out of the Revo node console.</ul>
-                                        <ul>To login again, use the new SSH password.</ul>
+                                        <p>
+                                        - Open a terminal or command prompt on your local machine (Windows/Linux/Mac)<br></br>
+                                        - Use the <b>ssh</b> command to connect to the Revo node console. Default username is <i>revo</i> and the default password is <i>revo2023</i><br></br>
+                                        - Once logged in, use the <b>passwd</b> command to change the default password. You will be prompted to enter the current password, and then asked to enter a new password<br></br>
+                                        - After succesfully changing the password, use <b>exit</b> command to log out of the Revo node console.<br></br>
+                                        - To login again, use the new SSH password.
+                                        </p>
                                       </div>
                                     </div>
                                   </div> 
