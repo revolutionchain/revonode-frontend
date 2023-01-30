@@ -101,7 +101,7 @@ const Blocks = props => {
             />
           }
           {/* import Widget */}
-          {nodeData && <Widget nodeData={nodeData} farAway={farAway} />}
+          {nodeData && lastestBlocks && <Widget nodeData={nodeData} farAway={farAway} lastestBlocks={lastestBlocks} />}
           {lastestBlocks && <BlocksData lastestBlocks={lastestBlocks} farAway={farAway} />}
 
         </Container>
