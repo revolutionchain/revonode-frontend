@@ -43,7 +43,7 @@ const widget = [
     {
         id: 4,
         title: 'Total Fees',
-        text: '0 avg',
+        text: '0  RVO avg',
         count: '0',
         dollor: false,
         icon: 'bx bx-money text-danger',
