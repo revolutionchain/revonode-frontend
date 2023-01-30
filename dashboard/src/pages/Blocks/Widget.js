@@ -159,7 +159,7 @@ function reloadAvgData(){
             let feesAvg = 0;
             let feesCount = 0;
             txHashesResponses.map((e, i)=>{
-                feesCount = feesCount + (e.fees);
+                feesCount = feesCount + parseInt(e.fees);
                 if(i == txHashesResponses.length-1){
                     feesAvg = (((feesCount) / 30) / 100000000).toFixed(9);
                     let widgetUpdate = widgetState;
