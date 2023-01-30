@@ -158,20 +158,24 @@ function reloadAvgData(){
                 return response.json();
             }
         }))).then(txHashesResponses => {
-            console.log(txHashesResponses);
             txHashesResponses.map((e, i)=>{
                 feesCount = feesCount + (e.fees / 100000000);
                 if(i == txHashesResponses.length-1){
                     feesAvg = feesCount / 30;
+                    let widgetUpdate = widgetState;
+                    widgetUpdate[3].text = feesAvg + " RVO avg";
+                    setWidgetState(widgetUpdate);
+                    reloadStates ? setReloadStates(false) : setReloadStates(true);
                 }
             });
         })
+    }else {
+        let widgetUpdate = widgetState;
+        widgetUpdate[3].text = feesAvg + " RVO avg";
+        setWidgetState(widgetUpdate);
+        reloadStates ? setReloadStates(false) : setReloadStates(true);
     }
 
-    let widgetUpdate = widgetState;
-    widgetUpdate[3].text = feesAvg + " RVO avg";
-    setWidgetState(widgetUpdate);
-    reloadStates ? setReloadStates(false) : setReloadStates(true);
 
 }
 
