@@ -127,8 +127,6 @@ function reloadAvgData(){
     })
     */
     
-    let feesAvg = 0;
-    let feesCount = 0;
     
     
     if(txHashes.length) {
@@ -158,6 +156,8 @@ function reloadAvgData(){
                 return response.json();
             }
         }))).then(txHashesResponses => {
+            let feesAvg = 0;
+            let feesCount = 0;
             txHashesResponses.map((e, i)=>{
                 feesCount = feesCount + (e.fees);
                 if(i == txHashesResponses.length-1){
@@ -170,6 +170,7 @@ function reloadAvgData(){
             });
         })
     }else {
+        let feesAvg = 0;
         let widgetUpdate = widgetState;
         widgetUpdate[3].text = feesAvg + " RVO avg";
         setWidgetState(widgetUpdate);
