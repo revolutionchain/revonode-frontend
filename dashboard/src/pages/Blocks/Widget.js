@@ -112,6 +112,8 @@ let totalTx = 0;
     
 })
 
+const [reloadStates, setReloadStates ] = useState(false);
+
 function reloadAvgData(){
 
     let txHashes = [];
@@ -164,6 +166,7 @@ function reloadAvgData(){
     let widgetUpdate = widget;
     widgetUpdate[4].text = feesAvg + " RVO avg";
     setWidgetState(widgetUpdate);
+    reloadStates ? setReloadStates(false) : setReloadStates(true);
 }
 
 (widget[4].text).includes("Loading") && reloadAvgData();
