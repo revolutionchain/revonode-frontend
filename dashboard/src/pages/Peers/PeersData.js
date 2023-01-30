@@ -55,7 +55,7 @@ setExternalPeersState(externalPeers);
               <tbody>{ externalPeersState && externalPeersState.map((e,i) => {
                 let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
                 
-                if(currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]){
+                if(currentPeerData?.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData?.addr).split(":")[0]){
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
