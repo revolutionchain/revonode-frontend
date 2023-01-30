@@ -134,7 +134,8 @@ function reloadAvgData(){
     if(txHashes.length) {
         Promise.all((txHashes.map(async (e,i) => {
             if(txHashes.length >= 10){
-                setTimeout(async () => {
+                const prom = new Promise((resolve, reject) => {
+                    setTimeout(async () => {
                     let response = await fetch(`https://api.revo.network/tx/${e}`, {
                         method: 'GET',
                         headers: {
@@ -144,6 +145,8 @@ function reloadAvgData(){
                       });
                     resolve(response.json());
                 }, 100);
+                  });
+                return prom                
             }else {                
                 let response = await fetch(`https://api.revo.network/tx/${e}`, {
                     method: 'GET',
@@ -155,6 +158,7 @@ function reloadAvgData(){
                 return response.json();
             }
         }))).then(txHashesResponses => {
+            console.log(txHashesResponses);
             txHashesResponses.map((e, i)=>{
                 feesCount = feesCount + (e.fees / 100000000);
                 if(i == txHashesResponses.length-1){
