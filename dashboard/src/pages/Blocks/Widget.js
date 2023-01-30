@@ -43,7 +43,7 @@ const widget = [
     {
         id: 4,
         title: 'Total Fees',
-        text: '0  RVO avg',
+        text: 'Loading RVO avg',
         count: '0',
         dollor: false,
         icon: 'bx bx-money text-danger',
@@ -91,14 +91,12 @@ useEffect(()=>{
             });
         })
     }
-    let totalBlockSize = 0;
-    let totalTx = 0;
-    (props.lastestBlocks).map(e => {
-        totalBlockSize = totalBlockSize + e.size;
-        if((e.tx).length > 2){
-            totalTx = totalTx + (e.tx).length - 2;
-        }
-    })
+
+    
+let totalBlockSize = 0;
+(props.lastestBlocks).map((e, i) => {
+    totalBlockSize = totalBlockSize + e.size;
+})
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     widget[2].count = props.lastestBlocks[0].size;
@@ -109,6 +107,64 @@ useEffect(()=>{
     setWidgetState(widget);   
     
 })
+
+function reloadAvgData(){
+
+    let totalTx = 0;
+    let txHashes = [];
+    
+    
+    (props.lastestBlocks).map((e, i) => {
+        if((e.tx).length > 2){
+            totalTx = totalTx + (e.tx).length - 2;
+            let currentTxs = (e.tx).slice(2) 
+            txHashes = [...txHashes, ...currentTxs];
+        }
+    })
+    
+    let feesAvg = 0;
+    let feesCount = 0;
+    
+    
+    if(txHashes.length) {
+        Promise.all((txHashes.map(async (e,i) => {
+            if(txHashes.length >= 10){
+                setTimeout(async () => {
+                    let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                        method: 'GET',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json',
+                        },
+                      });
+                    return response.json();
+                }, 100);
+            }else {                
+                let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                return response.json();
+            }
+        })).then(txHashesResponses => {
+            txHashesResponses.map((e, i)=>{
+                feesCount = feesCount + (e.fees / 100000000);
+                if(i == txHashesResponses.length-1){
+                    feesAvg = feesCount / 30;
+                }
+            });
+        }))
+    }
+
+    let widgetUpdate = widget;
+    widgetUpdate[4].text = feesAvg + " RVO avg";
+    setWidgetState(widgetUpdate);
+}
+
+(widget[4].text).includes("Loading") && reloadAvgData();
 
     return (
         <React.Fragment>
