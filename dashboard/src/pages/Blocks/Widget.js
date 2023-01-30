@@ -82,12 +82,11 @@ useEffect(()=>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-      })
+      }).then(data => data.json());
         }
     })).then(txResponses => {
         txResponses.map(e=>{
-            e.then(data => data.json())
-            .then(res => {
+            e.then(res => {
                 console.log(res)
             });    
         })
