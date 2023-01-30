@@ -544,7 +544,10 @@ function checkPeersData() {
         peersData = JSON.stringify(peersData)
         fs.writeFileSync('peers.json', peersData);        
       })
-      .catch(err => res.status(404).send('Error: api couldnt find ip location'));
+      .catch(err => {
+        console.log(err);
+        res.status(404).send('Error: api couldnt find ip location')
+      });
       break;
     } else {
     }
