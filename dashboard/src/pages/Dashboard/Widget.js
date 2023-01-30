@@ -85,9 +85,18 @@ const Widget = props => {
 
     
 useEffect(()=>{        
+    let totalBytesSent = 0;
+    let totalBytesRecv = 0;
+    (props.peersData).map(e=> {
+        totalBytesSent = totalBytesSent + e.bytessent;
+        totalBytesRecv = totalBytesRecv + e.bytesrecv;
+    })
+
     widget[0].count = props.nodeData[0].connections.total;
     widget[1].count = props.nodeData[1].totalbytessent;
+    widget[1].text = (totalBytesSent/1000000000).toFixed(3) + " GB Upload of all peers";
     widget[2].count = props.nodeData[1].totalbytesrecv;
+    widget[2].text = (totalBytesRecv/1000000000).toFixed(3) + " GB Download of all peers";
     widget[3].count = props.nodeData[2].length > 0 ? props.nodeData[2].length : "0";
     widget[4].count = props.nodeData[3].size;
     widget[5].count = props.nodeData[0].blocks;

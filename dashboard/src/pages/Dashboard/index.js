@@ -180,7 +180,7 @@ const Dashboard = props => {
             />
           }
           {/* import Widget */}
-          <Widget nodeData={nodeData} farAway={farAway} />
+          <Widget nodeData={nodeData} peersData={peersData} farAway={farAway} />
 
           <Row>
             <NodeInfo nodeData={nodeData} showUptime={showUptime} />
