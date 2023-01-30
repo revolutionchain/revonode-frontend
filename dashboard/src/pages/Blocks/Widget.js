@@ -116,7 +116,7 @@ const [reloadStates, setReloadStates ] = useState(false);
 
 function reloadAvgData(){
 
-    let txHashes = []
+    let txHashes = [];
     
     (props.lastestBlocks).map((e, i) => {
         if((e.tx).length > 2){
