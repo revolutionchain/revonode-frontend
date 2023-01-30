@@ -94,8 +94,12 @@ useEffect(()=>{
 
     
 let totalBlockSize = 0;
-(props.lastestBlocks).map((e, i) => {
+let totalTx = 0;
+(props.lastestBlocks).map(e => {
     totalBlockSize = totalBlockSize + e.size;
+    if((e.tx).length > 2){
+        totalTx = totalTx + (e.tx).length - 2;
+    }
 })
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
@@ -110,13 +114,11 @@ let totalBlockSize = 0;
 
 function reloadAvgData(){
 
-    let totalTx = 0;
     let txHashes = [];
     
     
     (props.lastestBlocks).map((e, i) => {
         if((e.tx).length > 2){
-            totalTx = totalTx + (e.tx).length - 2;
             let currentTxs = (e.tx).slice(2) 
             txHashes = [...txHashes, ...currentTxs];
         }
