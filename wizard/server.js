@@ -539,6 +539,7 @@ function checkPeersData() {
             peersIpData.push({ ...resultObj, addr: peersData[pos].addr })
           }
         })
+        .catch(err => res.status(404).send('Error: api couldnt find ip location'));
         peersIpData = JSON.stringify(peersIpData);
         fs.writeFileSync('peersIp.json', peersIpData);
         peersData = JSON.stringify(peersData)
