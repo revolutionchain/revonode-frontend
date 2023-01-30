@@ -92,16 +92,20 @@ useEffect(()=>{
         })
     }
     let totalBlockSize = 0;
+    let totalTx = 0;
     (props.lastestBlocks).map(e => {
         totalBlockSize = totalBlockSize + e.size;
+        if((e.tx).length > 2){
+            totalTx = totalTx + (e.tx).length - 2;
+        }
     })
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     widget[2].count = props.lastestBlocks[0].size;
     widget[2].text = (totalBlockSize / 30).toFixed(2) + " bytes avg";
     widget[3].count = totalFees;
-    //widget[4].count = ;
-    //widget[4].text = 
+    widget[4].count = (props.nodeData[10].tx).length > 2 ? (props.nodeData[10].tx).length - 2 : 0;
+    widget[4].text = (totalTx / 30).toFixed(2) + " KB avg. TX size"
     setWidgetState(widget);   
     
 })
