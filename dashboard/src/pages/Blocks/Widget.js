@@ -169,13 +169,13 @@ function reloadAvgData(){
     reloadStates ? setReloadStates(false) : setReloadStates(true);
 }
 
-(widgetState[3].text).includes("Loading") && reloadAvgData();
+widgetState && (widgetState[3]?.text).includes("Loading") && reloadAvgData();
 
     return (
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {widgetState.map((widget, key) => (
+                    {widgetState && widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
