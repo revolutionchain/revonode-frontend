@@ -74,25 +74,34 @@ const Widget = props => {
     
 useEffect(()=>{        
     //widget[0].count = "";
-    Promise.all((props.nodeData[10].tx).map(async (e,i) => {
-        if(i>0){
-            let response = await fetch(`https://api.revo.network/tx/${e}`, {
-                method: 'GET',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                },
-              });
-            return response.json();
-        }
-    })).then(txResponses => {
-        console.log(txResponses);
+    let totalFees = 0;
+    if((props.nodeData[10].tx).length > 2){
+        Promise.all((props.nodeData[10].tx).slice(2).map(async (e,i) => {
+                let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                return response.json();
+        })).then(txResponses => {
+            txResponses.map(e=>{
+                totalFees = totalFees + e.fees;
+            });
+        })
+    }
+    let totalBlockSize = 0;
+    (props.lastestBlocks).map(e => {
+        totalBlockSize = totalBlockSize + e.size;
     })
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     widget[2].count = props.lastestBlocks[0].size;
-    widget[3].count = "";
-    //widget[4].count = "";
+    widget[2].text = (totalBlockSize / 30) / 1000 + "KB avg. block size";
+    widget[3].count = totalFees;
+    //widget[4].count = ;
+    //widget[4].text = 
     setWidgetState(widget);   
     
 })
