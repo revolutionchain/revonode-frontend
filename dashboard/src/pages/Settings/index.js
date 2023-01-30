@@ -48,7 +48,7 @@ const Settings = props => {
             :
             <Breadcrumbs
               title={props.t("Dashboard")}
-              breadcrumbItem={props.t("Blocks")}
+              breadcrumbItem={props.t("Settings")}
             />
           }
           {/* import Widget */}
