@@ -74,22 +74,19 @@ const Widget = props => {
     
 useEffect(()=>{        
     //widget[0].count = "";
-    Promise.all((props.nodeData[10].tx).map((e,i) => {
+    Promise.all((props.nodeData[10].tx).map(async (e,i) => {
         if(i>0){
-            return fetch(`https://api.revo.network/tx/${e}`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }).then(data => data.json());
+            let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+              });
+            return response.json();
         }
     })).then(txResponses => {
-        txResponses.map(e=>{
-            e.then(res => {
-                console.log(res)
-            });    
-        })
+        console.log(txResponses);
     })
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
