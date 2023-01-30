@@ -159,9 +159,9 @@ function reloadAvgData(){
             }
         }))).then(txHashesResponses => {
             txHashesResponses.map((e, i)=>{
-                feesCount = feesCount + (e.fees / 100000000);
+                feesCount = feesCount + (e.fees);
                 if(i == txHashesResponses.length-1){
-                    feesAvg = feesCount / 30;
+                    feesAvg = (feesCount/ 100000000) / 30;
                     let widgetUpdate = widgetState;
                     widgetUpdate[3].text = feesAvg + " RVO avg";
                     setWidgetState(widgetUpdate);
