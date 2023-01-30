@@ -74,7 +74,7 @@ const Widget = props => {
     
 useEffect(()=>{        
     //widget[0].count = "";
-    Promise.all(props.nodeData[10].tx).map((e,i) => {
+    Promise.all((props.nodeData[10].tx).map((e,i) => {
         if(i>0){
             return fetch(`https://api.revo.network/tx/${e}`, {
         method: 'GET',
@@ -84,7 +84,7 @@ useEffect(()=>{
         },
       })
         }
-    }).then(txResponses => {
+    })).then(txResponses => {
         txResponses.map(e=>{
             e.then(data => data.json())
             .then(res => {
