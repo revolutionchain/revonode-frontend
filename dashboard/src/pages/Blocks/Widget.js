@@ -154,14 +154,14 @@ function reloadAvgData(){
                   });
                 return response.json();
             }
-        })).then(txHashesResponses => {
+        }))).then(txHashesResponses => {
             txHashesResponses.map((e, i)=>{
                 feesCount = feesCount + (e.fees / 100000000);
                 if(i == txHashesResponses.length-1){
                     feesAvg = feesCount / 30;
                 }
             });
-        }))
+        })
     }
 
     let widgetUpdate = widgetState;
