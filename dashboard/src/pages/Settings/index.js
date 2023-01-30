@@ -27,7 +27,7 @@ const Settings = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && <div className="page-content">
+      {<div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -61,7 +61,7 @@ const Settings = props => {
   );
 }
 
-Blocks.propTypes = {
+Settings.propTypes = {
   t: PropTypes.any
 }
 
