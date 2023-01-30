@@ -31,7 +31,7 @@ const widget = [
     {
         id: 3,
         title: 'Size',
-        text: '0 MB avg. block size',
+        text: '0 MB avg',
         count: '0',
         dollor: false,
         icon: 'mdi mdi-database text-primary',
@@ -43,7 +43,7 @@ const widget = [
     {
         id: 4,
         title: 'Total Fees',
-        text: '0 avg. fees per block',
+        text: '0 avg',
         count: '0',
         dollor: false,
         icon: 'bx bx-money text-danger',
@@ -87,7 +87,7 @@ useEffect(()=>{
                 return response.json();
         })).then(txResponses => {
             txResponses.map(e=>{
-                totalFees = totalFees + e.fees;
+                totalFees = totalFees + (e.fees / 100000000);
             });
         })
     }
@@ -98,7 +98,7 @@ useEffect(()=>{
     widget[1].count = props.nodeData[0].blocks;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     widget[2].count = props.lastestBlocks[0].size;
-    widget[2].text = (totalBlockSize / 30).toFixed(2) + " Bytes avg. block size";
+    widget[2].text = (totalBlockSize / 30).toFixed(2) + " bytes avg";
     widget[3].count = totalFees;
     //widget[4].count = ;
     //widget[4].text = 
