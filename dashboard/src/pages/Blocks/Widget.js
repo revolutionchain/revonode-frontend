@@ -142,7 +142,7 @@ function reloadAvgData(){
                           'Content-Type': 'application/json',
                         },
                       });
-                    return response.json();
+                    resolve(response.json());
                 }, 100);
             }else {                
                 let response = await fetch(`https://api.revo.network/tx/${e}`, {
