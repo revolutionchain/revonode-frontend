@@ -163,19 +163,19 @@ function reloadAvgData(){
         }))
     }
 
-    let widgetUpdate = widget;
+    let widgetUpdate = widgetState;
     widgetUpdate[3].text = feesAvg + " RVO avg";
     setWidgetState(widgetUpdate);
     reloadStates ? setReloadStates(false) : setReloadStates(true);
 }
 
-(widget[3].text).includes("Loading") && reloadAvgData();
+(widgetState[3].text).includes("Loading") && reloadAvgData();
 
     return (
         <React.Fragment>
             <Row>                
                     <Col md={6} xl={12} className="d-flex">
-                    {widget.map((widget, key) => (
+                    {widgetState.map((widget, key) => (
                         <Col xl={2} key={key}>
                         <Card>
                             <CardBody>{/*
