@@ -29,6 +29,10 @@ import Wallet from "../pages/Wallet/index"
 // Wallet
 import Tips from "../pages/Tips/index"
 
+// Settings
+import Settings from "../pages/Settings/index"
+
+
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
 
@@ -41,6 +45,8 @@ const userRoutes = [
   { path: "/wallet", component: Wallet },
 
   { path: "/tips", component: Tips },
+  
+  { path: "/settings", component: Settings },
 
   // //profile
   { path: "/profile", component: UserProfile },
