@@ -168,7 +168,8 @@ const UserProfile = props => {
           <Card>
             <CardBody>
               <div class="col-12">
-                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4> 
+                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4>
+                <p>Use this form to change your dashboard login email</p> 
                   <div class="card">                                     
                     <div class="card-body">
                     <AvForm
@@ -202,7 +203,8 @@ const UserProfile = props => {
           <Card>
             <CardBody>
               <div class="col-12">
-                <h4 class="card-title"><i className="bx bx-check-shield"></i> Change your password</h4> 
+                <h4 class="card-title"><i className="bx bx-check-shield"></i> Change your password</h4>
+                <p>Use this form to change your dashboard login password</p>  
                   <div class="card">                                     
                     <div class="card-body">
                     <AvForm
@@ -214,10 +216,10 @@ const UserProfile = props => {
                       <div className="form-group">
                       <AvField
                           name="oldpass"
-                          label="Old Password"
+                          label="Current Password"
                           onChange={e => handlePassInput(e)}
                           className="form-control"
-                          placeholder="Enter Password"
+                          placeholder="Enter current Password"
                           type="password"
                           required
                         />
@@ -226,7 +228,7 @@ const UserProfile = props => {
                           label="Password"
                           onChange={e => handlePassInput(e)}
                           className="form-control"
-                          placeholder="Enter Password"
+                          placeholder="Enter new Password"
                           type="password"
                           required
                         />
@@ -235,7 +237,7 @@ const UserProfile = props => {
                           label="Password"
                           onChange={e => handlePassInput(e)}
                           className="form-control"
-                          placeholder="Re Write Password"
+                          placeholder="Enter new Password again"
                           type="password"
                           required
                         />
