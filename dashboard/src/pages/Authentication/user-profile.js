@@ -10,6 +10,8 @@ import {
   Alert,
   CardBody,
   Button,
+  Modal,
+  SweetAlert
 } from "reactstrap"
 
 // availity-reactstrap-validation
@@ -146,6 +148,8 @@ const UserProfile = props => {
   const [confirm_alert, setconfirm_alert] = useState(false)
   //const [success_msg, setsuccess_msg] = useState(false)
   const [success_dlg, setsuccess_dlg] = useState(false)
+  const [dynamic_title, setdynamic_title] = useState("")
+  const [dynamic_description, setdynamic_description] = useState("")
 
 
   return (
