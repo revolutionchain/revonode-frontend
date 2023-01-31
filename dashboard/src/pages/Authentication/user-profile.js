@@ -28,6 +28,9 @@ import { editProfile, resetProfileFlag } from "../../store/actions"
 
 
 const UserProfile = props => {
+
+  const isLogged = useSelector(state => state.Login.isLogged);
+
   const [email, setemail] = useState("")
   const [name, setname] = useState("")
   const [idx, setidx] = useState(1)
@@ -37,6 +40,11 @@ const UserProfile = props => {
 
   
   useEffect(() => {
+
+    if (!isLogged) {
+      props.history.push('/login');
+    }
+
     if (localStorage.getItem("authUser")) {
       const obj = JSON.parse(localStorage.getItem("authUser"))
       if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
