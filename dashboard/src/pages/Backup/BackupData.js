@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
-const SettingsDataWidget = props => {
+const BackupDataWidget = props => {
 
     
 useEffect(()=>{        
@@ -18,8 +18,8 @@ useEffect(()=>{
                   <Card>
                     <CardBody>
                       <div class="col-12">
-                        <h4 class="card-title"><i className="bx bx-wifi"></i>Node WiFi Settings</h4>
-                        <p>Use this form to change your WiFi settings</p> 
+                        <h4 class="card-title"><i className="bx bx-save"></i>Backup your Node</h4>
+                        <p>Backup your node</p> 
                           <div class="card">                                     
                             <div class="card-body">
                             
@@ -36,4 +36,4 @@ useEffect(()=>{
     );
 }
 
-export default SettingsDataWidget;
+export default BackupDataWidget;

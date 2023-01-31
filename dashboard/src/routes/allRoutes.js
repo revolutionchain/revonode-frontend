@@ -32,6 +32,12 @@ import Tips from "../pages/Tips/index"
 // Settings
 import Settings from "../pages/Settings/index"
 
+// Backup
+import Backup from "../pages/Backup/index"
+
+// Update
+import Update from "../pages/Update/index"
+
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -47,6 +53,10 @@ const userRoutes = [
   { path: "/tips", component: Tips },
   
   { path: "/settings", component: Settings },
+
+  { path: "/backup", component: Backup },
+
+  { path: "/update", component: Update },
 
   // //profile
   { path: "/profile", component: UserProfile },

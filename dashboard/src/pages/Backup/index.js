@@ -12,7 +12,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 import { withTranslation } from "react-i18next";
 
 import { useSelector } from 'react-redux';
-import SettingsData from './SettingsData';
+import BackupData from './BackupData';
 
 
 const Settings = props => {
@@ -49,11 +49,11 @@ const Settings = props => {
             :
             <Breadcrumbs
               title={props.t("Dashboard")}
-              breadcrumbItem={props.t("Settings")}
+              breadcrumbItem={props.t("Backup")}
             />
           }
           {/* import Widget */}
-          {<SettingsData  />}
+          {<BackupData  />}
 
         </Container>
       </div>
