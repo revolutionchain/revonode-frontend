@@ -128,6 +128,8 @@ const UserProfile = props => {
       body: JSON.stringify(value)
     }).then(data => data.text())
       .then(res => {  
+        let titleRes;
+        let descriptionRes;
         if(res && value.type == "user"){
           titleRes = "Modified"
           descriptionRes = "Your email has been changed."
