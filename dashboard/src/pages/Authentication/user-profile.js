@@ -2,6 +2,10 @@ import PropTypes from 'prop-types'
 import MetaTags from 'react-meta-tags';
 import React, { useState, useEffect } from "react"
 import { useSelector } from 'react-redux';
+
+import SweetAlert from "react-bootstrap-sweetalert"
+
+
 import {
   Container,
   Row,
@@ -71,6 +75,10 @@ const UserProfile = props => {
     props.editProfile(values)
   }
 
+  function tog_standard() {
+    setSubscribemodal(!setSubscribemodal)
+  }
+  
 
   const [messageModal, setMessageModal] = useState(false)
 
