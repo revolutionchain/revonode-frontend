@@ -105,12 +105,12 @@ const UserProfile = props => {
     if (value.type == "user" && (!value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.'))) {
       setErrorMsg({ errorTitle: "Email error!", solution: "You must write an email!"});
       return setMessageModal(true);
-    } else if (value.user.includes(' ')) {
+    } else if (value.type == "user" && value?.user?.includes(' ')) {
       setErrorMsg({errorTitle: "Email error!", solution: "You entered an invalid character!"});
       return setMessageModal(true);
     }
 
-    if(value.type == "pass" && !value.pass){
+    if(value.type == "pass" && !value?.pass){
       setErrorMsg({errorTitle: "Password error!", solution: "You must enter a Password!"});
       return setMessageModal(true);
     }
