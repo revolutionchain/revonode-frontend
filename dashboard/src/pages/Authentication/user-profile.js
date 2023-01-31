@@ -75,7 +75,7 @@ const UserProfile = props => {
   }
 
   function tog_standard() {
-    setSubscribemodal(!setSubscribemodal)
+    setMessageModal(!setSubscribemodal)
   }
   
 
