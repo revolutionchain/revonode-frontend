@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import MetaTags from 'react-meta-tags';
 import React, { useState, useEffect } from "react"
 import { useSelector } from 'react-redux';
+import SweetAlert from "react-bootstrap-sweetalert"
 import {
   Container,
   Row,
@@ -10,8 +11,7 @@ import {
   Alert,
   CardBody,
   Button,
-  Modal,
-  SweetAlert
+  Modal,  
 } from "reactstrap"
 
 // availity-reactstrap-validation
