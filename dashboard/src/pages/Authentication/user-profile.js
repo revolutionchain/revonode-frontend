@@ -102,25 +102,39 @@ const UserProfile = props => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const handleButton = (value) => {
+    let titleRes;
+    let descriptionRes;
     if (value.type == "user" && (!value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.'))) {
-      setErrorMsg({ errorTitle: "Email error!", solution: "You must write an email!"});
+      titleRes = "Email error!"
+      descriptionRes = "You must write an email!"
       setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     } else if (value.type == "user" && value?.user?.includes(' ')) {
-      setErrorMsg({errorTitle: "Email error!", solution: "You entered an invalid character!"});
+      titleRes = "Email error!"
+      descriptionRes = "You entered an invalid character!"
       setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     }
 
     if(value.type == "pass" && !value?.pass){
-      setErrorMsg({errorTitle: "Password error!", solution: "You must enter a Password!"});
+      titleRes = "Password error!"
+      descriptionRes = "You must enter a Password!"
       setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     }
 
     if (value?.pass && value?.pass !== value?.rePass) {
-      setErrorMsg({errorTitle: "Password error!", solution: "Passwords don't match!"});
+      titleRes = "Password error!"
+      descriptionRes = "Passwords don't match!"
       setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     }
     fetch(`http://${window.location.hostname}:3001/modifyprofile`, {
@@ -132,8 +146,6 @@ const UserProfile = props => {
       body: JSON.stringify(value)
     }).then(data => data.text())
       .then(res => {  
-        let titleRes;
-        let descriptionRes;
         if(res && value.type == "user"){
           titleRes = "Modified"
           descriptionRes = "Your email has been changed."
