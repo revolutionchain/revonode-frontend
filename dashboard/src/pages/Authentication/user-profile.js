@@ -65,12 +65,16 @@ const UserProfile = props => {
 
   
 
-  const [userData, setUserData] = useState({
+  const [userEmail, setUserEmail] = useState({
     user: "",
+  })
+
+
+
+  const [userPass, setUserPass] = useState({
     pass: "",
     rePass: ""
   })
-
 
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -78,12 +82,12 @@ const UserProfile = props => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const handleButton = (value) => {
-    if (!value.user || !value.user.includes('@') || !value.user.split('@')[1].includes('.')) {
+    if (!value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.')) {
       setErrorMsg("You must write your email!");
     } else if (value.user.includes(' ')) {
       setErrorMsg("you entered an invalid character!");
     }
-    if (value.pass && value.pass !== value.rePass) {
+    if (value?.pass && value?.pass !== value?.rePass) {
       setErrorMsg("Passwords don't match!");
     }
     fetch(`http://${window.location.hostname}:3001/modifyprofile`, {
@@ -102,13 +106,21 @@ const UserProfile = props => {
   }
 
 
-  const handleInputs = (e) => {
-    setUserData({
-      ...userData,
+  const handleEmailInput = (e) => {
+    setUserEmail({
+      ...userEmail,
       [e.target.name]: e.target.value
     })
   }
 
+
+
+  const handlePassInput = (e) => {
+    setUserPass({
+      ...userPass,
+      [e.target.name]: e.target.value
+    })
+  }
 
 
   return (
@@ -191,14 +203,14 @@ const UserProfile = props => {
     <AvForm
       className="form-horizontal"
       onValidSubmit={() => {
-        handleButton(userData)
+        handleButton(userEmail)
       }}
     >
       <div className="form-group">
         <AvField
           name="user"
           label="Email"
-          onChange={e => handleInputs(e)}
+          onChange={e => handleEmailInput(e)}
           className="form-control"
           placeholder="Enter Email"
           type="text"
@@ -209,6 +221,45 @@ const UserProfile = props => {
       <div className="text-center mt-4">
         <Button type="submit" color="danger">
           Edit Email
+        </Button>
+      </div>
+    </AvForm>
+  </CardBody>
+</Card>
+<h4 className="card-title mb-4">Change Password</h4>
+
+<Card>
+  <CardBody>
+    <AvForm
+      className="form-horizontal"
+      onValidSubmit={() => {
+        handleButton(userPass)
+      }}
+    >
+      <div className="form-group">
+        <AvField
+          name="pass"
+          label="Password"
+          onChange={e => handlePassInput(e)}
+          className="form-control"
+          placeholder="Enter Password"
+          type="password"
+          required
+        />
+        <AvField
+          name="rePass"
+          label="Password"
+          onChange={e => handlePassInput(e)}
+          className="form-control"
+          placeholder="Re Write Password"
+          type="password"
+          required
+        />
+        <AvField name="idx" value={idx} type="hidden" />
+      </div>
+      <div className="text-center mt-4">
+        <Button type="submit" color="danger">
+          Edit Password
         </Button>
       </div>
     </AvForm>
