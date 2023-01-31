@@ -58,25 +58,23 @@ const ProfileMenu = props => {
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block"/>
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-          <DropdownItem>
-            <Link to="/profile">
-              {" "}
-              <i className="bx bx-user font-size-16 align-middle me-1"/>
-              {props.t("Profile")}{" "}
-            </Link>
-          </DropdownItem>
-          <DropdownItem tag="a" href="/settings">            
+        <Link to="/profile"><DropdownItem>
+            {" "}
+            <i className="bx bx-user font-size-16 align-middle me-1"/>
+            {props.t("Profile")}{" "}
+          </DropdownItem></Link>
+          <Link to="/settings"><DropdownItem>          
             <i className="bx bx-wrench font-size-16 align-middle me-1"/>
             {props.t("Settings")}
-          </DropdownItem>
-          <DropdownItem tag="a" href="/backup">            
+          </DropdownItem></Link>
+          <Link to="/backup"><DropdownItem>            
             <i className="bx bx-save font-size-16 align-middle me-1"/>
             {props.t("Backup")}
-          </DropdownItem>
-          <DropdownItem tag="a" href="/update">            
+          </DropdownItem></Link>
+          <Link to="/update"><DropdownItem>          
             <i className="bx bx bx-planet font-size-16 align-middle me-1"/>
             {props.t("Update")}
-          </DropdownItem>
+          </DropdownItem></Link>
           <div className="dropdown-divider"/>
           <Link to="/logout" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger"/>
