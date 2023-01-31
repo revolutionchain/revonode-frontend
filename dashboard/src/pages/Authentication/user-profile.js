@@ -139,7 +139,7 @@ const UserProfile = props => {
       return seterror_dlg(true)
     }
 
-    if (value?.pass && value?.pass !== value?.rePass) {
+    if (value?.pass !== value?.rePass) {
       titleRes = "Password error!"
       descriptionRes = "Passwords don't match!"
       setconfirm_alert(false);
