@@ -189,7 +189,7 @@ const UserProfile = props => {
                         />
                             <AvField name="idx" value={idx} type="hidden" />
                             </div>
-                          <div className="text-center mt-4">
+                          <div className="text-right mt-4">
                         <Button type="submit" color="success">Save</Button>
                       </div>
                     </AvForm>
@@ -241,7 +241,7 @@ const UserProfile = props => {
                         />
                         <AvField name="idx" value={idx} type="hidden" />
                       </div>
-                      <div className="text-center mt-4">
+                      <div className="text-right mt-4">
                         <Button type="submit" color="success">
                           Modify Password
                         </Button>
