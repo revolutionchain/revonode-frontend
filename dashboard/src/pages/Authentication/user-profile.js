@@ -102,7 +102,7 @@ const UserProfile = props => {
   const [successMsg, setSuccessMsg] = useState("");
 
   const handleButton = (value) => {
-    if (value.type == "user" &&  !value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.')) {
+    if (value.type == "user" && (!value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.'))) {
       setErrorMsg({ errorTitle: "Email error!", solution: "You must write an email!"});
       return setMessageModal(true);
     } else if (value.user.includes(' ')) {
