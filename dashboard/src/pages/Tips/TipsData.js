@@ -17,13 +17,11 @@ const icons = []
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                            <Card>
-                                <CardBody>
+                            <Card>                                
                                   <div class="col-12">
                                     <div class="card">
                                     <h4 class="card-title"><i className="bx bx-wallet"></i> Backup your wallet!</h4>
                                       <div class="card-body">
-                                        <h4 class="card-title"><i className="bx bx-wallet"></i> Backup your wallet!</h4>
                                         <p>
                                         Backing up your Revo blockchain wallet is essential because it allows you to <b>restore your wallet</b> in case of any issues or hardware failures. <br></br>
                                         The backup file, named <b>wallet.dat</b>, contains all of the information needed to access your funds and transactions on the Revo network. Your file is encrypted with the wallet password you choosed during the node installation wizard. Without the password, you will not be able to access your funds.
@@ -33,8 +31,7 @@ const icons = []
                                         <Link to="/backup">Backup my wallet!</Link>              
                                       </div>
                                     </div>
-                                  </div>
-                                </CardBody>
+                                  </div>                                
                             </Card>      
                             <Card>
                                 <CardBody>    
