@@ -128,7 +128,18 @@ const UserProfile = props => {
       body: JSON.stringify(value)
     }).then(data => data.text())
       .then(res => {  
-        console.log(res);
+        if(res && value.type == "user"){
+          titleRes = "Modified"
+          descriptionRes = "Your email has been changed."
+        }else if(res && value.type == "pass"){
+          titleRes = "Modified"
+          descriptionRes = "Your password has been changed."
+        }
+        
+        setconfirm_alert(false);
+        setsuccess_dlg(true);
+        setdynamic_title(titleRes);
+        setdynamic_description(descriptionRes);
       });{/*
     setSuccessMsg("Registration succesfully! You'll be now redirected to login");
     openModal();*/}
@@ -174,7 +185,8 @@ const UserProfile = props => {
                             success
                             title={dynamic_title}
                             onConfirm={() => {
-                                setsuccess_dlg(false)
+                                {/*setsuccess_dlg(false)*/}
+                                props.history.push('/login');
                             }}
                         >
                             {dynamic_description}
@@ -285,7 +297,7 @@ const UserProfile = props => {
                         />
                         <AvField
                           name="pass"
-                          label="Password"
+                          label="New Password"
                           onChange={e => handlePassInput(e)}
                           className="form-control"
                           placeholder="Enter new Password"
@@ -294,7 +306,7 @@ const UserProfile = props => {
                         />
                         <AvField
                           name="rePass"
-                          label="Password"
+                          label="Repeat new Password"
                           onChange={e => handlePassInput(e)}
                           className="form-control"
                           placeholder="Enter new Password again"
@@ -318,7 +330,7 @@ const UserProfile = props => {
                                             }}
                                             id="sa-success"
                                         >
-                                            Click me
+                                            Modify Password
                     </Button>
                                     </div>
                                     {confirm_alert ? (
@@ -330,15 +342,11 @@ const UserProfile = props => {
                                             confirmBtnBsStyle="success"
                                             cancelBtnBsStyle="danger"
                                             onConfirm={() => {
-                                                setconfirm_alert(false)
-                                                setsuccess_dlg(true)
-                                                setdynamic_title("Deleted")
-                                                setdynamic_description("Your file has been deleted.")
                                                 handleButton(userPass)
                                             }}
                                             onCancel={() => setconfirm_alert(false)}
                                         >
-                                            You won't be able to revert this!
+                                            Your password will be changed!
                                         </SweetAlert>
                                     ) : null}
                                 </Col>
