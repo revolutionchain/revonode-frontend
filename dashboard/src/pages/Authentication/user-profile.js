@@ -157,6 +157,7 @@ const UserProfile = props => {
   const [success_dlg, setsuccess_dlg] = useState(false)
   const [dynamic_title, setdynamic_title] = useState("")
   const [dynamic_description, setdynamic_description] = useState("")
+  const [error_dlg, seterror_dlg] = useState(false)
 
 
   return (
