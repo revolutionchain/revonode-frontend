@@ -168,6 +168,29 @@ const UserProfile = props => {
         <Container fluid>
           {/* Render Breadcrumb */}
           <Breadcrumb title="Samply" breadcrumbItem="Profile" />
+                    {success_dlg ? (
+                        <SweetAlert
+                            success
+                            title={dynamic_title}
+                            onConfirm={() => {
+                                setsuccess_dlg(false)
+                            }}
+                        >
+                            {dynamic_description}
+                        </SweetAlert>
+                    ) : null}
+
+                    {error_dlg ? (
+                        <SweetAlert
+                            error
+                            title={dynamic_title}
+                            onConfirm={() => {
+                                seterror_dlg(false)
+                            }}
+                        >
+                            {dynamic_description}
+                        </SweetAlert>
+                    ) : null}
 
           <Row>
             <Col lg="12">
