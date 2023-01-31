@@ -546,7 +546,7 @@ function checkPeersData() {
         let peersIpData = [];
         axiosResults.map((result, pos) => {
           if(result?.data){
-            let resultObj = result.data;
+            let resultObj = result?.data;
             peersIpData.push({ ...resultObj, addr: peersData[pos].addr })
           }
         })
@@ -557,7 +557,7 @@ function checkPeersData() {
       })
       .catch(err => {
         console.log(err);
-        res.status(404).send('Error: api couldnt find ip location')
+        err.status(404).send('Error: api couldnt find ip location')
       });
       break;
     } else {
