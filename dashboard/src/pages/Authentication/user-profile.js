@@ -85,7 +85,7 @@ const UserProfile = props => {
     if (!value?.user || !value?.user?.includes('@') || !value?.user?.split('@')[1]?.includes('.')) {
       setErrorMsg("You must write your email!");
     } else if (value.user.includes(' ')) {
-      setErrorMsg("you entered an invalid character!");
+      setErrorMsg("You entered an invalid character!");
     }
     if (value?.pass && value?.pass !== value?.rePass) {
       setErrorMsg("Passwords don't match!");
@@ -165,112 +165,93 @@ const UserProfile = props => {
             </Col>
           </Row>
 
-          <h4 className="card-title mb-4">Change User Name</h4>
-
           <Card>
             <CardBody>
-              <AvForm
-                className="form-horizontal"
-                onValidSubmit={(e, v) => {
-                  handleValidSubmit(e, v)
-                }}
-              >
-                <div className="form-group">
-                  <AvField
-                    name="username"
-                    label="User Name"
-                    value={name}
-                    className="form-control"
-                    placeholder="Enter User Name"
-                    type="text"
-                    required
-                  />
-                  <AvField name="idx" value={idx} type="hidden" />
+              <div class="col-12">
+                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4> 
+                  <div class="card">                                     
+                    <div class="card-body">
+                    <AvForm
+                      className="form-horizontal"
+                      onValidSubmit={() => {
+                          handleButton(userEmail)
+                          }}
+                    >
+                    <div className="form-group">
+                      <AvField
+                              name="user"
+                              label="Email"
+                              onChange={e => handleEmailInput(e)}
+                              className="form-control"
+                              placeholder="Enter Email"
+                              type="text"
+                              required
+                        />
+                            <AvField name="idx" value={idx} type="hidden" />
+                            </div>
+                          <div className="text-center mt-4">
+                        <Button type="submit" color="success">Save</Button>
+                      </div>
+                    </AvForm>
+                  </div>
                 </div>
-                <div className="text-center mt-4">
-                  <Button type="submit" color="danger">
-                    Edit User Name
-                  </Button>
-                </div>
-              </AvForm>
+              </div> 
             </CardBody>
           </Card>
 
-                              <Card>
-                                <CardBody>
-                                  <div class="col-12">
-                                    <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4> 
-                                    <div class="card">                                     
-                                      <div class="card-body">
-                                      <AvForm
-                                        className="form-horizontal"
-                                        onValidSubmit={() => {
-                                          handleButton(userEmail)
-                                        }}
-                                      >
-                                        <div className="form-group">
-                                          <AvField
-                                            name="user"
-                                            label="Email"
-                                            onChange={e => handleEmailInput(e)}
-                                            className="form-control"
-                                            placeholder="Enter Email"
-                                            type="text"
-                                            required
-                                          />
-                                          <AvField name="idx" value={idx} type="hidden" />
-                                        </div>
-                                        <div className="text-center mt-4">
-                                          <Button type="submit" color="danger">
-                                            Edit Email
-                                          </Button>
-                                        </div>
-                                      </AvForm>
-                                      </div>
-                                    </div>
-                                  </div> 
-                                </CardBody>
-                              </Card>
-
-<h4 className="card-title mb-4">Change Password</h4>
-
-<Card>
-  <CardBody>
-    <AvForm
-      className="form-horizontal"
-      onValidSubmit={() => {
-        handleButton(userPass)
-      }}
-    >
-      <div className="form-group">
-        <AvField
-          name="pass"
-          label="Password"
-          onChange={e => handlePassInput(e)}
-          className="form-control"
-          placeholder="Enter Password"
-          type="password"
-          required
-        />
-        <AvField
-          name="rePass"
-          label="Password"
-          onChange={e => handlePassInput(e)}
-          className="form-control"
-          placeholder="Re Write Password"
-          type="password"
-          required
-        />
-        <AvField name="idx" value={idx} type="hidden" />
-      </div>
-      <div className="text-center mt-4">
-        <Button type="submit" color="danger">
-          Edit Password
-        </Button>
-      </div>
-    </AvForm>
-  </CardBody>
-</Card>
+          <Card>
+            <CardBody>
+              <div class="col-12">
+                <h4 class="card-title"><i className="bx bx-check-shield"></i> Change your password</h4> 
+                  <div class="card">                                     
+                    <div class="card-body">
+                    <AvForm
+                      className="form-horizontal"
+                      onValidSubmit={() => {
+                        handleButton(userPass)
+                      }}
+                    >
+                      <div className="form-group">
+                      <AvField
+                          name="oldpass"
+                          label="Old Password"
+                          onChange={e => handlePassInput(e)}
+                          className="form-control"
+                          placeholder="Enter Password"
+                          type="password"
+                          required
+                        />
+                        <AvField
+                          name="pass"
+                          label="Password"
+                          onChange={e => handlePassInput(e)}
+                          className="form-control"
+                          placeholder="Enter Password"
+                          type="password"
+                          required
+                        />
+                        <AvField
+                          name="rePass"
+                          label="Password"
+                          onChange={e => handlePassInput(e)}
+                          className="form-control"
+                          placeholder="Re Write Password"
+                          type="password"
+                          required
+                        />
+                        <AvField name="idx" value={idx} type="hidden" />
+                      </div>
+                      <div className="text-center mt-4">
+                        <Button type="submit" color="success">
+                          Modify Password
+                        </Button>
+                      </div>
+                    </AvForm>
+                  </div>
+                </div>
+              </div> 
+            </CardBody>
+          </Card>
         </Container>
       </div>
     </React.Fragment>
