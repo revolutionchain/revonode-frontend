@@ -21,6 +21,7 @@ const icons = []
                                 <CardBody>
                                   <div class="col-12">
                                     <div class="card">
+                                    <h4 class="card-title"><i className="bx bx-wallet"></i> Backup your wallet!</h4>
                                       <div class="card-body">
                                         <h4 class="card-title"><i className="bx bx-wallet"></i> Backup your wallet!</h4>
                                         <p>
@@ -52,7 +53,10 @@ const icons = []
                                       </div>                                      
                                     </div>
                                   </div>
-
+                                  </CardBody>
+                            </Card>      
+                            <Card>
+                                <CardBody>
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
@@ -63,7 +67,10 @@ const icons = []
                                       </div>
                                     </div>
                                   </div>
-
+                                  </CardBody>
+                            </Card>      
+                            <Card>
+                                <CardBody>
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
@@ -75,7 +82,10 @@ const icons = []
                                       </div>
                                     </div>
                                   </div>
-
+                                  </CardBody>
+                            </Card>      
+                            <Card>
+                                <CardBody>
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
@@ -93,7 +103,6 @@ const icons = []
                                       </div>
                                     </div>
                                   </div> 
-
                                 </CardBody>
                               </Card>
                         </Col>
