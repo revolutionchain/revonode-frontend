@@ -25,12 +25,16 @@ import avatar from "../../assets/images/users/avatar-1.jpg"
 // actions
 import { editProfile, resetProfileFlag } from "../../store/actions"
 
+
 const UserProfile = props => {
   const [email, setemail] = useState("")
   const [name, setname] = useState("")
   const [idx, setidx] = useState(1)
   const { resetProfileFlag } = props;
 
+  const typedMail = useSelector(state => state.Login.userTyped.user);
+
+  
   useEffect(() => {
     if (localStorage.getItem("authUser")) {
       const obj = JSON.parse(localStorage.getItem("authUser"))
@@ -43,7 +47,7 @@ const UserProfile = props => {
         process.env.REACT_APP_DEFAULTAUTH === "jwt"
       ) {
         setname(obj.username)
-        setemail(obj.email)
+        setemail(typedMail)
         setidx(obj.uid)
       }
       setTimeout(() => {
@@ -55,6 +59,56 @@ const UserProfile = props => {
   function handleValidSubmit(event, values) {
     props.editProfile(values)
   }
+
+
+
+  
+
+  const [userData, setUserData] = useState({
+    user: "",
+    pass: "",
+    rePass: ""
+  })
+
+
+
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const handleButton = (value) => {
+    if (!value.user || !value.user.includes('@') || !value.user.split('@')[1].includes('.')) {
+      setErrorMsg("You must write your email!");
+    } else if (value.user.includes(' ')) {
+      setErrorMsg("you entered an invalid character!");
+    }
+    if (value.pass && value.pass !== value.rePass) {
+      setErrorMsg("Passwords don't match!");
+    }
+    fetch(`http://${window.location.hostname}:3001/modifyprofile`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(value)
+    }).then(data => data.text())
+      .then(res => {  
+        console.log(res);
+      });{/*
+    setSuccessMsg("Registration succesfully! You'll be now redirected to login");
+    openModal();*/}
+  }
+
+
+  const handleInputs = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
 
   return (
     <React.Fragment>
@@ -89,7 +143,7 @@ const UserProfile = props => {
                       <div className="text-muted">
                         <h5>{name}</h5>
                         <p className="mb-1">{email}</p>
-                        <p className="mb-0">Id no: #{idx}</p>
+                        {/*<p className="mb-0">Id no: #{idx}</p>*/}
                       </div>
                     </div>
                   </div>
@@ -128,6 +182,37 @@ const UserProfile = props => {
               </AvForm>
             </CardBody>
           </Card>
+
+<h4 className="card-title mb-4">Change Email</h4>
+
+<Card>
+  <CardBody>
+    <AvForm
+      className="form-horizontal"
+      onValidSubmit={() => {
+        handleButton(userData)
+      }}
+    >
+      <div className="form-group">
+        <AvField
+          name="user"
+          label="Email"
+          onChange={e => handleInputs(e)}
+          className="form-control"
+          placeholder="Enter Email"
+          type="text"
+          required
+        />
+        <AvField name="idx" value={idx} type="hidden" />
+      </div>
+      <div className="text-center mt-4">
+        <Button type="submit" color="danger">
+          Edit Email
+        </Button>
+      </div>
+    </AvForm>
+  </CardBody>
+</Card>
         </Container>
       </div>
     </React.Fragment>

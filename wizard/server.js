@@ -174,6 +174,17 @@ app.post('/register', (req, res) => {
   }
 })
 
+app.post('/modifyprofile', (req, res) => {
+  const { user, pass } = req.body;
+  if (user) {
+    setEnvValue('DASHBOARD_USER', user);
+    res.send(true)
+  }
+  if(pass){
+    setEnvValue('DASHBOARD_PASS', pass);
+    res.send(true)
+  }
+})
 
 app.get('/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
