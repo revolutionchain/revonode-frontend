@@ -196,36 +196,42 @@ const UserProfile = props => {
             </CardBody>
           </Card>
 
-<h4 className="card-title mb-4">Change Email</h4>
+                              <Card>
+                                <CardBody>
+                                  <div class="col-12">
+                                    <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4> 
+                                    <div class="card">                                     
+                                      <div class="card-body">
+                                      <AvForm
+                                        className="form-horizontal"
+                                        onValidSubmit={() => {
+                                          handleButton(userEmail)
+                                        }}
+                                      >
+                                        <div className="form-group">
+                                          <AvField
+                                            name="user"
+                                            label="Email"
+                                            onChange={e => handleEmailInput(e)}
+                                            className="form-control"
+                                            placeholder="Enter Email"
+                                            type="text"
+                                            required
+                                          />
+                                          <AvField name="idx" value={idx} type="hidden" />
+                                        </div>
+                                        <div className="text-center mt-4">
+                                          <Button type="submit" color="danger">
+                                            Edit Email
+                                          </Button>
+                                        </div>
+                                      </AvForm>
+                                      </div>
+                                    </div>
+                                  </div> 
+                                </CardBody>
+                              </Card>
 
-<Card>
-  <CardBody>
-    <AvForm
-      className="form-horizontal"
-      onValidSubmit={() => {
-        handleButton(userEmail)
-      }}
-    >
-      <div className="form-group">
-        <AvField
-          name="user"
-          label="Email"
-          onChange={e => handleEmailInput(e)}
-          className="form-control"
-          placeholder="Enter Email"
-          type="text"
-          required
-        />
-        <AvField name="idx" value={idx} type="hidden" />
-      </div>
-      <div className="text-center mt-4">
-        <Button type="submit" color="danger">
-          Edit Email
-        </Button>
-      </div>
-    </AvForm>
-  </CardBody>
-</Card>
 <h4 className="card-title mb-4">Change Password</h4>
 
 <Card>
