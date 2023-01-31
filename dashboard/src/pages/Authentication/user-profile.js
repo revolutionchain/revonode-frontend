@@ -156,18 +156,27 @@ const UserProfile = props => {
       body: JSON.stringify(value)
     }).then(data => data.text())
       .then(res => {  
-        if(res && value.type == "user"){
-          titleRes = "Modified"
-          descriptionRes = "Your email has been changed."
-        }else if(res && value.type == "pass"){
-          titleRes = "Modified"
-          descriptionRes = "Your password has been changed."
+        if(!res.includes('Wrong')){
+          if(res && value.type == "user"){
+            titleRes = "Modified"
+            descriptionRes = "Your email has been changed."
+          }else if(res && value.type == "pass"){
+            titleRes = "Modified"
+            descriptionRes = "Your password has been changed."
+          }
+          
+          setconfirm_alert(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }else {
+          titleRes = "Password error!"
+          descriptionRes = res;
+          setconfirm_alert(false);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+          return seterror_dlg(true)
         }
-        
-        setconfirm_alert(false);
-        setsuccess_dlg(true);
-        setdynamic_title(titleRes);
-        setdynamic_description(descriptionRes);
       });{/*
     setSuccessMsg("Registration succesfully! You'll be now redirected to login");
     openModal();*/}
