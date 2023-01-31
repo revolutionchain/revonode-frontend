@@ -93,7 +93,8 @@ const UserProfile = props => {
   const [userPass, setUserPass] = useState({
     type: "pass",
     pass: "",
-    rePass: ""
+    rePass: "",
+    oldpass: ""
   })
 
 
@@ -114,6 +115,15 @@ const UserProfile = props => {
     } else if (value.type == "user" && value?.user?.includes(' ')) {
       titleRes = "Email error!"
       descriptionRes = "You entered an invalid character!"
+      setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    }
+
+    if(value.type == "pass" && !value?.oldpass){
+      titleRes = "Password error!"
+      descriptionRes = "You must enter your current Password!"
       setconfirm_alert(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
