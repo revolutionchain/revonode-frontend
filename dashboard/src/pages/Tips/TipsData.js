@@ -32,8 +32,11 @@ const icons = []
                                         <Link to="/backup">Backup my wallet!</Link>              
                                       </div>
                                     </div>
-                                  </div>      
-                                
+                                  </div>
+                                </CardBody>
+                            </Card>      
+                            <Card>
+                                <CardBody>    
                                   <div class="col-12">
                                     <div class="card">                                      
                                       <div class="card-body">
