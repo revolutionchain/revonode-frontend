@@ -14,8 +14,7 @@ import {
   Alert,
   CardBody,
   Button,
-  Modal,
-  SweetAlert
+  Modal,  
 } from "reactstrap"
 
 // availity-reactstrap-validation
