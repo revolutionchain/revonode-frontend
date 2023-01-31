@@ -156,7 +156,6 @@ const UserProfile = props => {
       body: JSON.stringify(value)
     }).then(data => data.text())
       .then(res => {  
-        console.log(res);
         if(!res.includes('Wrong')){
           if(res && value.type == "user"){
             titleRes = "Modified"

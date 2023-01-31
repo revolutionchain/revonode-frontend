@@ -175,14 +175,20 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/modifyprofile', (req, res) => {
-  const { user, pass } = req.body;
+  const { user, pass, oldpass } = req.body;
   if (user) {
     setEnvValue('DASHBOARD_USER', user);
     res.send(true)
   }
   if(pass){
-    setEnvValue('DASHBOARD_PASS', pass);
-    res.send(true)
+    let dashPass = getEnvValue('DASHBOARD_PASS');
+    dashPass = dashPass.replaceAll('"', '');
+    if(oldpass == dashPass){
+      setEnvValue('DASHBOARD_PASS', pass);
+      res.send(true)
+    }else {
+      res.send('Wrong current Password!');
+    }
   }
 })
 
