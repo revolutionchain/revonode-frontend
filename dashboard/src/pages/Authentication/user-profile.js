@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import MetaTags from 'react-meta-tags';
 import React, { useState, useEffect } from "react"
+import { useSelector } from 'react-redux';
 import {
   Container,
   Row,
