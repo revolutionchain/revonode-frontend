@@ -124,7 +124,7 @@ const UserProfile = props => {
     if(value.type == "pass" && !value?.oldpass){
       titleRes = "Password error!"
       descriptionRes = "You must enter your current Password!"
-      setconfirm_alert(false);
+      setconfirm_alert2(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
@@ -133,7 +133,7 @@ const UserProfile = props => {
     if(value.type == "pass" && !value?.pass){
       titleRes = "Password error!"
       descriptionRes = "You must enter a Password!"
-      setconfirm_alert(false);
+      setconfirm_alert2(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
@@ -142,7 +142,7 @@ const UserProfile = props => {
     if (value?.pass !== value?.rePass) {
       titleRes = "Password error!"
       descriptionRes = "Passwords don't match!"
-      setconfirm_alert(false);
+      setconfirm_alert2(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
@@ -160,19 +160,20 @@ const UserProfile = props => {
           if(res && value.type == "user"){
             titleRes = "Modified"
             descriptionRes = "Your email has been changed."
+            setconfirm_alert(false);
           }else if(res && value.type == "pass"){
             titleRes = "Modified"
             descriptionRes = "Your password has been changed."
+            setconfirm_alert2(false);
           }
           
-          setconfirm_alert(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
         }else {
           titleRes = "Password error!"
           descriptionRes = res;
-          setconfirm_alert(false);
+          setconfirm_alert2(false);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
           return seterror_dlg(true)
@@ -201,6 +202,7 @@ const UserProfile = props => {
 
 
   const [confirm_alert, setconfirm_alert] = useState(false)
+  const [confirm_alert2, setconfirm_alert2] = useState(false)
   //const [success_msg, setsuccess_msg] = useState(false)
   const [success_dlg, setsuccess_dlg] = useState(false)
   const [dynamic_title, setdynamic_title] = useState("")
@@ -392,14 +394,14 @@ const UserProfile = props => {
                                         <Button
                                             color="primary"
                                             onClick={() => {
-                                                setconfirm_alert(true)
+                                                setconfirm_alert2(true)
                                             }}
                                             id="sa-success"
                                         >
                                             Modify Password
                     </Button>
                                     </div>
-                                    {confirm_alert ? (
+                                    {confirm_alert2 ? (
                                         <SweetAlert
                                             title="Are you sure?"
                                             warning
@@ -410,7 +412,7 @@ const UserProfile = props => {
                                             onConfirm={() => {
                                                 handleButton(userPass)
                                             }}
-                                            onCancel={() => setconfirm_alert(false)}
+                                            onCancel={() => setconfirm_alert2(false)}
                                         >
                                             Your password will be changed!
                                         </SweetAlert>
