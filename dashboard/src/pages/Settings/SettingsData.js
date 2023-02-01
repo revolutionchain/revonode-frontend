@@ -67,7 +67,55 @@ useEffect(()=>{
                         <p>Use this form to change your WiFi settings</p> 
                           <div class="card">                                     
                             <div class="card-body">
-                            
+                            <AvForm
+                              className="form-horizontal"
+                              onValidSubmit={() => {
+                                
+                              }}
+                            >
+                              <div className="form-group">
+                                <AvField
+                                  name="ssid"
+                                  label="SSID"
+                                  onChange=""
+                                  className="form-control"
+                                  placeholder="Enter WiFi Network Name"
+                                  type="text"
+                                  required
+                                />
+                                <AvField
+                                  name="pass"
+                                  label="Password"
+                                  onChange=""
+                                  className="form-control"
+                                  placeholder="Enter Password"
+                                  type="password"
+                                  required
+                                />
+                                <AvField
+                                  name="country"
+                                  label="Country"
+                                  onChange=""
+                                  className="form-control"
+                                  placeholder="Select Country"
+                                  type="select"                                  
+                                  required
+                                >
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+
+                                </AvField>
+                                <AvField name="idx" value={idx} type="hidden" />
+                              </div>
+                              <div className="text-center mt-4">
+                                <Button type="submit" color="success">
+                                  Save/Modify
+                                </Button>
+                              </div>
+                            </AvForm>
                           </div>
                         </div>
                       </div> 
