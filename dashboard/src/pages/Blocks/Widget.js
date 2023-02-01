@@ -86,8 +86,11 @@ useEffect(()=>{
                   });
                 return response.json();
         })).then(txResponses => {
-            txResponses.map(e=>{
+            txResponses.map((e,i)=>{
                 totalFees = totalFees + (parseInt(e.fees) / 100000000).toFixed(9);
+                if(txResponses.length -1 == i){                    
+                    widget[3].count = totalFees;
+                }
             });
         })
     }
@@ -105,8 +108,7 @@ let totalTx = 0;
     widget[1].text = props.farAway((props.nodeData[10].time)) + " ago";
     widget[2].count = props.lastestBlocks[0].size;
     widget[2].text = (totalBlockSize / 30).toFixed(2) + " bytes avg";
-    widget[3].count = totalFees;
-    widget[4].count = (props.nodeData[10].tx).length > 2 ? (props.nodeData[10].tx).length - 2 : 0;
+    widget[4].count = totalTx;
     widget[4].text = (totalTx / 30).toFixed(2) + " KB avg. TX size"
     setWidgetState(widget);   
     
