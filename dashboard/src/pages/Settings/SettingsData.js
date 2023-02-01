@@ -95,28 +95,28 @@ useEffect(()=>{
                                 <AvField
                                   name="ssid"
                                   label="SSID"
-                                  defaultValue= {currentWifiState.ssid}
-                                  onChange=""
+                                  value= {currentWifiState.ssid}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, ssid: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter WiFi Network Name"
                                   type="text"
                                   required
                                 />
                                 <AvField
-                                  name="pass"
+                                  name="password"
                                   label="Password"
-                                  defaultValue= {currentWifiState.password}
-                                  onChange=""
+                                  value= {currentWifiState.password}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, password: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter Password"
                                   type="password"
                                   required
                                 />
                                 <AvField
-                                  name="enrcyption"
+                                  name="protocol"
                                   label="Encryption"
-                                  defaultValue= {currentWifiState.protocol}
-                                  onChange=""
+                                  value= {currentWifiState.protocol}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
                                   className="form-control"
                                   placeholder="Select Encryption"
                                   type="select"                                  
@@ -141,6 +141,7 @@ useEffect(()=>{
                                   <option>5</option>
 
                             </AvField>*/}
+                            <label>Country</label>
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                                             {currentWifiState && <Select
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
