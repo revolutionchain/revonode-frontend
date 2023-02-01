@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Button, Modal } from 'reactstrap';
 import { useEffect } from 'react';
 import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+
+// availity-reactstrap-validation
+import { AvForm, AvField } from "availity-reactstrap-validation"
 
 
 const SettingsDataWidget = props => {
@@ -108,7 +111,7 @@ useEffect(()=>{
                                   <option>5</option>
 
                                 </AvField>
-                                <AvField name="idx" value={idx} type="hidden" />
+                                <AvField name="idx" value="" type="hidden" />
                               </div>
                               <div className="text-center mt-4">
                                 <Button type="submit" color="success">
