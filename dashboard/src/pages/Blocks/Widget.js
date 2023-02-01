@@ -74,6 +74,7 @@ const Widget = props => {
     
 useEffect(()=>{        
     //widget[0].count = "";
+    /*
     let totalFees = 0;
     if((props.nodeData[10].tx).length > 2){
         Promise.all((props.nodeData[10].tx).slice(2).map(async (e,i) => {
@@ -94,7 +95,7 @@ useEffect(()=>{
             });
         })
     }
-
+*/
     
 let totalBlockSize = 0;
 let totalTx = 0;
@@ -165,6 +166,7 @@ function reloadAvgData(){
                     feesAvg = (((feesCount) / 30) / 100000000).toFixed(9);
                     let widgetUpdate = widgetState;
                     widgetUpdate[3].text = feesAvg + " RVO avg";
+                    widgetUpdate[3].count = feesCount;
                     setWidgetState(widgetUpdate);
                     reloadStates ? setReloadStates(false) : setReloadStates(true);
                 }
