@@ -142,7 +142,7 @@ useEffect(()=>{
                             </AvField>*/}
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                                             <Select
-                                                onChange={handleSelect}
+                                                onChange={(e) => setCurrentWifiState({...currentWifiState, country: e.value})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
                                                 defaultValue={{ label: options.find(e => e.value == currentWifiData.country).label }}
