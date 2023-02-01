@@ -111,6 +111,7 @@ useEffect(()=>{
                                   placeholder="Enter Password"
                                   type="password"
                                   required
+                                  style={{marginTop: "15px"}}
                                     ></input>
                                     <input 
                                   name="protocol"
@@ -121,6 +122,7 @@ useEffect(()=>{
                                   placeholder="Select Encryption"
                                   type="select"
                                   required
+                                  style={{marginTop: "15px"}}
                                       ></input>{/*
                                 <AvField
                                   name="ssid"
