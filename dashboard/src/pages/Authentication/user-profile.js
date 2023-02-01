@@ -248,8 +248,7 @@ const UserProfile = props => {
           <Card>
             <CardBody>
               <div class="col-12">
-                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4>
-                <h4 class="card-title">({email})</h4>
+                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your current email ({email})</h4>
                 <p>Use this form to change your dashboard login email</p> 
                   <div class="card">                                     
                     <div class="card-body">
