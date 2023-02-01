@@ -300,7 +300,36 @@ const UserProfile = props => {
                             <AvField name="idx" value={idx} type="hidden" />
                             </div>
                           <div className="text-right mt-4">
-                        <Button type="submit" color="success">Save</Button>
+                        {/*<Button type="submit" color="success">Save</Button>*/}
+                        <Col xl={3} lg={4} sm={6} className="mb-2">
+                                    <div className="p-3">
+                                        <Button
+                                            color="primary"
+                                            onClick={() => {
+                                                setconfirm_alert(true)
+                                            }}
+                                            id="sa-success"
+                                        >
+                                            Save
+                    </Button>
+                                    </div>
+                                    {confirm_alert ? (
+                                        <SweetAlert
+                                            title="Are you sure?"
+                                            warning
+                                            showCancel
+                                            confirmButtonText="Yes, delete it!"
+                                            confirmBtnBsStyle="success"
+                                            cancelBtnBsStyle="danger"
+                                            onConfirm={() => {
+                                                handleButton(userEmail)
+                                            }}
+                                            onCancel={() => setconfirm_alert(false)}
+                                        >
+                                            Your dashboard Email will be changed!
+                                        </SweetAlert>
+                                    ) : null}
+                                </Col>
                       </div>
                     </AvForm>
                   </div>
@@ -395,46 +424,7 @@ const UserProfile = props => {
             </CardBody>
           </Card>
         </Container>
-      </div><Modal
-        isOpen={messageModal}
-        role="dialog"
-        autoFocus={true}
-        centered
-        data-toggle="modal"
-        toggle={() => {
-          setMessageModal(!messageModal)
-        }}
-      >
-        <div className="modal-content">
-          <div className="modal-header border-bottom-0">
-            <button type="button" className="btn-close"
-              onClick={() => {
-                tog_standard()
-              }}></button>
-          </div>
-          <div className="modal-body">
-            <div className="text-center mb-4">
-              <div className="avatar-md mx-auto mb-4">
-                {/* style={{ backgroundColor:"#eff2f7" }}  
-                <div className="avatar-title bg-light  rounded-circle text-primary h1">
-                  <i className="fas fa-parachute-box"></i>
-                </div>*/}
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-xl-10">
-                  <h4 className="text-danger">{errorMsg.errorTitle}</h4>
-                  <p className="text-muted font-size-14 mb-4" >{errorMsg.solution} </p>
-{/*
-                    <Button color="primary" type="button" id="button-addon2">
-                      
-            </Button>*/}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
+      </div>
     </React.Fragment>
   )
 }
