@@ -12,7 +12,6 @@ import Authmiddleware from "./routes/middleware/Authmiddleware"
 
 // layouts Format
 import VerticalLayout from "./components/VerticalLayout/"
-import HorizontalLayout from "./components/HorizontalLayout/"
 import NonAuthLayout from "./components/NonAuthLayout"
 
 // Import scss
@@ -46,7 +45,7 @@ const App = props => {
     let layoutCls = VerticalLayout
     switch (props.layout.layoutType) {
       case "horizontal":
-        layoutCls = HorizontalLayout
+        layoutCls = VerticalLayout
         break
       default:
         layoutCls = VerticalLayout
