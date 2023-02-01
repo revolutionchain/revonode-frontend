@@ -44,7 +44,8 @@ useEffect(()=>{
               
                 }
               </tbody>
-            </table> : <div style={{width: "100%", textAlign: "center"}}><p>You are not yet connected to a WiFi network.</p></div>}
+            </table> : <div style={{width: "100%", textAlign: "center"}}><p>You are not yet connected to a WiFi network.</p></div>
+            }
           </div>
                         <h4 class="card-title"><i className="bx bx-wifi"></i>Node WiFi Settings</h4>
                         <p>Use this form to change your WiFi settings</p> 

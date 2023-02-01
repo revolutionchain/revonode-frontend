@@ -32,7 +32,7 @@ const Settings = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(data => data.json())
+    }).then(data => data.text())
       .then(res => {
         if(!(res).includes("Error")){
           setWifiData(res);
