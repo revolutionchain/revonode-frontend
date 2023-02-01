@@ -38,7 +38,7 @@ useEffect(()=>{
 <h4 className="card-title mb-2">Node Wifi Current Data</h4>
                 
           <div class="table-responsive">
-            {props.wifiData && currentWifiState ? <table class="table mb-0 table">
+            {props.wifiData && currentWifiState ? <div className='card'><div className='card-body'> <table class="table mb-0 table">
               <thead>
                 <tr>
                   <th><i className="bx bx-flag"></i> Wifi SSID</th>
@@ -60,7 +60,7 @@ useEffect(()=>{
               
                 }
               </tbody>
-            </table> : <div className='card'><div className='card-body' style={{display: "flex", alignItems: "center", width: "100%", textAlign: "center"}}><p style={{margin: "auto"}}>You are not yet connected to a WiFi network.</p></div></div>
+            </table></div></div> : <div className='card'><div className='card-body' style={{display: "flex", alignItems: "center", width: "100%", textAlign: "center"}}><p style={{margin: "auto"}}>You are not yet connected to a WiFi network.</p></div></div>
             }
           </div>
                         <h4 class="card-title"><i className="bx bx-wifi"></i>Node WiFi Settings</h4>
