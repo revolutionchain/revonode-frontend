@@ -244,42 +244,11 @@ const UserProfile = props => {
                         </SweetAlert>
                     ) : null}
 
-          <Row>
-            <Col lg="12">
-              {props.error && props.error ? (
-                <Alert color="danger">{props.error}</Alert>
-              ) : null}
-              {props.success ? (
-                <Alert color="success">{props.success}</Alert>
-              ) : null}
-
-              <Card>
-                <CardBody>
-                  <div className="d-flex">
-                    <div className="ms-3">
-                      <img
-                        src={avatar}
-                        alt=""
-                        className="avatar-md rounded-circle img-thumbnail"
-                      />
-                    </div>
-                    <div className="flex-1 align-self-center">
-                      <div className="text-muted">
-                        <h5>{name}</h5>
-                        <p className="mb-1">{email}</p>
-                        {/*<p className="mb-0">Id no: #{idx}</p>*/}
-                      </div>
-                    </div>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-
+          
           <Card>
             <CardBody>
               <div class="col-12">
-                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your email</h4>
+                <h4 class="card-title"><i className="bx bx-envelope"></i> Change your current email ({email})</h4>
                 <p>Use this form to change your dashboard login email</p> 
                   <div class="card">                                     
                     <div class="card-body">
