@@ -142,7 +142,7 @@ useEffect(()=>{
 
                             </AvField>*/}
                                 <div className='select-container' style={{  marginTop: `15px` }}>
-                                            <Select
+                                            {currentWifiState && <Select
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
@@ -165,7 +165,7 @@ useEffect(()=>{
                                                     }),
                                                 }}
 
-                                                options={options} />
+                                                options={options} />}
                                         </div>
                               </div>
                               <div className="text-left mt-4">
