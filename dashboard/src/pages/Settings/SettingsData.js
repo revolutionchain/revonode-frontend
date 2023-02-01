@@ -17,11 +17,13 @@ const SettingsDataWidget = props => {
   const [currentWifiState, setCurrentWifiState] = useState(false);
 
 useEffect(()=>{        
-  currentWifiData.country = (props.wifiData).replace("country=", "").slice(0,2);
-  currentWifiData.ssid = (props.wifiData).split('"')[1];
-  currentWifiData.password = (props.wifiData).split('"')[3];
-  currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
-  setCurrentWifiState(currentWifiData);
+  if(props.wifiData){
+    currentWifiData.country = (props.wifiData).replace("country=", "").slice(0,2);
+    currentWifiData.ssid = (props.wifiData).split('"')[1];
+    currentWifiData.password = (props.wifiData).split('"')[3];
+    currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
+    setCurrentWifiState(currentWifiData);
+  }
 
 })
 
