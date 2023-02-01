@@ -35,7 +35,8 @@ const SettingsDataWidget = props => {
 
 useEffect(()=>{        
   if(props.wifiData){
-    currentWifiData.country = (props.wifiData).replace("country=", "").slice(0,2);
+    countryTarget = (props.wifiData).replace("country=", "").slice(0,2);
+    currentWifiData.country = options.find(e => e.value == countryTarget);
     currentWifiData.ssid = (props.wifiData).split('"')[1];
     currentWifiData.password = (props.wifiData).split('"')[3];
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
@@ -142,10 +143,10 @@ useEffect(()=>{
                             </AvField>*/}
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                                             <Select
-                                                onChange={(e) => setCurrentWifiState({...currentWifiState, country: e.value})}
+                                                onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
-                                                defaultValue={{ label: options.find(e => e.value == currentWifiData.country).label }}
+                                                defaultValue={{ label: currentWifiData.country.label }}
                                                 styles={{
                                                     control: (baseStyles, state) => ({
                                                         ...baseStyles,
