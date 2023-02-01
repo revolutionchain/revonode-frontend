@@ -31,19 +31,17 @@ useEffect(()=>{
                   <th><i className="bx bx-wifi"></i> Country</th>
                 </tr>
               </thead>
-              <tbody>{ externalPeersState && externalPeersState.map((e,i) => {
-                let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
+              <tbody>{ 
                 
-                if(currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]){
-                return (
+               
                     <tr>
                       <td style={{borderBottom: "none"}}>{} </td>
                       <td style={{borderBottom: "none"}}>{/*<Flag code={e.country.iso_code} height="12" />  " " + e.country.names.en*/} </td>
                       <td style={{borderBottom: "none"}}>{} </td>
                       <td style={{borderBottom: "none"}}>{} </td>
                     </tr>
-                )}
-              })
+                
+              
                 }
               </tbody>
             </table> : <div style={{width: "100%", textAlign: "center"}}><p>You are not yet connected to a WiFi network.</p></div>}
