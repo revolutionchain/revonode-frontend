@@ -45,7 +45,7 @@ const App = props => {
     let layoutCls = VerticalLayout
     switch (props.layout.layoutType) {
       case "horizontal":
-        layoutCls = HorizontalLayout
+        layoutCls = VerticalLayout
         break
       default:
         layoutCls = VerticalLayout
