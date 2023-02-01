@@ -116,7 +116,6 @@ useEffect(()=>{
                                   placeholder="Enter Password"
                                   type="password"
                                   required
-                                  style={{marginTop: "15px"}}
                                     ></input>
                                     </div>
                                     <div className='select-container' style={{  marginTop: `15px` }}>
