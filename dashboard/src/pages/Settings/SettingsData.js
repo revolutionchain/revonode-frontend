@@ -35,7 +35,7 @@ const SettingsDataWidget = props => {
 
 useEffect(()=>{        
   if(props.wifiData){
-    countryTarget = (props.wifiData).replace("country=", "").slice(0,2);
+    let countryTarget = (props.wifiData).replace("country=", "").slice(0,2);
     currentWifiData.country = options.find(e => e.value == countryTarget);
     currentWifiData.ssid = (props.wifiData).split('"')[1];
     currentWifiData.password = (props.wifiData).split('"')[3];
