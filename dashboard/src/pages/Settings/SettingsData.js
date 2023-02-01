@@ -146,7 +146,7 @@ useEffect(()=>{
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
-                                                defaultValue={{ label: currentWifiData.country.label }}
+                                                defaultValue={{ label: currentWifiState.country.label }}
                                                 styles={{
                                                     control: (baseStyles, state) => ({
                                                         ...baseStyles,
