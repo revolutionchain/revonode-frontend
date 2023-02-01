@@ -92,6 +92,8 @@ useEffect(()=>{
                               }}
                             >
                               <div className="form-group">
+                                <div className='select-container' style={{  marginTop: `15px` }}>
+                            <label>SSID</label>
                                 <input 
                                   name="ssid"
                                   label="SSID"
@@ -102,6 +104,9 @@ useEffect(()=>{
                                   type="text"
                                   required
                                   ></input>
+                                  </div>
+                                  <div className='select-container' style={{  marginTop: `15px` }}>
+                            <label>Password</label>
                                   <input 
                                   name="password"
                                   label="Password"
@@ -113,6 +118,9 @@ useEffect(()=>{
                                   required
                                   style={{marginTop: "15px"}}
                                     ></input>
+                                    </div>
+                                    <div className='select-container' style={{  marginTop: `15px` }}>
+                            <label>Encryption</label>
                                     <input 
                                   name="protocol"
                                   label="Encryption"
@@ -122,8 +130,8 @@ useEffect(()=>{
                                   placeholder="Select Encryption"
                                   type="select"
                                   required
-                                  style={{marginTop: "15px"}}
-                                      ></input>{/*
+                                      ></input>
+                                      </div>{/*
                                 <AvField
                                   name="ssid"
                                   label="SSID"
@@ -173,8 +181,8 @@ useEffect(()=>{
                                   <option>5</option>
 
                             </AvField>*/}
-                            <label>Country</label>
                                 <div className='select-container' style={{  marginTop: `15px` }}>
+                            <label>Country</label>
                                             {currentWifiState && <Select
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
