@@ -80,6 +80,7 @@ useEffect(()=>{
                                 <AvField
                                   name="ssid"
                                   label="SSID"
+                                  value= {currentWifiState.ssid}
                                   onChange=""
                                   className="form-control"
                                   placeholder="Enter WiFi Network Name"
@@ -89,6 +90,7 @@ useEffect(()=>{
                                 <AvField
                                   name="pass"
                                   label="Password"
+                                  value= {currentWifiState.password}
                                   onChange=""
                                   className="form-control"
                                   placeholder="Enter Password"
@@ -96,8 +98,21 @@ useEffect(()=>{
                                   required
                                 />
                                 <AvField
+                                  name="enrcyption"
+                                  label="Encryption"
+                                  value= {currentWifiState.protocol}
+                                  onChange=""
+                                  className="form-control"
+                                  placeholder="Select Encryption"
+                                  type="select"                                  
+                                  required
+                                >
+                                  <option>{currentWifiState.protocol}</option>
+                                </AvField>
+                                <AvField
                                   name="country"
                                   label="Country"
+                                  value= {currentWifiState.country}
                                   onChange=""
                                   className="form-control"
                                   placeholder="Select Country"
