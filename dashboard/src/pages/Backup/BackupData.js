@@ -60,7 +60,7 @@ const BackupDataWidget = props => {
                   <div className='card'>
                     <div className='card-body' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
 
-                      <Col xl={3} lg={4} sm={6} className="mb-2">
+                      <Col xl={3} lg={4} sm={6} style={{margin: "auto"}} className="mb-2">
                         <div className="p-3">
                           <Button
                             color="primary"
