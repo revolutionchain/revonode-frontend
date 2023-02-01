@@ -119,7 +119,7 @@ useEffect(()=>{
                                   type="select"                                  
                                   required
                                 >
-                                  <option>1</option>
+                                  <option>{currentWifiState.country}</option>
                                   <option>2</option>
                                   <option>3</option>
                                   <option>4</option>
@@ -128,7 +128,7 @@ useEffect(()=>{
                                 </AvField>
                                 <AvField name="idx" value="" type="hidden" />
                               </div>
-                              <div className="text-center mt-4">
+                              <div className="text-left mt-4">
                                 <Button type="submit" color="success">
                                   Save/Modify
                                 </Button>
