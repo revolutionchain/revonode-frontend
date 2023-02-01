@@ -95,13 +95,33 @@ useEffect(()=>{
                                 <input 
                                   name="ssid"
                                   label="SSID"
-                                  value={currentWifiState.ssid}
+                                  defaultValue={currentWifiState.ssid}
                                   onChange={(e) => setCurrentWifiState({...currentWifiState, ssid: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter WiFi Network Name"
                                   type="text"
                                   required
-                                  ></input>{/*
+                                  ></input>
+                                  <input 
+                                  name="password"
+                                  label="Password"
+                                  defaultValue={currentWifiState.password}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, password: e.target.value })}
+                                  className="form-control"
+                                  placeholder="Enter Password"
+                                  type="password"
+                                  required
+                                    ></input>
+                                    <input 
+                                  name="protocol"
+                                  label="Encryption"
+                                  defaultValue={currentWifiState.protocol}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
+                                  className="form-control"
+                                  placeholder="Select Encryption"
+                                  type="select"
+                                  required
+                                      ></input>{/*
                                 <AvField
                                   name="ssid"
                                   label="SSID"
