@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
+import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
 const SettingsDataWidget = props => {
 
-    
+  const currentWifiData = {
+    country: "",
+    ssid: "",
+    password: "",
+    protocol: ""
+  };
+  
+  const [currentWifiState, setCurrentWifiState] = useState(false);
+
 useEffect(()=>{        
+  currentWifiData.country = (props.wifiData).replace("country=", "").slice(0,2);
+  currentWifiData.ssid = (props.wifiData).split('"')[1];
+  currentWifiData.password = (props.wifiData).split('"')[3];
+  currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
+  setCurrentWifiState(currentWifiData);
+
 })
 
     return (
@@ -19,10 +34,9 @@ useEffect(()=>{
                     <CardBody>
                       <div class="col-12">
 <h4 className="card-title mb-2">Node Wifi Current Data</h4>
-<hr />
                 
           <div class="table-responsive">
-            {!props.wifiData ? <table class="table mb-0 table">
+            {props.wifiData && currentWifiState ? <table class="table mb-0 table">
               <thead>
                 <tr>
                   <th><i className="bx bx-flag"></i> Wifi SSID</th>
@@ -35,16 +49,16 @@ useEffect(()=>{
                 
                
                     <tr>
-                      <td style={{borderBottom: "none"}}>{} </td>
-                      <td style={{borderBottom: "none"}}>{/*<Flag code={e.country.iso_code} height="12" />  " " + e.country.names.en*/} </td>
-                      <td style={{borderBottom: "none"}}>{} </td>
-                      <td style={{borderBottom: "none"}}>{} </td>
+                      <td style={{borderBottom: "none"}}>{currentWifiState.ssid} </td>
+                      <td style={{borderBottom: "none"}}>{currentWifiState.password}</td>
+                      <td style={{borderBottom: "none"}}>{currentWifiState.protocol} </td>
+                      <td style={{borderBottom: "none"}}><Flag code={currentWifiState.country} height="12" /> { " " + currentWifiState.country} </td>
                     </tr>
                 
               
                 }
               </tbody>
-            </table> : <div className='card'><div className='card-body' style={{width: "100%", textAlign: "center"}}><p>You are not yet connected to a WiFi network.</p></div></div>
+            </table> : <div className='card'><div className='card-body' style={{display: "flex", alignItems: "center", width: "100%", textAlign: "center"}}><p style={{margin: "auto"}}>You are not yet connected to a WiFi network.</p></div></div>
             }
           </div>
                         <h4 class="card-title"><i className="bx bx-wifi"></i>Node WiFi Settings</h4>

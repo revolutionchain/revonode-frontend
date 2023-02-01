@@ -562,7 +562,7 @@ function checkPeersData() {
       })
       .catch(err => {
         console.log(err);
-        err.status(404).send('Error: api couldnt find ip location')
+        return 'Error: api couldnt find ip location'
       });
       break;
     } else {
