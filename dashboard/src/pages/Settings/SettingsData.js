@@ -92,10 +92,20 @@ useEffect(()=>{
                               }}
                             >
                               <div className="form-group">
+                                <input 
+                                  name="ssid"
+                                  label="SSID"
+                                  value={currentWifiState.ssid}
+                                  onChange={(e) => setCurrentWifiState({...currentWifiState, ssid: e.target.value })}
+                                  className="form-control"
+                                  placeholder="Enter WiFi Network Name"
+                                  type="text"
+                                  required
+                                  ></input>{/*
                                 <AvField
                                   name="ssid"
                                   label="SSID"
-                                  value= {currentWifiState.ssid}
+                                  value={currentWifiState.ssid}
                                   onChange={(e) => setCurrentWifiState({...currentWifiState, ssid: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter WiFi Network Name"
@@ -105,7 +115,7 @@ useEffect(()=>{
                                 <AvField
                                   name="password"
                                   label="Password"
-                                  value= {currentWifiState.password}
+                                  value={currentWifiState.password}
                                   onChange={(e) => setCurrentWifiState({...currentWifiState, password: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter Password"
@@ -115,15 +125,15 @@ useEffect(()=>{
                                 <AvField
                                   name="protocol"
                                   label="Encryption"
-                                  value= {currentWifiState.protocol}
+                                  value={currentWifiState.protocol}
                                   onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
                                   className="form-control"
                                   placeholder="Select Encryption"
-                                  type="select"                                  
+                                  type="select"
                                   required
                                 >
                                   <option>{currentWifiState.protocol}</option>
-                                </AvField>{/*
+                                </AvField>
                                 <AvField
                                   name="country"
                                   label="Country"
