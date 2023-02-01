@@ -18,11 +18,26 @@ import SettingsData from './SettingsData';
 const Settings = props => {
 
   const isLogged = useSelector(state => state.Login.isLogged);
+  const [wifiData, setWifiData] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
       props.history.push('/login');
     }
+
+
+    fetch(`http://${window.location.hostname}:3001/getwificonfig`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        if(!(res).includes("Error")){
+          setWifiData(res);
+        }
+      });       
     
   }, [])
 
@@ -53,7 +68,7 @@ const Settings = props => {
             />
           }
           {/* import Widget */}
-          {<SettingsData  />}
+          {<SettingsData wifiData={wifiData} />}
 
         </Container>
       </div>

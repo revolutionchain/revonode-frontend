@@ -108,7 +108,6 @@ function getAllowedDomains() {
 
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
-  console.log('allowedDomains: ' + allowedDomains);
   const origin = req.headers.origin;
   if(origin){
     if (allowedDomains.includes(origin)) {

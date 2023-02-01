@@ -18,6 +18,36 @@ useEffect(()=>{
                   <Card>
                     <CardBody>
                       <div class="col-12">
+<h4 className="card-title mb-2">Node Wifi Current Data</h4>
+<hr />
+                
+          <div class="table-responsive">
+            {!props.wifiData ? <table class="table mb-0 table">
+              <thead>
+                <tr>
+                  <th><i className="bx bx-flag"></i> Wifi SSID</th>
+                  <th><i className="bx bx-world"></i> Password</th>
+                  <th><i className="bx bx-server"></i> Protocol</th>
+                  <th><i className="bx bx-wifi"></i> Country</th>
+                </tr>
+              </thead>
+              <tbody>{ externalPeersState && externalPeersState.map((e,i) => {
+                let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
+                
+                if(currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]){
+                return (
+                    <tr>
+                      <td style={{borderBottom: "none"}}>{} </td>
+                      <td style={{borderBottom: "none"}}>{/*<Flag code={e.country.iso_code} height="12" />  " " + e.country.names.en*/} </td>
+                      <td style={{borderBottom: "none"}}>{} </td>
+                      <td style={{borderBottom: "none"}}>{} </td>
+                    </tr>
+                )}
+              })
+                }
+              </tbody>
+            </table> : <div style={{width: "100%", textAlign: "center"}}><p>You are not yet connected to a WiFi network.</p></div>}
+          </div>
                         <h4 class="card-title"><i className="bx bx-wifi"></i>Node WiFi Settings</h4>
                         <p>Use this form to change your WiFi settings</p> 
                           <div class="card">                                     
