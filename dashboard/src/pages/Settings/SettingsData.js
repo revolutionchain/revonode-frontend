@@ -154,6 +154,7 @@ function handleButton(wifiState){
                     if((res).includes("done")){
                       titleRes = "Node Rebooting.."
                       descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                      setconfirm_alert(false);
                       setsuccess_dlg(true);
                       setdynamic_title(titleRes);
                       setdynamic_description(descriptionRes);
