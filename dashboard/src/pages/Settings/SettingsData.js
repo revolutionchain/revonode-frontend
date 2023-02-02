@@ -43,7 +43,9 @@ useEffect(()=>{
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
     setCurrentWifiState(currentWifiData);
   }
-  if((props.wifiData)?.split("network")?.length <= 1 ){
+  if(props.wifiData && (props.wifiData)?.split("network")?.length <= 1 ){
+    setButtonWifiState(false);
+  }else if(!props.wifiData){    
     setButtonWifiState(false);
   }
 
