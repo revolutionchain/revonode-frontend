@@ -174,10 +174,10 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                             showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
                             timeout={dynamic_title.includes("Node Rebooting..") ? 10 : 0}
                             beforeUnmount={dynamic_title.includes("Node Rebooting..") ? () => {
-                              if(buttonWifiState && domainState.wifi){
-                                window.open(`http://${domainState.wifi}/login`, '_self')  
-                              } else if(domainState.eth){
-                                window.open(`http://${domainState.eth}/login`, '_self')  
+                              if(buttonWifiState && props.domainState.wifi){
+                                window.open(`http://${props.domainState.wifi}/login`, '_self')  
+                              } else if(props.domainState.eth){
+                                window.open(`http://${props.domainState.eth}/login`, '_self')  
                               }
                             } : () => {}}
                             onConfirm={() => {
