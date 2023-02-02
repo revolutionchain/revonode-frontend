@@ -329,7 +329,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
-                                                defaultValue={{ label: currentWifiState.country.label }}
+                                                defaultValue={currentWifiState?.country?.label ? { label: currentWifiState.country.label } : "Select your Country"}
                                                 styles={{
                                                     control: (baseStyles, state) => ({
                                                         ...baseStyles,
@@ -352,7 +352,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                                 <input 
                                               name="country"
                                               label="Country"
-                                              defaultValue={currentWifiState.country.label}
+                                              defaultValue={currentWifiState?.country?.label ? currentWifiState.country.label : "Select your Country"}
                                               onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
                                               className="form-control"
                                               type="select"
