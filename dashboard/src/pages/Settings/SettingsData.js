@@ -57,42 +57,103 @@ const [dynamic_description, setdynamic_description] = useState("")
 const [error_dlg, seterror_dlg] = useState(false)
 
 function handleButton(){  
-  fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }).then(data => data.text())
-    .then(res => {
-      if((res).includes("ok")){
-        fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },          
-          body: JSON.stringify(currentWifiData)
-        }).then(data => data.text())
-          .then(res => {
-            if((res).includes("ok")){
-              fetch(`http://${window.location.hostname}:3001/forcereboot`, {
-                method: 'GET',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                },
-              }).then(data => data.text())
-                .then(res => {
-                  if((res).includes("done")){
-                    //redirect
-                  }
-                });       
-              
-            }
-          });       
-      }
-    });       
+  let titleRes;
+  let descriptionRes;
+  if(!buttonWifiState){    
+    fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.text())
+      .then(res => {
+        if((res).includes("ok")){
+          fetch(`http://${window.location.hostname}:3001/forcereboot`, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }).then(data => data.text())
+            .then(res => {
+              if((res).includes("done")){
+                titleRes = "Node Rebooting.."
+                descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                setsuccess_dlg(true);
+                setdynamic_title(titleRes);
+                setdynamic_description(descriptionRes);
+              }
+            });       
+          
+        }
+      });           
+  }else {
+
+    if(!currentWifiState.ssid){
+      titleRes = "SSID error!"
+      descriptionRes = "You must enter a SSID!"
+      setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    } else if(!currentWifiState.password){
+      titleRes = "Password error!"
+      descriptionRes = "You must enter a valid password!"
+      setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    } else if(!currentWifiState.password){
+      titleRes = "Country error!"
+      descriptionRes = "You must select a country!"
+      setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    }
+
+    fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.text())
+      .then(res => {
+        if((res).includes("ok")){
+          fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },          
+            body: JSON.stringify(currentWifiData)
+          }).then(data => data.text())
+            .then(res => {
+              if((res).includes("ok")){
+                fetch(`http://${window.location.hostname}:3001/forcereboot`, {
+                  method: 'GET',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                }).then(data => data.text())
+                  .then(res => {
+                    if((res).includes("done")){
+                      titleRes = "Node Rebooting.."
+                      descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                      setsuccess_dlg(true);
+                      setdynamic_title(titleRes);
+                      setdynamic_description(descriptionRes);
+                    }
+                  });       
+                
+              }
+            });       
+        }
+      });       
+  }
   
 }
 
@@ -106,6 +167,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                         <SweetAlert
                             success
                             title={dynamic_title}
+                            showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
+                            timeout={dynamic_title.includes("Node Rebooting..") ? 300 : 0}
+                            beforeUnmount={dynamic_title.includes("Node Rebooting..") ? () => {props.history.push('/login')} : () => {}}
                             onConfirm={() => {
                                 {/*setsuccess_dlg(false)*/}
                                 props.history.push('/login');
@@ -179,7 +243,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                       <Col xl={3} lg={4} sm={6} className="mb-2">
                                   <div className="">
                                       <Button
-                                          color={buttonWifiState ? "primary" : "danger"}
+                                          color={buttonWifiState ? "danger" : "primary" }
                                           onClick={() => {
                                               setconfirm_alert2(true)
                                           }}
