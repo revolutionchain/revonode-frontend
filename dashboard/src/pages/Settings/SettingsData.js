@@ -35,21 +35,19 @@ const SettingsDataWidget = props => {
   const [currentWifiState, setCurrentWifiState] = useState(false);
 
 useEffect(()=>{        
-  if(props.wifiData){
+  if(props.wifiData && !(props.wifiData).includes("Error")){
     let countryTarget = (props.wifiData).replace("country=", "").slice(0,2);
     currentWifiData.country = options.find(e => e.value == countryTarget);
     currentWifiData.ssid = (props.wifiData).split('"')[1];
     currentWifiData.password = (props.wifiData).split('"')[3];
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
     setCurrentWifiState(currentWifiData);
-  }
-  if(props.wifiData && (props.wifiData)?.split("network")?.length <= 1 ){
-    setButtonWifiState(false);
-  }else if(!props.wifiData){    
+  } else if(props.wifiData && (props.wifiData).includes("Error")){
     setButtonWifiState(false);
   }
 
 })
+
 
 
 

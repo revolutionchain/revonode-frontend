@@ -36,6 +36,8 @@ const Settings = props => {
       .then(res => {
         if(!(res).includes("Error")){
           setWifiData(res);
+        }else {
+          setWifiData("Error");
         }
       });       
     
@@ -68,7 +70,7 @@ const Settings = props => {
             />
           }
           {/* import Widget */}
-          {<SettingsData wifiData={wifiData} />}
+          {wifiData && <SettingsData wifiData={wifiData} />}
 
         </Container>
       </div>
