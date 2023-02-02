@@ -139,6 +139,7 @@ function handleButton(wifiState){
             body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country.value})
           }).then(data => data.text())
             .then(res => {
+              console.log("console log 5")
               if((res).includes("ok")){
                 fetch(`http://${window.location.hostname}:3001/reboot`, {
                   method: 'GET',
@@ -148,7 +149,10 @@ function handleButton(wifiState){
                   },
                 }).then(data => data.text())
                   .then(res => {
+                    console.log("console log 6")
+                    console.log("reboot res" + res)
                     if((res).includes("done")){
+                      console.log("console log 7")
                       titleRes = "Node Rebooting.."
                       descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
                       setsuccess_dlg(true);
