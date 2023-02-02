@@ -64,6 +64,9 @@ const Dashboard = props => {
   const [ipLocationData, setIpLocationData] = useState(false);
 
   const getStatesData = () => {
+    if (!isLogged) {
+      return props.history.push('/login');
+    }
     
     fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
       method: 'GET',

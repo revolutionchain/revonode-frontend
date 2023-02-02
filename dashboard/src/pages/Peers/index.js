@@ -70,7 +70,7 @@ const Peers = props => {
 
   useEffect(() => {
     if (!isLogged) {
-      props.history.push('/login');
+      return props.history.push('/login');
     }
 
     getStatesData();
