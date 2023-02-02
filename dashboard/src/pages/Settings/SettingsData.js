@@ -171,13 +171,13 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                 
                               }}
                             >
-                            <div className="text-left mt-4">{/*
+                            <div className="text-left">{/*
                               <Button type="submit" color="success">
                                 Save/Modify
                                             </Button>*/}
                                             
                       <Col xl={3} lg={4} sm={6} className="mb-2">
-                                  <div className="p-3">
+                                  <div className="">
                                       <Button
                                           color="primary"
                                           onClick={() => {
@@ -218,7 +218,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                   className="form-control"
                                   placeholder="Enter WiFi Network Name"
                                   type="text"
+                                  style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
                                   required
+                                  readOnly={buttonWifiState ? false : true}
                                   ></input>
                                   </div>
                                   <div className='select-container' style={{  marginTop: `15px` }}>
@@ -231,7 +233,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                   className="form-control"
                                   placeholder="Enter Password"
                                   type="password"
+                                  style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
                                   required
+                                  readOnly={buttonWifiState ? false : true}
                                     ></input>
                                     </div>
                                     <div className='select-container' style={{  marginTop: `15px` }}>
@@ -244,7 +248,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                   className="form-control"
                                   placeholder="Select Encryption"
                                   type="select"
+                                  style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
                                   required
+                                  readOnly={buttonWifiState ? false : true}
                                       ></input>
                                       </div>
                                 <div className='select-container' style={{  marginTop: `15px` }}>
@@ -281,7 +287,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                               </Button>*/}
                                               
                         <Col xl={3} lg={4} sm={6} className="mb-2">
-                                    <div className="p-3">
+                                    <div className="">
                                         <Button
                                             color="primary"
                                             onClick={() => {
