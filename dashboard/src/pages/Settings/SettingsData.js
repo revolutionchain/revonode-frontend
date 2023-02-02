@@ -94,7 +94,6 @@ function handleButton(wifiState){
         }
       });           
   }else {
-    console.log("console log 2")
 
     if(!currentWifiState.ssid){
       titleRes = "SSID error!"
@@ -118,7 +117,6 @@ function handleButton(wifiState){
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     }
-    console.log("console log 3")
 
     fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
       method: 'GET',
@@ -128,7 +126,6 @@ function handleButton(wifiState){
       },
     }).then(data => data.text())
       .then(res => {
-        console.log("console log 4")
         if((res).includes("ok")){
           fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
             method: 'POST',
@@ -139,7 +136,7 @@ function handleButton(wifiState){
             body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country.value})
           }).then(data => data.text())
             .then(res => {
-              console.log("console log 5")
+              console.log(res)
               if((res).includes("ok")){
                 fetch(`http://${window.location.hostname}:3001/reboot`, {
                   method: 'GET',
@@ -402,7 +399,6 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                             confirmBtnBsStyle="success"
                                             cancelBtnBsStyle="danger"
                                             onConfirm={buttonWifiState ? () => {
-                                              console.log("console log 1")
                                               handleButton(true)
                                             } : () => {}}
                                             onCancel={() => setconfirm_alert(false)}
