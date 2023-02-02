@@ -42,8 +42,9 @@ useEffect(()=>{
     currentWifiData.password = (props.wifiData).split('"')[3];
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
     setCurrentWifiState(currentWifiData);
-  } else if(props.wifiData && (props.wifiData).includes("Error")){
+  } else if(props.wifiData && (props.wifiData).includes("Error") && !props.loaded){
     setButtonWifiState(false);
+    props.setLoaded(true);
   }
   
 

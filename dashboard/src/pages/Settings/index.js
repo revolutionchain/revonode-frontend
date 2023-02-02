@@ -19,6 +19,7 @@ const Settings = props => {
 
   const isLogged = useSelector(state => state.Login.isLogged);
   const [wifiData, setWifiData] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [domainState, setDomainState] = useState({
     eth: "",
     wifi: ""
@@ -28,7 +29,7 @@ const Settings = props => {
     if (!isLogged) {
       props.history.push('/login');
     }
-    
+
     fetch(`http://${window.location.hostname}:3001/getdomain`, {
       method: 'GET',
       headers: {
@@ -87,7 +88,7 @@ const Settings = props => {
             />
           }
           {/* import Widget */}
-          {wifiData && <SettingsData wifiData={wifiData} domainState={domainState} />}
+          {wifiData && <SettingsData wifiData={wifiData} domainState={domainState} loaded={loaded} setLoaded={setLoaded} />}
 
         </Container>
       </div>
