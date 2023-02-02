@@ -109,7 +109,7 @@ function getAllowedDomains() {
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
-  const baseUrlCheck = req.baseUrl
+  const baseUrlCheck = req.originalUrl
   if (origin || (baseUrlCheck).includes("getback")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
