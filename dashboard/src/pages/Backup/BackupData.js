@@ -22,6 +22,8 @@ const BackupDataWidget = props => {
   const [error_dlg, seterror_dlg] = useState(false)
 
 function handleButton (){
+  let titleRes;
+  let descriptionRes;
   fetch(`http://${window.location.hostname}:3001/backupwallet`, {
     method: 'GET',
     headers: {
