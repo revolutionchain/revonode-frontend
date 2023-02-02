@@ -273,7 +273,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                           cancelBtnBsStyle="danger"
                                           onConfirm={() => {
                                             setButtonWifiState(!buttonWifiState);    
-                                            handleButton(!buttonWifiState);
+                                            buttonWifiState && handleButton(!buttonWifiState);
                                             setconfirm_alert2(false);                                        
                                           }}
                                           onCancel={() => setconfirm_alert2(false)}
