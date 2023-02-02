@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useEffect } from 'react';
+import { Card, CardBody, Col, Row, Button } from 'reactstrap';
+import { useEffect, useState } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import SweetAlert from "react-bootstrap-sweetalert"
 
 
 const UpdateDataWidget = props => {
@@ -13,6 +14,7 @@ useEffect(()=>{
 
   
 const [confirm_alert, setconfirm_alert] = useState(false)
+const [confirm_alert2, setconfirm_alert2] = useState(false)
 //const [success_msg, setsuccess_msg] = useState(false)
 const [success_dlg, setsuccess_dlg] = useState(false)
 const [dynamic_title, setdynamic_title] = useState("")
