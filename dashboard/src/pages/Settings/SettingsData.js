@@ -127,9 +127,9 @@ function handleButton(wifiState){
     }).then(data => data.text())
       .then(res => {
         let objData = {
-          essid: currentWifiData.ssid, 
-          pass: currentWifiData.password, 
-          country: currentWifiData.country['value']
+          essid: currentWifiState.ssid, 
+          pass: currentWifiState.password, 
+          country: currentWifiState.country['value']
         }
         if((res).includes("ok")){
           fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
@@ -151,10 +151,7 @@ function handleButton(wifiState){
                   },
                 }).then(data => data.text())
                   .then(res => {
-                    console.log("console log 6")
-                    console.log("reboot res" + res)
                     if((res).includes("done")){
-                      console.log("console log 7")
                       titleRes = "Node Rebooting.."
                       descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
                       setsuccess_dlg(true);
