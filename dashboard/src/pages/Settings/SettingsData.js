@@ -74,7 +74,7 @@ function handleButton(wifiState){
     }).then(data => data.text())
       .then(res => {
         if((res).includes("ok")){
-          fetch(`http://${window.location.hostname}:3001/forcereboot`, {
+          fetch(`http://${window.location.hostname}:3001/reboot`, {
             method: 'GET',
             headers: {
               'Accept': 'application/json',

@@ -59,9 +59,10 @@ function handleButton (types){
             title={dynamic_title}
             showConfirm={false}
             timeout={dynamic_title.includes("Node Updating..") ? 300 : 0}
-            beforeUnmount={dynamic_title.includes("Node Updating..") ? () => {props.history.push('/login')} : () => {}}
             onConfirm={() => {
-              setsuccess_dlg(false) 
+              setTimeout(()=> {
+                setsuccess_dlg(false) 
+              }, 100000)
             }}
           >
             {dynamic_description}
