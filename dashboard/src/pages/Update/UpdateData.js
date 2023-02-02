@@ -106,13 +106,13 @@ function handleButton (types){
                             title="Are you sure?"
                             warning
                             showCancel
-                            confirmButtonText="Yes, download it!"
+                            confirmButtonText="Yes, update it!"
                             confirmBtnBsStyle="success"
                             cancelBtnBsStyle="danger"
                             onConfirm={() => handleButton({type: "dashboard"})}
                             onCancel={() => setconfirm_alert(false)}
                           >
-                            Your Wallet Backup will be created and downloaded.
+                            Your Revo Node will download and apply new Dashboard updates
                           </SweetAlert>
                         ) : null}
                             
@@ -138,7 +138,7 @@ function handleButton (types){
                             onConfirm={() => {}}
                             onCancel={() => setconfirm_alert(false)}
                           >
-                            Your Wallet Backup will be created and downloaded.
+                            Your Revo Node will download and apply new Dashboard updates
                           </SweetAlert>
                         ) : null}
                       </Col>
