@@ -56,7 +56,7 @@ useEffect(()=>{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
-  }).then(data => data.text())
+  }).then(data => data.json())
     .then(res => {
       setDomainState(res);
     });       
