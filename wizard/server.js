@@ -714,6 +714,18 @@ app.get('/backupwallet', (req, res, next) => {
 })
 
 
+app.post('/updates', async (req, res, next) => {
+  const { type } = req.body;
+
+  res.send("ok");
+
+  if(type == "dashboard"){
+    execFileSync('bash', ['/home/revo/nodeutils', '-dashupgrade'], { encoding: 'utf8' });
+  }else if(type == "node"){    
+    execFileSync('bash', ['/home/revo/nodeutils', '-nodeupgrade'], { encoding: 'utf8' });
+  }
+
+})
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 
