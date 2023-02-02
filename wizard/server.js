@@ -677,7 +677,7 @@ app.get('/backupwallet', (req, res, next) => {
           } else {
             res.send('ok');
             setTimeout(()=> {
-              exec('rm -r backup.dat', { cwd: '/home/revo/revonode-frontend/dashboard/build' }, (err, stdout, stderr) => {
+              exec('rm -r backup.dat', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
                 if (err) {
                 } else {
                 }
