@@ -38,6 +38,9 @@ import Backup from "../pages/Backup/index"
 // Update
 import Update from "../pages/Update/index"
 
+// Reboot
+import Reboot from "../pages/Reboot/index"
+
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -57,6 +60,8 @@ const userRoutes = [
   { path: "/backup", component: Backup },
 
   { path: "/update", component: Update },
+
+  { path: "/reboot", component: Reboot },
 
   // //profile
   { path: "/profile", component: UserProfile },
