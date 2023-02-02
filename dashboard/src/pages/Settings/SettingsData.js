@@ -56,6 +56,48 @@ const [dynamic_title, setdynamic_title] = useState("")
 const [dynamic_description, setdynamic_description] = useState("")
 const [error_dlg, seterror_dlg] = useState(false)
 
+function handleButton(){  
+  fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(data => data.text())
+    .then(res => {
+      if((res).includes("ok")){
+        fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },          
+          body: JSON.stringify(value)
+        }).then(data => data.text())
+          .then(res => {
+            if((res).includes("ok")){
+              fetch(`http://${window.location.hostname}:3001/forcereboot`, {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+              }).then(data => data.text())
+                .then(res => {
+                  if((res).includes("done")){
+                    //redirect
+                  }
+                });       
+              
+            }
+          });       
+      }
+    });       
+  
+}
+
+const [buttonWifiState, setButtonWifiState] = useState(true);
+
 
     return (
         <React.Fragment>
@@ -129,6 +171,41 @@ const [error_dlg, seterror_dlg] = useState(false)
                                 
                               }}
                             >
+                            <div className="text-left mt-4">{/*
+                              <Button type="submit" color="success">
+                                Save/Modify
+                                            </Button>*/}
+                                            
+                      <Col xl={3} lg={4} sm={6} className="mb-2">
+                                  <div className="p-3">
+                                      <Button
+                                          color="primary"
+                                          onClick={() => {
+                                              setconfirm_alert2(true)
+                                          }}
+                                          id="sa-success"
+                                      >
+                                          {buttonWifiState ? "Disable" : "Enable"}
+                  </Button>
+                                  </div>
+                                  {confirm_alert2 ? (
+                                      <SweetAlert
+                                          title="Are you sure?"
+                                          warning
+                                          showCancel
+                                          confirmButtonText="Yes, do it!"
+                                          confirmBtnBsStyle="success"
+                                          cancelBtnBsStyle="danger"
+                                          onConfirm={() => {
+                                            setButtonWifiState(!buttonWifiState);                                              
+                                          }}
+                                          onCancel={() => setconfirm_alert2(false)}
+                                      >
+                                          {buttonWifiState ? "Your Node Wifi will be disabled and current Wifi data will be removed!" : "Your Node Wifi will be enabled and you must enter your wifi data."}
+                                      </SweetAlert>
+                                  ) : null}
+                              </Col>
+                            </div>
                               <div className="form-group">
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>SSID</label>
@@ -168,56 +245,7 @@ const [error_dlg, seterror_dlg] = useState(false)
                                   type="select"
                                   required
                                       ></input>
-                                      </div>{/*
-                                <AvField
-                                  name="ssid"
-                                  label="SSID"
-                                  value={currentWifiState.ssid}
-                                  onChange={(e) => setCurrentWifiState({...currentWifiState, ssid: e.target.value })}
-                                  className="form-control"
-                                  placeholder="Enter WiFi Network Name"
-                                  type="text"
-                                  required
-                                />
-                                <AvField
-                                  name="password"
-                                  label="Password"
-                                  value={currentWifiState.password}
-                                  onChange={(e) => setCurrentWifiState({...currentWifiState, password: e.target.value })}
-                                  className="form-control"
-                                  placeholder="Enter Password"
-                                  type="password"
-                                  required
-                                />
-                                <AvField
-                                  name="protocol"
-                                  label="Encryption"
-                                  value={currentWifiState.protocol}
-                                  onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
-                                  className="form-control"
-                                  placeholder="Select Encryption"
-                                  type="select"
-                                  required
-                                >
-                                  <option>{currentWifiState.protocol}</option>
-                                </AvField>
-                                <AvField
-                                  name="country"
-                                  label="Country"
-                                  defaultValue= {currentWifiState.country}
-                                  onChange=""
-                                  className="form-control"
-                                  placeholder="Select Country"
-                                  type="select"                                  
-                                  required
-                                >
-                                  <option>{currentWifiState.country}</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-
-                            </AvField>*/}
+                                      </div>
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Country</label>
                                             {currentWifiState && <Select
