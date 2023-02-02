@@ -178,11 +178,11 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                               if(buttonWifiState && props.domainState.wifi){
                                 setTimeout(()=> {
                                   window.open(`http://${props.domainState.wifi}/login`, '_self')  
-                                }, 300000)
+                                }, 100000)
                               } else if(props.domainState.eth){
                                 setTimeout(() => {
                                   window.open(`http://${props.domainState.eth}/login`, '_self')  
-                                }, 300000)
+                                }, 100000)
                               }
                             }}
                         >
