@@ -134,6 +134,24 @@ app.use((req, res, next) => {
 });
 
 
+app.get('/getdomain', (req, res, next) => {
+  let ethEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
+  let wifiEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
+  let domainObj = {
+    eth: "",
+    wifi: ""
+  };
+  if (ethEnvCheck) {
+    ethEnvCheck = ethEnvCheck.replaceAll('"', '');
+    domainObj.eth = ethEnvCheck;
+  }
+  if (wifiEnvCheck) {
+    wifiEnvCheck = wifiEnvCheck.replaceAll('"', '');
+    domainObj.wifi = wifiEnvCheck;
+  }
+  res.send(domainObj);
+})
+
 app.get('/getwalletaddress', (req, res, next) => {
   exec('cat master', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
@@ -217,6 +235,16 @@ app.get('/forcereboot', (req, res, next) => {
   });
 })
 
+app.get('/reboot', (req, res, next) => {
+  res.send('done');
+  execFile('bash', ['/home/revo/nodeutils', '-reboot'], (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      (stdout);
+    }
+  });
+})
 
 app.get('/checkmaster', (req, res, next) => {
   exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {

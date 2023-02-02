@@ -33,6 +33,10 @@ const SettingsDataWidget = props => {
   };
   
   const [currentWifiState, setCurrentWifiState] = useState(false);
+  const [domainState, setDomainState] = useState({
+    eth: "",
+    wifi: ""
+  })
 
 useEffect(()=>{        
   if(props.wifiData && !(props.wifiData).includes("Error")){
@@ -45,6 +49,17 @@ useEffect(()=>{
   } else if(props.wifiData && (props.wifiData).includes("Error")){
     setButtonWifiState(false);
   }
+  
+  fetch(`http://${window.location.hostname}:3001/getdomain`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(data => data.text())
+    .then(res => {
+      setDomainState(res);
+    });       
 
 })
 
@@ -135,7 +150,7 @@ function handleButton(){
           }).then(data => data.text())
             .then(res => {
               if((res).includes("ok")){
-                fetch(`http://${window.location.hostname}:3001/forcereboot`, {
+                fetch(`http://${window.location.hostname}:3001/reboot`, {
                   method: 'GET',
                   headers: {
                     'Accept': 'application/json',
@@ -171,11 +186,15 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                             success
                             title={dynamic_title}
                             showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
-                            timeout={dynamic_title.includes("Node Rebooting..") ? 300 : 0}
+                            timeout={dynamic_title.includes("Node Rebooting..") ? 10 : 0}
                             beforeUnmount={dynamic_title.includes("Node Rebooting..") ? () => {props.history.push('/login')} : () => {}}
                             onConfirm={() => {
                                 {/*setsuccess_dlg(false)*/}
-                                props.history.push('/login');
+                                if(buttonWifiState && domainState.wifi){
+                                  window.open(`http://${domainState.wifi}/login`, '_self')  
+                                } else if(domainState.eth){
+                                  window.open(`http://${domainState.eth}/login`, '_self')  
+                                }
                             }}
                         >
                             {dynamic_description}
