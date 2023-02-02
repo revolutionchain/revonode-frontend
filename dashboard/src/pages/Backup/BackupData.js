@@ -22,7 +22,25 @@ const BackupDataWidget = props => {
   const [error_dlg, seterror_dlg] = useState(false)
 
 function handleButton (){
-  window.open(`http://${window.location.hostname}:3001/getback`, '_blank')
+  fetch(`http://${window.location.hostname}:3001/backupwallet`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(data => data.text())
+    .then(res => {
+      if((res).includes("ok")){
+        window.open(`http://${window.location.hostname}:3001/getback`, '_blank')  
+        titleRes = "Downloading.."
+        descriptionRes = "Wallet Backup download in progress."
+        setconfirm_alert(false);
+        setsuccess_dlg(true);
+        setdynamic_title(titleRes);
+        setdynamic_description(descriptionRes);
+      }
+    });       
+  
 }
 
   return (
@@ -32,8 +50,7 @@ function handleButton (){
           success
           title={dynamic_title}
           onConfirm={() => {
-            {/*setsuccess_dlg(false)*/ }
-            props.history.push('/login');
+            setsuccess_dlg(false) 
           }}
         >
           {dynamic_description}

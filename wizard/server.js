@@ -666,7 +666,7 @@ app.get('/getback', (req,res) => {
 )
 
 app.get('/backupwallet', (req, res, next) => {
-  let currentBackup = execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
+  execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
   exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
     } else {
