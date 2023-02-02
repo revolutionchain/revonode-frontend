@@ -75,6 +75,10 @@ const ProfileMenu = props => {
             <i className="bx bx bx-planet font-size-16 align-middle me-1"/>
             {props.t("Update")}
           </DropdownItem></Link>
+          <Link to="/reboot"><DropdownItem>          
+            <i className="bx bx bx-planet font-size-16 align-middle me-1"/>
+            {props.t("Reboot")}
+          </DropdownItem></Link>
           <div className="dropdown-divider"/>
           <Link to="/logout" className="dropdown-item">
             <i className="bx bx-log-out font-size-16 align-middle me-1"/>
