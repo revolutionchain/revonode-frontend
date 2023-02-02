@@ -166,7 +166,7 @@ function reloadAvgData(){
                     feesAvg = (((feesCount) / 30) / 100000000).toFixed(9);
                     let widgetUpdate = widgetState;
                     widgetUpdate[3].text = feesAvg + " RVO avg";
-                    widgetUpdate[3].count = (feesCount/100000000).toFixed(9);
+                    widgetUpdate[3].count = (feesCount/100000000).toFixed(9) + " RVO";
                     setWidgetState(widgetUpdate);
                     reloadStates ? setReloadStates(false) : setReloadStates(true);
                 }
