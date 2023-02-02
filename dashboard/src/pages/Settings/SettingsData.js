@@ -79,7 +79,7 @@ function handleButton(){
             .then(res => {
               if((res).includes("done")){
                 titleRes = "Node Rebooting.."
-                descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                descriptionRes = "Please wait, your node will reboot automatically.";
                 setsuccess_dlg(true);
                 setdynamic_title(titleRes);
                 setdynamic_description(descriptionRes);

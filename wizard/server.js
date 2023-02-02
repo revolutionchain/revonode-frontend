@@ -109,7 +109,7 @@ function getAllowedDomains() {
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
-  if(origin){
+  if (origin) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
@@ -119,12 +119,12 @@ app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', origin);
       }
     }
-    
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  next();
-  }else {
+
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+  } else {
     res.status(404).send("Error: Route protected")
   }
 
@@ -179,13 +179,13 @@ app.post('/modifyprofile', (req, res) => {
     setEnvValue('DASHBOARD_USER', user);
     res.send(true)
   }
-  if(pass){
+  if (pass) {
     let dashPass = getEnvValue('DASHBOARD_PASS');
     dashPass = dashPass.replaceAll('"', '');
-    if(oldpass == dashPass){
+    if (oldpass == dashPass) {
       setEnvValue('DASHBOARD_PASS', pass);
       res.send(true)
-    }else {
+    } else {
       res.send('Wrong current Password!');
     }
   }
@@ -455,13 +455,13 @@ function globalDashboardFunction(type) {/*
   } else if (type == '-stopdaemon' || type == '-startdaemon') {
     message = 'Daemon error on start/stop'
   }*/
-  if(type == '-getblockcount'){
+  if (type == '-getblockcount') {
     let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
     let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
     let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
     getBlock = getBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
     getBlock = JSON.parse(getBlock)
-    getBlock.time = Math.floor(Date.now()/1000) - getBlock.time;
+    getBlock.time = Math.floor(Date.now() / 1000) - getBlock.time;
     getBlock = JSON.stringify(getBlock);
     return getBlock;
   }
@@ -474,20 +474,20 @@ function globalDashboardFunction(type) {/*
 }
 
 
-app.get('/getlastestblocks', async (req, res, next) => {  
+app.get('/getlastestblocks', async (req, res, next) => {
   let blocks = [];
   let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
   let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
   let getBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', getBlockHash], { encoding: 'utf8' });
   getBlock = getBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
   getBlock = JSON.parse(getBlock)
-  getBlock.time = Math.floor(Date.now()/1000) - getBlock.time;
+  getBlock.time = Math.floor(Date.now() / 1000) - getBlock.time;
   blocks.push(getBlock);
-  for(let i = 0 ; i < 30 ; i ++){
-    let currentBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', blocks[i].previousblockhash], { encoding: 'utf8' }); 
-    currentBlock = currentBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");   
+  for (let i = 0; i < 30; i++) {
+    let currentBlock = execFileSync('bash', ['/home/revo/nodeutils', '-getblock', blocks[i].previousblockhash], { encoding: 'utf8' });
+    currentBlock = currentBlock.replaceAll("\\", "").replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
     currentBlock = JSON.parse(currentBlock);
-    currentBlock.time = Math.floor(Date.now()/1000) - currentBlock.time;
+    currentBlock.time = Math.floor(Date.now() / 1000) - currentBlock.time;
     blocks.push(currentBlock);
   }
   //console.log(blocks);
@@ -505,7 +505,7 @@ app.get('/getdashboarddata', async (req, res, next) => {
       data = await globalDashboardFunction(types[i]);
     }
     let result
-    if (typeof (data) == "string" && types[i] !== "date" && i !== (types.length -3)) {
+    if (typeof (data) == "string" && types[i] !== "date" && i !== (types.length - 3)) {
       result = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
       result = JSON.parse(result);
     } else {
@@ -537,33 +537,33 @@ function checkPeersData() {
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
           currentIp = { query: result.replaceAll("\n", "") };
-        }else if((e.network == 'not_publicly_routable')){
+        } else if ((e.network == 'not_publicly_routable')) {
           result = execSync(`dig TXT +short o-o.myaddr.l.google.com @ns1.google.com`, { encoding: 'utf8' });
           currentIp = { query: result.replaceAll("\n", "").replaceAll('"', '') };
         } else {
           currentIp = { query: (e.addr).split(":")[0] };
         }
-        
+
         return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
       })
       )
-      .then(axiosResults => {
-        let peersIpData = [];
-        axiosResults.map((result, pos) => {
-          if(result?.data){
-            let resultObj = result?.data;
-            peersIpData.push({ ...resultObj, addr: peersData[pos].addr })
-          }
+        .then(axiosResults => {
+          let peersIpData = [];
+          axiosResults.map((result, pos) => {
+            if (result?.data) {
+              let resultObj = result?.data;
+              peersIpData.push({ ...resultObj, addr: peersData[pos].addr })
+            }
+          })
+          peersIpData = JSON.stringify(peersIpData);
+          fs.writeFileSync('peersIp.json', peersIpData);
+          peersData = JSON.stringify(peersData)
+          fs.writeFileSync('peers.json', peersData);
         })
-        peersIpData = JSON.stringify(peersIpData);
-        fs.writeFileSync('peersIp.json', peersIpData);
-        peersData = JSON.stringify(peersData)
-        fs.writeFileSync('peers.json', peersData);        
-      })
-      .catch(err => {
-        console.log(err);
-        return 'Error: api couldnt find ip location'
-      });
+        .catch(err => {
+          console.log(err);
+          return 'Error: api couldnt find ip location'
+        });
       break;
     } else {
     }
@@ -611,12 +611,12 @@ app.get('/getpeersip', (req, res, next) => {
 
 app.get('/checktokenmail', (req, res, next) => {
   let envToken = getEnvValue('EMAIL_TOKEN');
-  if(envToken){
+  if (envToken) {
     envToken = envToken.replaceAll('"', '');
   }
-  if(envToken == 'sent'){
+  if (envToken == 'sent') {
     return res.send('The mail has already been sent.');
-  }else {
+  } else {
     res.send("the mail has not been sent yet");
   }
 })
@@ -625,27 +625,57 @@ app.get('/checktokenmail', (req, res, next) => {
 app.post('/sendtokenmail', async (req, res, next) => {
   const { email, token } = req.body;
   let master;
-  
-  if(!email || !token){
+
+  if (!email || !token) {
     return res.status(404).send('Error: Email or Token not found');
   }
   let envToken = getEnvValue('EMAIL_TOKEN');
-  if(envToken){
+  if (envToken) {
     envToken = envToken.replaceAll('"', '');
   }
-  if(envToken == 'sent'){
+  if (envToken == 'sent') {
     return res.send('The mail has already been sent.');
   }
 
   master = execSync('cat /home/revo/master', { encoding: 'utf8' });
 
 
-  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master.slice(0, master.length-1)}&token=${token}`);
-  if(emailResponse.data == 'OK'){    
+  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master.slice(0, master.length - 1)}&token=${token}`);
+  if (emailResponse.data == 'OK') {
     setEnvValue('EMAIL_TOKEN', 'sent');
   }
   res.send(emailResponse.data);
 })
+
+
+app.get('/backupwallet', (req, res, next) => {
+  let currentBackup = execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
+  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+    if (err) {
+    } else {
+      if (stdout.includes("backup.dat")) {
+
+        exec('sudo mv -r /home/revo/backup.dat /home/revo/revonode-frontend/dashboard/build', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+          if (err) {
+          } else {
+            res.send('ok');
+            setTimeout(()=> {
+              exec('rm -r backup.dat', { cwd: '/home/revo/revonode-frontend/dashboard/build' }, (err, stdout, stderr) => {
+                if (err) {
+                } else {
+                }
+              });
+
+            },120000);
+          }
+        });
+
+      }
+    }
+  });
+})
+
+
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 

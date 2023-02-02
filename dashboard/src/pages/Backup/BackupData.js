@@ -21,7 +21,9 @@ const BackupDataWidget = props => {
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
 
-
+function handleButton (){
+  window.open(`http://${window.location.hostname}/backup.dat`, '_blank')
+}
 
   return (
     <React.Fragment>
@@ -80,9 +82,7 @@ const BackupDataWidget = props => {
                             confirmButtonText="Yes, download it!"
                             confirmBtnBsStyle="success"
                             cancelBtnBsStyle="danger"
-                            onConfirm={() => {
-                              
-                            }}
+                            onConfirm={() => handleButton()}
                             onCancel={() => setconfirm_alert(false)}
                           >
                             Your Wallet Backup will be created and downloaded.
