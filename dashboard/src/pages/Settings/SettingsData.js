@@ -104,7 +104,7 @@ function handleButton(){
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
-    } else if(!currentWifiState.password){
+    } else if(!currentWifiState?.country?.value){
       titleRes = "Country error!"
       descriptionRes = "You must select a country!"
       setconfirm_alert(false);
