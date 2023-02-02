@@ -42,6 +42,9 @@ useEffect(()=>{
     currentWifiData.password = (props.wifiData).split('"')[3];
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
     setCurrentWifiState(currentWifiData);
+  if(!(wifiData).includes("network")){
+    setButtonWifiState(false);
+  }
   }
 
 })
@@ -261,7 +264,8 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                           confirmBtnBsStyle="success"
                                           cancelBtnBsStyle="danger"
                                           onConfirm={() => {
-                                            setButtonWifiState(!buttonWifiState);      
+                                            setButtonWifiState(!buttonWifiState);    
+                                            !buttonWifiState && handleButton()  
                                             setconfirm_alert2(false);                                        
                                           }}
                                           onCancel={() => setconfirm_alert2(false)}
@@ -381,7 +385,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                             confirmButtonText="Yes, modify it!"
                                             confirmBtnBsStyle="success"
                                             cancelBtnBsStyle="danger"
-                                            onConfirm={() => handleButton()}
+                                            onConfirm={buttonWifiState ? () => handleButton() : () => {}}
                                             onCancel={() => setconfirm_alert(false)}
                                         >
                                             Your Node Wifi data will be modified!
