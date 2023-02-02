@@ -182,7 +182,11 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                             } : () => {}}
                             onConfirm={() => {
                                 {/*setsuccess_dlg(false)*/}
-                                props.history.push('/login');
+                              if(buttonWifiState && props.domainState.wifi){
+                                window.open(`http://${props.domainState.wifi}/login`, '_self')  
+                              } else if(props.domainState.eth){
+                                window.open(`http://${props.domainState.eth}/login`, '_self')  
+                              }
                             }}
                         >
                             {dynamic_description}
