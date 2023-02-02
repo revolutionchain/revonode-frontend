@@ -133,7 +133,7 @@ function handleButton(wifiState){
               'Accept': 'application/json',
               'Content-Type': 'application/json',
             },          
-            body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country.value})
+            body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country['value']})
           }).then(data => data.text())
             .then(res => {
               console.log(res)
