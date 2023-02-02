@@ -109,7 +109,8 @@ function getAllowedDomains() {
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
-  if (origin) {
+  const baseUrlCheck = req.baseUrl
+  if (origin || (baseUrlCheck).includes("getback")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
@@ -647,6 +648,22 @@ app.post('/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
+app.get('/getback', (req,res) => {
+
+
+  var filePath = path.join(__dirname, 'backup.dat');
+  var stat = fs.statSync(filePath);
+
+  res.writeHead(200, {
+      'Content-Type': 'application/dat',
+      'Content-Length': stat.size
+  });
+
+  var readStream = fs.createReadStream(filePath);
+  // We replaced all the event handlers with a simple call to readStream.pipe()
+  readStream.pipe(res);
+}
+)
 
 app.get('/backupwallet', (req, res, next) => {
   let currentBackup = execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
@@ -655,7 +672,7 @@ app.get('/backupwallet', (req, res, next) => {
     } else {
       if (stdout.includes("backup.dat")) {
 
-        exec('sudo mv -r /home/revo/backup.dat /home/revo/revonode-frontend/dashboard/build', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+        exec('sudo mv /home/revo/backup.dat /home/revo/revonode-frontend/wizard', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
           if (err) {
           } else {
             res.send('ok');
