@@ -650,18 +650,29 @@ app.post('/sendtokenmail', async (req, res, next) => {
 
 app.get('/getback', (req, res) => {
 
-
-  var filePath = path.join(__dirname, 'backup.dat');
-  var stat = fs.statSync(filePath);
-
-  res.writeHead(200, {
-    'Content-Type': 'application/dat',
-    'Content-Length': stat.size
+  
+  exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
+    if (err) {
+    } else {
+      if (stdout.includes("backup.dat")) {
+        var filePath = path.join(__dirname, 'backup.dat');
+        var stat = fs.statSync(filePath);
+      
+        res.writeHead(200, {
+          'Content-Type': 'application/dat',
+          'Content-Length': stat.size
+        });
+      
+        var readStream = fs.createReadStream(filePath);
+        // We replaced all the event handlers with a simple call to readStream.pipe()
+        readStream.pipe(res);
+      }else {
+        res.send('File not found.');
+      }
+    }
   });
 
-  var readStream = fs.createReadStream(filePath);
-  // We replaced all the event handlers with a simple call to readStream.pipe()
-  readStream.pipe(res);
+
 }
 )
 
