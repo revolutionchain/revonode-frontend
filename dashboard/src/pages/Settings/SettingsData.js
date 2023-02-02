@@ -186,7 +186,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                             success
                             title={dynamic_title}
                             showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
-                            timeout={dynamic_title.includes("Node Rebooting..") ? 300 : 0}
+                            timeout={dynamic_title.includes("Node Rebooting..") ? 10 : 0}
                             beforeUnmount={dynamic_title.includes("Node Rebooting..") ? () => {
                               if(buttonWifiState && domainState.wifi){
                                 window.open(`http://${domainState.wifi}/login`, '_self')  
