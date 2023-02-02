@@ -33,10 +33,6 @@ const SettingsDataWidget = props => {
   };
   
   const [currentWifiState, setCurrentWifiState] = useState(false);
-  const [domainState, setDomainState] = useState({
-    eth: "",
-    wifi: ""
-  })
 
 useEffect(()=>{        
   if(props.wifiData && !(props.wifiData).includes("Error")){
@@ -50,16 +46,6 @@ useEffect(()=>{
     setButtonWifiState(false);
   }
   
-  fetch(`http://${window.location.hostname}:3001/getdomain`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }).then(data => data.json())
-    .then(res => {
-      setDomainState(res);
-    });       
 
 })
 

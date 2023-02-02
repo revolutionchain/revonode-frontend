@@ -19,11 +19,26 @@ const Settings = props => {
 
   const isLogged = useSelector(state => state.Login.isLogged);
   const [wifiData, setWifiData] = useState(false);
+  const [domainState, setDomainState] = useState({
+    eth: "",
+    wifi: ""
+  })
 
   useEffect(() => {
     if (!isLogged) {
       props.history.push('/login');
     }
+    
+    fetch(`http://${window.location.hostname}:3001/getdomain`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json())
+      .then(res => {
+        setDomainState(res);
+      });       
 
 
     fetch(`http://${window.location.hostname}:3001/getwificonfig`, {
@@ -40,6 +55,8 @@ const Settings = props => {
           setWifiData("Error");
         }
       });       
+
+      
     
   }, [])
 
@@ -70,7 +87,7 @@ const Settings = props => {
             />
           }
           {/* import Widget */}
-          {wifiData && <SettingsData wifiData={wifiData} />}
+          {wifiData && <SettingsData wifiData={wifiData} domainState={domainState} />}
 
         </Container>
       </div>
