@@ -648,15 +648,15 @@ app.post('/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
-app.get('/getback', (req,res) => {
+app.get('/getback', (req, res) => {
 
 
   var filePath = path.join(__dirname, 'backup.dat');
   var stat = fs.statSync(filePath);
 
   res.writeHead(200, {
-      'Content-Type': 'application/dat',
-      'Content-Length': stat.size
+    'Content-Type': 'application/dat',
+    'Content-Length': stat.size
   });
 
   var readStream = fs.createReadStream(filePath);
@@ -666,27 +666,37 @@ app.get('/getback', (req,res) => {
 )
 
 app.get('/backupwallet', (req, res, next) => {
-  execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
-  exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+  exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
     if (err) {
     } else {
       if (stdout.includes("backup.dat")) {
+        return res.send('ok');
+      } else {
+        execFileSync('bash', ['/home/revo/nodeutils', '-backupwallet'], { encoding: 'utf8' });
 
-        exec('sudo mv /home/revo/backup.dat /home/revo/revonode-frontend/wizard', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
+        exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
           if (err) {
           } else {
-            res.send('ok');
-            setTimeout(()=> {
-              exec('rm -r backup.dat', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
+            if (stdout.includes("backup.dat")) {
+
+              exec('sudo mv /home/revo/backup.dat /home/revo/revonode-frontend/wizard', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
                 if (err) {
                 } else {
+                  res.send('ok');
+                  setTimeout(() => {
+                    exec('rm -r backup.dat', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
+                      if (err) {
+                      } else {
+                      }
+                    });
+
+                  }, 120000);
                 }
               });
 
-            },120000);
+            }
           }
         });
-
       }
     }
   });
