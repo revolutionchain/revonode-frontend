@@ -60,10 +60,10 @@ const [dynamic_title, setdynamic_title] = useState("")
 const [dynamic_description, setdynamic_description] = useState("")
 const [error_dlg, seterror_dlg] = useState(false)
 
-function handleButton(){  
+function handleButton(wifiState){  
   let titleRes;
   let descriptionRes;
-  if(!buttonWifiState){    
+  if(!wifiState){    
     fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
       method: 'GET',
       headers: {
@@ -273,7 +273,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                           cancelBtnBsStyle="danger"
                                           onConfirm={() => {
                                             setButtonWifiState(!buttonWifiState);    
-                                            handleButton()  
+                                            handleButton(buttonWifiState);
                                             setconfirm_alert2(false);                                        
                                           }}
                                           onCancel={() => setconfirm_alert2(false)}
