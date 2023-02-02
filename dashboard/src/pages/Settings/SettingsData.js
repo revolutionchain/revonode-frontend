@@ -42,9 +42,8 @@ useEffect(()=>{
     currentWifiData.password = (props.wifiData).split('"')[3];
     currentWifiData.protocol = (props.wifiData).split('key_mgmt=')[1].split('\n')[0];
     setCurrentWifiState(currentWifiData);
-  if(!(wifiData).includes("network")){
+  }else if(!(props.wifiData).includes("network")){
     setButtonWifiState(false);
-  }
   }
 
 })
@@ -368,7 +367,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                         <Col xl={3} lg={4} sm={6} className="mb-2">
                                     <div className="">
                                         <Button
-                                            color="primary"
+                                            color={buttonWifiState ? "primary" : "secondary"}
                                             onClick={() => {
                                                 setconfirm_alert(true)
                                             }}
