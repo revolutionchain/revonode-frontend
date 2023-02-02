@@ -132,7 +132,7 @@ function handleButton(wifiState){
               'Accept': 'application/json',
               'Content-Type': 'application/json',
             },          
-            body: JSON.stringify(currentWifiData)
+            body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country.value})
           }).then(data => data.text())
             .then(res => {
               if((res).includes("ok")){
@@ -377,9 +377,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                     <div className="">
                                         <Button
                                             color={buttonWifiState ? "primary" : "secondary"}
-                                            onClick={() => {
+                                            onClick={buttonWifiState ? () => {
                                                 setconfirm_alert(true)
-                                            }}
+                                            } : () => {}}
                                             id="sa-success"
                                         >
                                             Save
