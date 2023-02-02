@@ -115,7 +115,7 @@ const Dashboard = props => {
   useEffect(() => {
     document.body.classList.remove('bg-reglog');
     if (!isLogged) {
-      props.history.push('/login');
+      return props.history.push('/login');
     }
 
     getStatesData();
