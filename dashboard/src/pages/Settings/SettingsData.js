@@ -126,6 +126,11 @@ function handleButton(wifiState){
       },
     }).then(data => data.text())
       .then(res => {
+        let objData = {
+          essid: currentWifiData.ssid, 
+          pass: currentWifiData.password, 
+          country: currentWifiData.country['value']
+        }
         if((res).includes("ok")){
           fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
             method: 'POST',
@@ -133,7 +138,7 @@ function handleButton(wifiState){
               'Accept': 'application/json',
               'Content-Type': 'application/json',
             },          
-            body: JSON.stringify({essid: currentWifiData.ssid, pass: currentWifiData.password, country: currentWifiData.country['value']})
+            body: JSON.stringify(objData)
           }).then(data => data.text())
             .then(res => {
               console.log(res)
