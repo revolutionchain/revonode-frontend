@@ -394,7 +394,9 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                             confirmButtonText="Yes, modify it!"
                                             confirmBtnBsStyle="success"
                                             cancelBtnBsStyle="danger"
-                                            onConfirm={buttonWifiState ? () => handleButton(true) : () => {}}
+                                            onConfirm={buttonWifiState ? () => {
+                                              handleButton(true)
+                                            } : () => {}}
                                             onCancel={() => setconfirm_alert(false)}
                                         >
                                             Your Node Wifi data will be modified!
