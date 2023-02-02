@@ -179,7 +179,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                       <Col xl={3} lg={4} sm={6} className="mb-2">
                                   <div className="">
                                       <Button
-                                          color="primary"
+                                          color={buttonWifiState ? "primary" : "danger"}
                                           onClick={() => {
                                               setconfirm_alert2(true)
                                           }}
@@ -255,7 +255,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                       </div>
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Country</label>
-                                            {currentWifiState && <Select
+                                            {buttonWifiState ? currentWifiState && <Select
                                                 onChange={(e) => setCurrentWifiState({...currentWifiState, country: {value: e.value, label: e.label}})}
                                                 menuPlacement="auto"
                                                 menuPosition="fixed"
@@ -278,7 +278,18 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                                     }),
                                                 }}
 
-                                                options={options} />}
+                                                options={options} /> : 
+                                                <input 
+                                              name="country"
+                                              label="Country"
+                                              defaultValue={currentWifiState.country.label}
+                                              onChange={(e) => setCurrentWifiState({...currentWifiState, protocol: e.target.value })}
+                                              className="form-control"
+                                              type="select"
+                                              style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
+                                              required
+                                              readOnly={buttonWifiState ? false : true}
+                                                  ></input>}
                                         </div>
                               </div>
                               <div className="text-left mt-4">{/*
@@ -303,7 +314,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                             title="Are you sure?"
                                             warning
                                             showCancel
-                                            confirmButtonText="Yes, delete it!"
+                                            confirmButtonText="Yes, modify it!"
                                             confirmBtnBsStyle="success"
                                             cancelBtnBsStyle="danger"
                                             onConfirm={() => {
@@ -311,7 +322,7 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                             }}
                                             onCancel={() => setconfirm_alert(false)}
                                         >
-                                            Your dashboard Email will be changed!
+                                            Your Node Wifi data will be modified!
                                         </SweetAlert>
                                     ) : null}
                                 </Col>
