@@ -8,7 +8,7 @@ import { logoutUser } from "../../store/actions"
 const Logout = props => {
   useEffect(() => {
     props.logoutUser(props.history)
-  })
+  },[])
 
   return <></>
 }

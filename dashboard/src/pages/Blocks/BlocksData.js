@@ -8,7 +8,7 @@ const BlocksDataWidget = props => {
 
     
 useEffect(()=>{        
-})
+},[])
 
     return (
         <React.Fragment>

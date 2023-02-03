@@ -8,7 +8,7 @@ const TipsDataWidget = props => {
 
     
 useEffect(()=>{        
-})
+},[])
 
 const icons = []
 

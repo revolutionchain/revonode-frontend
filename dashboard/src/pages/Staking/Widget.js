@@ -73,7 +73,7 @@ useEffect(()=>{
           });
       });
     
-})
+},[])
 
     return (
         <React.Fragment>

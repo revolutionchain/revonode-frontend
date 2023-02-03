@@ -103,7 +103,7 @@ useEffect(()=>{
     widget[5].text = props.farAway((props.nodeData[10].time)) + " ago";
 
     setWidgetState(widget);
-})
+},[])
 
 
 return (

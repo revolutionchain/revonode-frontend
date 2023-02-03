@@ -9,7 +9,7 @@ const BackupDataWidget = props => {
 
 
   useEffect(() => {
-  })
+  },[])
 
 
 

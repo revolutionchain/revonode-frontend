@@ -98,9 +98,6 @@ const UserProfile = props => {
   })
 
 
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const [successMsg, setSuccessMsg] = useState("");
 
   const handleButton = (value) => {
     let titleRes;

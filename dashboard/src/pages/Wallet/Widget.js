@@ -90,7 +90,7 @@ useEffect(()=>{
     widget[4].count = props.nodeData[9].walletversion
     widget[5].count = props.nodeData[9].txcount;
     setWidgetState(widget);
-})
+},[])
 
     return (
         <React.Fragment>

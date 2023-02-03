@@ -9,7 +9,7 @@ const UpdateDataWidget = props => {
 
     
 useEffect(()=>{        
-})
+},[])
 
 
   

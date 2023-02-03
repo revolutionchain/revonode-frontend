@@ -52,7 +52,7 @@ const Register = props => {
     return function cleanup() {
       document.body.className = "";
     };
-  });
+  },[]);
 
 
   const [userData, setUserData] = useState({

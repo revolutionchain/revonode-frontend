@@ -194,7 +194,7 @@ useEffect(()=>{
 
     setWidgetState(widget);
 
-})
+},[])
 
     return (
         <React.Fragment>

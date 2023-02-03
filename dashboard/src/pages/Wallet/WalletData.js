@@ -8,7 +8,7 @@ const WalletDataWidget = props => {
 
     
 useEffect(()=>{        
-})
+},[])
 
 const icons = []
 
