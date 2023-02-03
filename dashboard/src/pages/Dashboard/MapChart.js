@@ -13,6 +13,11 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
     maxValue: 0
   });
 
+  const [mapPropsState, setMapPropsState] = useState({
+    customScale: "",
+    projection: ""
+  })
+
 
   useEffect(() => {
 
@@ -53,23 +58,28 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
     })
     setMinMaxValue(colorValues);
 
+    const width = 600
+    const height = 400
+  
+  
+    const minColor = "#d6f5d6"
+    const maxColor = "#145214"
+  
+    const customScale = scaleLinear()
+      .domain([minMaxValue.minValue, minMaxValue.maxValue])
+      .range([minColor, maxColor])
+  
+    const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
+
+    setMapPropsState({
+      customScale: customScale,
+      projection: projection
+    })
+
   })
 
-
-  const width = 600
-  const height = 400
-
-
-  const minColor = "#d6f5d6"
-  const maxColor = "#145214"
-
-  const customScale = scaleLinear()
-    .domain([minMaxValue.minValue, minMaxValue.maxValue])
-    .range([minColor, maxColor])
-
-  const projection = geoPatterson().translate([width / 2, height / 2]).scale(100)
   return (
-    <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={projection}>
+    mapPropsState.projection && mapPropsState.customScale && <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={mapPropsState.projection}>
       {countriesData && <Geographies geography={geoUrl} fill="#FFFFFF" style={{
         default: {
           fill: "#FFFFFF",
@@ -81,7 +91,7 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
             const country = countriesData.find(d => d.country_code === geo.properties["Alpha-2"]);
             return (
               <Geography
-                fill={country ? customScale(country.value) : "#FFFFFF"}
+                fill={country ? mapPropsState.customScale(country.value) : "#FFFFFF"}
                 stroke= "#CCCCCC"
                 key={geo.rsmKey}
                 geography={geo}
