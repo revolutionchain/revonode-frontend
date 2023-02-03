@@ -143,19 +143,21 @@ const ProfileMenu = props => {
             <span>{props.t("Logout")}</span>
           </Link>
           <div onClick={() => {
-            setPowerModal(true)
+            setPowerModal(true);
+            setMenu(false);
           }} to="/#" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
             <span>{props.t("Power")}</span>
-          </div><Modal
+          </div>
+          <Modal
             isOpen={powerModal}
             role="dialog"
             autoFocus={true}
             centered
-            data-toggle="modal"
+            data-toggle="modal"/*
             toggle={() => {
               setPowerModal(!powerModal)
-            }}
+            }}*/
           >
           {confirm_alert ? (
             <SweetAlert
@@ -189,9 +191,9 @@ const ProfileMenu = props => {
             <div className="modal-content">
               <div className="modal-header border-bottom-0">
                 <button type="button" className="btn-close"
-                  onClick={() => {
+                  /*onClick={() => {
                     tog_standard()
-                  }}></button>
+                  }}*/></button>
               </div>
               <div className="modal-body">
                 <div className="text-center mb-4">
@@ -214,7 +216,6 @@ const ProfileMenu = props => {
                               color="primary"
                               onClick={() => {
                                 setconfirm_alert(true)
-                                setPowerModal(false)
                               }}
                               id="sa-success"
                             >
@@ -224,7 +225,6 @@ const ProfileMenu = props => {
                             color="primary"
                             onClick={() => {
                               setconfirm_alert2(true)
-                              setPowerModal(!powerModal)
                             }}
                             id="sa-success"
                           >
