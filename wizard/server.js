@@ -110,7 +110,7 @@ app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
-  if (origin || (baseUrlCheck).includes("getback")) {
+  if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
@@ -676,7 +676,7 @@ app.post('/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
-app.get('/getback', (req, res) => {
+app.get('/backup', (req, res) => {
 
   
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {

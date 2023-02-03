@@ -33,7 +33,7 @@ function handleButton (){
   }).then(data => data.text())
     .then(res => {
       if((res).includes("ok")){
-        window.open(`http://${window.location.hostname}:3001/getback`, '_blank')  
+        window.open(`http://${window.location.hostname}:3001/backup`, '_blank')  
         titleRes = "Downloading.."
         descriptionRes = "Wallet Backup download in progress."
         setconfirm_alert(false);
