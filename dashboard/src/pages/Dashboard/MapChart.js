@@ -3,8 +3,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps"
 import { geoPatterson } from "d3-geo-projection";
 import { scaleLinear } from "d3-scale";
 
-const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
+const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
 export default function MapChart({ countriesData }) {
 
@@ -55,11 +54,11 @@ export default function MapChart({ countriesData }) {
       height: height
     })
 
-  })
+  },[])
 
   return (
     mapPropsState.projection && mapPropsState.customScale && <ComposableMap viewBox={`0 0 ${mapPropsState.width} ${mapPropsState.height}`} projection={mapPropsState.projection}>
-      {countriesData && <Geographies geography={geoUrl} fill="#FFFFFF" style={{
+      {<Geographies geography={geoUrl} fill="#FFFFFF" style={{
         default: {
           fill: "#FFFFFF",
           stroke: "#CCCCCC"

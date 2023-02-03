@@ -133,7 +133,7 @@ const Dashboard = props => {
   const [ modalData, setModalData ] = useState({
     email: typedMail,
     token: ""
-  })
+  },[])
 
 
   const [ errorMsg, setErrorMsg ] = useState("");
