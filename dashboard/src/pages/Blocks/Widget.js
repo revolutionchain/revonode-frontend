@@ -78,7 +78,7 @@ const Widget = props => {
         let totalFees = 0;
         if((props.nodeData[10].tx).length > 2){
             Promise.all((props.nodeData[10].tx).slice(2).map(async (e,i) => {
-                    let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                    let response = await fetch(`https://testnetapi.revo.network/tx/${e}`, {
                         method: 'GET',
                         headers: {
                           'Accept': 'application/json',
@@ -136,7 +136,7 @@ const Widget = props => {
                 if (txHashes.length >= 10) {
                     const prom = new Promise((resolve, reject) => {
                         setTimeout(async () => {
-                            let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                            let response = await fetch(`https://testnetapi.revo.network/tx/${e}`, {
                                 method: 'GET',
                                 headers: {
                                     'Accept': 'application/json',
@@ -148,7 +148,7 @@ const Widget = props => {
                     });
                     return prom
                 } else {
-                    let response = await fetch(`https://api.revo.network/tx/${e}`, {
+                    let response = await fetch(`https://testnetapi.revo.network/tx/${e}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',
@@ -205,7 +205,7 @@ const Widget = props => {
                                         <h4 className="mb-1 mt-1">
                                             {/*widget.dollor === true ? '' : ''*/}
                                             <span className="counter-value" data-target="58425">
-                                                {widget.id == 2 ? <a href={"https://mainnet.revo.network/block/" + widget.count} target="_blank" >{widget.count}</a> : widget.count}
+                                                {widget.id == 2 ? <a href={"https://testnet.revo.network/block/" + widget.count} target="_blank" >{widget.count}</a> : widget.count}
                                             </span></h4>
                                     </div>
                                     <p className="text-muted mt-3 mb-0">

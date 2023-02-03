@@ -36,7 +36,7 @@ useEffect(()=>{
               </thead>
               <tbody>
                 <tr>
-                  <th style={{borderBottom: "none"}} scope="row"><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></th>
+                  <th style={{borderBottom: "none"}} scope="row"><a href="https://testnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></th>
                   <td style={{borderBottom: "none"}}>34.65 RVO</td>
                   <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
                   <td style={{borderBottom: "none"}}>8</td>
