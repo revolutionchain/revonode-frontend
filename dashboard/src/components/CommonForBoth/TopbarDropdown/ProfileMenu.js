@@ -43,14 +43,6 @@ const ProfileMenu = props => {
 
 
 
-  function handleButton() {
-    let titleRes;
-    let descriptionRes;
-    
-
-  }
-
-
 
   const [confirm_alert, setconfirm_alert] = useState(false)
   const [confirm_alert2, setconfirm_alert2] = useState(false)
@@ -82,8 +74,13 @@ const ProfileMenu = props => {
         <SweetAlert
           success
           title={dynamic_title}
+          showConfirm={false}
+          timeout={300}
           onConfirm={() => {
-            setsuccess_dlg(false)
+              {/*setsuccess_dlg(false)*/}
+              setTimeout(()=> {
+                window.open(`http://${window.location.hostname}/login`, '_self')  
+              }, 100000);
           }}
         >
           {dynamic_description}
@@ -167,7 +164,27 @@ const ProfileMenu = props => {
               confirmButtonText="Yes, reboot it!"
               confirmBtnBsStyle="success"
               cancelBtnBsStyle="danger"
-              onConfirm={() => handleButton()}
+              onConfirm={() => {                
+                let titleRes;
+                let descriptionRes;
+                fetch(`http://${window.location.hostname}:3001/reboot`, {
+                  method: 'GET',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                }).then(data => data.text())
+                  .then(res => {
+                    if((res).includes("done")){
+                      titleRes = "Node Rebooting.."
+                      descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                      setconfirm_alert(false);
+                      setsuccess_dlg(true);
+                      setdynamic_title(titleRes);
+                      setdynamic_description(descriptionRes);
+                    }
+                  });
+              }}
               onCancel={() => setconfirm_alert(false)}
             >
               Your Node will be rebooted.
@@ -182,7 +199,27 @@ const ProfileMenu = props => {
             confirmButtonText="Yes, power off it!"
             confirmBtnBsStyle="success"
             cancelBtnBsStyle="danger"
-            onConfirm={() => handleButton()}
+            onConfirm={() => {
+              let titleRes;
+              let descriptionRes;              
+              fetch(`http://${window.location.hostname}:3001/shutdown`, {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+              }).then(data => data.text())
+                .then(res => {
+                  if((res).includes("done")){
+                    titleRes = "Shutting Down Node.."
+                    descriptionRes = "Your node is shutting down now.";
+                    setconfirm_alert(false);
+                    setsuccess_dlg(true);
+                    setdynamic_title(titleRes);
+                    setdynamic_description(descriptionRes);
+                  }
+                });
+            }}
             onCancel={() => setconfirm_alert2(false)}
           >
             Your Node will be turned off.
@@ -221,6 +258,7 @@ const ProfileMenu = props => {
                             >
                               Reboot
                             </Button>
+                            <div className="mt-3">
                           <Button
                             color="primary"
                             onClick={() => {
@@ -230,6 +268,7 @@ const ProfileMenu = props => {
                           >
                             Power off
                           </Button>
+                          </div>
                         </Col>
                       </div>
                     </div>

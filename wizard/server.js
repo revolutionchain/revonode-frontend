@@ -246,6 +246,18 @@ app.get('/reboot', (req, res, next) => {
   });
 })
 
+app.get('/shutdown', (req, res, next) => {
+  res.send('done');
+  execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      (stdout);
+    }
+  });
+})
+
+
 app.get('/checkmaster', (req, res, next) => {
   exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
