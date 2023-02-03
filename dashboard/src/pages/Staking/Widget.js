@@ -52,17 +52,27 @@ useEffect(()=>{
     widget[1].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     //widget[2].count = "";
     
-  fetch(`https://api.revo.network/address/RStakerWbSVo8k1PfLkCK5rTXEjmX3HQH9/`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  }).then(data => data.json())
-    .then(res => {
-      widget[2].count = (res.blocksMined);
-      setWidgetState(widget);
-    });
+    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.text())
+      .then(res => {
+        fetch(`https://api.revo.network/address/${res}/`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then(data => data.json())
+          .then(res => {
+            widget[2].count = (res.blocksMined);
+            setWidgetState(widget);
+          });
+      });
+    
 })
 
     return (

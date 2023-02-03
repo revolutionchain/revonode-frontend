@@ -190,7 +190,7 @@ const [ walletState, setWalletState ] = useState(false);
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>
                         <hr />
-                        <div className="mt-1 piechart-container">
+                        <div className="mt-1 piechart-container" style={{maxHeight: "450px"}}>
                             <div className='col-xl-6 '>
                                 {totalPeers && <PieChart
                                     animation
