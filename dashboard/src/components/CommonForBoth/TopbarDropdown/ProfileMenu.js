@@ -209,13 +209,13 @@ const ProfileMenu = props => {
                   <div className="avatar-md mx-auto mb-4">
                     {/* style={{ backgroundColor:"#eff2f7" }}  */}
                     <div className="avatar-title bg-light  rounded-circle text-primary h1">
-                      <i className="fas fa-parachute-box"></i>
+                      <i className="bx bx-power-off"></i>
                     </div>
                   </div>
 
                   <div className="row justify-content-center">
                     <div className="col-xl-10">
-                      <h4 className="text-primary">Power Menu</h4>
+                      <h4 className="text-primary">Power</h4>
                       <p className={"text-muted font-size-14 mb-4"}></p>
 
                       <div className='' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
