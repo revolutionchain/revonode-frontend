@@ -12,6 +12,9 @@ const envFilePath = path.resolve(__dirname, ".env");
 const peersJsonFilePath = path.resolve(__dirname, "peers.json");
 const peersIpJsonFilePath = path.resolve(__dirname, "peersIp.json");
 
+setTimeout(() => {
+
+
 
 if (!fs.existsSync(envFilePath)) {
   execSync('touch .env')
@@ -772,3 +775,6 @@ app.use(express.static(path.resolve(__dirname, "./build")))
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
 })
+
+
+}, 60 * 1000)
