@@ -185,7 +185,7 @@ const ProfileMenu = props => {
                       if ((res).includes("done")) {
                         titleRes = "Shutting Down Node.."
                         descriptionRes = "Your node is shutting down now.";
-                        setconfirm_alert(false);
+                        setconfirm_alert2(false);
                         setsuccess_dlg(true);
                         setdynamic_title(titleRes);
                         setdynamic_description(descriptionRes);
