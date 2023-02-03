@@ -1022,13 +1022,13 @@ a {
   }
   
   .content-container {
-    min-height: calc(75vh - 50px);
+    min-height: calc(30vh - 50px);
   }
   .signup-desc {
     min-height: 0;
   }
   .signup-content{
-    min-height: 40vh;
+    min-height: 30vh;
   }
   .main {
     display: flex;
@@ -1036,7 +1036,7 @@ a {
     min-height: 100vh;
   }
   .form-group-principal{
-    min-height: 40vh;
+    min-height: 30vh;
   }
   }
   

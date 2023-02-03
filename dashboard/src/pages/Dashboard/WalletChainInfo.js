@@ -185,7 +185,7 @@ const [ walletState, setWalletState ] = useState(false);
                 </Card>
             </Col>
             <Col xl={5}>
-                <Card>
+                <Card style={{maxHeight: "500px"}}>
                     <CardBody>
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>
