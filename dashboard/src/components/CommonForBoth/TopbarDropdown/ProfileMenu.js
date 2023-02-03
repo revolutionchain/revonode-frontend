@@ -70,34 +70,6 @@ const ProfileMenu = props => {
 
   return (
     <React.Fragment>
-      {success_dlg ? (
-        <SweetAlert
-          success
-          title={dynamic_title}
-          showConfirm={false}
-          timeout={300}
-          onConfirm={() => {
-              {/*setsuccess_dlg(false)*/}
-              setTimeout(()=> {
-                window.open(`http://${window.location.hostname}/login`, '_self')  
-              }, 100000);
-          }}
-        >
-          {dynamic_description}
-        </SweetAlert>
-      ) : null}
-
-      {error_dlg ? (
-        <SweetAlert
-          error
-          title={dynamic_title}
-          onConfirm={() => {
-            seterror_dlg(false)
-          }}
-        >
-          {dynamic_description}
-        </SweetAlert>
-      ) : null}
       <Dropdown
         isOpen={menu}
         toggle={() => setMenu(!menu)}
@@ -156,75 +128,75 @@ const ProfileMenu = props => {
               setPowerModal(!powerModal)
             }}*/
           >
-          {confirm_alert ? (
-            <SweetAlert
-              title="Are you sure?"
-              warning
-              showCancel
-              confirmButtonText="Yes, reboot it!"
-              confirmBtnBsStyle="success"
-              cancelBtnBsStyle="danger"
-              onConfirm={() => {                
-                let titleRes;
-                let descriptionRes;
-                fetch(`http://${window.location.hostname}:3001/reboot`, {
-                  method: 'GET',
-                  headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                }).then(data => data.text())
-                  .then(res => {
-                    if((res).includes("done")){
-                      titleRes = "Node Rebooting.."
-                      descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
-                      setconfirm_alert(false);
-                      setsuccess_dlg(true);
-                      setdynamic_title(titleRes);
-                      setdynamic_description(descriptionRes);
-                    }
-                  });
-              }}
-              onCancel={() => setconfirm_alert(false)}
-            >
-              Your Node will be rebooted.
-            </SweetAlert>
-          ) : null}
-          
-        {confirm_alert2 ? (
-          <SweetAlert
-            title="Are you sure?"
-            warning
-            showCancel
-            confirmButtonText="Yes, power off it!"
-            confirmBtnBsStyle="success"
-            cancelBtnBsStyle="danger"
-            onConfirm={() => {
-              let titleRes;
-              let descriptionRes;              
-              fetch(`http://${window.location.hostname}:3001/shutdown`, {
-                method: 'GET',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                },
-              }).then(data => data.text())
-                .then(res => {
-                  if((res).includes("done")){
-                    titleRes = "Shutting Down Node.."
-                    descriptionRes = "Your node is shutting down now.";
-                    setconfirm_alert(false);
-                    setsuccess_dlg(true);
-                    setdynamic_title(titleRes);
-                    setdynamic_description(descriptionRes);
-                  }
-                });
-            }}
-            onCancel={() => setconfirm_alert2(false)}
-          >
-            Your Node will be turned off.
-          </SweetAlert>
-        ) : null}
+            {confirm_alert ? (
+              <SweetAlert
+                title="Are you sure?"
+                warning
+                showCancel
+                confirmButtonText="Yes, reboot it!"
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  let titleRes;
+                  let descriptionRes;
+                  fetch(`http://${window.location.hostname}:3001/reboot`, {
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                  }).then(data => data.text())
+                    .then(res => {
+                      if ((res).includes("done")) {
+                        titleRes = "Node Rebooting.."
+                        descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
+                        setconfirm_alert(false);
+                        setsuccess_dlg(true);
+                        setdynamic_title(titleRes);
+                        setdynamic_description(descriptionRes);
+                      }
+                    });
+                }}
+                onCancel={() => setconfirm_alert(false)}
+              >
+                Your Node will be rebooted.
+              </SweetAlert>
+            ) : null}
+
+            {confirm_alert2 ? (
+              <SweetAlert
+                title="Are you sure?"
+                warning
+                showCancel
+                confirmButtonText="Yes, power off it!"
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  let titleRes;
+                  let descriptionRes;
+                  fetch(`http://${window.location.hostname}:3001/shutdown`, {
+                    method: 'GET',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                  }).then(data => data.text())
+                    .then(res => {
+                      if ((res).includes("done")) {
+                        titleRes = "Shutting Down Node.."
+                        descriptionRes = "Your node is shutting down now.";
+                        setconfirm_alert(false);
+                        setsuccess_dlg(true);
+                        setdynamic_title(titleRes);
+                        setdynamic_description(descriptionRes);
+                      }
+                    });
+                }}
+                onCancel={() => setconfirm_alert2(false)}
+              >
+                Your Node will be turned off.
+              </SweetAlert>
+            ) : null}
             <div className="modal-content">
               <div className="modal-header border-bottom-0">
                 <button type="button" className="btn-close"
@@ -249,26 +221,55 @@ const ProfileMenu = props => {
                       <div className='' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
 
                         <Col xl={3} lg={4} sm={6} style={{ margin: "auto" }} className="mb-2">
-                            <Button
-                              color="primary"
-                              onClick={() => {
-                                setconfirm_alert(true)
-                              }}
-                              id="sa-success"
-                            >
-                              Reboot
-                            </Button>
-                            <div className="mt-3">
                           <Button
                             color="primary"
                             onClick={() => {
-                              setconfirm_alert2(true)
+                              setconfirm_alert(true)
                             }}
                             id="sa-success"
                           >
-                            Power off
+                            Reboot
                           </Button>
+                          <div className="mt-3">
+                            <Button
+                              color="primary"
+                              onClick={() => {
+                                setconfirm_alert2(true)
+                              }}
+                              id="sa-success"
+                            >
+                              Power off
+                            </Button>
                           </div>
+
+                          {success_dlg ? (
+                            <SweetAlert
+                              success
+                              title={dynamic_title}
+                              showConfirm={false}
+                              timeout={300}
+                              onConfirm={() => {
+                                {/*setsuccess_dlg(false)*/ }
+                                setTimeout(() => {
+                                  window.open(`http://${window.location.hostname}/login`, '_self')
+                                }, 100000);
+                              }}
+                            >
+                              {dynamic_description}
+                            </SweetAlert>
+                          ) : null}
+
+                          {error_dlg ? (
+                            <SweetAlert
+                              error
+                              title={dynamic_title}
+                              onConfirm={() => {
+                                seterror_dlg(false)
+                              }}
+                            >
+                              {dynamic_description}
+                            </SweetAlert>
+                          ) : null}
                         </Col>
                       </div>
                     </div>
