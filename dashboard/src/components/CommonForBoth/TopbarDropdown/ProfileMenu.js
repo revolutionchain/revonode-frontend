@@ -46,24 +46,7 @@ const ProfileMenu = props => {
   function handleButton() {
     let titleRes;
     let descriptionRes;
-    fetch(`http://${window.location.hostname}:3001/backupwallet`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(data => data.text())
-      .then(res => {
-        if ((res).includes("ok")) {
-          window.open(`http://${window.location.hostname}:3001/backup`, '_blank')
-          titleRes = "Downloading.."
-          descriptionRes = "Wallet Backup download in progress."
-          setconfirm_alert(false);
-          setsuccess_dlg(true);
-          setdynamic_title(titleRes);
-          setdynamic_description(descriptionRes);
-        }
-      });
+    
 
   }
 
@@ -197,7 +180,6 @@ const ProfileMenu = props => {
                       <div className='' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
 
                         <Col xl={3} lg={4} sm={6} style={{ margin: "auto" }} className="mb-2">
-                          <div className="p-3">
                             <Button
                               color="primary"
                               onClick={() => {
@@ -208,7 +190,6 @@ const ProfileMenu = props => {
                             >
                               Reboot
                             </Button>
-                          </div>
                           {confirm_alert ? (
                             <SweetAlert
                               title="Are you sure?"
@@ -223,6 +204,30 @@ const ProfileMenu = props => {
                               Your Node will be rebooted.
                             </SweetAlert>
                           ) : null}
+                          <Button
+                            color="primary"
+                            onClick={() => {
+                              setconfirm_alert(true)
+                              setSubscribemodal(!subscribemodal)
+                            }}
+                            id="sa-success"
+                          >
+                            Power off
+                          </Button>
+                        {confirm_alert ? (
+                          <SweetAlert
+                            title="Are you sure?"
+                            warning
+                            showCancel
+                            confirmButtonText="Yes, power off it!"
+                            confirmBtnBsStyle="success"
+                            cancelBtnBsStyle="danger"
+                            onConfirm={() => handleButton()}
+                            onCancel={() => setconfirm_alert(false)}
+                          >
+                            Your Node will be turned off.
+                          </SweetAlert>
+                        ) : null}
                         </Col>
                       </div>
                     </div>
