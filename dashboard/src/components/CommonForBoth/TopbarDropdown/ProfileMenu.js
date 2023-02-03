@@ -43,7 +43,7 @@ const ProfileMenu = props => {
 
 
 
-  function handleButton (){
+  function handleButton() {
     let titleRes;
     let descriptionRes;
     fetch(`http://${window.location.hostname}:3001/backupwallet`, {
@@ -54,8 +54,8 @@ const ProfileMenu = props => {
       },
     }).then(data => data.text())
       .then(res => {
-        if((res).includes("ok")){
-          window.open(`http://${window.location.hostname}:3001/backup`, '_blank')  
+        if ((res).includes("ok")) {
+          window.open(`http://${window.location.hostname}:3001/backup`, '_blank')
           titleRes = "Downloading.."
           descriptionRes = "Wallet Backup download in progress."
           setconfirm_alert(false);
@@ -63,12 +63,12 @@ const ProfileMenu = props => {
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
         }
-      });       
-    
+      });
+
   }
 
 
-  
+
   const [confirm_alert, setconfirm_alert] = useState(false)
   //const [success_msg, setsuccess_msg] = useState(false)
   const [success_dlg, setsuccess_dlg] = useState(false)
@@ -77,10 +77,10 @@ const ProfileMenu = props => {
   const [error_dlg, seterror_dlg] = useState(false)
 
 
-  
 
-  const [ errorMsg, setErrorMsg ] = useState("");
-  const [ successMsg, setSuccessMsg ] = useState("");
+
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
 
   const [subscribemodal, setSubscribemodal] = useState(false)
@@ -89,34 +89,34 @@ const ProfileMenu = props => {
     setSubscribemodal(!setSubscribemodal)
   }
 
-  
+
 
 
   return (
     <React.Fragment>
-    {success_dlg ? (
-      <SweetAlert
-        success
-        title={dynamic_title}
-        onConfirm={() => {
-          setsuccess_dlg(false) 
-        }}
-      >
-        {dynamic_description}
-      </SweetAlert>
-    ) : null}
+      {success_dlg ? (
+        <SweetAlert
+          success
+          title={dynamic_title}
+          onConfirm={() => {
+            setsuccess_dlg(false)
+          }}
+        >
+          {dynamic_description}
+        </SweetAlert>
+      ) : null}
 
-    {error_dlg ? (
-      <SweetAlert
-        error
-        title={dynamic_title}
-        onConfirm={() => {
-          seterror_dlg(false)
-        }}
-      >
-        {dynamic_description}
-      </SweetAlert>
-    ) : null}
+      {error_dlg ? (
+        <SweetAlert
+          error
+          title={dynamic_title}
+          onConfirm={() => {
+            seterror_dlg(false)
+          }}
+        >
+          {dynamic_description}
+        </SweetAlert>
+      ) : null}
       <Dropdown
         isOpen={menu}
         toggle={() => setMenu(!menu)}
@@ -133,103 +133,104 @@ const ProfileMenu = props => {
             alt="Header Avatar"
           />
           <span className="d-none d-xl-inline-block ms-2 me-1">{username}</span>
-          <i className="mdi mdi-chevron-down d-none d-xl-inline-block"/>
+          <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-        <Link to="/profile"><DropdownItem>
+          <Link to="/profile"><DropdownItem>
             {" "}
-            <i className="bx bx-user font-size-16 align-middle me-1"/>
+            <i className="bx bx-user font-size-16 align-middle me-1" />
             {props.t("Profile")}{" "}
           </DropdownItem></Link>
-          <Link to="/settings"><DropdownItem>          
-            <i className="bx bx-wrench font-size-16 align-middle me-1"/>
+          <Link to="/settings"><DropdownItem>
+            <i className="bx bx-wrench font-size-16 align-middle me-1" />
             {props.t("Settings")}
           </DropdownItem></Link>
-          <Link to="/backup"><DropdownItem>            
-            <i className="bx bx-save font-size-16 align-middle me-1"/>
+          <Link to="/backup"><DropdownItem>
+            <i className="bx bx-save font-size-16 align-middle me-1" />
             {props.t("Backup")}
           </DropdownItem></Link>
-          <Link to="/update"><DropdownItem>          
-            <i className="bx bx bx-planet font-size-16 align-middle me-1"/>
+          <Link to="/update"><DropdownItem>
+            <i className="bx bx bx-planet font-size-16 align-middle me-1" />
             {props.t("Update")}
           </DropdownItem></Link>
-          <div className="dropdown-divider"/>
+          <div className="dropdown-divider" />
           <Link to="/logout" className="dropdown-item">
-            <i className="bx bx-log-out font-size-16 align-middle me-1"/>
+            <i className="bx bx-log-out font-size-16 align-middle me-1" />
             <span>{props.t("Logout")}</span>
           </Link>
           <div onClick={() => {
-                              setSubscribemodal(!subscribemodal)
-                            }} to="/#" className="dropdown-item">
-            <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger"/>
+            setSubscribemodal(!subscribemodal)
+          }} to="/#" className="dropdown-item">
+            <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
             <span>{props.t("Power")}</span>
           </div><Modal
-        isOpen={subscribemodal}
-        role="dialog"
-        autoFocus={true}
-        centered
-        data-toggle="modal"
-        toggle={() => {
-          setSubscribemodal(!subscribemodal)
-        }}
-      >
-        <div className="modal-content">
-          <div className="modal-header border-bottom-0">
-            <button type="button" className="btn-close"
-              onClick={() => {
-                tog_standard()
-              }}></button>
-          </div>
-          <div className="modal-body">
-            <div className="text-center mb-4">
-              <div className="avatar-md mx-auto mb-4">
-                {/* style={{ backgroundColor:"#eff2f7" }}  */}
-                <div className="avatar-title bg-light  rounded-circle text-primary h1">
-                  <i className="fas fa-parachute-box"></i>
-                </div>
+            isOpen={subscribemodal}
+            role="dialog"
+            autoFocus={true}
+            centered
+            data-toggle="modal"
+            toggle={() => {
+              setSubscribemodal(!subscribemodal)
+            }}
+          >
+            <div className="modal-content">
+              <div className="modal-header border-bottom-0">
+                <button type="button" className="btn-close"
+                  onClick={() => {
+                    tog_standard()
+                  }}></button>
               </div>
+              <div className="modal-body">
+                <div className="text-center mb-4">
+                  <div className="avatar-md mx-auto mb-4">
+                    {/* style={{ backgroundColor:"#eff2f7" }}  */}
+                    <div className="avatar-title bg-light  rounded-circle text-primary h1">
+                      <i className="fas fa-parachute-box"></i>
+                    </div>
+                  </div>
 
-              <div className="row justify-content-center">
-                <div className="col-xl-10">
-                  <h4 className="text-primary">Early Adopters Airdrop!</h4>
-                  <p className={errorMsg.length > 1 ? "font-size-14 mb-4 text-danger" : successMsg.length > 1 ? "text-primary font-size-14 mb-4" : "text-muted font-size-14 mb-4"}>{errorMsg.length > 1 ? errorMsg : successMsg.length > 1 ? successMsg : "Scan your personal NFC Revo tag to enroll!"} </p>
-                  
-                  <div className='card-body' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
+                  <div className="row justify-content-center">
+                    <div className="col-xl-10">
+                      <h4 className="text-primary">Power Menu</h4>
+                      <p className={"text-muted font-size-14 mb-4"}></p>
 
-<Col xl={3} lg={4} sm={6} style={{margin: "auto"}} className="mb-2">
-  <div className="p-3">
-    <Button
-      color="primary"
-      onClick={() => {
-        setconfirm_alert(true)
-      }}
-      id="sa-success"
-    >
-      Reboot
-    </Button>
-  </div>
-  {confirm_alert ? (
-    <SweetAlert
-      title="Are you sure?"
-      warning
-      showCancel
-      confirmButtonText="Yes, download it!"
-      confirmBtnBsStyle="success"
-      cancelBtnBsStyle="danger"
-      onConfirm={() => handleButton()}
-      onCancel={() => setconfirm_alert(false)}
-    >
-      Your Node will be rebooted.
-    </SweetAlert>
-  ) : null}
-</Col>
-</div>
+                      <div className='' style={{ display: "flex", alignItems: "center", width: "100%", textAlign: "center" }}>
+
+                        <Col xl={3} lg={4} sm={6} style={{ margin: "auto" }} className="mb-2">
+                          <div className="p-3">
+                            <Button
+                              color="primary"
+                              onClick={() => {
+                                setconfirm_alert(true)
+                                setSubscribemodal(!subscribemodal)
+                              }}
+                              id="sa-success"
+                            >
+                              Reboot
+                            </Button>
+                          </div>
+                          {confirm_alert ? (
+                            <SweetAlert
+                              title="Are you sure?"
+                              warning
+                              showCancel
+                              confirmButtonText="Yes, reboot it!"
+                              confirmBtnBsStyle="success"
+                              cancelBtnBsStyle="danger"
+                              onConfirm={() => handleButton()}
+                              onCancel={() => setconfirm_alert(false)}
+                            >
+                              Your Node will be rebooted.
+                            </SweetAlert>
+                          ) : null}
+                        </Col>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </Modal>
+          </Modal>
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>
