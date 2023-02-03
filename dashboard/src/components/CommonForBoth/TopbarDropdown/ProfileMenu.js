@@ -148,7 +148,7 @@ const ProfileMenu = props => {
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
             <span>{props.t("Power")}</span>
           </div><Modal
-            isOpen={subscribemodal}
+            isOpen={powerModal}
             role="dialog"
             autoFocus={true}
             centered
