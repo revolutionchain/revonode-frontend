@@ -235,14 +235,22 @@ const Dashboard = props => {
 
                   { errorMsg.length < 1 ? successMsg.length > 1 ? <div></div> : <div className="input-group bg-light rounded">
                     <Input type="text" name='token' value={modalData.token} onChange={(e)=> setModalData({...modalData, token: e.target.value})} className="form-control bg-transparent border-0" placeholder="Write your code here!" />
-                    <button onClick={handleButton} style={{backgroundColor: "rgba(var(--bs-primary-rgb),var(--bs-text-opacity)) !important"}} type="button" id="sa-success">
+                    <Button
+                            color="primary"
+                            onClick={() => {
+                              handleButton()
+                            }}
+                            id="sa-success"
+                          >
+                            <i className="bx bxs-paper-plane"></i>
+                          </Button>{/*<button onClick={handleButton} style={{backgroundColor: "rgba(var(--bs-primary-rgb),var(--bs-text-opacity)) !important"}} type="button" id="sa-success">
                       <i className="bx bxs-paper-plane"></i>
-                    </button>{/*
+                    </button>
                     <Button color="primary" type="button" id="button-addon2">
                       
             </Button>*/}
                   </div> : <Button
-                            color="secondary"
+                            color="primary"
                             onClick={() => {
                               setErrorMsg("")
                             }}
