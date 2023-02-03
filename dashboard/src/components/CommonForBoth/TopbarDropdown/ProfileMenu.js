@@ -53,6 +53,7 @@ const ProfileMenu = props => {
 
 
   const [confirm_alert, setconfirm_alert] = useState(false)
+  const [confirm_alert2, setconfirm_alert2] = useState(false)
   //const [success_msg, setsuccess_msg] = useState(false)
   const [success_dlg, setsuccess_dlg] = useState(false)
   const [dynamic_title, setdynamic_title] = useState("")
@@ -184,12 +185,30 @@ const ProfileMenu = props => {
                               color="primary"
                               onClick={() => {
                                 setconfirm_alert(true)
-                                setSubscribemodal(!subscribemodal)
+                                setSubscribemodal(false)
                               }}
                               id="sa-success"
                             >
                               Reboot
                             </Button>
+                          <Button
+                            color="primary"
+                            onClick={() => {
+                              setconfirm_alert2(true)
+                              setSubscribemodal(!subscribemodal)
+                            }}
+                            id="sa-success"
+                          >
+                            Power off
+                          </Button>
+                        </Col>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
                           {confirm_alert ? (
                             <SweetAlert
                               title="Are you sure?"
@@ -204,17 +223,8 @@ const ProfileMenu = props => {
                               Your Node will be rebooted.
                             </SweetAlert>
                           ) : null}
-                          <Button
-                            color="primary"
-                            onClick={() => {
-                              setconfirm_alert(true)
-                              setSubscribemodal(!subscribemodal)
-                            }}
-                            id="sa-success"
-                          >
-                            Power off
-                          </Button>
-                        {confirm_alert ? (
+                          
+                        {confirm_alert2 ? (
                           <SweetAlert
                             title="Are you sure?"
                             warning
@@ -223,19 +233,11 @@ const ProfileMenu = props => {
                             confirmBtnBsStyle="success"
                             cancelBtnBsStyle="danger"
                             onConfirm={() => handleButton()}
-                            onCancel={() => setconfirm_alert(false)}
+                            onCancel={() => setconfirm_alert2(false)}
                           >
                             Your Node will be turned off.
                           </SweetAlert>
                         ) : null}
-                        </Col>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Modal>
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>
