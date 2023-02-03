@@ -200,9 +200,9 @@ const ProfileMenu = props => {
             <div className="modal-content">
               <div className="modal-header border-bottom-0">
                 <button type="button" className="btn-close"
-                  /*onClick={() => {
+                  onClick={() => {
                     tog_standard()
-                  }}*/></button>
+                  }}></button>
               </div>
               <div className="modal-body">
                 <div className="text-center mb-4">
