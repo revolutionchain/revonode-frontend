@@ -67,10 +67,10 @@ const ProfileMenu = props => {
   const [successMsg, setSuccessMsg] = useState("");
 
 
-  const [subscribemodal, setSubscribemodal] = useState(false)
+  const [powerModal, setPowerModal] = useState(false)
 
   function tog_standard() {
-    setSubscribemodal(!setSubscribemodal)
+    setPowerModal(!setPowerModal)
   }
 
 
@@ -143,7 +143,7 @@ const ProfileMenu = props => {
             <span>{props.t("Logout")}</span>
           </Link>
           <div onClick={() => {
-            setSubscribemodal(!subscribemodal)
+            setPowerModal(true)
           }} to="/#" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
             <span>{props.t("Power")}</span>
@@ -154,7 +154,7 @@ const ProfileMenu = props => {
             centered
             data-toggle="modal"
             toggle={() => {
-              setSubscribemodal(!subscribemodal)
+              setPowerModal(!powerModal)
             }}
           >
             <div className="modal-content">
@@ -185,7 +185,7 @@ const ProfileMenu = props => {
                               color="primary"
                               onClick={() => {
                                 setconfirm_alert(true)
-                                setSubscribemodal(false)
+                                setPowerModal(false)
                               }}
                               id="sa-success"
                             >
@@ -195,7 +195,7 @@ const ProfileMenu = props => {
                             color="primary"
                             onClick={() => {
                               setconfirm_alert2(true)
-                              setSubscribemodal(!subscribemodal)
+                              setPowerModal(!powerModal)
                             }}
                             id="sa-success"
                           >
