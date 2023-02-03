@@ -1042,16 +1042,14 @@ a {
   
   @media (min-width: 2561px) {
     .signup-desc {
-      min-height: 0;
-      max-height: 50vh;
+      min-height: 30vh;
     }
     .signup-content{
-      min-height: 40vh;
-      max-height: 50vh;
+      min-height: 30vh;
     }
   
     .content-container {
-      min-height: calc(45vh - 50px);
+      min-height: calc(30vh - 50px);
     }
     .container-g {
       width: 50vw;
