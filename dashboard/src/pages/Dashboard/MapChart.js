@@ -15,7 +15,9 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
 
   const [mapPropsState, setMapPropsState] = useState({
     customScale: "",
-    projection: ""
+    projection: "",
+    width: "",
+    height: ""
   })
 
 
@@ -73,13 +75,15 @@ export default function MapChart({ ipLocationData, setCountriesData, countriesDa
 
     setMapPropsState({
       customScale: customScale,
-      projection: projection
+      projection: projection,
+      width: width,
+      height: height
     })
 
   })
 
   return (
-    mapPropsState.projection && mapPropsState.customScale && <ComposableMap viewBox={`0 0 ${width} ${height}`} projection={mapPropsState.projection}>
+    mapPropsState.projection && mapPropsState.customScale && <ComposableMap viewBox={`0 0 ${mapPropsState.width} ${mapPropsState.height}`} projection={mapPropsState.projection}>
       {countriesData && <Geographies geography={geoUrl} fill="#FFFFFF" style={{
         default: {
           fill: "#FFFFFF",
