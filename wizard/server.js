@@ -688,7 +688,7 @@ app.post('/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
-app.get('/backup', (req, res) => {
+app.get('/backup.dat', (req, res) => {
 
   
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
