@@ -61,8 +61,6 @@ const userRoutes = [
 
   { path: "/update", component: Update },
 
-  { path: "/reboot", component: Reboot },
-
   // //profile
   { path: "/profile", component: UserProfile },
 
