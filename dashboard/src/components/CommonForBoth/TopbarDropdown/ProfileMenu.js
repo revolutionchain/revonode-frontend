@@ -157,6 +157,35 @@ const ProfileMenu = props => {
               setPowerModal(!powerModal)
             }}
           >
+          {confirm_alert ? (
+            <SweetAlert
+              title="Are you sure?"
+              warning
+              showCancel
+              confirmButtonText="Yes, reboot it!"
+              confirmBtnBsStyle="success"
+              cancelBtnBsStyle="danger"
+              onConfirm={() => handleButton()}
+              onCancel={() => setconfirm_alert(false)}
+            >
+              Your Node will be rebooted.
+            </SweetAlert>
+          ) : null}
+          
+        {confirm_alert2 ? (
+          <SweetAlert
+            title="Are you sure?"
+            warning
+            showCancel
+            confirmButtonText="Yes, power off it!"
+            confirmBtnBsStyle="success"
+            cancelBtnBsStyle="danger"
+            onConfirm={() => handleButton()}
+            onCancel={() => setconfirm_alert2(false)}
+          >
+            Your Node will be turned off.
+          </SweetAlert>
+        ) : null}
             <div className="modal-content">
               <div className="modal-header border-bottom-0">
                 <button type="button" className="btn-close"
@@ -209,35 +238,6 @@ const ProfileMenu = props => {
               </div>
             </div>
           </Modal>
-                          {confirm_alert ? (
-                            <SweetAlert
-                              title="Are you sure?"
-                              warning
-                              showCancel
-                              confirmButtonText="Yes, reboot it!"
-                              confirmBtnBsStyle="success"
-                              cancelBtnBsStyle="danger"
-                              onConfirm={() => handleButton()}
-                              onCancel={() => setconfirm_alert(false)}
-                            >
-                              Your Node will be rebooted.
-                            </SweetAlert>
-                          ) : null}
-                          
-                        {confirm_alert2 ? (
-                          <SweetAlert
-                            title="Are you sure?"
-                            warning
-                            showCancel
-                            confirmButtonText="Yes, power off it!"
-                            confirmBtnBsStyle="success"
-                            cancelBtnBsStyle="danger"
-                            onConfirm={() => handleButton()}
-                            onCancel={() => setconfirm_alert2(false)}
-                          >
-                            Your Node will be turned off.
-                          </SweetAlert>
-                        ) : null}
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>
