@@ -28,7 +28,7 @@ export default function MapChart({ countriesData }) {
       maxValue: 0
     };
 
-    countryValuesArray.map(e => {
+    countriesData.map(e => {
       if(colorValues.maxValue < e.value){
         colorValues.maxValue = e.value;
       }
