@@ -5,6 +5,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Col,
+  Button,
   Modal
 } from "reactstrap"
 
@@ -41,6 +43,29 @@ const ProfileMenu = props => {
 
 
 
+  function handleButton (){
+    let titleRes;
+    let descriptionRes;
+    fetch(`http://${window.location.hostname}:3001/backupwallet`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.text())
+      .then(res => {
+        if((res).includes("ok")){
+          window.open(`http://${window.location.hostname}:3001/backup`, '_blank')  
+          titleRes = "Downloading.."
+          descriptionRes = "Wallet Backup download in progress."
+          setconfirm_alert(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }
+      });       
+    
+  }
 
 
   
@@ -50,6 +75,12 @@ const ProfileMenu = props => {
   const [dynamic_title, setdynamic_title] = useState("")
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
+
+
+  
+
+  const [ errorMsg, setErrorMsg ] = useState("");
+  const [ successMsg, setSuccessMsg ] = useState("");
 
 
   const [subscribemodal, setSubscribemodal] = useState(false)
