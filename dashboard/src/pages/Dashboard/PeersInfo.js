@@ -11,12 +11,39 @@ import MapChart from "./MapChart";
 
 const PeersInfoWidget = (props) => {
 
-    const { latestTransaction, onLatestTransactions } = props;
-
     const [countriesData, setCountriesData] = useState(false);
     useEffect(() => {
-        onLatestTransactions();
-    }, [onLatestTransactions]);
+        props.onLatestTransactions();
+    }, [props.onLatestTransactions]);
+
+
+    useEffect(() => {
+
+        let countryCounter = {};
+        props.ipLocationData.map(e => {
+          if (countryCounter[e.country.iso_code]) {
+            countryCounter = {
+              ...countryCounter,
+              [e.country.iso_code]: countryCounter[e.country.iso_code] + 1
+            }
+          } else {
+            countryCounter = {
+              ...countryCounter,
+              [e.country.iso_code]: 1
+            }
+          }
+        })
+    
+        let countryValuesArray = [];
+    
+        Object.keys(countryCounter).map(e => {
+          countryValuesArray.push({
+            country_code: e,
+            value: countryCounter[e]
+          })
+        })
+        setCountriesData(countryValuesArray);
+    }, [])
 
     const [orderedCountries, setOrderedCountries] = useState(false);
     const [peersAmount, setPeersAmount] = useState(1);
@@ -53,7 +80,7 @@ const PeersInfoWidget = (props) => {
                     <CardTitle className="mb-4">Global Peer Distribution</CardTitle>
                     <hr />
                         <div className="mapchart-container mt-1 col-xl-12 col-12">
-                            {<MapChart ipLocationData={props.ipLocationData} setCountriesData={setCountriesData} countriesData={countriesData} />}
+                            {countriesData && <MapChart countriesData={countriesData} />}
                             <div className="col-xl-6 col-12">
                                 {
                                     
