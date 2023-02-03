@@ -158,12 +158,12 @@ const ProfileMenu = props => {
             <i className="bx bx-log-out font-size-16 align-middle me-1"/>
             <span>{props.t("Logout")}</span>
           </Link>
-          <Link onClick={() => {
+          <div onClick={() => {
                               setSubscribemodal(!subscribemodal)
                             }} to="/#" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger"/>
             <span>{props.t("Power")}</span>
-          </Link><Modal
+          </div><Modal
         isOpen={subscribemodal}
         role="dialog"
         autoFocus={true}
