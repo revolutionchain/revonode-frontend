@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { exec, execSync, execFile, execFileSync } = require("child_process");
+const { exec, execSync, execFile, execFileSync, spawnSync } = require("child_process");
 const blk = require('linux-blockutils');
 const { networkInterfaces } = require('os');
 const os = require('os');
@@ -775,10 +775,12 @@ app.get('/listunspent', (req, res, next) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
         } else {
-          let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });  
-          result = result.replaceAll("\n", "").replaceAll('"', '');
-          console.log(result);
-          res.send(result);        
+          //let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });
+          let result = spawnSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });    
+          let outtext = result.output[1]
+          let outputresult = outtext.replaceAll("\n", "").replaceAll('"', '');
+          console.log(outputresult);
+          res.send(outputresult);        
         }
       });    
 })
