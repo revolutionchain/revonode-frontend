@@ -49,7 +49,7 @@ setOrderedState(orderedList);
               </thead>
               <tbody>
                 {
-                  (props.listunspentState).map(e => {
+                  orderedState && (orderedState).map(e => {
                     return (
                       <tr key={e.txid} >
                         <th style={{borderBottom: "none"}} scope="row"><a href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
