@@ -35,14 +35,20 @@ useEffect(()=>{
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th style={{borderBottom: "none"}} scope="row"><a href="https://testnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></th>
-                  <td style={{borderBottom: "none"}}>34.65 RVO</td>
-                  <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
-                  <td style={{borderBottom: "none"}}>8</td>
-                  <td style={{borderBottom: "none"}}>Label</td>
-                  <td style={{borderBottom: "none"}}>127</td>
-                </tr>
+                {
+                  (props.listunspentState).map(e => {
+                    return (
+                      <tr key={e.txid} >
+                        <th style={{borderBottom: "none"}} scope="row"><a href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
+                        <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
+                        <td style={{borderBottom: "none"}}>{e.address}</td>
+                        <td style={{borderBottom: "none"}}>{e.vout}</td>
+                        <td style={{borderBottom: "none"}}>{e.label} </td>
+                        <td style={{borderBottom: "none"}}>{e.confirmations} </td>
+                      </tr>
+                    )
+                  })
+                }
               </tbody>
             </table>
           </div>

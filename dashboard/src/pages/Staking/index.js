@@ -89,8 +89,8 @@ const Staking = props => {
             />
           }
           {/* import Widget */}
-          {listunspentState &&<Widget nodeData={nodeData} />}
-          <StakingData />
+          {listunspentState && <Widget nodeData={nodeData} listunspentState={listunspentState} />}
+          {listunspentState && <StakingData listunspentState={listunspentState} />}
 
         </Container>
       </div>
