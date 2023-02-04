@@ -60,7 +60,7 @@ useEffect(()=>{
       },
     }).then(data => data.text())
       .then(res => {
-        fetch(`https://api.revo.network/address/${res}/`, {
+        fetch(`https://testnetapi.revo.network/address/${res}/`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',

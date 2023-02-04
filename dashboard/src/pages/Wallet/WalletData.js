@@ -40,7 +40,7 @@ const icons = []
                   <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>
                   <td style={{borderBottom: "none"}}>RNDTope6F6eRRtLWMRz87J3zDiB5txcriT</td>                  
                   <td style={{borderBottom: "none"}}>2023-01-22 22:40:12 (0 m ago)</td>
-                  <td style={{borderBottom: "none"}}><a href="https://mainnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></td>
+                  <td style={{borderBottom: "none"}}><a href="https://testnet.revo.network/tx/3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b">3c02d74714c908c28faf37ec1137caf483b328ba1d5eba814a251acca4e4164b</a></td>
                   <td style={{borderBottom: "none"}}>186.932 RVO</td>
                 </tr>
               </tbody>
