@@ -775,8 +775,9 @@ app.get('/listunspent', (req, res, next) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
         } else {
-          let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster], { encoding: 'utf8' });  
+          let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });  
           result = result.replaceAll("\n", "").replaceAll('"', '');
+          console.log(result);
           res.send(result);        
         }
       });    
