@@ -188,9 +188,9 @@ const Widget = props => {
     return (
         <React.Fragment>
             <Row>
-                <Col md={6} xl={12} className="d-flex">
+                <Col md={12} xl={12} className="d-flex flex-wrap">
                     {widgetState && widgetState.map((widget, key) => (
-                        <Col xl={2} key={key}>
+                        <Col xs={12}  sm={6} md={2} xl={2} key={key}>
                             <Card>
                                 <CardBody>{/*
                                 <div className="float-end">
