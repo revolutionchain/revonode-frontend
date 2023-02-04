@@ -10,7 +10,7 @@ const StakingDataWidget = props => {
 useEffect(()=>{        
   
 
-},[])
+},[props.listunspentState])
 
     return (
         <React.Fragment>
