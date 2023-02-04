@@ -6,9 +6,22 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const StakingDataWidget = props => {
   
+  const [orderedState, setOrderedState] = useState(false);
 
 useEffect(()=>{        
+  let orderedList = props.listunspentState;
   
+  orderedList.sort(function (a, b) {
+    if (a.confirmations > b.confirmations) {
+        return 1;
+    }
+    if (a.confirmations < b.confirmations) {
+        return -1;
+    }
+    return 0;
+});
+
+setOrderedState(orderedList);
 
 },[props.listunspentState])
 

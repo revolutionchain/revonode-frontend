@@ -778,7 +778,7 @@ app.get('/listunspent', (req, res, next) => {
           //let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });
           let result = spawnSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });    
           let outtext = result.output[1]
-          let outputresult = outtext.replaceAll("\n", "").replaceAll('"', '');
+          let outputresult = outtext.replaceAll("\n", "");
           console.log(outputresult);
           res.send(outputresult);        
         }
