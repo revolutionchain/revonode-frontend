@@ -39,12 +39,12 @@ setOrderedState(orderedList);
             <table class="table mb-0 table">
               <thead>
                 <tr>
-                  <th><i className="bx bx-hash"></i> TX id</th>
-                  <th><i className="fas fa-coins"></i> Amount</th>
-                  <th><i className="bx bx-down-arrow-circle"></i> Address</th>
-                  <th><i className="bx bx-data"></i> Vout</th>
-                  <th><i className="bx bx bx-label"></i> Label</th>
-                  <th><i className="bx bx-check-shield"></i> Confirms</th>
+                  <th style={{paddingLeft: '0'}}><i className="bx bx-hash"></i> TX id</th>
+                  <th style={{paddingLeft: '0'}}><i className="fas fa-coins"></i> Amount</th>
+                  <th style={{paddingLeft: '0'}}><i className="bx bx-down-arrow-circle"></i> Address</th>
+                  <th style={{paddingLeft: '0'}}><i className="bx bx-data"></i> Vout</th>
+                  <th style={{paddingLeft: '0'}}><i className="bx bx bx-label"></i> Label</th>
+                  <th style={{paddingLeft: '0'}}><i className="bx bx-check-shield"></i> Confirms</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,12 +52,12 @@ setOrderedState(orderedList);
                   orderedState && (orderedState).map(e => {
                     return (
                       <tr key={e.txid} >
-                        <th style={{borderBottom: "none"}} scope="row"><a href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
-                        <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
-                        <td style={{borderBottom: "none"}}>{e.address}</td>
-                        <td style={{borderBottom: "none"}}>{e.vout}</td>
-                        <td style={{borderBottom: "none"}}>{e.label} </td>
-                        <td style={{borderBottom: "none"}}>{e.confirmations} </td>
+                        <th style={{borderBottom: "none", paddingLeft: "0"}} scope="row"><a className={e.confirmations < 500 ? "text-muted" : ""} href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.amount + " RVO"}</td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.address}</td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.vout}</td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.label} </td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.confirmations} </td>
                       </tr>
                     )
                   })
