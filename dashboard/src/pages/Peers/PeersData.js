@@ -25,7 +25,7 @@ useEffect(()=>{
 })
 setLocalPeersState(localPeers);
 setExternalPeersState(externalPeers);
-},[])
+},[props.peersData])
 
 
     return (

@@ -22,6 +22,7 @@ const Staking = props => {
   const isLogged = useSelector(state => state.Login.isLogged);  
 
   const [nodeData, setNodeData] = useState(false);
+  const [listunspentState, setListunspentState] = useState(false);
 
   const getStatesData = () => {
     fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
@@ -34,6 +35,16 @@ const Staking = props => {
       .then(res => {
         setNodeData(res);
       });       
+      fetch(`http://${window.location.hostname}:3001/listunspent`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.json())
+        .then(res => {        
+          setListunspentState(res);        
+        }); 
   }
 
   useEffect(() => {
@@ -78,7 +89,7 @@ const Staking = props => {
             />
           }
           {/* import Widget */}
-          <Widget nodeData={nodeData} />
+          {listunspentState &&<Widget nodeData={nodeData} />}
           <StakingData />
 
         </Container>

@@ -114,7 +114,7 @@ const Widget = props => {
         widget[4].text = (totalTx / 30).toFixed(2) + " KB avg. TX size"
         setWidgetState(widget);
 
-    },[])
+    },[props.nodeData, props.lastestBlocks])
 
     const [reloadStates, setReloadStates] = useState(false);
 

@@ -770,6 +770,18 @@ app.post('/updates', async (req, res, next) => {
 
 })
 
+app.get('/listunspent', (req, res, next) => {
+      execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+        if (errShowMaster) {
+          res.status(404).send(errShowMaster);
+        } else {
+          let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster], { encoding: 'utf8' });  
+          res.send(result);        
+        }
+      });    
+})
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {

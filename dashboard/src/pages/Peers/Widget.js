@@ -194,7 +194,7 @@ useEffect(()=>{
 
     setWidgetState(widget);
 
-},[])
+},[props.peersData])
 
     return (
         <React.Fragment>

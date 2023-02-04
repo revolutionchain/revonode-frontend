@@ -103,7 +103,7 @@ const NodeInfoWidget = props => {
         nodeInfo[13].value = "No";
         nodeInfo[14].value = "No";
         setNodeInfoState(nodeInfo);
-    },[])
+    },[props.nodeData])
 
 
     return (

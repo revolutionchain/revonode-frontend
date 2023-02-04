@@ -43,7 +43,7 @@ const PeersInfoWidget = (props) => {
           })
         })
         setCountriesData(countryValuesArray);
-    }, [])
+    }, [props.ipLocationData])
 
     const [orderedCountries, setOrderedCountries] = useState(false);
     const [peersAmount, setPeersAmount] = useState(1);

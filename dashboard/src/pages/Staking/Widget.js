@@ -48,7 +48,7 @@ const Widget = props => {
     const [ widgetState, setWidgetState ] = useState(false);
     
 useEffect(()=>{        
-    //widget[0].count = "";
+    widget[0].count = (props.listUnspentState).length;
     widget[1].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     //widget[2].count = "";
     
@@ -73,7 +73,7 @@ useEffect(()=>{
           });
       });
     
-},[])
+},[props.nodeData])
 
     return (
         <React.Fragment>
