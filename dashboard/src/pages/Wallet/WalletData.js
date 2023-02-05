@@ -42,7 +42,7 @@ const icons = []
                   (props.listtransactions).filter(e => !e?.generated).map(e=> {
                     return (<tr>
                       <th style={{borderBottom: "none"}} scope="row">{ e.category == 'receive' ? <i className='bx bx-left-down-arrow-circle text-primary'></i> : <i className='bx bx-right-top-arrow-circle text-danger'></i> }</th>
-                      <td style={{borderBottom: "none"}}>{ e.address } </td>             
+                      <td style={{borderBottom: "none"}}><a target="_blank" href={"https://testnet.revo.network/address/" + e.address}>{e.address}</a></td>             
                       <td style={{borderBottom: "none"}}>{ new Date((e.time)*1000).toLocaleString("en-US",dateoptions)}</td>
                       <td style={{borderBottom: "none"}}><a target="_blank" href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
                       <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
