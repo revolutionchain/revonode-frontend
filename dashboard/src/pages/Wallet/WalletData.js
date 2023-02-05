@@ -49,14 +49,14 @@ const icons = []
               <tbody>
                 {
                   (props.listtransactions).map(e=> {
-                    <tr>
+                    return (<tr>
                       <th style={{borderBottom: "none"}} scope="row">incoming/outgoing/staked</th>
                       <td style={{borderBottom: "none"}}>{e?.generated ? "Coinstake" : e.category == 'receive' ? e.address : props.walletAddress } </td>
                       <td style={{borderBottom: "none"}}>{e.category == 'receive' || e.category == 'generated' ? props.walletAddress : e.address} </td>                  
                       <td style={{borderBottom: "none"}}>{ farAway(e.time) + " ago"}</td>
                       <td style={{borderBottom: "none"}}><a href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
                       <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
-                    </tr>
+                    </tr>)
 
                   })
                 }
