@@ -22,6 +22,8 @@ const Wallet = props => {
   const isLogged = useSelector(state => state.Login.isLogged);
 
   const [nodeData, setNodeData] = useState(false);
+  const [listtransactions, setListtransactions] = useState(false);
+  const [walletAddress, setWalletAddress] = useState(false);
 
   const getStatesData = () => {
     fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
@@ -34,6 +36,27 @@ const Wallet = props => {
       .then(res => {
         setNodeData(res);
       });        
+      
+      fetch(`http://${window.location.hostname}:3001/listtransactions`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.json())
+        .then(res => {        
+          setListtransactions(res);        
+        }); 
+        fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.text())
+    .then(res => {
+      setWalletAddress(res);
+    })
   }
 
   useEffect(() => {
@@ -79,7 +102,7 @@ const Wallet = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
-          <WalletData />
+          <WalletData listtransactions={listtransactions} walletAddress={walletAddress} />
 
         </Container>
       </div>

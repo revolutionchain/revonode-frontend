@@ -785,6 +785,22 @@ app.get('/listunspent', (req, res, next) => {
 })
 
 
+app.get('/listtransactions', (req, res, next) => {
+      execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+        if (errShowMaster) {
+          res.status(404).send(errShowMaster);
+        } else {
+          //let result = execFileSync('bash', ['/home/revo/nodeutils', '-listunspent', stdoutShowMaster.slice(0, stdoutShowMaster.length - 1 )], { encoding: 'utf8' });
+          let result = spawnSync('bash', ['/home/revo/nodeutils', '-listtransactions'], { encoding: 'utf8' });    
+          let outtext = result.output[1]
+          let outputresult = outtext.replaceAll("\n", "");
+          res.send(outputresult);        
+        }
+      });    
+})
+
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {
