@@ -1,9 +1,14 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
+
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import { Tooltip } from 'reactstrap';
+
 
 // Import menuDropdown
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
@@ -24,6 +29,7 @@ import {
   toggleLeftmenu,
   changeSidebarType,
 } from "../../store/actions";
+import e from "express";
 
 const Header = (props) => {
   const [search, setsearch] = useState(false);
@@ -72,6 +78,22 @@ const Header = (props) => {
       props.changeSidebarType("default");
     }
   }
+  
+  const [walletAddress, setWalletAddress] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+
+  useEffect(()=> {
+    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+}).then(data => data.text())
+.then(res => {
+  setWalletAddress(res);
+})
+  },[])
 
   return (
     <React.Fragment>
@@ -177,7 +199,18 @@ const Header = (props) => {
               </button>
             </div>
 
+{walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1">
+  <CopyToClipboard text={`${walletAddress}`}
+                        onCopy={() => { }}>
+                        <button className="btn btn-outline-success " id="CopyTooltip" ></button>
+                    </CopyToClipboard>
+        <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={()=> setTooltipOpen(!tooltipOpen)}>
+          Click to copy
+        </Tooltip>
+</div>}
+
             {/*<NotificationDropdown />*/}
+            
             <ProfileMenu />
 {/*
             <div
