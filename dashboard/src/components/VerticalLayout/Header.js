@@ -201,7 +201,7 @@ const Header = (props) => {
 {walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1">
   <CopyToClipboard text={`${walletAddress}`}
                         onCopy={() => { }}>
-                        <button className="btn btn-outline-success " id="CopyTooltip" ></button>
+                        <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
                     </CopyToClipboard>
         <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={()=> setTooltipOpen(!tooltipOpen)}>
           Click to copy
