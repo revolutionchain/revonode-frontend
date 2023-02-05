@@ -33,6 +33,10 @@ setExternalPeersState(externalPeers);
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
+                        <button type="button" id="sa-success" class="btn btn-secondary">Add Node</button>
+                        <button type="button" id="sa-success" class="btn btn-secondary">Clear Banned</button>
+                        <br></br>
+                        <br></br>
                         <Card>
                             <CardBody>
 <h4 className="card-title mb-2">External Peers - Connected</h4>
@@ -59,7 +63,7 @@ setExternalPeersState(externalPeers);
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
-                      <td style={{borderBottom: "none"}}>{e.addr.split(":")[0]} </td>
+                      <td style={{borderBottom: "none"}}><a target="_blank" href={"https://whois.domaintools.com/" + e.addr.split(":")[0]}>{e.addr.split(":")[0]}</a></td>
                       <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>

@@ -42,7 +42,7 @@ const widget = [
     },
     {
         id: 4,
-        title: '0 Banned Peers',
+        title: 'Banned Peers',
         text: 'Last 24h',
         count: '0',
         dollor: false,
@@ -119,7 +119,7 @@ return (
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     <h4 className="mb-1 mt-1">
                                         <span className="counter-value" data-target="58425">
-                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1073741824).toFixed(3) : widget.id == 6 ? <a href={"https://testnet.revo.network/block/" + widget.count} target="_blank" >{widget.count}</a> : widget.count }
+                                            {widget.id == 2 || widget.id == 3 ? (widget.count/1073741824).toFixed(3) : widget.id == 6 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count}>{widget.count}</a> : widget.count }
                                         </span></h4>
                                 </div>
                                 <p style={{position: `absolute`, bottom: `0`}} className="text-muted mt-3 mb-4">
