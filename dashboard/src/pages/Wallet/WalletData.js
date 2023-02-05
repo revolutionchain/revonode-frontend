@@ -46,7 +46,7 @@ const icons = []
                       <td style={{borderBottom: "none"}}>{e?.generated ? "Coinstake" : e.category == 'receive' ? e.address : props.walletAddress } </td>
                       <td style={{borderBottom: "none"}}>{e.category == 'receive' || e.category == 'generated' ? props.walletAddress : e.address} </td>                  
                       <td style={{borderBottom: "none"}}>{ new Date((e.time)*1000).toLocaleString("en-US",dateoptions)}</td>
-                      <td style={{borderBottom: "none"}}><a href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
+                      <td style={{borderBottom: "none"}}><a target="_blank" href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
                       <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
                     </tr>)
 
