@@ -29,7 +29,6 @@ import {
   toggleLeftmenu,
   changeSidebarType,
 } from "../../store/actions";
-import e from "express";
 
 const Header = (props) => {
   const [search, setsearch] = useState(false);
