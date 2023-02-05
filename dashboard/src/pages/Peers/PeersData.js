@@ -59,7 +59,7 @@ setExternalPeersState(externalPeers);
                 return (
                     <tr>
                       <th style={{borderBottom: "none"}} scope="row">{i+1}</th>
-                      <td style={{borderBottom: "none"}}>{e.addr.split(":")[0]} </td>
+                      <td style={{borderBottom: "none"}}><a target="_blank" href={"https://whois.domaintools.com/" + e.addr.split(":")[0]}>{e.addr.split(":")[0]}</a></td>
                       <td style={{borderBottom: "none"}}><Flag code={e.country.iso_code} height="12" />  {" " + e.country.names.en} </td>
                       <td style={{borderBottom: "none"}}>{e.traits.isp} </td>
                       <td style={{borderBottom: "none"}}>{currentPeerData.servicesnames.map((j,k) => k < (currentPeerData.servicesnames).length - 1 ? j + " - " : j.replace("_", " ") )} </td>

@@ -21,6 +21,9 @@ const icons = []
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
+                        <button type="button" id="sa-success" class="btn btn-secondary">Send</button>
+                        <br></br>
+                        <br></br>
                         <Card>
                             <CardBody>
 <h4 className="card-title mb-2">Transactions</h4>

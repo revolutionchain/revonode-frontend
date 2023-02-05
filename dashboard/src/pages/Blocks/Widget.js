@@ -205,7 +205,7 @@ const Widget = props => {
                                         <h4 className="mb-1 mt-1">
                                             {/*widget.dollor === true ? '' : ''*/}
                                             <span className="counter-value" data-target="58425">
-                                                {widget.id == 2 ? <a href={"https://testnet.revo.network/block/" + widget.count} target="_blank" >{widget.count}</a> : widget.count}
+                                                {widget.id == 2 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count} >{widget.count}</a> : widget.count}
                                             </span></h4>
                                     </div>
                                     <p className="text-muted mt-3 mb-0">
