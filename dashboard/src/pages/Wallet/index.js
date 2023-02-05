@@ -45,7 +45,8 @@ const Wallet = props => {
         },
       }).then(data => data.json())
         .then(res => {        
-          setListtransactions(res);        
+          let result = res.reverse()
+          setListtransactions(result);        
         }); 
         fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
       method: 'GET',

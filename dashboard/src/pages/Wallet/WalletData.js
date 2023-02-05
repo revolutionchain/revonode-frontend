@@ -31,8 +31,7 @@ const icons = []
               <thead>
                 <tr>
                   <th><i className="bx bx-transfer-alt"></i> Type</th>
-                  <th><i className="bx bx-right-top-arrow-circle"></i> Sender</th>
-                  <th><i className="bx bx-down-arrow-circle"></i> Receiver</th>
+                  <th><i className="bx bx-down-arrow-circle"></i> Address</th>
                   <th><i className="bx bx-time-five"></i> Time</th>
                   <th><i className="bx bx-hash"></i> TX Id</th>
                   <th><i className="fas fa-coins"></i> Amount</th>
@@ -40,11 +39,10 @@ const icons = []
               </thead>
               <tbody>
                 {
-                  (props.listtransactions).map(e=> {
+                  (props.listtransactions).filter(e => !e?.generated).map(e=> {
                     return (<tr>
-                      <th style={{borderBottom: "none"}} scope="row">{e?.generated ? "Staked" : e.category == 'receive' ? "Incoming" : "Outgoing"}</th>
-                      <td style={{borderBottom: "none"}}>{e?.generated ? "Coinstake" : e.category == 'receive' ? e.address : props.walletAddress } </td>
-                      <td style={{borderBottom: "none"}}>{e.category == 'receive' || e.category == 'generated' ? props.walletAddress : e.address} </td>                  
+                      <th style={{borderBottom: "none"}} scope="row">{ e.category == 'receive' ? <i className='bx bx-left-down-arrow-circle text-primary'></i> : <i className='bx bx-right-top-arrow-circle text-danger'></i> }</th>
+                      <td style={{borderBottom: "none"}}>{ e.address } </td>             
                       <td style={{borderBottom: "none"}}>{ new Date((e.time)*1000).toLocaleString("en-US",dateoptions)}</td>
                       <td style={{borderBottom: "none"}}><a href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
                       <td style={{borderBottom: "none"}}>{e.amount + " RVO"}</td>
