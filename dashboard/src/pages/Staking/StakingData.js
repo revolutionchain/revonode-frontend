@@ -30,6 +30,10 @@ setOrderedState(orderedList);
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
+
+                        <button type="button" id="sa-success" class="btn btn-secondary">UTXOs Splitter</button>
+                        <br></br>
+
                         <Card>
                             <CardBody>
 <h4 className="card-title mb-2">My UTXOs</h4>
@@ -53,7 +57,7 @@ setOrderedState(orderedList);
                     return (
                       <tr key={e.txid} >
                         <th style={{borderBottom: "none", paddingLeft: "0"}} scope="row"><a className={e.confirmations < 500 ? "text-muted" : ""} href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
-                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.amount + " RVO"}</td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}}><b>{e.amount + " RVO"}</b></td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.address}</td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.vout}</td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.label} </td>

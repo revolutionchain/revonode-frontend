@@ -125,7 +125,7 @@ function handleButton (types){
                             }}
                             id="sa-success"
                           >
-                            Update Node
+                            Update Node Core
                           </Button>
                         </div>
                         {confirm_alert2 ? (
