@@ -50,7 +50,7 @@ const icons = []
                 {
                   (props.listtransactions).map(e=> {
                     return (<tr>
-                      <th style={{borderBottom: "none"}} scope="row">incoming/outgoing/staked</th>
+                      <th style={{borderBottom: "none"}} scope="row">{e?.generated ? "Staked" : e.category == 'receive' ? "Incoming" : "Outgoing"}</th>
                       <td style={{borderBottom: "none"}}>{e?.generated ? "Coinstake" : e.category == 'receive' ? e.address : props.walletAddress } </td>
                       <td style={{borderBottom: "none"}}>{e.category == 'receive' || e.category == 'generated' ? props.walletAddress : e.address} </td>                  
                       <td style={{borderBottom: "none"}}>{ farAway(e.time) + " ago"}</td>
