@@ -170,7 +170,7 @@ const Dashboard = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && peersData?.length && <div className="page-content">
+      {nodeData?.length && peersData?.length && publicIp && <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
