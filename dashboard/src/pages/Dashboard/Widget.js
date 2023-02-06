@@ -117,11 +117,11 @@ return (
                             <CardBody>
                                 <div>
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
-                                    <h4 className="mb-1 mt-1">
+                                </div>
+                                    <h4  style={{position: "absolute", top: "0", height: "100%", position: "absolute", alignItems: "center"}} className="mb-1 mt-1">
                                         <span className="counter-value" data-target="58425">
                                             {widget.id == 2 || widget.id == 3 ? (widget.count/1073741824).toFixed(3) : widget.id == 6 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count}>{widget.count}</a> : widget.count }
                                         </span></h4>
-                                </div>
                                 <p style={{position: `absolute`, bottom: `0`}} className="text-muted mt-3 mb-4">
                                     <span className={""}>
 

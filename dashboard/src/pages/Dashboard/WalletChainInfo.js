@@ -184,13 +184,13 @@ const [ walletState, setWalletState ] = useState(false);
                     </CardBody>
                 </Card>
             </Col>
-            <Col xl={5}>
-                <Card style={{maxHeight: "500px"}}>
+            <Col style={{maxHeight: "300"}} xl={5}>
+                <Card style={{maxHeight: "300px"}}>
                     <CardBody>
 
                         <h4 className="card-title mb-6">Top Peer Clients</h4>
                         <hr />
-                        <div className="mt-1 piechart-container" style={{maxHeight: "450px"}}>
+                        <div className="mt-1 piechart-container" style={{maxHeight: "230px"}}>
                             <div className='col-xl-6 '>
                                 {totalPeers && <PieChart
                                     animation
