@@ -106,7 +106,7 @@ const ProfileMenu = props => {
           Click to copy
         </Tooltip>
 </div></div>}
-          <div className="dropdown-divider" />
+          <div className="dropdown-divider d-lg-none" />
           <Link to="/profile"><DropdownItem>
             {" "}
             <i className="bx bx-user font-size-16 align-middle me-1" />
