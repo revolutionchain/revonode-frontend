@@ -81,7 +81,7 @@ const [ blockchainInfoState, setBlockchainInfoState ] = useState(false);
 const [ walletState, setWalletState ] = useState(false);
 
     useEffect(() => {
-        blockchainInfo[0].value = props.nodeData[0].chain;
+        blockchainInfo[0].value = <button style={{ fontSize: "10px", marginLeft: "5px", }} type="button" className="btn btn-dark btn-sm">{props.nodeData[0].chain}</button>
         blockchainInfo[1].value = ((props.nodeData[7].size_on_disk) / 1000000000).toFixed(2) + " GB";
         blockchainInfo[2].value = (props.nodeData[8]).includes('G') ? (props.nodeData[8]).split("G")[0] + " GB" : (props.nodeData[8]).split("M")[0] + " MB";
         blockchainInfo[3].value = (props.nodeData[0].difficulty.proof_of_stake).toFixed(3);
