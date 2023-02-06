@@ -26,7 +26,7 @@ const icons = []
                         <br></br>
                         <Card style={{width: "100%"}}>
                             <CardBody>
-<h4 className="card-title mb-2">Transactions</h4>
+<h4 className="card-title mb-2">Most Recent Transactions</h4>
 <hr />
                 
           <div class="table-responsive">
