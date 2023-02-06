@@ -208,7 +208,7 @@ const Widget = props => {
                                             <span className="counter-value" data-target="58425">
                                                 {widget.id == 2 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count} >{widget.count}</a> : widget.count}
                                             </span></h4>
-                                    <p className="text-muted mt-3 mb-0">
+                                    <p style={{position: "absolute", bottom: "0"}} className="text-muted mt-3 mb-3">
                                         <span className={""}>
 
                                             {/*widget.upArrow === true ?

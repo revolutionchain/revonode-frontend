@@ -21,7 +21,7 @@ const icons = []
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                        <button type="button" id="sa-success" class="btn btn-secondary">Send</button>
+                        <button style={{float: "right", marginLeft: "10px"}} type="button" id="sa-success" class="btn btn-secondary">Send</button>
                         <br></br>
                         <br></br>
                         <Card>

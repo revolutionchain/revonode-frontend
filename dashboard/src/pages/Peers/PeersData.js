@@ -33,8 +33,8 @@ setExternalPeersState(externalPeers);
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                        <button type="button" id="sa-success" class="btn btn-secondary">Add Node</button>
-                        <button type="button" id="sa-success" class="btn btn-secondary">Clear Banned</button>
+                        <button style={{float: "right", marginLeft: "10px"}} type="button" id="sa-success" class="btn btn-secondary">Add Node</button>
+                        <button style={{float: "right", marginLeft: "10px"}} type="button" id="sa-success" class="btn btn-secondary">Clear Banned</button>
                         <br></br>
                         <br></br>
                         <Card>

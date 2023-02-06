@@ -219,7 +219,7 @@ useEffect(()=>{
                                         <span className="counter-value" data-target="58425">
                                             {widget.count}
                                         </span></h4>
-                                <p className="text-muted mt-3 mb-0">
+                                <p style={{position: "absolute", bottom: "0"}} className="text-muted mt-3 mb-3">
                                     <span className={""}>
 
                                         {/*widget.upArrow === true ?

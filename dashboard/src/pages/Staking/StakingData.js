@@ -30,8 +30,8 @@ setOrderedState(orderedList);
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                        <button type="button" id="sa-success" class="btn btn-secondary">UTXO Split</button>
-                        <button type="button" id="sa-success" class="btn btn-secondary">UTXO Merge</button>
+                        <button style={{float: "right", marginLeft: "10px"}} type="button" id="sa-success" class="btn btn-secondary">UTXO Split</button>
+                        <button style={{float: "right", marginLeft: "10px"}} type="button" id="sa-success" class="btn btn-secondary">UTXO Merge</button>
                         <br></br>
                         <br></br>
                         <Card>
