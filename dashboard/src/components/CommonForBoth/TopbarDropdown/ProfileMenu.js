@@ -7,8 +7,13 @@ import {
   DropdownItem,
   Col,
   Button,
-  Modal
+  Modal,
+  Tooltip
 } from "reactstrap"
+
+
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 import SweetAlert from "react-bootstrap-sweetalert"
 //i18n
@@ -89,6 +94,19 @@ const ProfileMenu = props => {
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
+
+{props.walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1"><div style={{ height: "100%", display: "flex", alignItems: "center" 
+}}>
+  <CopyToClipboard text={`${walletAddress}`}
+                        onCopy={() => { }}>
+                        <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
+                    </CopyToClipboard>
+        <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={()=> setTooltipOpen(!tooltipOpen)}>
+          Click to copy
+        </Tooltip>
+</div></div>}
+
+
           <Link to="/profile"><DropdownItem>
             {" "}
             <i className="bx bx-user font-size-16 align-middle me-1" />

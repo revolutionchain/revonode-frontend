@@ -211,7 +211,7 @@ const Header = (props) => {
 
             {/*<NotificationDropdown />*/}
             
-            <ProfileMenu />
+            <ProfileMenu walletAddress={walletAddress} />
 {/*
             <div
               onClick={() => {
