@@ -70,6 +70,7 @@ const ProfileMenu = props => {
     setPowerModal(!setPowerModal)
   }
 
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
 
 
 
@@ -97,9 +98,9 @@ const ProfileMenu = props => {
 
 {props.walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1"><div style={{ height: "100%", display: "flex", alignItems: "center" 
 }}>
-  <CopyToClipboard text={`${walletAddress}`}
+  <CopyToClipboard text={`${props.walletAddress}`}
                         onCopy={() => { }}>
-                        <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
+                        <button className="btn btn-outline-success " id="CopyTooltip" >{props.walletAddress}</button>
                     </CopyToClipboard>
         <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={()=> setTooltipOpen(!tooltipOpen)}>
           Click to copy
