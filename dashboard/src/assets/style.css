@@ -920,9 +920,17 @@ a {
 }
 
 
+.top-peers-container{
+  max-height: 300px;
+
+}
+
+
 .piechart-container{
   display: flex;
+  max-height: 230px;
 }
+
 
 .mapchart-container {
   display: flex;
@@ -1010,7 +1018,16 @@ a {
   }
   .piechart-container {
     display: initial;
+    max-height: none;
   }
+  
+
+.top-peers-container{
+  max-height: none;
+
+}
+
+
 
 }
 
