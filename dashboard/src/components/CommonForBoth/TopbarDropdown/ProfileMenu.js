@@ -96,7 +96,7 @@ const ProfileMenu = props => {
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
 
-{props.walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1"><div style={{ height: "100%", display: "flex", alignItems: "center" 
+        {props.walletAddress && <div className="dropdown d-flex d-lg-none ms-1"><div style={{ height: "100%", display: "flex", alignItems: "center", margin: "auto" 
 }}>
   <CopyToClipboard text={`${props.walletAddress}`}
                         onCopy={() => { }}>
@@ -106,8 +106,7 @@ const ProfileMenu = props => {
           Click to copy
         </Tooltip>
 </div></div>}
-
-
+          <div className="dropdown-divider" />
           <Link to="/profile"><DropdownItem>
             {" "}
             <i className="bx bx-user font-size-16 align-middle me-1" />
