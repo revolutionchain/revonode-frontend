@@ -203,7 +203,7 @@ const Widget = props => {
                                     <div>
                                         <p style={{ fontSize: '14px' }} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     </div>
-                                        <h4 style={{position: "absolute", top: "0", height: "100%", position: "absolute", alignItems: "center"}} className="mb-1 mt-1">
+                                        <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center"}} className="mb-1 mt-1">
                                             {/*widget.dollor === true ? '' : ''*/}
                                             <span className="counter-value" data-target="58425">
                                                 {widget.id == 2 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count} >{widget.count}</a> : widget.count}
