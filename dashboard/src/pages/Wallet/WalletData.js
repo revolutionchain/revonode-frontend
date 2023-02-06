@@ -21,10 +21,10 @@ const icons = []
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                        <button style={{float: "right"}} type="button" id="sa-success" class="btn btn-secondary  ml-2 mb-4">Send</button>
+                        <button style={{float: "right"}} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>
                         <br></br>
                         <br></br>
-                        <Card>
+                        <Card style={{width: "100%"}}>
                             <CardBody>
 <h4 className="card-title mb-2">Transactions</h4>
 <hr />
