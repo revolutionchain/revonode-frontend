@@ -48,7 +48,7 @@ const icons = []
                       <td style={{borderBottom: "none"}}><a target="_blank" href={"https://testnet.revo.network/address/" + e.address}>{e.address}</a></td>             
                       <td style={{borderBottom: "none"}}>{ new Date((e.time)*1000).toLocaleString("en-US",dateoptions)}</td>
                       <td style={{borderBottom: "none"}}><a target="_blank" href={"https://testnet.revo.network/tx/" + e.txid}>{e.txid}</a></td>
-                      <td style={{borderBottom: "none"}}><b>{e.amount + " RVO"}</b></td>
+                      <td style={{borderBottom: "none"}}><b>{(e.amount > 0 ? "+" + e.amount : e.amount) + " RVO"}</b></td>
                     </tr>)
 
                   })

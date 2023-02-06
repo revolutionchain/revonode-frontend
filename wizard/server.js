@@ -799,6 +799,12 @@ app.get('/listtransactions', (req, res, next) => {
       });    
 })
 
+app.get('/showpublicip', (req, res, next) => {
+      let result = spawnSync('bash', ['/home/revo/nodeutils', '-showpublicip'], { encoding: 'utf8' });    
+      let outtext = result.output[1]
+      let outputresult = outtext.replaceAll("\n", "");
+      res.send(outputresult);     
+})
 
 
 app.use(express.static(path.resolve(__dirname, "./build")))

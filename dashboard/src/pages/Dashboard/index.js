@@ -63,6 +63,7 @@ const Dashboard = props => {
   const [nodeData, setNodeData] = useState(false);
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
+  const [publicIp, setPublicIp] = useState(false);
 
   const getStatesData = () => {
     if (!isLogged) {
@@ -111,6 +112,16 @@ const Dashboard = props => {
             setSubscribemodal(true)
           }
         });
+        fetch(`http://${window.location.hostname}:3001/showpublicip`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }).then(data => data.text())
+          .then(res => {        
+            setPublicIp(res);
+          });
   }
 
   useEffect(() => {
@@ -187,7 +198,7 @@ const Dashboard = props => {
           <Widget nodeData={nodeData} peersData={peersData} farAway={farAway} />
 
           <Row>
-            <NodeInfo nodeData={nodeData} showUptime={showUptime} />
+            <NodeInfo nodeData={nodeData} showUptime={showUptime} publicIp={publicIp} />
             <WalletChainInfo nodeData={nodeData} peersData={peersData} showUptime={showUptime} />
           </Row>
           <Row>
