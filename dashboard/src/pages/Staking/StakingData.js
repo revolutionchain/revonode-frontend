@@ -30,11 +30,11 @@ setOrderedState(orderedList);
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
-                        <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">UTXO Split</button>
-                        <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">UTXO Merge</button>
+                        <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>
+                        <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
                         <br></br>
                         <br></br>
-                        <Card style={{width: "100%"}}>
+                        <Card>
                             <CardBody>
 <h4 className="card-title mb-2">My UTXOs</h4>
 <hr />
@@ -56,12 +56,12 @@ setOrderedState(orderedList);
                   orderedState && (orderedState).map(e => {
                     return (
                       <tr key={e.txid} >
-                        <th style={{borderBottom: "none", paddingLeft: "0"}} scope="row"><a className={e.confirmations < 500 ? "text-warning" : ""} href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
+                        <th style={{borderBottom: "none", paddingLeft: "0"}} scope="row"><a className={e.confirmations < 500 ? "text-muted" : ""} href={`https://testnet.revo.network/tx/${e.txid}`}>{e.txid} </a></th>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}><b>{e.amount + " RVO"}</b></td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.address}</td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.vout}</td>
                         <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.label} </td>
-                        <td style={{borderBottom: "none", paddingLeft: "0"}}>{e.confirmations} </td>
+                        <td style={{borderBottom: "none", paddingLeft: "0"}} className={e.confirmations < 500 ? "text-warning" : "text-primary"}>{e.confirmations} </td>
                       </tr>
                     )
                   })
