@@ -94,7 +94,7 @@ const NodeInfoWidget = props => {
             )}</div>
         nodeInfo[5].value = props.showUptime(props.nodeData[5]);
         nodeInfo[6].value = props.nodeData[6];
-        nodeInfo[7].value = props.publicIp;
+        nodeInfo[7].value = <a target="_blank" href={"https://whois.domaintools.com/" + props.publicIp}>{props.publicIp}</a>
         nodeInfo[8].value = props.nodeData[4].networks[1].reachable;
         nodeInfo[9].value = props.nodeData[4].networks[3].reachable;
         nodeInfo[10].value = "No"
