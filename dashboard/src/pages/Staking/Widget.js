@@ -81,7 +81,7 @@ useEffect(()=>{
                     <Col md={12} xl={12} className="d-flex flex-wrap">
                     {widget.map((widget, key) => (
                         <Col xs={12}  sm={6} md={2} xl={2} key={key}>
-                        <Card style={{minHeight: "120px"}}>
+                        <Card style={{minHeight: "100px"}}>
                             <CardBody>{/*
                                 <div className="float-end">
                                     <div className="avatar-sm mx-auto mb-4">
@@ -93,7 +93,7 @@ useEffect(()=>{
                                 <div>
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                 </div>
-                                    <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center", }} className="mb-1 mt-1">
+                                    <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center", fontSize: "18px" }} className="mb-1 mt-3">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
                                             {widget.count}

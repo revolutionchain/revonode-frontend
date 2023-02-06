@@ -110,7 +110,7 @@ useEffect(()=>{
                                 <div>
                                     <p style={{fontSize: '14px'}} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                 </div>
-                                    <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center", }} className="mb-1 mt-3">
+                                    <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center", fontSize: "18px" }} className="mb-1 mt-3">
                                         {/*widget.dollor === true ? '' : ''*/}
                                         <span className="counter-value" data-target="58425">
                                             {widget.count}

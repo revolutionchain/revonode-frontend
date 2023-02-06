@@ -34,7 +34,7 @@ setOrderedState(orderedList);
                         <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
                         <br></br>
                         <br></br>
-                        <Card>
+                        <Card style={{widget: "100%"}}>
                             <CardBody>
 <h4 className="card-title mb-2">My UTXOs</h4>
 <hr />
