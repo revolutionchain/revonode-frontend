@@ -224,7 +224,7 @@ const StakingDataWidget = props => {
                         orderedState && (orderedState).map(e => {
                           return (
                             <tr key={e.txid} >
-                              <th style={{ borderBottom: "none", paddingLeft: "0" }} scope="row"><a className={e.confirmations < 500 ? "text-muted" : ""} href={`${nodeData[1].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a></th>
+                              <th style={{ borderBottom: "none", paddingLeft: "0" }} scope="row"><a className={e.confirmations < 500 ? "text-muted" : ""} href={`${props.nodeData[1].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a></th>
                               <td style={{ borderBottom: "none", paddingLeft: "0" }}><b>{e.amount + " RVO"}</b></td>
                               <td style={{ borderBottom: "none", paddingLeft: "0" }}>{e.address}</td>
                               <td style={{ borderBottom: "none", paddingLeft: "0" }}>{e.vout}</td>
