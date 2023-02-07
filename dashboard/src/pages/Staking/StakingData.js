@@ -162,7 +162,7 @@ const StakingDataWidget = props => {
               </div>
               {confirm_alert2 ? (
                 <SweetAlert
-                  title={buttonStakingState ? "Staking will be enabled!" : "Staking will be disabled!"}
+                  title={buttonStakingState ? "Staking will be disabled!" : "Staking will be enabled!"}
                   warning
                   showCancel
                   confirmButtonText="Yes, do it!"
@@ -175,8 +175,8 @@ const StakingDataWidget = props => {
                   }}
                   onCancel={() => setconfirm_alert2(false)}
                 >
-                  <p>{buttonStakingState ? "Enter your wallet password for enable Staking." : "Enter your wallet password for disable Staking."}</p>
-                  {buttonStakingState && <input
+                  <p>{buttonStakingState ? "Click Ok for disable Staking." : "Enter your wallet password for enable Staking."}</p>
+                  {!buttonStakingState && <input
                     type="password"
                     className="form-control"
                     placeholder="Enter Wallet Password"
