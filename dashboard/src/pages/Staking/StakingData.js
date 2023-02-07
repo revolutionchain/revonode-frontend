@@ -38,6 +38,7 @@ const [error_dlg, seterror_dlg] = useState(false)
 
 
 const [buttonStakingState, setButtonStakingState] = useState(true);
+const [walletPassState, setWalletPassState] = useState(true);
 
 
 return (
@@ -99,7 +100,15 @@ return (
                                           }}
                                           onCancel={() => setconfirm_alert2(false)}
                                       >
-                                          {buttonStakingState ? "Your Node Wifi will be disabled and current Wifi data will be removed!" : "Your Node Wifi will be enabled and you must enter your wifi data."}
+                                          {buttonStakingState ? "Enter your wallet password for disable Staking." : "Enter your wallet password for enable Staking."}
+                                          <input
+                                                type="password"
+                                                className="form-control"
+                                                placeholder="Enter Wallet Password"
+                                                onChange={(e)=> {
+                                                  setWalletPassState(e.target.value);
+                                                }}
+                                            />
                                       </SweetAlert>
                                   ) : null}
                               </Col>
