@@ -35,9 +35,9 @@ const StakingDataWidget = props => {
     }).then(data => data.text())
       .then(res => {
         if(res.staking){
-          setButtonStakingState(false);
-        }else {
           setButtonStakingState(true);
+        }else {
+          setButtonStakingState(false);
         }
       });
 
@@ -61,7 +61,7 @@ const StakingDataWidget = props => {
   function handleButton(stakingState) {
     let titleRes;
     let descriptionRes;
-    if (!stakingState) {
+    if (stakingState) {
       fetch(`http://${window.location.hostname}:3001/walletlockforstaking`, {
         method: 'GET',
         headers: {
@@ -175,8 +175,8 @@ const StakingDataWidget = props => {
                   }}
                   onCancel={() => setconfirm_alert2(false)}
                 >
-                  <p>{buttonStakingState ? "Enter your wallet password for disable Staking." : "Enter your wallet password for enable Staking."}</p>
-                  {buttonStakingState && <input
+                  <p>{!buttonStakingState ? "Enter your wallet password for disable Staking." : "Enter your wallet password for enable Staking."}</p>
+                  {!buttonStakingState && <input
                     type="password"
                     className="form-control"
                     placeholder="Enter Wallet Password"
