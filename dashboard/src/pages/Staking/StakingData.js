@@ -93,7 +93,7 @@ const StakingDataWidget = props => {
       let objData = {
         walletPassword: walletPassState
       }
-      fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
+      fetch(`http://${window.location.hostname}:3001/walletunlockforstaking`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
