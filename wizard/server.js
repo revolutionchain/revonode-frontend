@@ -807,6 +807,37 @@ app.get('/showpublicip', (req, res, next) => {
 })
 
 
+app.get('/getstakinginfo', (req, res, next) => {
+  let response = execFileSync('bash', ['/home/revo/nodeutils', '-getstakinginfo'], { encoding: 'utf8' });
+  response = response.replaceAll("\n", "");
+  res.send(response);
+})
+
+app.post('/walletunlockforstaking', async (req, res, next) => {
+  const { walletPassword } = req.body;
+
+  if(walletPassword){
+    let response = execFileSync('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], { encoding: 'utf8' });
+    if(response.includes("Error: The wallet passphrase entered was incorrect.")){
+      res.send("Error: The wallet passphrase entered was incorrect.");
+    }else {
+      execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "true"], { encoding: 'utf8' });
+      res.send("ok");
+    }
+  }else {
+    res.send("Invalid Password");
+  }
+
+})
+
+
+app.get('/walletlockforstaking', (req, res, next) => {
+  execFileSync('bash', ['/home/revo/nodeutils', '-walletlock'], { encoding: 'utf8' });
+  execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "false"], { encoding: 'utf8' });
+  res.send("Staking disable successfully");
+})
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {
