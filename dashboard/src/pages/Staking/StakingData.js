@@ -171,7 +171,7 @@ const StakingDataWidget = props => {
                   id="sa-success"
                   className='m-2 mb-4'
                 >
-                  <i className="mdi mdi-pickaxe"></i> {buttonStakingState ? "Disable" : "Enable"}
+                  <i className="mdi mdi-pickaxe"></i> {buttonStakingState ? "Disable" : "Enable"} Staking
                 </Button>
               </div>
               {confirm_alert2 ? (
