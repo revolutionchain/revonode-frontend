@@ -26,6 +26,10 @@ const StakingDataWidget = props => {
     setOrderedState(orderedList);
 
 
+  }, [props.listunspentState])
+
+  useEffect(()=> {
+    
     fetch(`http://${window.location.hostname}:3001/getstakinginfo`, {
       method: 'GET',
       headers: {
@@ -40,9 +44,7 @@ const StakingDataWidget = props => {
           setButtonStakingState(true);
         }
       });
-
-
-  }, [props.listunspentState])
+  },[])
 
 
   const [confirm_alert, setconfirm_alert] = useState(false)
