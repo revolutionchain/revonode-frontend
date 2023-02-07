@@ -123,7 +123,7 @@ const Widget = props => {
                                             <span className="counter-value" data-target="58425">
                                                 {widget.id == 2 || widget.id == 3 ? (widget.count / 1073741824).toFixed(3) : widget.id == 6 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count}>{widget.count}</a> : widget.count}
                                             </span></h4>
-                                        <p style={{ position: `absolute`, bottom: `0` }} className="text-muted ">
+                                        <p style={{ position: `absolute`, bottom: '0', marginBottom: "0" }} className="text-muted ">
                                             <span className={""}>
 
                                                 {/*widget.upArrow === true ?

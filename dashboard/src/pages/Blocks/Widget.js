@@ -114,7 +114,7 @@ const Widget = props => {
         widget[4].text = (totalTx / 30).toFixed(2) + " KB avg. TX size"
         setWidgetState(widget);
 
-    },[props.nodeData, props.lastestBlocks])
+    }, [props.nodeData, props.lastestBlocks])
 
     const [reloadStates, setReloadStates] = useState(false);
 
@@ -190,9 +190,10 @@ const Widget = props => {
             <Row>
                 <Col md={12} xl={12} className="d-flex flex-wrap">
                     {widgetState && widgetState.map((widget, key) => (
-                        <Col xs={12}  sm={6} md={2} xl={2} key={key}>
-                            <Card>
-                                <CardBody>{/*
+                        <Col xs={12} sm={6} md={2} xl={2} key={key}>
+                            <Card style={{ minHeight: "140px" }}>
+                                <CardBody style={{ position: "relative", maxHeight: "100px" }}>
+                                    {/*
                                 <div className="float-end">
                                     <div className="avatar-sm mx-auto mb-4">
                                         <span className="avatar-title rounded-circle bg-light font-size-24">
@@ -203,20 +204,22 @@ const Widget = props => {
                                     <div>
                                         <p style={{ fontSize: '14px' }} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     </div>
-                                        <h4 style={{position: "absolute", top: "0", height: "100%", display: "flex", alignItems: "center"}} className="mb-1 mt-1">
+                                    <div style={{ display: "flex", height: "100%", position: "absolute", top: "0", alignItems: "center", width: "100%" }}>
+                                        <h4 className="mb-1 mt-1">
                                             {/*widget.dollor === true ? '' : ''*/}
                                             <span className="counter-value" data-target="58425">
                                                 {widget.id == 2 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count} >{widget.count}</a> : widget.count}
                                             </span></h4>
-                                    <p style={{position: "absolute", bottom: "0"}} className="text-muted mt-3 mb-3">
-                                        <span className={""}>
+                                        <p style={{ position: "absolute", bottom: "0", marginBottom: "0" }} className="text-muted mt-3 mb-3">
+                                            <span className={""}>
 
-                                            {/*widget.upArrow === true ?
+                                                {/*widget.upArrow === true ?
                                             <i className="mdi mdi-arrow-up-bold me-1"></i> : <i className="mdi mdi-arrow-down-bold me-1"></i>
                                         */}
-                                            <i className={widget.secondIcon}></i>{" " + widget.text}
-                                        </span>
-                                    </p>
+                                                <i className={widget.secondIcon}></i>{" " + widget.text}
+                                            </span>
+                                        </p>
+                                    </div>
                                 </CardBody>
                             </Card>
                         </Col>
