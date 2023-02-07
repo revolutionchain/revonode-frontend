@@ -149,8 +149,10 @@ const StakingDataWidget = props => {
           showConfirm={dynamic_title.includes("Wallet password error!") ? false : true}
           timeout={dynamic_title.includes("Wallet password error!") ? 2 : 0}
           onConfirm={() => {
-            seterror_dlg(false)
-            setconfirm_alert2(true);
+            setTimeout(()=> {
+              seterror_dlg(false)
+              setconfirm_alert2(true);
+            }, 2000)
           }}
         >
           {dynamic_description}
