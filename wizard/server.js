@@ -821,6 +821,7 @@ app.post('/walletunlockforstaking', async (req, res, next) => {
       if (errShowMaster) {
         res.send("The wallet password entered was incorrect.");
       } else {
+        execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "true"], { encoding: 'utf8' });
         res.send("ok");        
       }
     });    
