@@ -72,7 +72,7 @@ const StakingDataWidget = props => {
         },
       }).then(data => data.text())
         .then(res => {
-          titleRes = "Staking Disable"
+          titleRes = "Staking Disabled"
           descriptionRes = res;
           setconfirm_alert2(false);
           setsuccess_dlg(true);
