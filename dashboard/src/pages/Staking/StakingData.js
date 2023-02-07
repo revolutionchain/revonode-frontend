@@ -36,7 +36,7 @@ const StakingDataWidget = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(data => data.text())
+    }).then(data => data.json())
       .then(res => {
         if(res.staking){
           setButtonStakingState(false);
