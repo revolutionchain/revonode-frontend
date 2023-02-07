@@ -114,7 +114,7 @@ const Widget = props => {
                     {widgetState && widgetState.map((widget, key) => (
                         <Col xs={12} sm={6} md={2} xl={2} key={key}>
                             <Card>
-                                <CardBody style={{position: "relative", maxHeight: "100%"}}>
+                                <CardBody style={{position: "relative", maxHeight: "100px"}}>
                                     <div>
                                         <p style={{ fontSize: '14px' }} className="text-muted text-uppercase p-title"><i className={widget.icon}></i>{" " + widget.title}</p>
                                     </div>
