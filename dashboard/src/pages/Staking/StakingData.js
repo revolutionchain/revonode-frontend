@@ -76,6 +76,7 @@ const StakingDataWidget = props => {
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
+          setButtonStakingState(!buttonStakingState);
         });
     } else {
 
@@ -109,6 +110,7 @@ const StakingDataWidget = props => {
             setsuccess_dlg(true);
             setdynamic_title(titleRes);
             setdynamic_description(descriptionRes);
+            setButtonStakingState(!buttonStakingState);
           }
         });
     }
@@ -169,8 +171,7 @@ const StakingDataWidget = props => {
                   confirmBtnBsStyle="success"
                   cancelBtnBsStyle="danger"
                   onConfirm={() => {
-                    setButtonStakingState(!buttonStakingState);
-                    { buttonStakingState && handleButton(!buttonStakingState); }
+                    { buttonStakingState && handleButton(buttonStakingState); }
                     setconfirm_alert2(false);
                   }}
                   onCancel={() => setconfirm_alert2(false)}
