@@ -35,9 +35,9 @@ const StakingDataWidget = props => {
     }).then(data => data.text())
       .then(res => {
         if(res.staking){
-          setButtonStakingState(true);
-        }else {
           setButtonStakingState(false);
+        }else {
+          setButtonStakingState(true);
         }
       });
 
