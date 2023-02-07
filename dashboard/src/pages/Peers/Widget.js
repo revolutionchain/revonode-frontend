@@ -221,7 +221,7 @@ const Widget = props => {
                                             <span className="counter-value" data-target="58425">
                                                 {widget.count}
                                             </span></h4>
-                                        <p style={{ position: "absolute", bottom: "0", marginBottom: "0" }} className="text-muted mt-3 mb-3">
+                                        <p style={{ position: "absolute", bottom: "0", marginBottom: "0" }} className="text-muted">
                                             <span className={""}>
 
                                                 {/*widget.upArrow === true ?

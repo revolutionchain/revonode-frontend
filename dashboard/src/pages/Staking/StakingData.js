@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import SweetAlert from "react-bootstrap-sweetalert"
 
 
 const StakingDataWidget = props => {
@@ -25,13 +26,83 @@ setOrderedState(orderedList);
 
 },[props.listunspentState])
 
-    return (
+
+const [confirm_alert, setconfirm_alert] = useState(false)
+const [confirm_alert2, setconfirm_alert2] = useState(false)
+//const [success_msg, setsuccess_msg] = useState(false)
+const [success_dlg, setsuccess_dlg] = useState(false)
+const [dynamic_title, setdynamic_title] = useState("")
+const [dynamic_description, setdynamic_description] = useState("")
+const [error_dlg, seterror_dlg] = useState(false)
+
+
+
+const [buttonStakingState, setButtonStakingState] = useState(true);
+
+
+return (
         <React.Fragment>
+        {success_dlg ? (
+                      <SweetAlert
+                          success
+                          title={dynamic_title}
+                          showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
+                          timeout={dynamic_title.includes("Node Rebooting..") ? 0 : 0}
+                          onConfirm={() => {
+                              {/*setsuccess_dlg(false)*/}
+                          }}
+                      >
+                          {dynamic_description}
+                      </SweetAlert>
+                  ) : null}
+
+                  {error_dlg ? (
+                      <SweetAlert
+                          error
+                          title={dynamic_title}
+                          onConfirm={() => {
+                              seterror_dlg(false)
+                          }}
+                      >
+                          {dynamic_description}
+                      </SweetAlert>
+                  ) : null}
             <Row>
                     <Col md={12} xl={12} className="">
                         <Col xl={12} >
                         <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>
                         <button style={{float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
+                      <Col xl={3} lg={4} sm={6} className="mb-2">
+                                  <div className="">
+                                      <Button
+                                          color={buttonStakingState ? "danger" : "primary" }
+                                          onClick={() => {
+                                              setconfirm_alert2(true)
+                                          }}
+                                          id="sa-success"
+                                      >
+                                          {buttonStakingState ? "Disable" : "Enable"}
+                  </Button>
+                                  </div>
+                                  {confirm_alert2 ? (
+                                      <SweetAlert
+                                          title="Are you sure?"
+                                          warning
+                                          showCancel
+                                          confirmButtonText="Yes, do it!"
+                                          confirmBtnBsStyle="success"
+                                          cancelBtnBsStyle="danger"
+                                          onConfirm={() => {
+                                            setButtonStakingState(!buttonStakingState);    
+                                            {/*buttonStakingState && handleButton(!buttonWifiState);*/}
+                                            setconfirm_alert2(false);                                        
+                                          }}
+                                          onCancel={() => setconfirm_alert2(false)}
+                                      >
+                                          {buttonStakingState ? "Your Node Wifi will be disabled and current Wifi data will be removed!" : "Your Node Wifi will be enabled and you must enter your wifi data."}
+                                      </SweetAlert>
+                                  ) : null}
+                              </Col>
                         <br></br>
                         <br></br>
                         <Card style={{width: "100%"}}>
