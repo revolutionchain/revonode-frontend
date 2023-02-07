@@ -171,7 +171,7 @@ const StakingDataWidget = props => {
                   id="sa-success"
                   className='m-2 mb-4'
                 >
-                  {buttonStakingState ? "Disable" : "Enable"}
+                  <i className="mdi mdi-pickaxe"></i> {buttonStakingState ? "Disable" : "Enable"}
                 </Button>
               </div>
               {confirm_alert2 ? (
@@ -188,7 +188,7 @@ const StakingDataWidget = props => {
                   }}
                   onCancel={() => setconfirm_alert2(false)}
                 >
-                  <p>{buttonStakingState ? "Click Ok for disable Staking." : "Enter your wallet password for enable Staking."}</p>
+                  <p>{buttonStakingState ? "You are going to disable mining on this node." : "Enter your wallet unlock password to enable staking."}</p>
                   {!buttonStakingState && <input
                     type="password"
                     className="form-control"
