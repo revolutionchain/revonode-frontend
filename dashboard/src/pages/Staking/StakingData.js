@@ -134,7 +134,7 @@ const StakingDataWidget = props => {
           showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
           timeout={dynamic_title.includes("Node Rebooting..") ? 0 : 0}
           onConfirm={() => {
-            {/*setsuccess_dlg(false)*/ }
+            setsuccess_dlg(false)
           }}
         >
           {dynamic_description}
@@ -145,6 +145,8 @@ const StakingDataWidget = props => {
         <SweetAlert
           error
           title={dynamic_title}
+          showConfirm={dynamic_description.includes("The wallet password entered was incorrect.") ? false : true}
+          timeout={dynamic_description.includes("The wallet password entered was incorrect.") ? 2 : 0}
           onConfirm={() => {
             seterror_dlg(false)
             setconfirm_alert2(true);
