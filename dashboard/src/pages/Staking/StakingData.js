@@ -105,8 +105,8 @@ const StakingDataWidget = props => {
       }).then(data => data.text())
         .then(res => {
           if ((res).includes("ok")) {
-            titleRes = "Staking Enable"
-            descriptionRes = "Staking enable successfully";
+            titleRes = "You are Staking!"
+            descriptionRes = "Staking enabled successfully";
             setconfirm_alert2(false);
             setsuccess_dlg(true);
             setdynamic_title(titleRes);
