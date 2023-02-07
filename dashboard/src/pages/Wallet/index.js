@@ -92,7 +92,7 @@ const Wallet = props => {
           }
           {/* import Widget */}
           <Widget nodeData={nodeData} />
-          {listtransactions && <WalletData listtransactions={listtransactions}  />}
+          {listtransactions && <WalletData listtransactions={listtransactions} nodeData={nodeData} />}
 
         </Container>
       </div>

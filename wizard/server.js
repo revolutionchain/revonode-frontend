@@ -557,6 +557,18 @@ app.get('/getdashboarddata', async (req, res, next) => {
     }
     response.push(result);
   }
+  if(response[0].chain == "test"){
+    response.push({
+       API_URL: "https://testnetapi.revo.network/",
+       EXPLORER_URL: "https://testnet.revo.network/"
+   })
+  }
+  else {
+    response.push({
+      API_URL: "https://api.revo.network/",
+      EXPLORER_URL: "https://mainnet.revo.network/"
+})
+  }
   res.send(response);
 });
 

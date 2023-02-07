@@ -136,7 +136,7 @@ const Widget = props => {
                 if (txHashes.length >= 10) {
                     const prom = new Promise((resolve, reject) => {
                         setTimeout(async () => {
-                            let response = await fetch(`https://testnetapi.revo.network/tx/${e}`, {
+                            let response = await fetch(`${props.nodeData[11].API_URL}tx/${e}`, {
                                 method: 'GET',
                                 headers: {
                                     'Accept': 'application/json',
@@ -148,7 +148,7 @@ const Widget = props => {
                     });
                     return prom
                 } else {
-                    let response = await fetch(`https://testnetapi.revo.network/tx/${e}`, {
+                    let response = await fetch(`${props.nodeData[11].API_URL}tx/${e}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',
@@ -208,7 +208,7 @@ const Widget = props => {
                                         <h4 className="mb-1 mt-1">
                                             {/*widget.dollor === true ? '' : ''*/}
                                             <span className="counter-value" data-target="58425">
-                                                {widget.id == 2 ? <a target="_blank" href={"https://testnet.revo.network/block/" + widget.count} >{widget.count}</a> : widget.count}
+                                                {widget.id == 2 ? <a target="_blank" href={props.nodeData[11].EXPLORER_URL + "block/" + widget.count} >{widget.count}</a> : widget.count}
                                             </span></h4>
                                         <p style={{ position: "absolute", bottom: "0", marginBottom: "0" }} className="text-muted">
                                             <span className={""}>
