@@ -817,15 +817,13 @@ app.post('/walletunlockforstaking', async (req, res, next) => {
   const { walletPassword } = req.body;
 
   if(walletPassword){
-    console.log(walletPassword);
-    let response = execFileSync('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], { encoding: 'utf8' });
-    console.log(response);
-    if(response.includes("Error: The wallet passphrase entered was incorrect.")){
-      res.send("Error: The wallet passphrase entered was incorrect.");
-    }else {
-      execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "true"], { encoding: 'utf8' });
-      res.send("ok");
-    }
+    execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+      if (errShowMaster) {
+        res.send("Error: The wallet passphrase entered was incorrect.");
+      } else {
+        res.send("ok");        
+      }
+    });    
   }else {
     res.send("Invalid Password");
   }

@@ -111,6 +111,13 @@ const StakingDataWidget = props => {
             setdynamic_title(titleRes);
             setdynamic_description(descriptionRes);
             setButtonStakingState(!buttonStakingState);
+          }else {
+            titleRes = "Wallet password error!"
+            descriptionRes = res;
+            setconfirm_alert2(false);
+            setdynamic_title(titleRes);
+            setdynamic_description(descriptionRes);
+            return seterror_dlg(true)
           }
         });
     }
@@ -140,6 +147,7 @@ const StakingDataWidget = props => {
           title={dynamic_title}
           onConfirm={() => {
             seterror_dlg(false)
+            setconfirm_alert2(true);
           }}
         >
           {dynamic_description}
