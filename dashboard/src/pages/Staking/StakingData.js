@@ -170,7 +170,7 @@ const StakingDataWidget = props => {
                   cancelBtnBsStyle="danger"
                   onConfirm={() => {
                     setButtonStakingState(!buttonStakingState);
-                    { buttonStakingState && handleButton(!buttonWifiState); }
+                    { buttonStakingState && handleButton(!buttonStakingState); }
                     setconfirm_alert2(false);
                   }}
                   onCancel={() => setconfirm_alert2(false)}
