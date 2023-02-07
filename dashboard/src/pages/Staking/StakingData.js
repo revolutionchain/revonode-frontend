@@ -104,7 +104,6 @@ const StakingDataWidget = props => {
         body: JSON.stringify(objData)
       }).then(data => data.text())
         .then(res => {
-          console.log(res)
           if ((res).includes("ok")) {
             titleRes = "Staking Enable"
             descriptionRes = "Staking enable successfully";
@@ -133,8 +132,8 @@ const StakingDataWidget = props => {
         <SweetAlert
           success
           title={dynamic_title}
-          showConfirm={dynamic_title.includes("Node Rebooting..") ? false : true}
-          timeout={dynamic_title.includes("Node Rebooting..") ? 0 : 0}
+          showConfirm={true}
+          timeout={0}
           onConfirm={() => {
             setsuccess_dlg(false)
           }}
@@ -147,8 +146,8 @@ const StakingDataWidget = props => {
         <SweetAlert
           error
           title={dynamic_title}
-          showConfirm={dynamic_description.includes("The wallet password entered was incorrect.") ? false : true}
-          timeout={dynamic_description.includes("The wallet password entered was incorrect.") ? 2 : 0}
+          showConfirm={dynamic_title.includes("Wallet password error!") ? false : true}
+          timeout={dynamic_description.includes("Wallet password error!") ? 2 : 0}
           onConfirm={() => {
             seterror_dlg(false)
             setconfirm_alert2(true);
