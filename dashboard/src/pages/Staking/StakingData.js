@@ -55,7 +55,7 @@ const StakingDataWidget = props => {
 
 
 
-  const [walletPassState, setWalletPassState] = useState(true);
+  const [walletPassState, setWalletPassState] = useState(false);
 
 
   function handleButton(stakingState) {
@@ -158,6 +158,7 @@ const StakingDataWidget = props => {
                     setconfirm_alert2(true)
                   }}
                   id="sa-success"
+                  className='m-2 mb-4'
                 >
                   {buttonStakingState ? "Disable" : "Enable"}
                 </Button>
