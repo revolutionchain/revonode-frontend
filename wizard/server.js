@@ -847,7 +847,7 @@ app.post('/walletunlockforstaking', async (req, res, next) => {
 app.get('/walletlockforstaking', (req, res, next) => {
   execFileSync('bash', ['/home/revo/nodeutils', '-walletlock'], { encoding: 'utf8' });
   execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "false"], { encoding: 'utf8' });
-  res.send("Staking disable successfully");
+  res.send("Staking disabled successfully");
 })
 
 
