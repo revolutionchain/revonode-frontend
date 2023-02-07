@@ -817,7 +817,7 @@ app.post('/walletunlockforstaking', async (req, res, next) => {
   const { walletPassword } = req.body;
 
   if(walletPassword){
-    execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+    execFile('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
       if (errShowMaster) {
         res.send("Error: The wallet passphrase entered was incorrect.");
       } else {
