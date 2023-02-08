@@ -93,6 +93,7 @@ const SidebarContent = props => {
 
   
   const [buttonStakingState, setButtonStakingState] = useState(true);
+  const [ buttonStateLoaded, setButtonStateLoaded ] = useState(false);
 
   useEffect(()=> {
     
@@ -109,6 +110,7 @@ const SidebarContent = props => {
         }else {
           setButtonStakingState(false);
         }
+        setButtonStateLoaded(true);
       });
   },[])
 
@@ -278,7 +280,7 @@ const SidebarContent = props => {
                 <span key="t-ui-elements">{props.t("Tips")}</span>
               </Link>
             </li>
-            <li style={{position: "absolute", bottom: "0"}}>
+            {buttonStateLoaded && <li style={{position: "absolute", bottom: "0"}}>
               <Col xl={12} lg={12} sm={12} className="mb-2">
                 <div className="" style={{textAlign: "center"}}>
                   <Button
@@ -318,7 +320,7 @@ const SidebarContent = props => {
                   </SweetAlert>
                 ) : null}
               </Col>
-            </li>
+            </li>}
 
           </ul>
         </div>
