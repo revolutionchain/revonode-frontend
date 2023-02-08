@@ -851,6 +851,12 @@ app.get('/walletlockforstaking', (req, res, next) => {
 })
 
 
+app.get('/getver', (req, res, next) => {
+  let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
+  res.send(result);
+})
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {
