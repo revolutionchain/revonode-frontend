@@ -316,7 +316,7 @@ function handlePassButton () {
                                   </div>
                                   <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Password</label>
-                            <div className='input-container' style={{width: "100%", border: "1px solid #bfbfbf", borderRadius: "0.25rem", border: "none"}}>
+                            <div className='input-container' style={{width: "100%", border: "1px solid #bfbfbf", borderRadius: "0.25rem", }}>
                                   <input 
                                   name="password"
                                   label="Password"
@@ -325,7 +325,7 @@ function handlePassButton () {
                                   className="form-control"
                                   placeholder="Enter Password"
                                   type={passButtonState ? 'password' : 'text'}
-                                  style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
+                                  style={buttonWifiState ? {border: "none"} : {backgroundColor: "#CCC", border: "none"}}
                                   required
                                   readOnly={buttonWifiState ? false : true}
                                     ></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button>
