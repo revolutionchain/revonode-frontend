@@ -316,6 +316,7 @@ function handlePassButton () {
                                   </div>
                                   <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Password</label>
+                            <div className='input-container' style={{width: "100%", border: "1px solid #bfbfbf", borderRadius: "0.25rem", border: "none"}}>
                                   <input 
                                   name="password"
                                   label="Password"
@@ -328,6 +329,7 @@ function handlePassButton () {
                                   required
                                   readOnly={buttonWifiState ? false : true}
                                     ></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button>
+                                    </div>
                                     </div>
                                     <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Encryption</label>
