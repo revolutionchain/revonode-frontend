@@ -5,6 +5,8 @@ import Flag from 'react-world-flags'
 import Select from 'react-select';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import SweetAlert from "react-bootstrap-sweetalert"
+import openEye from '../../assets/images/open-eye.png'
+import closedEye from '../../assets/images/closed-eye.png'
 
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation"
@@ -170,6 +172,11 @@ function handleButton(wifiState){
 }
 
 const [buttonWifiState, setButtonWifiState] = useState(true);
+const [ passButtonState, setPassButtonState ] = useState(true);
+
+function handlePassButton () {
+  passButtonState ? setPassButtonState(false) : setPassButtonState(true);
+}
 
 
     return (
@@ -316,11 +323,11 @@ const [buttonWifiState, setButtonWifiState] = useState(true);
                                   onChange={(e) => setCurrentWifiState({...currentWifiState, password: e.target.value })}
                                   className="form-control"
                                   placeholder="Enter Password"
-                                  type="password"
+                                  type={passButtonState ? 'password' : 'text'}
                                   style={buttonWifiState ? {} : {backgroundColor: "#CCC"}}
                                   required
                                   readOnly={buttonWifiState ? false : true}
-                                    ></input>
+                                    ></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button>
                                     </div>
                                     <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>Encryption</label>
