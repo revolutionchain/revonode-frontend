@@ -33,8 +33,17 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
 
     async function handleCreate() {
         let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);
+        var filtro = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        let invalidChar = [];
         setIsLoading(true);
-        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && symbols.exec(input?.walletPass) == null) {
+        if(input?.walletPass) {
+            (input?.walletPass).split("").map(e => {
+                if(!filtro.includes(e)){
+                    invalidChar.push(e);
+                }
+            })
+        }                
+        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidChar.length) {
             let createWallet = await axios.post(`http://${window.location.hostname}:3001/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
@@ -52,7 +61,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         } else if (input?.walletPass !== input?.walletRePass) {
             setErrorFound('Secret passphrase does not match.');
             openModal();
-        } else if (symbols.exec(input?.walletPass) !== null) {
+        } else if (invalidChar) {
             setErrorFound('Secret passphrase can only contain letters and numbers.');
             openModal();
         }

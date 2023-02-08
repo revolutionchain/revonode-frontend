@@ -224,7 +224,7 @@ const SidebarContent = props => {
         </SweetAlert>
       ) : null}
       <SimpleBar style={{ maxHeight: "100%" }} ref={ref}>
-        <div id="sidebar-menu">
+        <div style={{height: "calc(100vh-60px)"}} id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="menu-title">{props.t("Menu")} </li>{/*
             <li>
@@ -278,7 +278,7 @@ const SidebarContent = props => {
                 <span key="t-ui-elements">{props.t("Tips")}</span>
               </Link>
             </li>
-            <li>
+            <li style={{position: "absolute", bottom: "0"}}>
               <Col xl={12} lg={12} sm={12} className="mb-2">
                 <div className="" style={{textAlign: "center"}}>
                   <Button

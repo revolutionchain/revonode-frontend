@@ -8,7 +8,6 @@ import SweetAlert from "react-bootstrap-sweetalert"
 const StakingDataWidget = props => {
 
   const [orderedState, setOrderedState] = useState(false);
-  const [buttonStakingState, setButtonStakingState] = useState(true);
 
   useEffect(() => {
     let orderedList = props.listunspentState;
@@ -27,6 +26,8 @@ const StakingDataWidget = props => {
 
 
   }, [props.listunspentState])
+  
+  const [buttonStakingState, setButtonStakingState] = useState(true);
 
   useEffect(()=> {
     
