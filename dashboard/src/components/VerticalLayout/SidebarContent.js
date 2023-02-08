@@ -298,8 +298,8 @@ const SidebarContent = props => {
                     warning
                     showCancel
                     confirmButtonText="Yes, do it!"
-                    confirmBtnBsStyle="success"
-                    cancelBtnBsStyle="danger"
+                    confirmBtnBsStyle="success text-white"
+                    cancelBtnBsStyle="danger text-white"
                     onConfirm={() => {
                       { handleButton(buttonStakingState); }
                       setconfirm_alert2(false);
