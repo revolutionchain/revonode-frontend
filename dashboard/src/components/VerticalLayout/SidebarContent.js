@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import React, { useCallback, useEffect, useRef, useState } from "react"
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 // //Import Scrollbar
 import SimpleBar from "simplebar-react"
@@ -278,8 +279,8 @@ const SidebarContent = props => {
               </Link>
             </li>
             <li>
-              <Col xl={3} lg={4} sm={6} className="mb-2">
-                <div className="">
+              <Col xl={12} lg={12} sm={12} className="mb-2">
+                <div className="" style={{textAlign: "center"}}>
                   <Button
                     color={buttonStakingState ? "danger" : "primary"}
                     onClick={() => {
