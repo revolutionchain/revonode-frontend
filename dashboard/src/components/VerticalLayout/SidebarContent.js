@@ -224,7 +224,7 @@ const SidebarContent = props => {
         </SweetAlert>
       ) : null}
       <SimpleBar style={{ maxHeight: "100%" }} ref={ref}>
-        <div style={{height: "calc(100vh-60px)"}} id="sidebar-menu">
+        <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="menu-title">{props.t("Menu")} </li>{/*
             <li>

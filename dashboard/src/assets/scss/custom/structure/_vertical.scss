@@ -57,6 +57,7 @@
 
 #sidebar-menu {
     padding: 10px 0 30px 0;
+    height: calc(100vh - 60px);
 
     .mm-active {
         >.has-arrow {
