@@ -215,7 +215,7 @@ const UserProfile = props => {
         </MetaTags>
         <Container fluid>
           {/* Render Breadcrumb */}
-          <Breadcrumb title="Samply" breadcrumbItem="Profile" />
+          <Breadcrumb title="Dashboard" breadcrumbItem="Profile" />
                     {success_dlg ? (
                         <SweetAlert
                             success
