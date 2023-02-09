@@ -250,7 +250,7 @@ const UserProfile = props => {
                   <div class="card">                                     
                     <div class="card-body">
                     <AvForm
-                      className="form-horizontal"
+                      className="form-horizontal col-xl-6 col-xxl-3"
                       onValidSubmit={() => {
                           handleButton(userEmail)
                           }}
@@ -314,7 +314,7 @@ const UserProfile = props => {
                   <div class="card">                                     
                     <div class="card-body">
                     <AvForm
-                      className="form-horizontal"
+                      className="form-horizontal col-xl-6 col-xxl-3"
                       onValidSubmit={() => {
                         handleButton(userPass)
                       }}

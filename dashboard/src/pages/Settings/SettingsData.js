@@ -298,7 +298,7 @@ function handlePassButton () {
                                   ) : null}
                               </Col>
                             </div>
-                              <div className="form-group">
+                              <div className="form-group col-xl-6 col-xxl-3">
                                 <div className='select-container' style={{  marginTop: `15px` }}>
                             <label>SSID</label>
                                 <input 

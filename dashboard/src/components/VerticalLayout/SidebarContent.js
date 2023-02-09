@@ -95,8 +95,7 @@ const SidebarContent = props => {
   const [buttonStakingState, setButtonStakingState] = useState(true);
   const [ buttonStateLoaded, setButtonStateLoaded ] = useState(false);
 
-  useEffect(()=> {
-    
+  const getStatesData = () => {
     fetch(`http://${window.location.hostname}:3001/getstakinginfo`, {
       method: 'GET',
       headers: {
@@ -112,6 +111,19 @@ const SidebarContent = props => {
         }
         setButtonStateLoaded(true);
       });
+  }
+
+  useEffect(()=> {
+    
+    getStatesData();
+      
+  
+      const interval = setInterval(() => {
+        getStatesData();
+      }, 30000);
+    
+      return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+    
   },[])
 
 
