@@ -38,7 +38,7 @@ function handleButton (types){
     .then(res => {
       if((res).includes("ok")){
         titleRes = "Node Updating.."
-        descriptionRes = "Node Dashboard updates download in progress, please wait."
+        descriptionRes = "Node Dashboard updates download in progress, please wait the page will auto reload automatically."
         setconfirm_alert(false);
         setsuccess_dlg(true);
         setdynamic_title(titleRes);
