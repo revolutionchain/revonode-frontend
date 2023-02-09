@@ -12,12 +12,20 @@ export default function Tenthpage({ walletData }) {
     const [arrayData, setArrayData] = useState(false);
     const [privData, setPrivData] = useState(false);
 
+
     useEffect(async () => {
-        let masterState = await axios.get(`http://${window.location.hostname}:3001/getwalletaddress`);
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+        let masterState = await axios.get(`${url}/getwalletaddress`);
         walletData.walletAddress = masterState.data;
-        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
+        let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
-        let result = await axios.get(`http://${window.location.hostname}:3001/getrevoconfig`);
+        let result = await axios.get(`${url}/getrevoconfig`);
         let arr = []
         arr[0] = result.data.split("rpc")[1];
         arr[1] = result.data.split("rpc")[2];
@@ -29,7 +37,7 @@ export default function Tenthpage({ walletData }) {
         }
         setRpcData(obj);
         let privKeyObj = { walletKey: walletData?.walletPass};
-        let getPrivKey = await axios.post(`http://${window.location.hostname}:3001/getprivkey`, privKeyObj);
+        let getPrivKey = await axios.post(`${url}/getprivkey`, privKeyObj);
         setPrivData(getPrivKey.data)
     }, []);
 

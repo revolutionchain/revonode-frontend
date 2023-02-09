@@ -25,12 +25,22 @@ const Settings = props => {
     wifi: ""
   })
 
-  useEffect(() => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
     if (!isLogged) {
       return props.history.push('/login');
     }
 
-    fetch(`http://${window.location.hostname}:3001/getdomain`, {
+    fetch(`${url}/getdomain`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -42,7 +52,7 @@ const Settings = props => {
       });       
 
 
-    fetch(`http://${window.location.hostname}:3001/getwificonfig`, {
+    fetch(`${url}/getwificonfig`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

@@ -39,10 +39,20 @@ const Register = props => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
     document.body.classList.add('bg-reglog');
     props.apiError("")
-    fetch(`http://${window.location.hostname}:3001/checkuser`)
+    fetch(`${url}/checkuser`)
       .then(response => response.json())
       .then(data => {
         if (data == true) {

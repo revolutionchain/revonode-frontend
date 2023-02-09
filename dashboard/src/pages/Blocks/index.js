@@ -34,9 +34,19 @@ const Blocks = props => {
     }
 
     const [lastestBlocks, setLastestBlocks] = useState(false);
-
+    
+    const [currentUrl, setCurrentUrl] = useState("");
     const getStatesData = () => {
-      fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
+  
+        let url;
+        if((window.location.hostname).includes("revo.host")){
+          url = `https://${window.location.hostname}/api`
+        }else {
+          url = `http://${window.location.hostname}:3001`
+        }
+    
+        setCurrentUrl(url);
+      fetch(`${url}/getdashboarddata`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -46,7 +56,7 @@ const Blocks = props => {
         .then(res => {
           setNodeData(res);
         });    
-        fetch(`http://${window.location.hostname}:3001/getlastestblocks`, {
+        fetch(`${url}/getlastestblocks`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',

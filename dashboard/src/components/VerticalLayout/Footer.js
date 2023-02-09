@@ -5,8 +5,16 @@ const Footer = () => {
 
   const [nodeVersion, setNodeVersion] = useState(false);
 
-  useEffect(() => {
-    fetch(`http://${window.location.hostname}:3001/getver`, {
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    fetch(`${url}/getver`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

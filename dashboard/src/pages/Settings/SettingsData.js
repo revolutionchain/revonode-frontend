@@ -36,7 +36,17 @@ const SettingsDataWidget = props => {
   
   const [currentWifiState, setCurrentWifiState] = useState(false);
 
-useEffect(()=>{        
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);    
   if(props.wifiData && !(props.wifiData).includes("Error")){
     let countryTarget = (props.wifiData).replace("country=", "").slice(0,2);
     currentWifiData.country = options.find(e => e.value == countryTarget);
@@ -67,7 +77,7 @@ function handleButton(wifiState){
   let titleRes;
   let descriptionRes;
   if(!wifiState){    
-    fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
+    fetch(`${currentUrl}/delwificonfig`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -76,7 +86,7 @@ function handleButton(wifiState){
     }).then(data => data.text())
       .then(res => {
         if((res).includes("ok")){
-          fetch(`http://${window.location.hostname}:3001/reboot`, {
+          fetch(`${currentUrl}/reboot`, {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
@@ -120,7 +130,7 @@ function handleButton(wifiState){
       return seterror_dlg(true)
     }
 
-    fetch(`http://${window.location.hostname}:3001/delwificonfig`, {
+    fetch(`${currentUrl}/delwificonfig`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -134,7 +144,7 @@ function handleButton(wifiState){
           country: currentWifiState.country['value']
         }
         if((res).includes("ok")){
-          fetch(`http://${window.location.hostname}:3001/genwificonfig`, {
+          fetch(`${currentUrl}/genwificonfig`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -145,7 +155,7 @@ function handleButton(wifiState){
             .then(res => {
               console.log(res)
               if((res).includes("ok")){
-                fetch(`http://${window.location.hostname}:3001/reboot`, {
+                fetch(`${currentUrl}/reboot`, {
                   method: 'GET',
                   headers: {
                     'Accept': 'application/json',

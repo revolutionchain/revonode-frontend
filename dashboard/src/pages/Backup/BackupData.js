@@ -8,7 +8,17 @@ import SweetAlert from "react-bootstrap-sweetalert"
 const BackupDataWidget = props => {
 
 
-  useEffect(() => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
   },[])
 
 
@@ -24,7 +34,7 @@ const BackupDataWidget = props => {
 function handleButton (){
   let titleRes;
   let descriptionRes;
-  fetch(`http://${window.location.hostname}:3001/backupwallet`, {
+  fetch(`${currentUrl}/backupwallet`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -33,7 +43,7 @@ function handleButton (){
   }).then(data => data.text())
     .then(res => {
       if((res).includes("ok")){
-        window.open(`http://${window.location.hostname}:3001/backup.dat`, '_blank')  
+        window.open(`${currentUrl}/backup.dat`, '_blank')  
         titleRes = "Downloading.."
         descriptionRes = "Wallet Backup download in progress."
         setconfirm_alert(false);

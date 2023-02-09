@@ -47,12 +47,22 @@ const Widget = props => {
 
     const [ widgetState, setWidgetState ] = useState(false);
     
-useEffect(()=>{        
+    const [currentUrl, setCurrentUrl] = useState("");
+
+    useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
     widget[0].count = (props.listunspentState).length;
     widget[1].count = (props.nodeData[9].stake).toFixed(8) + " RVO"
     //widget[2].count = "";
     
-    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+    fetch(`${url}/getwalletaddress`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

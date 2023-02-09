@@ -20,7 +20,17 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
         nodeName: ""
     });
 
+    const [currentUrl, setCurrentUrl] = useState("");
+
     useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
         let arrNames = [];
         for (let i = 0; i < 5; i++) {
             arrNames.push(adjetives[Math.ceil(Math.random() * (0, adjetives.length))] + " " + colors[Math.ceil(Math.random() * (0, adjetives.length))] + " " + things[Math.ceil(Math.random() * (0, adjetives.length))])
@@ -58,7 +68,7 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     async function handleCreate() {
         let passChecked = checkPass(input?.rpcPass);
         if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass == input?.rpcPass && input?.nodeName.length && input.nodeName.split(" ").length <= 3 && passChecked == "Ok") {
-            let genrevoconfig = await axios.post(`http://${window.location.hostname}:3001/genrevoconfig`, input);
+            let genrevoconfig = await axios.post(`${currentUrl}/genrevoconfig`, input);
             if (genrevoconfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
             }

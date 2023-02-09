@@ -8,7 +8,17 @@ import SweetAlert from "react-bootstrap-sweetalert"
 const UpdateDataWidget = props => {
 
     
-useEffect(()=>{        
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);     
 },[])
 
 
@@ -27,7 +37,7 @@ const [error_dlg, seterror_dlg] = useState(false)
 function handleButton (types){
   let titleRes;
   let descriptionRes;
-  fetch(`http://${window.location.hostname}:3001/updates`, {
+  fetch(`${currentUrl}/updates`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

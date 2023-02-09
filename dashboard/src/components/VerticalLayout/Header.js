@@ -81,8 +81,18 @@ const Header = (props) => {
   const [walletAddress, setWalletAddress] = useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
 
-  useEffect(()=> {
-    fetch(`http://${window.location.hostname}:3001/getwalletaddress`, {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
+    fetch(`${url}/getwalletaddress`, {
   method: 'GET',
   headers: {
     'Accept': 'application/json',

@@ -8,7 +8,18 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
 
     const [arrayData, setArrayData] = useState(false);
 
+
+    const [currentUrl, setCurrentUrl] = useState("");
+
     useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
     }, [])
 
 
@@ -54,18 +65,18 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
     }
 
     async function handleRemove() {
-        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/delwificonfig`);
+        let getarrayinfo = await axios.get(`${currentUrl}/delwificonfig`);
     }
 
     async function handleConfirmButton() {
         if(errorFound[0] == 1){
-            let getwificonfig = await axios.get(`http://${window.location.hostname}:3001/getwificonfig`);
+            let getwificonfig = await axios.get(`${currentUrl}/getwificonfig`);
             if (getwificonfig.data.includes('network')) {
                 await handleRemove();
             }
             setCurrentPage(currentPage - 1)
         }else if(errorFound[0] == 2){
-            let response = await axios.get(`http://${window.location.hostname}:3001/forcereboot`);
+            let response = await axios.get(`${currentUrl}/forcereboot`);
             closeModal();
             response.data.includes("done") && setLoaded(false);
             response.data.includes("done") && setTimeout(() => {

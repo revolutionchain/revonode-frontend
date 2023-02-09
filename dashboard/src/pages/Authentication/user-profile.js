@@ -44,7 +44,17 @@ const UserProfile = props => {
   const typedMail = useSelector(state => state.Login.userTyped.user);
 
   
-  useEffect(() => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
 
     if (!isLogged) {
       return props.history.push('/login');
@@ -144,7 +154,7 @@ const UserProfile = props => {
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
     }
-    fetch(`http://${window.location.hostname}:3001/modifyprofile`, {
+    fetch(`${currentUrl}/modifyprofile`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

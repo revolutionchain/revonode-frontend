@@ -23,8 +23,14 @@ const fetchFunc = ({ url, options }) => {
 
 
 function* userRegister({ payload: { userData, history } }){
+  let url;
+  if((window.location.hostname).includes("revo.host")){
+    url = `https://${window.location.hostname}/api`
+  }else {
+    url = `http://${window.location.hostname}:3001`
+  }
   const response = yield call(fetchFunc, {
-      url: `http://${window.location.hostname}:3001/register`,
+      url: `${url}/register`,
       options: {
          method : 'POST',
          headers : {

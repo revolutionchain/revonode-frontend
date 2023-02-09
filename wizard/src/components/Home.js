@@ -35,27 +35,37 @@ export default function Home() {
         walletPass: ""
     })
 
-    useEffect(async () => {      
+    const [currentUrl, setCurrentUrl] = useState("");
+
+    useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
         try{
-            let result = await axios.get(`http://${window.location.hostname}:3001/checklocalip`);
+            let result = await axios.get(`${url}/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
         }    
         let initialPage = 1;
-        let masterState = await axios.get(`http://${window.location.hostname}:3001/checkmaster`);
+        let masterState = await axios.get(`${url}/checkmaster`);
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
             window.location.href = `http://${window.location.hostname}/`;
         }else {
-            let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
+            let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
             if (getarrayinfo.data.arrayStatus.includes('md0')) {
                 initialPage = initialPage + 3;
-                let getwificonfig = await axios.get(`http://${window.location.hostname}:3001/getwificonfig`);
+                let getwificonfig = await axios.get(`${url}/getwificonfig`);
                 if (getwificonfig.data.includes('network')) {
                     initialPage = initialPage + 2;
                 }
-                let getrpcdata = await axios.get(`http://${window.location.hostname}:3001/getrevoconfig`);
+                let getrpcdata = await axios.get(`${url}/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
                     initialPage = initialPage + 3
                 }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
@@ -67,7 +77,7 @@ export default function Home() {
     }, []);
 
     async function getDrives() {
-        let drivesData = await axios.get(`http://${window.location.hostname}:3001/showdrives`);
+        let drivesData = await axios.get(`${currentUrl}/showdrives`);
         setDrivesData(drivesData.data);
     }
 

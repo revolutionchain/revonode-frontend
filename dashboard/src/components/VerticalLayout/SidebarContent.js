@@ -113,7 +113,17 @@ const SidebarContent = props => {
       });
   }
 
-  useEffect(()=> {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
     
     getStatesData();
       
@@ -144,7 +154,7 @@ const SidebarContent = props => {
     let titleRes;
     let descriptionRes;
     if (stakingState) {
-      fetch(`http://${window.location.hostname}:3001/walletlockforstaking`, {
+      fetch(`${currentUrl}/walletlockforstaking`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -175,7 +185,7 @@ const SidebarContent = props => {
       let objData = {
         walletPassword: walletPassState
       }
-      fetch(`http://${window.location.hostname}:3001/walletunlockforstaking`, {
+      fetch(`${currentUrl}/walletunlockforstaking`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

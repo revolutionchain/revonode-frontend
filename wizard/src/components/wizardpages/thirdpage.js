@@ -10,8 +10,18 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     const [arrayData, setArrayData] = useState(false);
 
+    const [currentUrl, setCurrentUrl] = useState("");
+
     useEffect(async () => {
-        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
+        let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
     }, [])
 
@@ -44,8 +54,8 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
 
     async function handleRemoveArray() {
         let arrInfo = { disk1: arrayData[3].slice(0, 3), disk2: arrayData[2].slice(0, 3) };
-        let removeArray = await axios.post(`http://${window.location.hostname}:3001/removearray`, arrInfo);
-        let getarrayinfo = await axios.get(`http://${window.location.hostname}:3001/getarrayinfo`);
+        let removeArray = await axios.post(`${currentUrl}/removearray`, arrInfo);
+        let getarrayinfo = await axios.get(`${currentUrl}/getarrayinfo`);
         if (!getarrayinfo.data.arrayStatus.includes('md0')) {
             setCurrentPage(currentPage - 1)
         }

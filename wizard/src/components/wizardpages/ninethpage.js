@@ -18,7 +18,17 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         walletRePass: ""
     });
 
+    const [currentUrl, setCurrentUrl] = useState("");
+
     useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
     }, [])
 
     function handleInput(e) {
@@ -44,7 +54,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
             })
         }                
         if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidChar.length) {
-            let createWallet = await axios.post(`http://${window.location.hostname}:3001/createwallet`, input);
+            let createWallet = await axios.post(`${currentUrl}/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
                 setCurrentPage(currentPage + 1)
@@ -97,8 +107,8 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     }
 
     async function backConfirmed() {
-        await axios.get(`http://${window.location.hostname}:3001/stopdaemon`);
-        await axios.get(`http://${window.location.hostname}:3001/delrevoconfig`);
+        await axios.get(`${currentUrl}/stopdaemon`);
+        await axios.get(`${currentUrl}/delrevoconfig`);
     }
 
     const [backPressed, setBackPressed] = useState(false);
