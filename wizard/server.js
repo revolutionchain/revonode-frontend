@@ -251,15 +251,17 @@ app.get('/reboot', (req, res, next) => {
 
 app.get('/shutdown', (req, res, next) => {
   res.send('done');
-  execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
-    if (err) {
-      console.log("error: " + err);
-    }else if(stderr){
-      console.log("stderror: " + stderr)
-    } else {
-      (stdout);
-    }
-  });
+  setTimeout(() => {
+    execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
+      if (err) {
+        console.log("error: " + err);
+      }else if(stderr){
+        console.log("stderror: " + stderr)
+      } else {
+        (stdout);
+      }
+    });
+  }, 1000);
 })
 
 
