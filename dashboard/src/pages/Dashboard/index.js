@@ -65,12 +65,23 @@ const Dashboard = props => {
   const [ipLocationData, setIpLocationData] = useState(false);
   const [publicIp, setPublicIp] = useState(false);
 
+  
+  const [currentUrl, setCurrentUrl] = useState("");
+
   const getStatesData = () => {
     if (!isLogged) {
       return props.history.push('/login');
     }
+    let url;
+    if((window.location.hostname).includes("revo.network")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
     
-    fetch(`http://${window.location.hostname}:3001/getdashboarddata`, {
+    fetch(`${url}/getdashboarddata`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -80,7 +91,7 @@ const Dashboard = props => {
       .then(res => {
         setNodeData(res);
       });
-    fetch(`http://${window.location.hostname}:3001/getpeers`, {
+    fetch(`${url}/getpeers`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -90,7 +101,7 @@ const Dashboard = props => {
       .then(res => {
         setPeersData(res);
       });
-    fetch(`http://${window.location.hostname}:3001/getpeersip`, {
+    fetch(`${url}/getpeersip`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -100,7 +111,7 @@ const Dashboard = props => {
       .then(res => {        
         setIpLocationData(res);        
       });
-      fetch(`http://${window.location.hostname}:3001/checktokenmail`, {
+      fetch(`${url}/checktokenmail`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -112,7 +123,7 @@ const Dashboard = props => {
             setSubscribemodal(true)
           }
         });
-        fetch(`http://${window.location.hostname}:3001/showpublicip`, {
+        fetch(`${url}/showpublicip`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -151,7 +162,7 @@ const Dashboard = props => {
   const [ successMsg, setSuccessMsg ] = useState("");
 
   function handleButton() {
-    fetch(`http://${window.location.hostname}:3001/sendtokenmail`, {
+    fetch(`${currentUrl}/sendtokenmail`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

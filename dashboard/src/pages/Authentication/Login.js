@@ -35,25 +35,35 @@ const Login = (props) => {
     props.loginUser(values, props.history)
   }
 
+  const [currentUrl, setCurrentUrl] = useState("");
 
   const dispatch = useDispatch();
   useEffect(async () => {
+    let url;
+    if((window.location.hostname).includes("revo.network")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001`
+    }
+
+    setCurrentUrl(url);
+
     document.body.classList.add('bg-reglog');
     try {
-      fetch(`http://${window.location.hostname}:3001/checklocalip`)
+      fetch(`${url}/checklocalip`)
         .then(response => response)
         .then(data => console.log(data.ok));
     } catch (err) {
       window.location.reload();
     }
-    fetch(`http://${window.location.hostname}:3001/checkmaster`)
+    fetch(`${url}/checkmaster`)
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
-          window.location.href = `http://${window.location.hostname}/install/wizard`;
+          window.location.href = `${url}/install/wizard`;
         }
       });
-    fetch(`http://${window.location.hostname}:3001/checkuser`)
+    fetch(`${url}/checkuser`)
       .then(response => response.json())
       .then(data => {
         if (data == false) {
@@ -94,7 +104,7 @@ const Login = (props) => {
       setErrorMsg('You must write your password!');
       return openModal();
     }
-    fetch(`http://${window.location.hostname}:3001/login`, {
+    fetch(`${currentUrl}/login`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
