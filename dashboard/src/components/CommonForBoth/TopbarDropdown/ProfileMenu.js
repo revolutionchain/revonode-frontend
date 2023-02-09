@@ -267,16 +267,15 @@ const ProfileMenu = props => {
                               showConfirm={false}
                               timeout={300}
                               onConfirm={() => {
-                                {/*setsuccess_dlg(false)*/ }
-                                if(dynamic_title == "Shutting Down Node.."){
+                                if(dynamic_title.includes("Shutting")){
                                   setTimeout(() => {
                                     window.open(`https://revo.network/`, '_self');
                                   },5000)
-                                }else {
+                                }
+                                {/*setsuccess_dlg(false)*/ }
                                   setTimeout(() => {
                                     window.open(`http://${window.location.hostname}/login`, '_self');
-                                  }, 100000);
-                                }                                
+                                  }, 100000);                          
                               }}
                             >
                               {dynamic_description}

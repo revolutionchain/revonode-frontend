@@ -253,7 +253,9 @@ app.get('/shutdown', (req, res, next) => {
   res.send('done');
   execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
     if (err) {
-      res.status(404).send(err);
+      console.log("error: " + err);
+    }else if(stderr){
+      console.log("stderror: " + stderr)
     } else {
       (stdout);
     }
