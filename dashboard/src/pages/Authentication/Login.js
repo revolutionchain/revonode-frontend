@@ -40,6 +40,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
   useEffect(async () => {
     let url;
+    console.log('window.location.hosthname: ' + window.location.hostname)
     if((window.location.hostname).includes("revo.network")){
       url = `https://${window.location.hostname}/api`
     }else {
