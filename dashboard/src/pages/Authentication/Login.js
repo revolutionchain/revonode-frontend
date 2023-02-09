@@ -61,7 +61,7 @@ const Login = (props) => {
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
-          window.location.href = `${url}/install/wizard`;
+          window.location.href = `${window.location.hostname}/install/wizard`;
         }
       });
     fetch(`${url}/checkuser`)
