@@ -121,6 +121,8 @@ app.use((req, res, next) => {
     allowedDomains.push(req.headers.host)
     origin = req.headers.host;
   }
+  console.log("origin " + origin);
+  console.log("Allowed Domains: " + allowedDomains)
   if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
