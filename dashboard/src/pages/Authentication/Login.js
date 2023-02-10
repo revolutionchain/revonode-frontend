@@ -55,7 +55,7 @@ const Login = (props) => {
         .then(response => response)
         .then(data => console.log(data.ok));
     } catch (err) {
-      //window.location.reload();
+      window.location.reload();
     }
     fetch(`${url}/checkmaster`)
       .then(response => response.text())
