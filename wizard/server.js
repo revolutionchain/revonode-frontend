@@ -111,7 +111,7 @@ function getAllowedDomains() {
 
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
-  const origin = req.headers.origin;
+  let origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
 
 
