@@ -59,7 +59,7 @@ export default function Home() {
             window.location.href = `http://${window.location.hostname}/`;
         }else {
             let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
-            if (getarrayinfo.data.arrayStatus.includes('md0')) {
+            if (getarrayinfo?.data?.arrayStatus?.includes('md0')) {
                 initialPage = initialPage + 3;
                 let getwificonfig = await axios.get(`${url}/getwificonfig`);
                 if (getwificonfig.data.includes('network')) {
