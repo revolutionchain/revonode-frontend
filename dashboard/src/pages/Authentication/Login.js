@@ -55,13 +55,17 @@ const Login = (props) => {
         .then(response => response)
         .then(data => console.log(data.ok));
     } catch (err) {
-      window.location.reload();
+      //window.location.reload();
     }
     fetch(`${url}/checkmaster`)
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
-          window.location.href = `http://${window.location.hostname}/install/wizard`;
+          if(url.includes("https")){
+            window.location.href = `https://${window.location.hostname}/install/wizard`;
+          }else {            
+            window.location.href = `http://${window.location.hostname}/install/wizard`;
+          }
         }
       });
     fetch(`${url}/checkuser`)
