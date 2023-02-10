@@ -232,6 +232,10 @@ app.get('/checkuser', (req, res, next) => {
   }
 })
 
+app.get('/api/pippo', (req, res, next) => {
+  res.send('ok')
+})
+
 app.get('/checklocalip', (req, res, next) => {
   checkLocalIpAddress();
   res.send('ok');
