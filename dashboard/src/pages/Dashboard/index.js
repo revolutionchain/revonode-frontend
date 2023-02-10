@@ -73,7 +73,7 @@ const Dashboard = props => {
       return props.history.push('/login');
     }
     let url;
-    if((window.location.hostname).includes("revo.network")){
+    if((window.location.hostname).includes("revo.host")){
       url = `https://${window.location.hostname}/api`
     }else {
       url = `http://${window.location.hostname}:3001`

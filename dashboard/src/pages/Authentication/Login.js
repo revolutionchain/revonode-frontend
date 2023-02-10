@@ -40,7 +40,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
   useEffect(async () => {
     let url;
-    if((window.location.hostname).includes("revo.network")){
+    if((window.location.hostname).includes("revo.host")){
       url = `https://${window.location.hostname}/api`
     }else {
       url = `http://${window.location.hostname}:3001`
@@ -60,7 +60,7 @@ const Login = (props) => {
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
-          window.location.href = `${url}/install/wizard`;
+          window.location.href = `http://${window.location.hostname}/install/wizard`;
         }
       });
     fetch(`${url}/checkuser`)
