@@ -113,6 +113,11 @@ app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
+  console.log("origin: " + origin);
+  console.log("hostname: " + req.headers.host)
+  if(origin?.includes("revo.host")){
+    allowedDomains.push(origin);
+  }
   if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);

@@ -12,7 +12,18 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     const [updateStates, setUpdatesStates] = useState(false);
     const [checkedState, setCheckedState] = useState([]);
     const [totalDrives, setTotalDrives] = useState([]);
-    useEffect(() => {
+
+    const [currentUrl, setCurrentUrl] = useState("");
+
+    useEffect(async () => {
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
         let drives = drivesData.filter(e => e.NAME.includes("sd")).reverse();
         let ssdCount = drives.map(e => 0);
         setCheckedState(ssdCount);
@@ -99,18 +110,18 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
         setIsLoading(true);
         if (checkedState.includes(1) && checkedState.includes(2) && raidLevel !== "null") {
             let drivesObj = { disk1: selectedDrives[0], disk2: selectedDrives[1] };
-            let checkdrive = await axios.post(`http://${window.location.hostname}:3001/checkdrive`, drivesObj);
+            let checkdrive = await axios.post(`${currentUrl}/checkdrive`, drivesObj);
             if (checkdrive?.data[0]?.disk1.includes('missing') || checkdrive?.data[1]?.disk2.includes('missing')) {
                 setErrorFound('One of the selected disks is not connected correctly!');
                 openModal();
             }
-            let checkfilesystem = await axios.post(`http://${window.location.hostname}:3001/checkfilesystem`, drivesObj);
+            let checkfilesystem = await axios.post(`${currentUrl}/checkfilesystem`, drivesObj);
             if (!checkfilesystem?.data[0]?.disk1.includes('no filesystem') || !checkfilesystem?.data[1]?.disk2.includes('no filesystem')) {
                 setErrorFound('One of the selected disks cannot be used because a file system already exists!');
                 openModal();
             }
             let drivesAllowed = { disk1: drivesObj.disk1.NAME, disk2: drivesObj.disk2.NAME, raid: parseInt(raidLevel) }
-            let makearray = await axios.post(`http://${window.location.hostname}:3001/makearray`, drivesAllowed);
+            let makearray = await axios.post(`${currentUrl}/makearray`, drivesAllowed);
             if (makearray?.data?.includes('ok')) {
                 setCurrentPage(currentPage + 1);
             } else {

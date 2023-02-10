@@ -20,8 +20,18 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     });
 
 
+    const [currentUrl, setCurrentUrl] = useState("");
+
     useEffect(async () => {
-        let getwifidata = await axios.get(`http://${window.location.hostname}:3001/wifiscan`);
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+  
+      setCurrentUrl(url);
+        let getwifidata = await axios.get(`${url}/wifiscan`);
         setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
     }, [])
 
@@ -53,7 +63,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
 
     async function handleConnect() {
         if (input?.essid.length && input?.pass.length && input?.country.length) {
-            let genwificonfig = await axios.post(`http://${window.location.hostname}:3001/genwificonfig`, input);
+            let genwificonfig = await axios.post(`${currentUrl}/genwificonfig`, input);
             if (genwificonfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
             }
@@ -74,7 +84,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         setIsLoading(true);
         setPassButtonState(true);
         try {
-            let getwifidata = await axios.get(`http://${window.location.hostname}:3001/wifiscan`);
+            let getwifidata = await axios.get(`${currentUrl}/wifiscan`);
             setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
         } catch {
             setGetError(true);

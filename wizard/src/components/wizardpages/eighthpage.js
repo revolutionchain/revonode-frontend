@@ -3,8 +3,16 @@ import axios from 'axios';
 
 export default function Eighthpage({ currentPage, setCurrentPage }) {
 
+
+
     useEffect(async () => {
-        await axios.get(`http://${window.location.hostname}:3001/startdaemon`);
+      let url;
+      if((window.location.hostname).includes("revo.host")){
+        url = `https://${window.location.hostname}/api`
+      }else {
+        url = `http://${window.location.hostname}:3001`
+      }
+        await axios.get(`${url}/startdaemon`);
     }, [])
 
     setTimeout(() => {
