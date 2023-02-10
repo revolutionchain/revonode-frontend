@@ -310,6 +310,7 @@ app.get('/showdrives', function (req, res, next) {
       console.log("Error:" + err);
       res.send('Error: ' + err);
     } else {
+      console.log("json: " + json);
       res.send(JSON.stringify(json, null, "  "));
     }
   });
