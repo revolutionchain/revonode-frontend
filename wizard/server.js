@@ -113,7 +113,8 @@ app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
-  console.log(origin);
+  console.log("origin: " + origin);
+  console.log("hostname: " + req.headers.host)
   if(origin?.includes("revo.host")){
     allowedDomains.push(origin);
   }
@@ -310,7 +311,6 @@ app.get('/showdrives', function (req, res, next) {
       console.log("Error:" + err);
       res.send('Error: ' + err);
     } else {
-      console.log("json: " + json);
       res.send(JSON.stringify(json, null, "  "));
     }
   });

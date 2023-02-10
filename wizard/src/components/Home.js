@@ -47,25 +47,25 @@ export default function Home() {
   
       setCurrentUrl(url);
         try{
-            let result = await axios.get(`${url}/checklocalip`);
+            let result = await axios.get(`https://node.revo.host/api/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
         }    
         let initialPage = 1;
-        let masterState = await axios.get(`${url}/checkmaster`);
+        let masterState = await axios.get(`https://node.revo.host/api/checkmaster`);
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
-            window.location.href = `http://${window.location.hostname}/`;
+            window.location.href = `https://node.revo.host/api/`;
         }else {
             let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
-            if (getarrayinfo?.data?.arrayStatus?.includes('md0')) {
+            if (getarrayinfo.data.arrayStatus.includes('md0')) {
                 initialPage = initialPage + 3;
-                let getwificonfig = await axios.get(`${url}/getwificonfig`);
+                let getwificonfig = await axios.get(`https://node.revo.host/api/getwificonfig`);
                 if (getwificonfig.data.includes('network')) {
                     initialPage = initialPage + 2;
                 }
-                let getrpcdata = await axios.get(`${url}/getrevoconfig`);
+                let getrpcdata = await axios.get(`https://node.revo.host/api/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
                     initialPage = initialPage + 3
                 }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
@@ -77,7 +77,7 @@ export default function Home() {
     }, []);
 
     async function getDrives() {
-        let drivesData = await axios.get(`${currentUrl}/showdrives`);
+        let drivesData = await axios.get(`https://node.revo.host/api/showdrives`);
         setDrivesData(drivesData.data);
     }
 
