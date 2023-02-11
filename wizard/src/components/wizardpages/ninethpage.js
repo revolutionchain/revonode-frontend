@@ -42,18 +42,26 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleCreate() {
-        let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi);
-        var filtro = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        let invalidChar = [];
+        var passFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        var userFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let invalidPassChar = [];
+        let invalidUserChar = [];
         setIsLoading(true);
         if(input?.walletPass) {
             (input?.walletPass).split("").map(e => {
-                if(!filtro.includes(e)){
-                    invalidChar.push(e);
+                if(!passFilter.includes(e)){
+                    invalidPassChar.push(e);
                 }
             })
-        }                
-        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidChar.length) {
+        }             
+        if(input?.walletName) {
+            (input?.walletName).split("").map(e => {
+                if(!userFilter.includes(e)){
+                    invalidUserChar.push(e);
+                }
+            })
+        }             
+        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidUserChar.length && !invalidPassChar.length) {
             let createWallet = await axios.post(`${currentUrl}/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
@@ -71,8 +79,11 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         } else if (input?.walletPass !== input?.walletRePass) {
             setErrorFound('Secret passphrase does not match.');
             openModal();
-        } else if (invalidChar) {
-            setErrorFound('Secret passphrase can only contain letters and numbers.');
+        } else if (invalidUserChar) {
+            setErrorFound('Wallet name can only contains letters.');
+            openModal();
+        } else if (invalidPassChar) {
+            setErrorFound('Secret passphrase can only contains letters and numbers.');
             openModal();
         }
         setIsLoading(false);
