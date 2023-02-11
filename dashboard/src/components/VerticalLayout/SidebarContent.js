@@ -113,7 +113,7 @@ const SidebarContent = props => {
       },
     }).then(data => data.json())
       .then(res => {
-        if(res.staking){
+        if(res.enabled){
           setButtonStakingState(true);
         }else {
           setButtonStakingState(false);
