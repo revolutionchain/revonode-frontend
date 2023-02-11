@@ -252,13 +252,18 @@ app.get('/api/forcereboot', (req, res, next) => {
 
 app.get('/api/reboot', (req, res, next) => {
   res.send('done');
-  execFile('bash', ['/home/revo/nodeutils', '-reboot'], (err, stdout, stderr) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      (stdout);
-    }
-  });
+  setTimeout(()=> {
+    execFile('bash', ['/home/revo/nodeutils', '-reboot'], (err, stdout, stderr) => {
+      if (err) {
+        console.log("error: " + err);
+      } else if(stderr){
+        console.log("stderror: " + stderr)
+      }
+       else {
+        (stdout);
+      }
+    });
+  }, 1000)
 })
 
 app.get('/api/shutdown', (req, res, next) => {
