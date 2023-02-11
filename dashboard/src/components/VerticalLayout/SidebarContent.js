@@ -96,7 +96,16 @@ const SidebarContent = props => {
   const [ buttonStateLoaded, setButtonStateLoaded ] = useState(false);
 
   const getStatesData = () => {
-    fetch(`http://${window.location.hostname}:3001/getstakinginfo`, {
+    let url;
+    if((window.location.hostname).includes("revo.host")){
+      url = `https://${window.location.hostname}/api`
+    }else {
+      url = `http://${window.location.hostname}:3001/api`
+    }
+
+    setCurrentUrl(url);
+    
+    fetch(`${url}/getstakinginfo`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -116,14 +125,6 @@ const SidebarContent = props => {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(async () => {
-    let url;
-    if((window.location.hostname).includes("revo.host")){
-      url = `https://${window.location.hostname}/api`
-    }else {
-      url = `http://${window.location.hostname}:3001`
-    }
-
-    setCurrentUrl(url);
     
     getStatesData();
       

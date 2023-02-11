@@ -111,18 +111,11 @@ function getAllowedDomains() {
 
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
-  let origin = req.headers.origin;
+  const origin = req.headers.origin;
+  const hostHeader = req.headers.host;
   const baseUrlCheck = req.originalUrl
 
 
-  if(origin?.includes("revo.host")){
-    allowedDomains.push(origin);
-  }else if(!origin && (req.headers.host).includes("revo.host")){
-    allowedDomains.push(req.headers.host)
-    origin = req.headers.host;
-  }
-  console.log("origin " + origin);
-  console.log("Allowed Domains: " + allowedDomains)
   if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
@@ -133,7 +126,12 @@ app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', origin);
       }
     }
-
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+  } else if (hostHeader && hostHeader.includes("revo.host")) {
+    res.setHeader('Access-Control-Allow-Origin', hostHeader);
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -147,7 +145,7 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/getdomain', (req, res, next) => {
+app.get('/api/getdomain', (req, res, next) => {
   let ethEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
   let domainObj = {
@@ -165,7 +163,7 @@ app.get('/getdomain', (req, res, next) => {
   res.send(domainObj);
 })
 
-app.get('/getwalletaddress', (req, res, next) => {
+app.get('/api/getwalletaddress', (req, res, next) => {
   exec('cat master', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -176,7 +174,7 @@ app.get('/getwalletaddress', (req, res, next) => {
 })
 
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { user, pass } = req.body;
 
   let dashUser = getEnvValue('DASHBOARD_USER');
@@ -193,7 +191,7 @@ app.post('/login', (req, res) => {
   }
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
   const { user, pass } = req.body;
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
@@ -205,7 +203,7 @@ app.post('/register', (req, res) => {
   }
 })
 
-app.post('/modifyprofile', (req, res) => {
+app.post('/api/modifyprofile', (req, res) => {
   const { user, pass, oldpass } = req.body;
   if (user) {
     setEnvValue('DASHBOARD_USER', user);
@@ -223,7 +221,7 @@ app.post('/modifyprofile', (req, res) => {
   }
 })
 
-app.get('/checkuser', (req, res, next) => {
+app.get('/api/checkuser', (req, res, next) => {
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
     res.send(false)
@@ -232,16 +230,16 @@ app.get('/checkuser', (req, res, next) => {
   }
 })
 
-app.get('/api/pippo', (req, res, next) => {
+app.get('/api/api/pippo', (req, res, next) => {
   res.send('ok')
 })
 
-app.get('/checklocalip', (req, res, next) => {
+app.get('/api/checklocalip', (req, res, next) => {
   checkLocalIpAddress();
   res.send('ok');
 })
 
-app.get('/forcereboot', (req, res, next) => {
+app.get('/api/forcereboot', (req, res, next) => {
   res.send('done');
   execFile('bash', ['/home/revo/nodeutils', '-forcereboot'], (err, stdout, stderr) => {
     if (err) {
@@ -252,7 +250,7 @@ app.get('/forcereboot', (req, res, next) => {
   });
 })
 
-app.get('/reboot', (req, res, next) => {
+app.get('/api/reboot', (req, res, next) => {
   res.send('done');
   execFile('bash', ['/home/revo/nodeutils', '-reboot'], (err, stdout, stderr) => {
     if (err) {
@@ -263,7 +261,7 @@ app.get('/reboot', (req, res, next) => {
   });
 })
 
-app.get('/shutdown', (req, res, next) => {
+app.get('/api/shutdown', (req, res, next) => {
   res.send('done');
   setTimeout(() => {
     execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
@@ -279,7 +277,7 @@ app.get('/shutdown', (req, res, next) => {
 })
 
 
-app.get('/checkmaster', (req, res, next) => {
+app.get('/api/checkmaster', (req, res, next) => {
   exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -289,7 +287,7 @@ app.get('/checkmaster', (req, res, next) => {
   });
 })
 
-app.post('/getprivkey', (req, res, next) => {
+app.post('/api/getprivkey', (req, res, next) => {
   const { walletKey } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
     if (errWalletUnlock) {
@@ -314,7 +312,7 @@ app.post('/getprivkey', (req, res, next) => {
   });
 })
 
-app.get('/showdrives', function (req, res, next) {
+app.get('/api/showdrives', function (req, res, next) {
   blk.getBlockInfo({}, function (err, json) {
     if (err) {
       console.log("Error:" + err);
@@ -331,7 +329,7 @@ function checkFunction(disk, type) {
   return result
 }
 
-app.post('/checkdrive', (req, res, next) => {
+app.post('/api/checkdrive', (req, res, next) => {
   const { disk1, disk2 } = req.body;
   let response = [];
   if (!disk1 || !disk2) {
@@ -346,7 +344,7 @@ app.post('/checkdrive', (req, res, next) => {
 
 });
 
-app.post('/checkfilesystem', (req, res, next) => {
+app.post('/api/checkfilesystem', (req, res, next) => {
   const { disk1, disk2 } = req.body;
   let response = [];
   if (!disk1 || !disk2) {
@@ -359,7 +357,7 @@ app.post('/checkfilesystem', (req, res, next) => {
   res.send(response);
 });
 
-app.post('/makearray', (req, res, next) => {
+app.post('/api/makearray', (req, res, next) => {
   const { disk1, disk2, raid } = req.body;
   execFile('sudo', ['bash', '/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
     if (err) {
@@ -383,7 +381,7 @@ function getArrInfo(type) {
   }
 }
 
-app.get('/getarrayinfo', (req, res, next) => {
+app.get('/api/getarrayinfo', (req, res, next) => {
   let arrStatus = getArrInfo('-arraystatus');
   let arrDetails;
   let arrUsage;
@@ -405,7 +403,7 @@ app.get('/getarrayinfo', (req, res, next) => {
   res.send(response)
 })
 
-app.get('/wifiscan', (req, res, next) => {
+app.get('/api/wifiscan', (req, res, next) => {
   execFile('bash', ['/home/revo/nodeutils', '-wifiscan'], (err, stdout, stderr) => {
     if (err) {
       res.send('Error: wifi networks not found');
@@ -415,7 +413,7 @@ app.get('/wifiscan', (req, res, next) => {
   });
 })
 
-app.post('/genwificonfig', (req, res, next) => {
+app.post('/api/genwificonfig', (req, res, next) => {
   const { essid, pass, country } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-genwificonfig', essid, pass, country], (err, stdout, stderr) => {
     if (err) {
@@ -426,7 +424,7 @@ app.post('/genwificonfig', (req, res, next) => {
   });
 })
 
-app.post('/removearray', (req, res, next) => {
+app.post('/api/removearray', (req, res, next) => {
   const { disk1, disk2 } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-removearray', disk1, disk2, 'md0'], (err, stdout, stderr) => {
     if (err) {
@@ -455,17 +453,17 @@ function globalFunction(type) {
   }
 
 }
-app.get('/delwificonfig', (req, res, next) => {
+app.get('/api/delwificonfig', (req, res, next) => {
   let response = globalFunction('-delwificonfig');
   res.send(response);
 })
 
-app.get('/getwificonfig', (req, res, next) => {
+app.get('/api/getwificonfig', (req, res, next) => {
   let response = globalFunction('-getwificonfig');
   res.send(response);
 })
 
-app.post('/genrevoconfig', (req, res, next) => {
+app.post('/api/genrevoconfig', (req, res, next) => {
   const { rpcUser, rpcPass, nodeName } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-genrevoconf', rpcUser, rpcPass, nodeName], (err, stdout, stderr) => {
     if (err) {
@@ -476,27 +474,27 @@ app.post('/genrevoconfig', (req, res, next) => {
   });
 })
 
-app.get('/delrevoconfig', (req, res, next) => {
+app.get('/api/delrevoconfig', (req, res, next) => {
   let response = globalFunction('-delrevoconf');
   res.send(response);
 })
 
-app.get('/getrevoconfig', (req, res, next) => {
+app.get('/api/getrevoconfig', (req, res, next) => {
   let response = globalFunction('-getrevoconf');
   res.send(response);
 })
 
-app.get('/startdaemon', (req, res, next) => {
+app.get('/api/startdaemon', (req, res, next) => {
   let response = globalFunction('-startdaemon');
   res.send(response);
 })
 
-app.get('/stopdaemon', (req, res, next) => {
+app.get('/api/stopdaemon', (req, res, next) => {
   let response = globalFunction('-stopdaemon');
   res.send(response);
 })
 
-app.post('/createwallet', (req, res, next) => {
+app.post('/api/createwallet', (req, res, next) => {
   const { walletName, walletPass } = req.body;
   execFile('bash', ['/home/revo/nodeutils', '-createwallet', walletName, walletPass], (err, stdout, stderr) => {
     if (err) {
@@ -536,7 +534,7 @@ function globalDashboardFunction(type) {/*
 }
 
 
-app.get('/getlastestblocks', async (req, res, next) => {
+app.get('/api/getlastestblocks', async (req, res, next) => {
   let blocks = [];
   let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
   let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
@@ -556,7 +554,7 @@ app.get('/getlastestblocks', async (req, res, next) => {
   res.send(blocks);
 })
 
-app.get('/getdashboarddata', async (req, res, next) => {
+app.get('/api/getdashboarddata', async (req, res, next) => {
   const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo', '-gettotalsize', '-getwalletinfo', '-getblockcount'];
   let response = [];
   for (let i = 0; i < types.length; i++) {
@@ -670,20 +668,20 @@ cron.schedule("*/60 * * * * *", function () {
 });
 
 
-app.get('/getpeers', (req, res, next) => {
+app.get('/api/getpeers', (req, res, next) => {
   let peersJsonFileData = fs.readFileSync('peers.json');
   peersJsonFileData = JSON.parse(peersJsonFileData);
   res.send(peersJsonFileData);
 })
 
-app.get('/getpeersip', (req, res, next) => {
+app.get('/api/getpeersip', (req, res, next) => {
   let peersIpJsonFileData = fs.readFileSync('peersIp.json');
   peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
   res.send(peersIpJsonFileData);
 })
 
 
-app.get('/checktokenmail', (req, res, next) => {
+app.get('/api/checktokenmail', (req, res, next) => {
   let envToken = getEnvValue('EMAIL_TOKEN');
   if (envToken) {
     envToken = envToken.replaceAll('"', '');
@@ -696,7 +694,7 @@ app.get('/checktokenmail', (req, res, next) => {
 })
 
 
-app.post('/sendtokenmail', async (req, res, next) => {
+app.post('/api/sendtokenmail', async (req, res, next) => {
   const { email, token } = req.body;
   let master;
 
@@ -721,7 +719,7 @@ app.post('/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
-app.get('/backup.dat', (req, res) => {
+app.get('/api/backup.dat', (req, res) => {
 
   
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
@@ -749,7 +747,7 @@ app.get('/backup.dat', (req, res) => {
 }
 )
 
-app.get('/backupwallet', (req, res, next) => {
+app.get('/api/backupwallet', (req, res, next) => {
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
     if (err) {
     } else {
@@ -787,7 +785,7 @@ app.get('/backupwallet', (req, res, next) => {
 })
 
 
-app.post('/updates', async (req, res, next) => {
+app.post('/api/updates', async (req, res, next) => {
   const { type } = req.body;
 
   res.send("ok");
@@ -800,7 +798,7 @@ app.post('/updates', async (req, res, next) => {
 
 })
 
-app.get('/listunspent', (req, res, next) => {
+app.get('/api/listunspent', (req, res, next) => {
       execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
@@ -815,7 +813,7 @@ app.get('/listunspent', (req, res, next) => {
 })
 
 
-app.get('/listtransactions', (req, res, next) => {
+app.get('/api/listtransactions', (req, res, next) => {
       execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
@@ -829,7 +827,7 @@ app.get('/listtransactions', (req, res, next) => {
       });    
 })
 
-app.get('/showpublicip', (req, res, next) => {
+app.get('/api/showpublicip', (req, res, next) => {
       let result = spawnSync('bash', ['/home/revo/nodeutils', '-showpublicip'], { encoding: 'utf8' });    
       let outtext = result.output[1]
       let outputresult = outtext.replaceAll("\n", "");
@@ -837,13 +835,13 @@ app.get('/showpublicip', (req, res, next) => {
 })
 
 
-app.get('/getstakinginfo', (req, res, next) => {
+app.get('/api/getstakinginfo', (req, res, next) => {
   let response = execFileSync('bash', ['/home/revo/nodeutils', '-getstakinginfo'], { encoding: 'utf8' });
   response = response.replaceAll("\n", "");
   res.send(response);
 })
 
-app.post('/walletunlockforstaking', async (req, res, next) => {
+app.post('/api/walletunlockforstaking', async (req, res, next) => {
   const { walletPassword } = req.body;
 
   if(walletPassword){
@@ -862,14 +860,14 @@ app.post('/walletunlockforstaking', async (req, res, next) => {
 })
 
 
-app.get('/walletlockforstaking', (req, res, next) => {
+app.get('/api/walletlockforstaking', (req, res, next) => {
   execFileSync('bash', ['/home/revo/nodeutils', '-walletlock'], { encoding: 'utf8' });
   execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "false"], { encoding: 'utf8' });
   res.send("Staking disabled successfully");
 })
 
 
-app.get('/getver', (req, res, next) => {
+app.get('/api/getver', (req, res, next) => {
   let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
   res.send(result);
 })

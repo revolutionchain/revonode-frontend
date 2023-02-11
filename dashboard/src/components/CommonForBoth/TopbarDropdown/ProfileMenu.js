@@ -38,7 +38,7 @@ const ProfileMenu = props => {
     if((window.location.hostname).includes("revo.host")){
       url = `https://${window.location.hostname}/api`
     }else {
-      url = `http://${window.location.hostname}:3001`
+      url = `http://${window.location.hostname}:3001/api`
     }
 
     setCurrentUrl(url);

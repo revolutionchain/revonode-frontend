@@ -18,7 +18,7 @@ export default function Tenthpage({ walletData }) {
       if((window.location.hostname).includes("revo.host")){
         url = `https://${window.location.hostname}/api`
       }else {
-        url = `http://${window.location.hostname}:3001`
+        url = `http://${window.location.hostname}:3001/api`
       }
   
         let masterState = await axios.get(`${url}/getwalletaddress`);
