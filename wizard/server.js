@@ -117,6 +117,7 @@ app.use((req, res, next) => {
 
   console.log("host header: " + hostHeader);
   console.log("baseUrl :" + baseUrlCheck);
+  console.log("client side hostname: " + req.hostname)
 
 
   if (origin || (baseUrlCheck).includes("backup")) {
