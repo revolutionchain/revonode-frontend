@@ -50,7 +50,6 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     function checkPass(pass) {
         var passFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         let invalidPassChar = [];
-        setIsLoading(true);
         if(pass) {
             (pass).split("").map(e => {
                 if(!passFilter.includes(e)){
