@@ -115,6 +115,8 @@ app.use((req, res, next) => {
   const hostHeader = req.headers.host;
   const baseUrlCheck = req.originalUrl
 
+  console.log("origin: " + req.headers.origin)
+
   console.log("host header: " + hostHeader);
   console.log("baseUrl :" + baseUrlCheck);
   console.log("client side hostname: " + req.hostname)
