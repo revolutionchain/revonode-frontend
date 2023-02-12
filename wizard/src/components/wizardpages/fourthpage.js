@@ -62,7 +62,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
     const [errorFound, setErrorFound] = useState('');
 
     async function handleConnect() {
-        if (input?.essid.length && input?.pass.length && input?.country.length) {
+        if (input?.essid.length && input?.pass.length && !(input?.pass).includes(" ") && input?.country.length) {
             let genwificonfig = await axios.post(`${currentUrl}/genwificonfig`, input);
             if (genwificonfig.data.includes('ok')) {
                 setCurrentPage(currentPage + 1)
@@ -72,6 +72,9 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
             openModal();
         } else if (!input?.pass.length) {
             setErrorFound('You have not entered a password!');
+            openModal();
+        } else if ((input?.pass).includes(" ")) {
+            setErrorFound('White spaces are not allowed in password!');
             openModal();
         } else if (!input?.country.length) {
             setErrorFound('You must select the abbreviation of your country!');

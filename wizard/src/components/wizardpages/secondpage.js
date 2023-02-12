@@ -98,7 +98,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
     raidLevel !== "null" && !raidResult && selectedDrives.length > 1 && handleSelect({value: raidLevel});
 
 
-    const options = [
+    const options =  [
         { value: 0, label: 'Raid 0' },
         { value: 1, label: 'Raid 1' },
     ]
@@ -192,7 +192,7 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                                 onChange={handleSelect}
                                 menuPlacement="auto"
                                 menuPosition="fixed"
-                                defaultValue={{ label: 'Select Raid Level' }}
+                                defaultValue={!(window.location.hostname).includes("revo.host") ? { label: 'Select Raid Level' } : { label: 'Raid 0', value: 0 }}
                                 styles={{
                                     control: (baseStyles, state) => ({
                                         ...baseStyles,
@@ -211,9 +211,9 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
                                         }
                                     }),
                                 }}
-                                options={options} />
+                                options={!(window.location.hostname).includes("revo.host") ? options : [{label: "Raid 0", value: 0}]} />
                         </div>
-                        <div className='raid-result'>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) && <span>{raidResult}</span>}</div>
+                        { !(window.location.hostname).includes("revo.host") ? <div className='raid-result'>{(raidLevel == 0 || raidLevel == 1) && (selectedDrives[0]?.NAME && selectedDrives[1]?.NAME) && <span>{raidResult}</span>}</div> : <div className='raid-result'>{<span>Virtual node detected</span>}</div> }
                     </div>
                 </div> : <div style={{ paddingTop: `60px` }} ><div class="nb-spinner"></div></div>}
             </div>

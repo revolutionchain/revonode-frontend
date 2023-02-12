@@ -63,6 +63,7 @@ const ProfileMenu = props => {
   const [confirm_alert2, setconfirm_alert2] = useState(false)
   //const [success_msg, setsuccess_msg] = useState(false)
   const [success_dlg, setsuccess_dlg] = useState(false)
+  const [success_dlg2, setsuccess_dlg2] = useState(false)
   const [dynamic_title, setdynamic_title] = useState("")
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
@@ -122,10 +123,10 @@ const ProfileMenu = props => {
             <i className="bx bx-user font-size-16 align-middle me-1" />
             {props.t("Profile")}{" "}
           </DropdownItem></Link>
-          <Link to="/settings"><DropdownItem>
+          {!(window.location.hostname).includes("revo.host") && <Link to="/settings"><DropdownItem>
             <i className="bx bx-wrench font-size-16 align-middle me-1" />
             {props.t("Settings")}
-          </DropdownItem></Link>
+          </DropdownItem></Link>}
           <Link to="/backup"><DropdownItem>
             <i className="bx bx-save font-size-16 align-middle me-1" />
             {props.t("Backup")}
@@ -179,7 +180,7 @@ const ProfileMenu = props => {
                         titleRes = "Node Rebooting.."
                         descriptionRes = "Please wait while your Node reboot. You will be redirected automatically.";
                         setconfirm_alert(false);
-                        setsuccess_dlg(true);
+                        setsuccess_dlg2(true);
                         setdynamic_title(titleRes);
                         setdynamic_description(descriptionRes);
                       }
@@ -213,10 +214,10 @@ const ProfileMenu = props => {
                       if ((res).includes("done")) {
                         titleRes = "Shutting Down Node.."
                         descriptionRes = "Your node is shutting down now.";
-                        setconfirm_alert2(false);
-                        setsuccess_dlg(true);
                         setdynamic_title(titleRes);
                         setdynamic_description(descriptionRes);
+                        setconfirm_alert2(false);
+                        setsuccess_dlg(true);
                       }
                     });
                 }}
@@ -277,15 +278,25 @@ const ProfileMenu = props => {
                               showConfirm={false}
                               timeout={300}
                               onConfirm={() => {
-                                if(dynamic_title.includes("Shutting")){
                                   setTimeout(() => {
                                     window.open(`https://revo.network/`, '_self');
-                                  },5000)
-                                }else {
+                                  }, 5000)
+                                {/*setsuccess_dlg(false)*/ }                      
+                              }}
+                            >
+                              {dynamic_description}
+                            </SweetAlert>
+                          ) : null}
+                          {success_dlg2 ? (
+                            <SweetAlert
+                              success
+                              title={dynamic_title}
+                              showConfirm={false}
+                              timeout={300}
+                              onConfirm={() => {
                                   setTimeout(() => {
                                     window.open(`http://${window.location.hostname}/login`, '_self');
                                   }, 100000);    
-                                }
                                 {/*setsuccess_dlg(false)*/ }                      
                               }}
                             >

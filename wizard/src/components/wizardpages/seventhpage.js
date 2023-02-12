@@ -48,11 +48,20 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
     const [errorFound, setErrorFound] = useState('');
 
     function checkPass(pass) {
-        let symbols = new RegExp(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi)
+        var passFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        let invalidPassChar = [];
+        setIsLoading(true);
+        if(pass) {
+            (pass).split("").map(e => {
+                if(!passFilter.includes(e)){
+                    invalidPassChar.push(e);
+                }
+            })
+        }         
         let upperCase = pass.split("").filter(e => e == e.toUpperCase() && isNaN(parseInt(e)) == true).length;
         let lowerCase = pass.split("").filter(e => e == e.toLowerCase() && isNaN(parseInt(e)) == true).length;
         let numbers = pass.split("").filter(e => isNaN(parseInt(e)) !== true).length;
-        if (symbols.exec(pass) !== null) {
+        if (invalidPassChar.length) {
             return "RPC password can only contain letters and numbers."
         } else if (upperCase < 1) {
             return "RPC password must have at least 1 letter in uppercase"
@@ -67,6 +76,15 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
 
     async function handleCreate() {
         let passChecked = checkPass(input?.rpcPass);
+        var userFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let invalidUserChar = [];
+        if(input?.rpcUser) {
+            (input?.rpcUser).split("").map(e => {
+                if(!userFilter.includes(e)){
+                    invalidUserChar.push(e);
+                }
+            })
+        }
         if (input?.rpcUser.length && input?.rpcPass.length && input?.rpcRePass == input?.rpcPass && input?.nodeName.length && input.nodeName.split(" ").length <= 3 && passChecked == "Ok") {
             let genrevoconfig = await axios.post(`${currentUrl}/genrevoconfig`, input);
             if (genrevoconfig.data.includes('ok')) {
@@ -74,6 +92,9 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
             }
         } else if (!input?.rpcUser.length) {
             setErrorFound('Enter a RPC Username!');
+            openModal();
+        } else if (invalidUserChar.length) {
+            setErrorFound('RPC user can only contain letters.');
             openModal();
         } else if (!input?.rpcPass.length) {
             setErrorFound('You have not entered a password!');

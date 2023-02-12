@@ -35,7 +35,7 @@ const icons = []
                                   </div>
                                 </CardBody>
                             </Card>      
-                            <Card>
+                            {!(window.location.hostname).includes("revo.host") && <Card>
                                 <CardBody>    
                                   <div class="col-12">
                                   <h4 class="card-title"><i className="bx bx-radar"></i> Become a Full Node!</h4>   
@@ -53,8 +53,8 @@ const icons = []
                                     </div>
                                   </div>
                                   </CardBody>
-                            </Card>      
-                            <Card>
+                            </Card>   }   
+                            {!(window.location.hostname).includes("revo.host") && <Card>
                                 <CardBody>
                                   <div class="col-12">
                                     <h4 class="card-title"><i className="mdi mdi-ethernet"></i> Ethernet or WiFi?</h4>                                     
@@ -67,7 +67,7 @@ const icons = []
                                     </div>
                                   </div>
                                   </CardBody>
-                            </Card>      
+                            </Card>      }
                             <Card>
                                 <CardBody>
                                   <div class="col-12">
@@ -83,7 +83,7 @@ const icons = []
                                   </div>
                                   </CardBody>
                             </Card>      
-                            <Card>
+                            {!(window.location.hostname).includes("revo.host") && <Card>
                                 <CardBody>
                                   <div class="col-12">
                                     <h4 class="card-title"><i className="bx bxs-terminal"></i> Change SSH default password</h4> 
@@ -103,7 +103,7 @@ const icons = []
                                     </div>
                                   </div> 
                                 </CardBody>
-                              </Card>
+                              </Card>}
                         </Col>
                   </Col>
             </Row>

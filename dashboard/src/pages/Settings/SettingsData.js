@@ -107,14 +107,14 @@ function handleButton(wifiState){
       });           
   }else {
 
-    if(!currentWifiState.ssid){
+    if(!currentWifiState.ssid || (currentWifiState.ssid).includes(" ")){
       titleRes = "SSID error!"
-      descriptionRes = "You must enter a SSID!"
+      descriptionRes = "You must enter a valid SSID!"
       setconfirm_alert(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
-    } else if(!currentWifiState.password){
+    } else if(!currentWifiState.password || (currentWifiState.password).includes(" ")){
       titleRes = "Password error!"
       descriptionRes = "You must enter a valid password!"
       setconfirm_alert(false);
