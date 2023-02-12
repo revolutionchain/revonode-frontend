@@ -115,6 +115,9 @@ app.use((req, res, next) => {
   const hostHeader = req.headers.host;
   const baseUrlCheck = req.originalUrl
 
+  console.log("host header: " + hostHeader);
+  console.log("baseUrl :" + baseUrlCheck);
+
 
   if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
