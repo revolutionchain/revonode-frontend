@@ -123,7 +123,7 @@ const ProfileMenu = props => {
             <i className="bx bx-user font-size-16 align-middle me-1" />
             {props.t("Profile")}{" "}
           </DropdownItem></Link>
-          {!(window.location.hostname).includes("revo.host") && <Link to="/settings"><DropdownItem>
+          { <Link to="/settings"><DropdownItem>
             <i className="bx bx-wrench font-size-16 align-middle me-1" />
             {props.t("Settings")}
           </DropdownItem></Link>}
