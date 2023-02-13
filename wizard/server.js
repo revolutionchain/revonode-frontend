@@ -15,17 +15,21 @@ const peersIpJsonFilePath = path.resolve(__dirname, "peersIp.json");
 let countDown;
 
 
-let wlanCheck = "wlan0";
-//execSync('ip addr | grep wlan0', { encoding: 'utf8' });
 
-if(wlanCheck.includes("wlan0")){
-  countDown = 60;
-}else {
+
+try {
+  let wlanCheck = execSync('ip addr | grep wlan0', { encoding: 'utf8' });
+  if(wlanCheck.includes("wlan0")){
+    countDown = 60;
+  }
+}
+catch (e) {
   countDown = 30;
 }
 
-setTimeout(() => {
 
+
+setTimeout(() => {
 
 
 if (!fs.existsSync(envFilePath)) {
