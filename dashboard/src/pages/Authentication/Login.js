@@ -60,7 +60,8 @@ const Login = (props) => {
     mode: 'cors',
     credentials: 'include',
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'origin': `${window.location.hostname}`
     }})
       .then(response => response.text())
       .then(data => {
@@ -72,7 +73,8 @@ const Login = (props) => {
       mode: 'cors',
       credentials: 'include',
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'origin': `${window.location.hostname}`
       }})
       .then(response => response.json())
       .then(data => {

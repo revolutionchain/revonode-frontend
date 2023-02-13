@@ -128,20 +128,20 @@ function getAllowedDomains() {
 app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
-  const hostHeader = req.headers.host;
   const baseUrlCheck = req.originalUrl
 
-  console.log("origin: " + req.headers.origin)
 
-  console.log(req.headers);
-
-  //console.log("host header: " + hostHeader);
-  //console.log("baseUrl :" + baseUrlCheck);
-  //console.log("client side hostname: " + req.hostname)
-  //console.log("headers fordwarded for: " + req.headers['x-forwarded-for'])
+  if((origin).includes("revo.host")){
+    origin = "https://" + origin;
+  }else {
+    origin = "http://" + origin;
+  }
 
 
-  if (origin || (baseUrlCheck).includes("backup")) {
+  console.log("origin: " + origin)
+
+
+  if (origin && !(origin).includes("revo.host") || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
@@ -155,8 +155,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-  } else if (hostHeader && hostHeader.includes("revo.host")) {
-    res.setHeader('Access-Control-Allow-Origin', hostHeader);
+  } else if (origin && (origin).includes("revo.host")) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
