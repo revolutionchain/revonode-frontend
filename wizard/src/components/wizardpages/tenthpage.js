@@ -21,11 +21,11 @@ export default function Tenthpage({ walletData }) {
         url = `http://${window.location.hostname}:3001/api`
       }
   
-        let masterState = await axios.get(`${url}/getwalletaddress`);
+        let masterState = await axios.post(`${url}/getwalletaddress`);
         walletData.walletAddress = masterState.data;
-        let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
+        let getarrayinfo = await axios.post(`${url}/getarrayinfo`);
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
-        let result = await axios.get(`${url}/getrevoconfig`);
+        let result = await axios.post(`${url}/getrevoconfig`);
         let arr = []
         arr[0] = result.data.split("rpc")[1];
         arr[1] = result.data.split("rpc")[2];

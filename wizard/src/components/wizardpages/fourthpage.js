@@ -31,7 +31,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
       }
   
       setCurrentUrl(url);
-        let getwifidata = await axios.get(`${url}/wifiscan`);
+        let getwifidata = await axios.post(`${url}/wifiscan`);
         setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
     }, [])
 
@@ -87,7 +87,7 @@ export default function Fourthpage({ currentPage, setCurrentPage }) {
         setIsLoading(true);
         setPassButtonState(true);
         try {
-            let getwifidata = await axios.get(`${currentUrl}/wifiscan`);
+            let getwifidata = await axios.post(`${currentUrl}/wifiscan`);
             setWifiData(getwifidata.data.split('	').filter(e => e.includes('SSID:')));
         } catch {
             setGetError(true);

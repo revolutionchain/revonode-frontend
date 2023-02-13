@@ -118,8 +118,8 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     }
 
     async function backConfirmed() {
-        await axios.get(`${currentUrl}/stopdaemon`);
-        await axios.get(`${currentUrl}/delrevoconfig`);
+        await axios.post(`${currentUrl}/stopdaemon`);
+        await axios.post(`${currentUrl}/delrevoconfig`);
     }
 
     const [backPressed, setBackPressed] = useState(false);

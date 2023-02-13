@@ -21,7 +21,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
       }
   
       setCurrentUrl(url);
-        let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
+        let getarrayinfo = await axios.post(`${url}/getarrayinfo`);
         setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
     }, [])
 
@@ -55,7 +55,7 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
     async function handleRemoveArray() {
         let arrInfo = { disk1: arrayData[3].slice(0, 3), disk2: arrayData[2].slice(0, 3) };
         let removeArray = await axios.post(`${currentUrl}/removearray`, arrInfo);
-        let getarrayinfo = await axios.get(`${currentUrl}/getarrayinfo`);
+        let getarrayinfo = await axios.post(`${currentUrl}/getarrayinfo`);
         if (!getarrayinfo.data.arrayStatus.includes('md0')) {
             setCurrentPage(currentPage - 1)
         }

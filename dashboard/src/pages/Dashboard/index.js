@@ -29,6 +29,7 @@ const Dashboard = props => {
 
   const isLogged = useSelector(state => state.Login.isLogged);
   const typedMail = useSelector(state => state.Login.userTyped.user);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   function tog_standard() {
     setSubscribemodal(!setSubscribemodal)
@@ -80,43 +81,51 @@ const Dashboard = props => {
     }
 
     setCurrentUrl(url);
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass,
+    }
     
     fetch(`${url}/getdashboarddata`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
         setNodeData(res);
       });
     fetch(`${url}/getpeers`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
         setPeersData(res);
       });
     fetch(`${url}/getpeersip`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {        
         setIpLocationData(res);        
       });
       fetch(`${url}/checktokenmail`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(objData)
       }).then(data => data.text())
         .then(res => {        
           if(res.includes("the mail has not been sent yet")){
@@ -124,11 +133,12 @@ const Dashboard = props => {
           }
         });
         fetch(`${url}/showpublicip`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify(objData)
         }).then(data => data.text())
           .then(res => {        
             setPublicIp(res);
@@ -168,7 +178,7 @@ const Dashboard = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: modalData.email, token: modalData.token })
+      body: JSON.stringify({ email: modalData.email, token: modalData.token, user: typedUser.user, pass: typedUser.pass })
     }).then(data => data.text())
       .then(res => {  
         if(res.includes("OK")){

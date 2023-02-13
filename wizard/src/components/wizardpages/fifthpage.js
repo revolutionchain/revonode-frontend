@@ -65,18 +65,18 @@ export default function Fifthpage({ currentPage, setCurrentPage, setLoaded }) {
     }
 
     async function handleRemove() {
-        let getarrayinfo = await axios.get(`${currentUrl}/delwificonfig`);
+        let getarrayinfo = await axios.post(`${currentUrl}/delwificonfig`);
     }
 
     async function handleConfirmButton() {
         if(errorFound[0] == 1){
-            let getwificonfig = await axios.get(`${currentUrl}/getwificonfig`);
+            let getwificonfig = await axios.post(`${currentUrl}/getwificonfig`);
             if (getwificonfig.data.includes('network')) {
                 await handleRemove();
             }
             setCurrentPage(currentPage - 1)
         }else if(errorFound[0] == 2){
-            let response = await axios.get(`${currentUrl}/forcereboot`);
+            let response = await axios.post(`${currentUrl}/forcereboot`);
             closeModal();
             response.data.includes("done") && setLoaded(false);
             response.data.includes("done") && setTimeout(() => {
