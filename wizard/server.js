@@ -133,7 +133,9 @@ app.use((req, res, next) => {
 
   console.log("origin: " + req.headers.origin)
 
-  console.log("host header: " + hostHeader);
+  console.log(req.headers);
+
+  //console.log("host header: " + hostHeader);
   //console.log("baseUrl :" + baseUrlCheck);
   //console.log("client side hostname: " + req.hostname)
   //console.log("headers fordwarded for: " + req.headers['x-forwarded-for'])

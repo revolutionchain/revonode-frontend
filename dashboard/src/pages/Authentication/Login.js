@@ -58,6 +58,7 @@ const Login = (props) => {
     }
     fetch(`${url}/checkmaster`, {
     mode: 'cors',
+    credentials: 'include',
     headers: {
       'Access-Control-Allow-Origin': '*'
     }})
@@ -69,6 +70,7 @@ const Login = (props) => {
       });
     fetch(`${url}/checkuser`, {
       mode: 'cors',
+      credentials: 'include',
       headers: {
         'Access-Control-Allow-Origin': '*'
       }})
