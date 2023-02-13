@@ -1142,20 +1142,7 @@ app.post('/api/sendtokenmail', async (req, res, next) => {
   res.send(emailResponse.data);
 })
 
-app.post('/api/backup.dat', (req, res) => {
-  const { user, pass } = req.body;
-  let userIsCreated = checkUserCreated();
-  let authResult;
-
-  
-  if(userIsCreated){
-    authResult = authUser(user, pass);
-  }
-  if(userIsCreated && !authResult){
-    return res.status(404).send("Error: Route protected")
-  }
-
-    
+app.get('/api/backup.dat', (req, res) => {    
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
     if (err) {
     } else {
