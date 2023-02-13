@@ -129,39 +129,33 @@ app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
-  let originUrl
-
-  if((origin)?.includes("revo.host")){
-    originUrl = "https://" + origin;
-  }else {
-    originUrl = "http://" + origin;
-  }
+  const hostHeader = req.headers.host;
 
 
   console.log("origin: " + origin)
 
 
-  if (origin && !(origin).includes("revo.host") || (baseUrlCheck).includes("backup")) {
+  if (origin || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', originUrl);
+      res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
       checkLocalIpAddress();
       let allowedDomains = getAllowedDomains();
       if (allowedDomains.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', originUrl);
+        res.setHeader('Access-Control-Allow-Origin', origin);
       }
     }
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-  } else if (origin && (origin).includes("revo.host")) {
-    res.setHeader('Access-Control-Allow-Origin', originUrl);
+  } else if (hostHeader && hostHeader.includes("revo.host")) {
+    res.setHeader('Access-Control-Allow-Origin', hostHeader);
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-  } else {
+  }  else {
     res.status(404).send("Error: Route protected")
   }
 
@@ -169,6 +163,31 @@ app.use((req, res, next) => {
 
 });
 
+
+function authUser (user, pass) {
+  let dashUser = getEnvValue('DASHBOARD_USER');
+  let dashPass = getEnvValue('DASHBOARD_PASS');
+  if ((dashUser && dashUser?.length > 2) && (dashPass && dashPass?.length > 2)) {
+    dashUser = dashUser.replaceAll('"', '');
+    dashPass = dashPass.replaceAll('"', '');
+  }
+
+  if (dashUser == user && dashPass == pass) {
+    return true;
+  } else if (dashUser !== user || dashPass !== pass) {
+    return false;
+  }
+}
+
+function checkUserCreated () {  
+  let dashUser = getEnvValue('DASHBOARD_USER');
+  let dashPass = getEnvValue('DASHBOARD_PASS');
+  if ((dashUser && dashUser?.length > 2) && (dashPass && dashPass?.length > 2)) {
+    return true;
+  }else {
+    return false;
+  }
+}
 
 app.get('/api/getdomain', (req, res, next) => {
   let ethEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
@@ -318,7 +337,18 @@ app.get('/api/checkmaster', (req, res, next) => {
 })
 
 app.post('/api/getprivkey', (req, res, next) => {
-  const { walletKey } = req.body;
+  const { walletKey, user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(!authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+  
   execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
     if (errWalletUnlock) {
       res.status(404).send(errWalletUnlock);
