@@ -129,12 +129,12 @@ app.use((req, res, next) => {
   let allowedDomains = getAllowedDomains();
   const origin = req.headers.origin;
   const baseUrlCheck = req.originalUrl
-
+  let originUrl
 
   if((origin)?.includes("revo.host")){
-    origin = "https://" + origin;
+    originUrl = "https://" + origin;
   }else {
-    origin = "http://" + origin;
+    originUrl = "http://" + origin;
   }
 
 
@@ -143,12 +143,12 @@ app.use((req, res, next) => {
 
   if (origin && !(origin).includes("revo.host") || (baseUrlCheck).includes("backup")) {
     if (allowedDomains.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Origin', originUrl);
     } else {
       checkLocalIpAddress();
       let allowedDomains = getAllowedDomains();
       if (allowedDomains.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Origin', originUrl);
       }
     }
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -156,7 +156,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
   } else if (origin && (origin).includes("revo.host")) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Origin', originUrl);
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
