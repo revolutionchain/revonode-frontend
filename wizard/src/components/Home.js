@@ -62,8 +62,8 @@ export default function Home() {
             if (getarrayinfo.data.arrayStatus.includes('md0')) {
                 initialPage = initialPage + 3;
                 let getwificonfig = await axios.get(`${url}/getwificonfig`);
-                if (getwificonfig.data.includes('network')) {
-                    initialPage = initialPage + 2;
+                if (getwificonfig.data.includes('network') || (window.location.hostname).includes("revo.host")) {
+                    initialPage = (window.location.hostname).includes("revo.host") ? initialPage + 3 : initialPage + 2;
                 }
                 let getrpcdata = await axios.get(`${url}/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {

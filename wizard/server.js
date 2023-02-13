@@ -12,6 +12,17 @@ const envFilePath = path.resolve(__dirname, ".env");
 const peersJsonFilePath = path.resolve(__dirname, "peers.json");
 const peersIpJsonFilePath = path.resolve(__dirname, "peersIp.json");
 
+let countDown;
+
+
+let wlanCheck = execSync('ip addr | grep wlan0', { encoding: 'utf8' });
+
+if(wlanCheck.includes("wlan0")){
+  countDown = 60;
+}else {
+  countDown = 30;
+}
+
 setTimeout(() => {
 
 
@@ -892,4 +903,4 @@ app.listen(PORT, () => {
 })
 
 
-}, 60 * 1000)
+}, countDown * 1000)

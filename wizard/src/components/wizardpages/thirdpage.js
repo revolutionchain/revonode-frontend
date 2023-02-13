@@ -110,7 +110,13 @@ export default function Thirdpage({ currentPage, setCurrentPage }) {
                 </div>
 
                 <div className='right'>
-                    <button onClick={() => setCurrentPage(currentPage + 1)} className='button-style next-button'>Next</button>
+                    <button onClick={() => {
+                        if((window.location.hostname).includes("revo.host")){
+                            setCurrentPage(currentPage + 3)
+                        }else {
+                            setCurrentPage(currentPage + 1)
+                        }
+                        }} className='button-style next-button'>Next</button>
                 </div>
             </div>
         </div>
