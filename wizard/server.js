@@ -345,10 +345,10 @@ app.post('/api/getprivkey', (req, res, next) => {
   if(userIsCreated){
     authResult = authUser(user, pass);
   }
-  if(!authResult){
+  if(userIsCreated && !authResult){
     return res.status(404).send("Error: Route protected")
   }
-  
+
   execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletKey], (errWalletUnlock, stdoutWalletUnlock, stderrWalletUnlock) => {
     if (errWalletUnlock) {
       res.status(404).send(errWalletUnlock);
