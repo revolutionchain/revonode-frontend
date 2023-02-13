@@ -131,7 +131,7 @@ app.use((req, res, next) => {
   const baseUrlCheck = req.originalUrl
 
 
-  if((origin).includes("revo.host")){
+  if((origin)?.includes("revo.host")){
     origin = "https://" + origin;
   }else {
     origin = "http://" + origin;
