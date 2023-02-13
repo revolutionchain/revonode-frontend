@@ -15,7 +15,8 @@ const peersIpJsonFilePath = path.resolve(__dirname, "peersIp.json");
 let countDown;
 
 
-let wlanCheck = execSync('ip addr | grep wlan0', { encoding: 'utf8' });
+let wlanCheck = "wlan0";
+//execSync('ip addr | grep wlan0', { encoding: 'utf8' });
 
 if(wlanCheck.includes("wlan0")){
   countDown = 60;
