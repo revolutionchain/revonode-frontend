@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import SweetAlert from "react-bootstrap-sweetalert"
 
@@ -9,6 +10,7 @@ const BackupDataWidget = props => {
 
 
   const [currentUrl, setCurrentUrl] = useState("");
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   useEffect(async () => {
     let url;
@@ -35,11 +37,12 @@ function handleButton (){
   let titleRes;
   let descriptionRes;
   fetch(`${currentUrl}/backupwallet`, {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
   }).then(data => data.text())
     .then(res => {
       if((res).includes("ok")){

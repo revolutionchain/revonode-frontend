@@ -20,6 +20,7 @@ const Settings = props => {
   const isLogged = useSelector(state => state.Login.isLogged);
   const [wifiData, setWifiData] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
   const [domainState, setDomainState] = useState({
     eth: "",
     wifi: ""
@@ -41,11 +42,12 @@ const Settings = props => {
     }
 
     fetch(`${url}/getdomain`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
         setDomainState(res);
@@ -53,11 +55,12 @@ const Settings = props => {
 
 
     fetch(`${url}/getwificonfig`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.text())
       .then(res => {
         if(!(res).includes("Error")){

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Container, Row, Col } from "reactstrap"
+import { useSelector } from "react-redux";
 
 const Footer = () => {
 
   const [nodeVersion, setNodeVersion] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
 
   useEffect(async () => {
@@ -15,11 +17,12 @@ const Footer = () => {
     }
 
     fetch(`${url}/getver`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.text())
       .then(res => {
         let result = res.split("_")[1];

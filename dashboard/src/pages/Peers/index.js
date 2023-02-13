@@ -20,6 +20,7 @@ const Peers = props => {
 
   const [peersData, setPeersData] = useState(false);
   const [ipLocationData, setIpLocationData] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   function timePassed(timestamp) {
     const currentTime = Date.now() / 1000;
@@ -57,21 +58,23 @@ const Peers = props => {
   
       setCurrentUrl(url);
     fetch(`${url}/getpeers`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
         setPeersData(res);
       });
       fetch(`${url}/getpeersip`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.json())
         .then(res => {        
           setIpLocationData(res);        

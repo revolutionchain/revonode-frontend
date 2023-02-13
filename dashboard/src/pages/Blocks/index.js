@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import MetaTags from 'react-meta-tags';
 import PropTypes from 'prop-types';
 import {
@@ -22,6 +23,7 @@ const Blocks = props => {
   const isLogged = useSelector(state => state.Login.isLogged);
 
   const [nodeData, setNodeData] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   function farAway(seconds) {
     var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "" ;
@@ -47,11 +49,12 @@ const Blocks = props => {
     
         setCurrentUrl(url);
       fetch(`${url}/getdashboarddata`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.json())
         .then(res => {
           setNodeData(res);
@@ -62,6 +65,7 @@ const Blocks = props => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
         }).then(data => data.json())
           .then(res => {
             setLastestBlocks(res);

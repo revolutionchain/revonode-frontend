@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const widget = [
@@ -45,6 +46,8 @@ const widget = [
 
 const Widget = props => {
 
+  const typedUser = useSelector(state => state.Login.userTyped);
+
     const [ widgetState, setWidgetState ] = useState(false);
     
     const [currentUrl, setCurrentUrl] = useState("");
@@ -63,19 +66,21 @@ const Widget = props => {
     //widget[2].count = "";
     
     fetch(`${url}/getwalletaddress`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.text())
       .then(res => {
         fetch(`${props.nodeData[11].API_URL}address/${res}/`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
         }).then(data => data.json())
           .then(res => {
             widget[2].count = (res.blocksMined);

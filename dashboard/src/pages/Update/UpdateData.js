@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import SweetAlert from "react-bootstrap-sweetalert"
 
@@ -9,6 +10,7 @@ const UpdateDataWidget = props => {
 
     
   const [currentUrl, setCurrentUrl] = useState("");
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   useEffect(async () => {
     let url;
@@ -120,7 +122,7 @@ function handleButton (types){
                             confirmButtonText="Yes, update it!"
                             confirmBtnBsStyle="success"
                             cancelBtnBsStyle="danger"
-                            onConfirm={() => handleButton({type: "dashboard"})}
+                            onConfirm={() => handleButton({type: "dashboard", user: typedUser.user, pass: typedUser.pass})}
                             onCancel={() => setconfirm_alert(false)}
                           >
                             Your Revo Node will download and apply new Dashboard updates

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { connect } from "react-redux";
 
@@ -32,6 +33,8 @@ import {
 
 const Header = (props) => {
   const [search, setsearch] = useState(false);
+
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   function toggleFullscreen() {
     if (
@@ -93,11 +96,12 @@ const Header = (props) => {
 
     setCurrentUrl(url);
     fetch(`${url}/getwalletaddress`, {
-  method: 'GET',
+  method: 'POST',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
 }).then(data => data.text())
 .then(res => {
   setWalletAddress(res);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Card, CardBody, Col, Row, Button, Modal } from 'reactstrap';
 import { useEffect } from 'react';
 import Flag from 'react-world-flags'
@@ -37,6 +38,7 @@ const SettingsDataWidget = props => {
   const [currentWifiState, setCurrentWifiState] = useState(false);
 
   const [currentUrl, setCurrentUrl] = useState("");
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   useEffect(async () => {
     let url;
@@ -78,20 +80,22 @@ const SettingsDataWidget = props => {
     let descriptionRes;
     if (!wifiState) {
       fetch(`${currentUrl}/delwificonfig`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.text())
         .then(res => {
           if ((res).includes("ok")) {
             fetch(`${currentUrl}/reboot`, {
-              method: 'GET',
+              method: 'POST',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
               },
+              body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
             }).then(data => data.text())
               .then(res => {
                 if ((res).includes("done")) {
@@ -131,17 +135,20 @@ const SettingsDataWidget = props => {
       }
 
       fetch(`${currentUrl}/delwificonfig`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.text())
         .then(res => {
           let objData = {
             essid: currentWifiState.ssid,
             pass: currentWifiState.password,
-            country: currentWifiState.country['value']
+            country: currentWifiState.country['value'],
+            user: typedUser.user,
+            userPass: typedUser.pass
           }
           if ((res).includes("ok")) {
             fetch(`${currentUrl}/genwificonfig`, {
@@ -156,11 +163,12 @@ const SettingsDataWidget = props => {
                 console.log(res)
                 if ((res).includes("ok")) {
                   fetch(`${currentUrl}/reboot`, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                       'Accept': 'application/json',
                       'Content-Type': 'application/json',
                     },
+                    body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
                   }).then(data => data.text())
                     .then(res => {
                       if ((res).includes("done")) {

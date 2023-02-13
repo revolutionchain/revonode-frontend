@@ -23,6 +23,7 @@ const Wallet = props => {
 
   const [nodeData, setNodeData] = useState(false);
   const [listtransactions, setListtransactions] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   const [currentUrl, setCurrentUrl] = useState("");
   const getStatesData = () => {
@@ -36,22 +37,24 @@ const Wallet = props => {
   
       setCurrentUrl(url);
     fetch(`${url}/getdashboarddata`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
         setNodeData(res);
       });        
       
       fetch(`${url}/listtransactions`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.json())
         .then(res => {        
           let result = res.reverse()

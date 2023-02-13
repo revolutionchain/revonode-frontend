@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types'
 import {
   Dropdown,
@@ -32,6 +33,7 @@ const ProfileMenu = props => {
   const [username, setusername] = useState("Admin")
 
   const [currentUrl, setCurrentUrl] = useState("");
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   useEffect(async () => {
     let url;
@@ -169,11 +171,12 @@ const ProfileMenu = props => {
                   let titleRes;
                   let descriptionRes;
                   fetch(`${currentUrl}/reboot`, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                       'Accept': 'application/json',
                       'Content-Type': 'application/json',
                     },
+                    body: JSON.stringify({ user: typedUser.user, pass: typedUser.pass})
                   }).then(data => data.text())
                     .then(res => {
                       if ((res).includes("done")) {
@@ -204,11 +207,12 @@ const ProfileMenu = props => {
                   let titleRes;
                   let descriptionRes;
                   fetch(`${currentUrl}/shutdown`, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                       'Accept': 'application/json',
                       'Content-Type': 'application/json',
                     },
+                    body: JSON.stringify({  user: typedUser.user, pass: typedUser.pass })
                   }).then(data => data.text())
                     .then(res => {
                       if ((res).includes("done")) {

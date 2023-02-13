@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import React, { useCallback, useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 // //Import Scrollbar
@@ -94,6 +95,7 @@ const SidebarContent = props => {
   
   const [buttonStakingState, setButtonStakingState] = useState(true);
   const [ buttonStateLoaded, setButtonStateLoaded ] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   const getStatesData = () => {
     let url;
@@ -106,11 +108,12 @@ const SidebarContent = props => {
     setCurrentUrl(url);
     
     fetch(`${url}/getstakinginfo`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
         if(res.enabled){
@@ -165,11 +168,12 @@ const SidebarContent = props => {
   }          
     if (stakingState) {
       fetch(`${currentUrl}/walletlockforstaking`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.text())
         .then(res => {
           titleRes = "Staking Disabled"
@@ -193,7 +197,9 @@ const SidebarContent = props => {
 
 
       let objData = {
-        walletPassword: walletPassState
+        walletPassword: walletPassState,
+        user: typedUser.user,
+        pass: typedUser.pass
       }
       fetch(`${currentUrl}/walletunlockforstaking`, {
         method: 'POST',
