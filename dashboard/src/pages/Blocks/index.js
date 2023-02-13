@@ -59,7 +59,7 @@ const Blocks = props => {
           setNodeData(res);
         });    
         fetch(`${url}/getlastestblocks`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
