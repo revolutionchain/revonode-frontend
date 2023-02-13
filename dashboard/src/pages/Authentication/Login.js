@@ -56,14 +56,22 @@ const Login = (props) => {
     } catch (err) {
       window.location.reload();
     }
-    fetch(`${url}/checkmaster`)
+    fetch(`${url}/checkmaster`, {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }})
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
           window.location.href = `http://${window.location.hostname}/install/wizard`;
         }
       });
-    fetch(`${url}/checkuser`)
+    fetch(`${url}/checkuser`, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }})
       .then(response => response.json())
       .then(data => {
         if (data == false) {
