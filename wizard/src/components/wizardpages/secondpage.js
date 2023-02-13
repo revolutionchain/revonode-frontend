@@ -66,6 +66,8 @@ export default function Secondpage({ currentPage, setCurrentPage, drivesData }) 
 
     const [raidLevel, setRaidLevel] = useState("null");
 
+    raidLevel == "null" && (window.location.hostname).includes("revo.host") && setRaidLevel(0);
+
     const [ raidResult, setRaidResult ] = useState(false);
 
     function handleSelect(e, drives) {
