@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import MetaTags from 'react-meta-tags';
 import PropTypes from 'prop-types';
 import {
