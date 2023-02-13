@@ -59,7 +59,7 @@ const Login = (props) => {
     fetch(`${url}/checkmaster`, {
     mode: 'cors',
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      credentials: 'include'
     }})
       .then(response => response.text())
       .then(data => {
@@ -70,7 +70,7 @@ const Login = (props) => {
     fetch(`${url}/checkuser`, {
       mode: 'cors',
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        credentials: 'include'
       }})
       .then(response => response.json())
       .then(data => {
