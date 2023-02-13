@@ -12,7 +12,7 @@ export default function Eighthpage({ currentPage, setCurrentPage }) {
       }else {
         url = `http://${window.location.hostname}:3001/api`
       }
-        await axios.get(`${url}/startdaemon`);
+        await axios.post(`${url}/startdaemon`);
     }, [])
 
     setTimeout(() => {

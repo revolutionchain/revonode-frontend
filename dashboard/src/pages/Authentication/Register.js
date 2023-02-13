@@ -52,7 +52,9 @@ const Register = props => {
     setCurrentUrl(url);
     document.body.classList.add('bg-reglog');
     props.apiError("")
-    fetch(`${url}/checkuser`)
+    fetch(`${url}/checkuser`, {
+      method: 'POST',
+    })
       .then(response => response.json())
       .then(data => {
         if (data == true) {

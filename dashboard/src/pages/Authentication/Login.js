@@ -50,19 +50,17 @@ const Login = (props) => {
 
     document.body.classList.add('bg-reglog');
     try {
-      fetch(`${url}/checklocalip`)
+      fetch(`${url}/checklocalip`, {
+        method: 'POST',
+      })
         .then(response => response)
         .then(data => console.log(data.ok));
     } catch (err) {
       window.location.reload();
     }
     fetch(`${url}/checkmaster`, {
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'origin': `${window.location.hostname}`
-    }})
+      method: 'POST',
+    })
       .then(response => response.text())
       .then(data => {
         if (!data.includes("master")) {
@@ -70,12 +68,8 @@ const Login = (props) => {
         }
       });
     fetch(`${url}/checkuser`, {
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'origin': `${window.location.hostname}`
-      }})
+      method: 'POST',
+    })
       .then(response => response.json())
       .then(data => {
         if (data == false) {

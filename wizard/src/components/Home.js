@@ -47,25 +47,25 @@ export default function Home() {
   
       setCurrentUrl(url);
         try{
-            let result = await axios.get(`${url}/checklocalip`);
+            let result = await axios.post(`${url}/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
         }    
         let initialPage = 1;
-        let masterState = await axios.get(`${url}/checkmaster`);
+        let masterState = await axios.post(`${url}/checkmaster`);
         setMaster(masterState.data);
         if(masterState.data.includes("master")){
             window.location.href = `http://${window.location.hostname}/`;
         }else {
-            let getarrayinfo = await axios.get(`${url}/getarrayinfo`);
+            let getarrayinfo = await axios.post(`${url}/getarrayinfo`);
             if (getarrayinfo.data.arrayStatus.includes('md0')) {
                 initialPage = initialPage + 3;
-                let getwificonfig = await axios.get(`${url}/getwificonfig`);
+                let getwificonfig = await axios.post(`${url}/getwificonfig`);
                 if (getwificonfig.data.includes('network') || (window.location.hostname).includes("revo.host")) {
                     initialPage = (window.location.hostname).includes("revo.host") ? initialPage + 3 : initialPage + 2;
                 }
-                let getrpcdata = await axios.get(`${url}/getrevoconfig`);
+                let getrpcdata = await axios.post(`${url}/getrevoconfig`);
                 if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
                     initialPage = initialPage + 3
                 }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
@@ -77,7 +77,7 @@ export default function Home() {
     }, []);
 
     async function getDrives() {
-        let drivesData = await axios.get(`${currentUrl}/showdrives`);
+        let drivesData = await axios.post(`${currentUrl}/showdrives`);
         setDrivesData(drivesData.data);
     }
 

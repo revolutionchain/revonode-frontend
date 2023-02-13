@@ -189,7 +189,20 @@ function checkUserCreated () {
   }
 }
 
-app.get('/api/getdomain', (req, res, next) => {
+app.post('/api/getdomain', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let ethEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_ETH_IP');
   let wifiEnvCheck = getEnvValue('REACT_APP_LOCAL_NODE_WIFI_IP');
   let domainObj = {
@@ -207,7 +220,20 @@ app.get('/api/getdomain', (req, res, next) => {
   res.send(domainObj);
 })
 
-app.get('/api/getwalletaddress', (req, res, next) => {
+app.post('/api/getwalletaddress', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   exec('cat master', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -236,7 +262,19 @@ app.post('/api/login', (req, res) => {
 })
 
 app.post('/api/register', (req, res) => {
-  const { user, pass } = req.body;
+  const { user, pass, generatedUser, generatedPass } = req.body;
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+  
+  if(userIsCreated){
+    authResult = authUser(generatedUser, generatedPass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
     setEnvValue('DASHBOARD_USER', user);
@@ -248,7 +286,20 @@ app.post('/api/register', (req, res) => {
 })
 
 app.post('/api/modifyprofile', (req, res) => {
-  const { user, pass, oldpass } = req.body;
+  const { user, pass, oldpass, generatedUser, generatedPass } = req.body;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(generatedUser, generatedPass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   if (user) {
     setEnvValue('DASHBOARD_USER', user);
     res.send(true)
@@ -265,7 +316,7 @@ app.post('/api/modifyprofile', (req, res) => {
   }
 })
 
-app.get('/api/checkuser', (req, res, next) => {
+app.post('/api/checkuser', (req, res, next) => {  
   let dashUser = getEnvValue('DASHBOARD_USER');
   if (!dashUser || dashUser?.length <= 2) {
     res.send(false)
@@ -274,16 +325,25 @@ app.get('/api/checkuser', (req, res, next) => {
   }
 })
 
-app.get('/api/api/pippo', (req, res, next) => {
-  res.send('ok')
-})
-
-app.get('/api/checklocalip', (req, res, next) => {
+app.post('/api/checklocalip', (req, res, next) => {  
   checkLocalIpAddress();
   res.send('ok');
 })
 
-app.get('/api/forcereboot', (req, res, next) => {
+app.post('/api/forcereboot', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   res.send('done');
   execFile('bash', ['/home/revo/nodeutils', '-forcereboot'], (err, stdout, stderr) => {
     if (err) {
@@ -294,7 +354,20 @@ app.get('/api/forcereboot', (req, res, next) => {
   });
 })
 
-app.get('/api/reboot', (req, res, next) => {
+app.post('/api/reboot', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
   res.send('done');
   setTimeout(()=> {
     execFile('bash', ['/home/revo/nodeutils', '-reboot'], (err, stdout, stderr) => {
@@ -310,7 +383,20 @@ app.get('/api/reboot', (req, res, next) => {
   }, 1000)
 })
 
-app.get('/api/shutdown', (req, res, next) => {
+app.post('/api/shutdown', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   res.send('done');
   setTimeout(() => {
     execFile('bash', ['/home/revo/nodeutils', '-shutdown'], (err, stdout, stderr) => {
@@ -326,7 +412,7 @@ app.get('/api/shutdown', (req, res, next) => {
 })
 
 
-app.get('/api/checkmaster', (req, res, next) => {
+app.post('/api/checkmaster', (req, res, next) => {
   exec('ls', { cwd: '/home/revo/' }, (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -372,7 +458,20 @@ app.post('/api/getprivkey', (req, res, next) => {
   });
 })
 
-app.get('/api/showdrives', function (req, res, next) {
+app.post('/api/showdrives', function (req, res, next) {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   blk.getBlockInfo({}, function (err, json) {
     if (err) {
       console.log("Error:" + err);
@@ -390,7 +489,17 @@ function checkFunction(disk, type) {
 }
 
 app.post('/api/checkdrive', (req, res, next) => {
-  const { disk1, disk2 } = req.body;
+  const { disk1, disk2, user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
   let response = [];
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
@@ -405,7 +514,18 @@ app.post('/api/checkdrive', (req, res, next) => {
 });
 
 app.post('/api/checkfilesystem', (req, res, next) => {
-  const { disk1, disk2 } = req.body;
+  const { disk1, disk2, user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   let response = [];
   if (!disk1 || !disk2) {
     res.status(404).send('You need at least 2 drives!');
@@ -418,7 +538,19 @@ app.post('/api/checkfilesystem', (req, res, next) => {
 });
 
 app.post('/api/makearray', (req, res, next) => {
-  const { disk1, disk2, raid } = req.body;
+  const { disk1, disk2, raid, user, pass } = req.body;
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   execFile('sudo', ['bash', '/home/revo/nodeutils', '-makearray', disk1, disk2, 'md0', raid], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -429,6 +561,19 @@ app.post('/api/makearray', (req, res, next) => {
 });
 
 function getArrInfo(type) {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   try {
     let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
     if (result.includes('md0')) {
@@ -441,7 +586,20 @@ function getArrInfo(type) {
   }
 }
 
-app.get('/api/getarrayinfo', (req, res, next) => {
+app.post('/api/getarrayinfo', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let arrStatus = getArrInfo('-arraystatus');
   let arrDetails;
   let arrUsage;
@@ -463,7 +621,20 @@ app.get('/api/getarrayinfo', (req, res, next) => {
   res.send(response)
 })
 
-app.get('/api/wifiscan', (req, res, next) => {
+app.post('/api/wifiscan', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   execFile('bash', ['/home/revo/nodeutils', '-wifiscan'], (err, stdout, stderr) => {
     if (err) {
       res.send('Error: wifi networks not found');
@@ -474,7 +645,19 @@ app.get('/api/wifiscan', (req, res, next) => {
 })
 
 app.post('/api/genwificonfig', (req, res, next) => {
-  const { essid, pass, country } = req.body;
+  const { essid, pass, country, user, userPass } = req.body;
+
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, userPass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   execFile('bash', ['/home/revo/nodeutils', '-genwificonfig', essid, pass, country], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -485,8 +668,34 @@ app.post('/api/genwificonfig', (req, res, next) => {
 })
 
 app.post('/api/removearray', (req, res, next) => {
-  const { disk1, disk2 } = req.body;
+  const { disk1, disk2, user, pass } = req.body;
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
   execFile('bash', ['/home/revo/nodeutils', '-removearray', disk1, disk2, 'md0'], (err, stdout, stderr) => {
+    const { user, pass } = req.body;
+    let userIsCreated = checkUserCreated();
+    let authResult;
+  
+    
+    if(userIsCreated){
+      authResult = authUser(user, pass);
+    }
+    if(userIsCreated && !authResult){
+      return res.status(404).send("Error: Route protected")
+    }
+  
+    
     if (err) {
       console.log(err)
       res.status(404).send(err);
@@ -513,18 +722,57 @@ function globalFunction(type) {
   }
 
 }
-app.get('/api/delwificonfig', (req, res, next) => {
+app.post('/api/delwificonfig', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let response = globalFunction('-delwificonfig');
   res.send(response);
 })
 
-app.get('/api/getwificonfig', (req, res, next) => {
+app.post('/api/getwificonfig', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let response = globalFunction('-getwificonfig');
   res.send(response);
 })
 
 app.post('/api/genrevoconfig', (req, res, next) => {
-  const { rpcUser, rpcPass, nodeName } = req.body;
+  const { rpcUser, rpcPass, nodeName, user, pass } = req.body;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   execFile('bash', ['/home/revo/nodeutils', '-genrevoconf', rpcUser, rpcPass, nodeName], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -534,28 +782,66 @@ app.post('/api/genrevoconfig', (req, res, next) => {
   });
 })
 
-app.get('/api/delrevoconfig', (req, res, next) => {
+app.post('/api/delrevoconfig', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let response = globalFunction('-delrevoconf');
   res.send(response);
 })
 
-app.get('/api/getrevoconfig', (req, res, next) => {
+app.post('/api/getrevoconfig', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let response = globalFunction('-getrevoconf');
   res.send(response);
 })
 
-app.get('/api/startdaemon', (req, res, next) => {
+app.post('/api/startdaemon', (req, res, next) => {
   let response = globalFunction('-startdaemon');
   res.send(response);
 })
 
-app.get('/api/stopdaemon', (req, res, next) => {
+app.post('/api/stopdaemon', (req, res, next) => {
   let response = globalFunction('-stopdaemon');
   res.send(response);
 })
 
 app.post('/api/createwallet', (req, res, next) => {
-  const { walletName, walletPass } = req.body;
+  const { walletName, walletPass, user, pass } = req.body;
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
   execFile('bash', ['/home/revo/nodeutils', '-createwallet', walletName, walletPass], (err, stdout, stderr) => {
     if (err) {
       res.status(404).send(err);
@@ -594,7 +880,20 @@ function globalDashboardFunction(type) {/*
 }
 
 
-app.get('/api/getlastestblocks', async (req, res, next) => {
+app.post('/api/getlastestblocks', async (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let blocks = [];
   let getBlockCountResponse = execFileSync('bash', ['/home/revo/nodeutils', '-getblockcount'], { encoding: 'utf8' });
   let getBlockHash = execFileSync('bash', ['/home/revo/nodeutils', '-getblockhash', getBlockCountResponse], { encoding: 'utf8' });
@@ -614,7 +913,20 @@ app.get('/api/getlastestblocks', async (req, res, next) => {
   res.send(blocks);
 })
 
-app.get('/api/getdashboarddata', async (req, res, next) => {
+app.post('/api/getdashboarddata', async (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   const types = ['-getinfo', '-getnettotals', '-listbanned', '-getmempoolinfo', '-getnetworkinfo', '-uptime', 'date', '-getblockchaininfo', '-gettotalsize', '-getwalletinfo', '-getblockcount'];
   let response = [];
   for (let i = 0; i < types.length; i++) {
@@ -676,7 +988,7 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
         }
 
-        return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
+        return axios.post(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
       })
       )
         .then(axiosResults => {
@@ -728,20 +1040,59 @@ cron.schedule("*/60 * * * * *", function () {
 });
 
 
-app.get('/api/getpeers', (req, res, next) => {
+app.post('/api/getpeers', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let peersJsonFileData = fs.readFileSync('peers.json');
   peersJsonFileData = JSON.parse(peersJsonFileData);
   res.send(peersJsonFileData);
 })
 
-app.get('/api/getpeersip', (req, res, next) => {
+app.post('/api/getpeersip', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let peersIpJsonFileData = fs.readFileSync('peersIp.json');
   peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
   res.send(peersIpJsonFileData);
 })
 
 
-app.get('/api/checktokenmail', (req, res, next) => {
+app.post('/api/checktokenmail', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let envToken = getEnvValue('EMAIL_TOKEN');
   if (envToken) {
     envToken = envToken.replaceAll('"', '');
@@ -755,8 +1106,20 @@ app.get('/api/checktokenmail', (req, res, next) => {
 
 
 app.post('/api/sendtokenmail', async (req, res, next) => {
-  const { email, token } = req.body;
+  const { email, token, user, pass } = req.body;
   let master;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
 
   if (!email || !token) {
     return res.status(404).send('Error: Email or Token not found');
@@ -772,16 +1135,27 @@ app.post('/api/sendtokenmail', async (req, res, next) => {
   master = execSync('cat /home/revo/master', { encoding: 'utf8' });
 
 
-  const emailResponse = await axios.get(`https://enrollment.revo.network/index.php?username=${email}&master=${master.slice(0, master.length - 1)}&token=${token}`);
+  const emailResponse = await axios.post(`https://enrollment.revo.network/index.php?username=${email}&master=${master.slice(0, master.length - 1)}&token=${token}`);
   if (emailResponse.data == 'OK') {
     setEnvValue('EMAIL_TOKEN', 'sent');
   }
   res.send(emailResponse.data);
 })
 
-app.get('/api/backup.dat', (req, res) => {
+app.post('/api/backup.dat', (req, res) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
 
   
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+    
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
     if (err) {
     } else {
@@ -807,7 +1181,20 @@ app.get('/api/backup.dat', (req, res) => {
 }
 )
 
-app.get('/api/backupwallet', (req, res, next) => {
+app.post('/api/backupwallet', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   exec('ls', { cwd: '/home/revo/revonode-frontend/wizard' }, (err, stdout, stderr) => {
     if (err) {
     } else {
@@ -846,7 +1233,19 @@ app.get('/api/backupwallet', (req, res, next) => {
 
 
 app.post('/api/updates', async (req, res, next) => {
-  const { type } = req.body;
+  const { type, user, pass } = req.body;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
 
   res.send("ok");
 
@@ -858,7 +1257,20 @@ app.post('/api/updates', async (req, res, next) => {
 
 })
 
-app.get('/api/listunspent', (req, res, next) => {
+app.post('/api/listunspent', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
       execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
@@ -873,7 +1285,20 @@ app.get('/api/listunspent', (req, res, next) => {
 })
 
 
-app.get('/api/listtransactions', (req, res, next) => {
+app.post('/api/listtransactions', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
       execFile('bash', ['/home/revo/nodeutils', '-showmaster'], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
         if (errShowMaster) {
           res.status(404).send(errShowMaster);
@@ -887,7 +1312,20 @@ app.get('/api/listtransactions', (req, res, next) => {
       });    
 })
 
-app.get('/api/showpublicip', (req, res, next) => {
+app.post('/api/showpublicip', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
       let result = spawnSync('bash', ['/home/revo/nodeutils', '-showpublicip'], { encoding: 'utf8' });    
       let outtext = result.output[1]
       let outputresult = outtext.replaceAll("\n", "");
@@ -895,14 +1333,39 @@ app.get('/api/showpublicip', (req, res, next) => {
 })
 
 
-app.get('/api/getstakinginfo', (req, res, next) => {
+app.post('/api/getstakinginfo', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let response = execFileSync('bash', ['/home/revo/nodeutils', '-getstakinginfo'], { encoding: 'utf8' });
   response = response.replaceAll("\n", "");
   res.send(response);
 })
 
 app.post('/api/walletunlockforstaking', async (req, res, next) => {
-  const { walletPassword } = req.body;
+  const { walletPassword, user, pass } = req.body;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
 
   if(walletPassword){
     execFile('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
@@ -920,14 +1383,40 @@ app.post('/api/walletunlockforstaking', async (req, res, next) => {
 })
 
 
-app.get('/api/walletlockforstaking', (req, res, next) => {
+app.post('/api/walletlockforstaking', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   execFileSync('bash', ['/home/revo/nodeutils', '-walletlock'], { encoding: 'utf8' });
   execFileSync('bash', ['/home/revo/nodeutils', '-enablestaking', "false"], { encoding: 'utf8' });
   res.send("Staking disabled successfully");
 })
 
 
-app.get('/api/getver', (req, res, next) => {
+app.post('/api/getver', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
   let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
   res.send(result);
 })
