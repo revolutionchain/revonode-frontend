@@ -42,6 +42,7 @@ const UserProfile = props => {
   const { resetProfileFlag } = props;
 
   const typedMail = useSelector(state => state.Login.userTyped.user);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
   
   const [currentUrl, setCurrentUrl] = useState("");
@@ -96,6 +97,8 @@ const UserProfile = props => {
   const [userEmail, setUserEmail] = useState({
     type: "user",
     user: "",
+    generatedUser: typedUser.user,
+    generatedPass: typedUser.pass
   })
 
 
@@ -104,7 +107,9 @@ const UserProfile = props => {
     type: "pass",
     pass: "",
     rePass: "",
-    oldpass: ""
+    oldpass: "",
+    generatedUser: typedUser.user,
+    generatedPass: typedUser.pass
   })
 
 
