@@ -73,19 +73,18 @@ const Widget = props => {
       },
       body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.text())
-      .then(res => {
-        fetch(`${props.nodeData[11].API_URL}address/${res}/`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
-        }).then(data => data.json())
-          .then(res => {
-            widget[2].count = (res.blocksMined);
-            setWidgetState(widget);
-          });
+    .then(res => {
+      fetch(`${props.nodeData[11].API_URL}address/${res}/`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(data => data.json())
+        .then(res => {
+          widget[2].count = (res.blocksMined);
+          setWidgetState(widget);
+        });
       });
     
 },[props.nodeData])
