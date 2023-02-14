@@ -975,7 +975,7 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
         }
 
-        return axios.post(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
+        return axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
       })
       )
         .then(axiosResults => {
