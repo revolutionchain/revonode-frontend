@@ -101,7 +101,6 @@ class Layout extends Component {
 
   render() {
     const isUIpath = window.location.pathname === "/ui-components";
-    console.log(this.state)
     return (
       <React.Fragment>
         <div id="preloader">
@@ -119,11 +118,11 @@ class Layout extends Component {
 
         <div id="layout-wrapper">
           <Header toggleMenuCallback={this.toggleMenuCallback} />
-          {/* <Sidebar
+          {this.props.userTyped && <Sidebar
             type={this.props.leftSideBarType}
             isMobile={this.state.isMobile}
-            typedUser={typedUser}
-    />*/}
+            typedUser={this.props.userTyped}
+    />}
 
           <div
             className={classNames(
