@@ -129,7 +129,7 @@ function handleButton (types){
                           </SweetAlert>
                         ) : null}
                             
-                        <div className="p-3">
+                        { !(window.location.hostname).includes("revo.host") && <div className="p-3">
                           <Button
                             color="secondary"
                             onClick={() => {
@@ -139,7 +139,7 @@ function handleButton (types){
                           >
                             Update Node Core
                           </Button>
-                        </div>
+                        </div>}
                         {confirm_alert2 ? (
                           <SweetAlert
                             title="Are you sure?"
