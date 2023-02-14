@@ -95,7 +95,6 @@ const SidebarContent = props => {
   
   const [buttonStakingState, setButtonStakingState] = useState(true);
   const [ buttonStateLoaded, setButtonStateLoaded ] = useState(false);
-  const typedUser = useSelector(state => state.Login.userTyped);
 
   const getStatesData = () => {
     let url;
@@ -113,7 +112,7 @@ const SidebarContent = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
+      body: JSON.stringify({user: props.typedUser.user, pass: props.typedUser.pass})
     }).then(data => data.json())
       .then(res => {
         if(res.enabled){
@@ -138,7 +137,7 @@ const SidebarContent = props => {
     
       return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     
-  },[typedUser])
+  },[props.typedUser])
 
 
   const [confirm_alert, setconfirm_alert] = useState(false)
@@ -173,7 +172,7 @@ const SidebarContent = props => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
+        body: JSON.stringify({user: props.typedUser.user, pass: props.typedUser.pass})
       }).then(data => data.text())
         .then(res => {
           titleRes = "Staking Disabled"
@@ -198,8 +197,8 @@ const SidebarContent = props => {
 
       let objData = {
         walletPassword: walletPassState,
-        user: typedUser.user,
-        pass: typedUser.pass
+        user: props.typedUser.user,
+        pass: props.typedUser.pass
       }
       fetch(`${currentUrl}/walletunlockforstaking`, {
         method: 'POST',

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { useSelector } from "react-redux";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -101,6 +102,7 @@ class Layout extends Component {
 
   render() {
     const isUIpath = window.location.pathname === "/ui-components";
+    const typedUser = useSelector(state => state.Login.userTyped);
     return (
       <React.Fragment>
         <div id="preloader">
@@ -118,10 +120,11 @@ class Layout extends Component {
 
         <div id="layout-wrapper">
           <Header toggleMenuCallback={this.toggleMenuCallback} />
-          <Sidebar
+          {typedUser && <Sidebar
             type={this.props.leftSideBarType}
             isMobile={this.state.isMobile}
-          />
+            typedUser={typedUser}
+          />}
 
           <div
             className={classNames(

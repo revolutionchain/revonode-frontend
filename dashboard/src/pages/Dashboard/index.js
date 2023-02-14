@@ -34,7 +34,7 @@ const Dashboard = props => {
   function tog_standard() {
     setSubscribemodal(!setSubscribemodal)
   }
-  
+
   function showUptime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -44,20 +44,20 @@ const Dashboard = props => {
     const remainingHours = hours % 24;
     const remainingMinutes = minutes % 60;
     let output = "";
-    if(years > 0) output += `${years} years`;
-    if(remainingDays > 0) output += ` ${remainingDays} days`;
-    if(remainingHours > 0) output += ` ${remainingHours} hours`;
-    if(remainingMinutes > 0) output += ` ${remainingMinutes} minutes`;
+    if (years > 0) output += `${years} years`;
+    if (remainingDays > 0) output += ` ${remainingDays} days`;
+    if (remainingHours > 0) output += ` ${remainingHours} hours`;
+    if (remainingMinutes > 0) output += ` ${remainingMinutes} minutes`;
     return output;
- }
+  }
 
- function farAway(seconds) {
-  var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "" ;
-    var numdays = Math.floor((seconds % 31536000) / 86400) > 0 ? (Math.floor((seconds % 31536000) / 86400) + (Math.floor((seconds % 31536000) / 86400) > 1 ? " days, " : " day, ")) : "" ;
-    var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600) > 0 ? (Math.floor(((seconds % 31536000) % 86400) / 3600) + (Math.floor(((seconds % 31536000) % 86400) / 3600) > 1 ? " hours, " : " hour, ")) : "" ;
-    var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 0 ? (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) + ( Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 1 ? " minutes, " : " minute, ")) : "";
+  function farAway(seconds) {
+    var numyears = (Math.floor(seconds / 31536000)) > 0 ? ((Math.floor(seconds / 31536000)) + ((Math.floor(seconds / 31536000)) > 1 ? " years, " : " year, ")) : "";
+    var numdays = Math.floor((seconds % 31536000) / 86400) > 0 ? (Math.floor((seconds % 31536000) / 86400) + (Math.floor((seconds % 31536000) / 86400) > 1 ? " days, " : " day, ")) : "";
+    var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600) > 0 ? (Math.floor(((seconds % 31536000) % 86400) / 3600) + (Math.floor(((seconds % 31536000) % 86400) / 3600) > 1 ? " hours, " : " hour, ")) : "";
+    var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 0 ? (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) + (Math.floor((((seconds % 31536000) % 86400) % 3600) / 60) > 1 ? " minutes, " : " minute, ")) : "";
     var numseconds = Math.floor((((seconds % 31536000) % 86400) % 3600) % 60);
-    let result =  numyears + numdays + numhours + numminutes + numseconds + " seconds"
+    let result = numyears + numdays + numhours + numminutes + numseconds + " seconds"
     return result;
   }
 
@@ -66,7 +66,7 @@ const Dashboard = props => {
   const [ipLocationData, setIpLocationData] = useState(false);
   const [publicIp, setPublicIp] = useState(false);
 
-  
+
   const [currentUrl, setCurrentUrl] = useState("");
 
   const getStatesData = () => {
@@ -74,9 +74,9 @@ const Dashboard = props => {
       return props.history.push('/login');
     }
     let url;
-    if((window.location.hostname).includes("revo.host")){
+    if ((window.location.hostname).includes("revo.host")) {
       url = `https://${window.location.hostname}/api`
-    }else {
+    } else {
       url = `http://${window.location.hostname}:3001/api`
     }
 
@@ -85,7 +85,7 @@ const Dashboard = props => {
       user: typedUser.user,
       pass: typedUser.pass,
     }
-    
+
     fetch(`${url}/getdashboarddata`, {
       method: 'POST',
       headers: {
@@ -116,33 +116,33 @@ const Dashboard = props => {
       },
       body: JSON.stringify(objData)
     }).then(data => data.json())
-      .then(res => {        
-        setIpLocationData(res);        
+      .then(res => {
+        setIpLocationData(res);
       });
-      fetch(`${url}/checktokenmail`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(objData)
-      }).then(data => data.text())
-        .then(res => {        
-          if(res.includes("the mail has not been sent yet")){
-            setSubscribemodal(true)
-          }
-        });
-        fetch(`${url}/showpublicip`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(objData)
-        }).then(data => data.text())
-          .then(res => {        
-            setPublicIp(res);
-          });
+    fetch(`${url}/checktokenmail`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        if (res.includes("the mail has not been sent yet")) {
+          setSubscribemodal(true)
+        }
+      });
+    fetch(`${url}/showpublicip`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        setPublicIp(res);
+      });
   }
 
   useEffect(() => {
@@ -156,20 +156,20 @@ const Dashboard = props => {
     const interval = setInterval(() => {
       getStatesData();
     }, 30000);
-  
+
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-  
+
 
   }, [])
 
-  const [ modalData, setModalData ] = useState({
+  const [modalData, setModalData] = useState({
     email: typedMail,
     token: ""
-  },[])
+  }, [])
 
 
-  const [ errorMsg, setErrorMsg ] = useState("");
-  const [ successMsg, setSuccessMsg ] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   function handleButton() {
     fetch(`${currentUrl}/sendtokenmail`, {
@@ -180,8 +180,8 @@ const Dashboard = props => {
       },
       body: JSON.stringify({ email: modalData.email, token: modalData.token, user: typedUser.user, pass: typedUser.pass })
     }).then(data => data.text())
-      .then(res => {  
-        if(res.includes("OK")){
+      .then(res => {
+        if (res.includes("OK")) {
           setSuccessMsg("Enrollment succesfully! Your airdrop is incoming!");
         } else {
           setErrorMsg("You entered an invalid token!");
@@ -191,7 +191,7 @@ const Dashboard = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && peersData?.length && publicIp && <div className="page-content">
+      {nodeData?.length && peersData?.length && publicIp ? <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -233,7 +233,7 @@ const Dashboard = props => {
           <RecentUsers />
       */}
         </Container>
-      </div>
+      </div> : <div class="nb-spinner"></div>
       }<Modal
         isOpen={subscribemodal}
         role="dialog"
@@ -265,31 +265,31 @@ const Dashboard = props => {
                   <h4 className="text-primary">Early Adopters Airdrop!</h4>
                   <p className={errorMsg.length > 1 ? "font-size-14 mb-4 text-danger" : successMsg.length > 1 ? "text-primary font-size-14 mb-4" : "text-muted font-size-14 mb-4"}>{errorMsg.length > 1 ? errorMsg : successMsg.length > 1 ? successMsg : "Scan your personal NFC Revo tag to enroll!"} </p>
 
-                  { errorMsg.length < 1 ? successMsg.length > 1 ? <div></div> : <div className="input-group bg-light rounded">
-                    <Input type="text" name='token' value={modalData.token} onChange={(e)=> setModalData({...modalData, token: e.target.value})} className="form-control bg-transparent border-0" placeholder="Write your code here!" />
+                  {errorMsg.length < 1 ? successMsg.length > 1 ? <div></div> : <div className="input-group bg-light rounded">
+                    <Input type="text" name='token' value={modalData.token} onChange={(e) => setModalData({ ...modalData, token: e.target.value })} className="form-control bg-transparent border-0" placeholder="Write your code here!" />
                     <Button
-                            color="primary"
-                            onClick={() => {
-                              handleButton()
-                            }}
-                            id="sa-success"
-                          >
-                            <i className="bx bxs-paper-plane"></i>
-                          </Button>{/*<button onClick={handleButton} style={{backgroundColor: "rgba(var(--bs-primary-rgb),var(--bs-text-opacity)) !important"}} type="button" id="sa-success">
+                      color="primary"
+                      onClick={() => {
+                        handleButton()
+                      }}
+                      id="sa-success"
+                    >
+                      <i className="bx bxs-paper-plane"></i>
+                    </Button>{/*<button onClick={handleButton} style={{backgroundColor: "rgba(var(--bs-primary-rgb),var(--bs-text-opacity)) !important"}} type="button" id="sa-success">
                       <i className="bx bxs-paper-plane"></i>
                     </button>
                     <Button color="primary" type="button" id="button-addon2">
                       
             </Button>*/}
                   </div> : <Button
-                            color="primary"
-                            onClick={() => {
-                              setErrorMsg("")
-                            }}
-                            id="sa-success"
-                          >
-                            Try again!
-                          </Button>}
+                    color="primary"
+                    onClick={() => {
+                      setErrorMsg("")
+                    }}
+                    id="sa-success"
+                  >
+                    Try again!
+                  </Button>}
                 </div>
               </div>
             </div>

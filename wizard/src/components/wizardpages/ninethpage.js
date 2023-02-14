@@ -42,17 +42,14 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleCreate() {
-        var passFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         var userFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let invalidPassChar = [];
+        let invalidPassChar = false;
         let invalidUserChar = [];
         setIsLoading(true);
         if(input?.walletPass) {
-            (input?.walletPass).split("").map(e => {
-                if(!passFilter.includes(e)){
-                    invalidPassChar.push(e);
+                if((input.walletPass).includes(" ")){
+                    invalidPassChar = true;
                 }
-            })
         }             
         if(input?.walletName) {
             (input?.walletName).split("").map(e => {
@@ -61,7 +58,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
                 }
             })
         }             
-        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidUserChar.length && !invalidPassChar.length) {
+        if (input?.walletName.length && input?.walletPass.length && input?.walletPass.length >= 6 && input?.walletRePass == input?.walletPass && !invalidUserChar.length && !invalidPassChar) {
             let createWallet = await axios.post(`${currentUrl}/createwallet`, input);
             if (createWallet.data.includes('ok')) {
                 setWalletData(input)
@@ -79,11 +76,11 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         } else if (input?.walletPass !== input?.walletRePass) {
             setErrorFound('Secret passphrase does not match.');
             openModal();
-        } else if (invalidUserChar) {
+        } else if (invalidUserChar.length) {
             setErrorFound('Wallet name can only contains letters.');
             openModal();
         } else if (invalidPassChar) {
-            setErrorFound('Secret passphrase can only contains letters and numbers.');
+            setErrorFound('Secret passphrase can not contains white spaces.');
             openModal();
         }
         setIsLoading(false);
