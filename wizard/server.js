@@ -560,20 +560,7 @@ app.post('/api/makearray', (req, res, next) => {
   });
 });
 
-function getArrInfo(type) {
-  const { user, pass } = req.body;
-  let userIsCreated = checkUserCreated();
-  let authResult;
-
-  
-  if(userIsCreated){
-    authResult = authUser(user, pass);
-  }
-  if(userIsCreated && !authResult){
-    return res.status(404).send("Error: Route protected")
-  }
-
-  
+function getArrInfo(type) {  
   try {
     let result = execFileSync('bash', ['/home/revo/nodeutils', type, 'md0'], { encoding: 'utf8' });
     if (result.includes('md0')) {
