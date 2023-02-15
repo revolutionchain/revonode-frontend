@@ -1047,7 +1047,9 @@ app.post('/api/getpeers', (req, res, next) => {
 
   
   let peersJsonFileData = fs.readFileSync('peers.json');
-  peersJsonFileData = JSON.parse(peersJsonFileData);
+  if(typeof(peersJsonFileData) == 'string'){
+    peersJsonFileData = JSON.parse(peersJsonFileData);
+  }
   res.send(peersJsonFileData);
 })
 
