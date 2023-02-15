@@ -233,7 +233,7 @@ const Dashboard = props => {
           <RecentUsers />
       */}
         </Container>
-      </div> : <div class="nb-spinner"></div>
+      </div> : <div style={{marginTop: "50vh"}} class="nb-spinner"></div>
       }<Modal
         isOpen={subscribemodal}
         role="dialog"
