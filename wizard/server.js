@@ -1047,7 +1047,7 @@ app.post('/api/getpeers', (req, res, next) => {
 
   
   let peersJsonFileData = fs.readFileSync('peers.json');
-  if(typeof(peersJsonFileData) == 'string'){
+  if(peersJsonFileData.length){
     peersJsonFileData = JSON.parse(peersJsonFileData);
     res.send(peersJsonFileData);
   }else {
@@ -1070,7 +1070,7 @@ app.post('/api/getpeersip', (req, res, next) => {
 
   
   let peersIpJsonFileData = fs.readFileSync('peersIp.json');
-  if(typeof(peersIpJsonFileData) == 'string'){
+  if(peersIpJsonFileData.length){
     peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
     res.send(peersIpJsonFileData);
   }else {
