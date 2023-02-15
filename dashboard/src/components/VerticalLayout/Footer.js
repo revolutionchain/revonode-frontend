@@ -6,9 +6,13 @@ const Footer = () => {
 
   const [nodeVersion, setNodeVersion] = useState(false);
   const typedUser = useSelector(state => state.Login.userTyped);
+  const isLogged = useSelector(state => state.Login.isLogged);
 
 
   useEffect(async () => {
+    if (!isLogged) {
+      return props.history.push('/login');
+    }
     let url;
     if((window.location.hostname).includes("revo.host")){
       url = `https://${window.location.hostname}/api`

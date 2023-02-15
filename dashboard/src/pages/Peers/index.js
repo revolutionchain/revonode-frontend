@@ -67,7 +67,8 @@ const Peers = props => {
     }).then(data => data.json())
       .then(res => {
         setPeersData(res);
-      });
+      })
+      .catch(err => setPeersData(false)); 
       fetch(`${url}/getpeersip`, {
         method: 'POST',
         headers: {
@@ -78,7 +79,8 @@ const Peers = props => {
       }).then(data => data.json())
         .then(res => {        
           setIpLocationData(res);        
-        });    
+        })
+        .catch(err => setIpLocationData(false));    
   }
 
   useEffect(() => {
