@@ -121,7 +121,7 @@ class Layout extends Component {
         </div>
 
         <div id="layout-wrapper">
-          <Header toggleMenuCallback={this.toggleMenuCallback} history={this.props.history} />
+          <Header toggleMenuCallback={this.toggleMenuCallback} />
           {this.props.userTyped?.user && <Sidebar
             type={this.props.leftSideBarType}
             isMobile={this.state.isMobile}
@@ -137,7 +137,7 @@ class Layout extends Component {
             {this.props.children}
           </div>
 
-          <Footer history={this.props.history} />
+          <Footer />
         </div>
         {this.props.showRightSidebar ? <Rightbar /> : null}
       </React.Fragment>

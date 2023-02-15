@@ -975,9 +975,9 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
         }
 
-        let result = axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
-        if(typeof(result.data) == 'object'){
-          return result;
+        let response = axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
+        if(typeof(response.data) == 'object'){
+          return response;
         }else {
           return {data: false}
         }
