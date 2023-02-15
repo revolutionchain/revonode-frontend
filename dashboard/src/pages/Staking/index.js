@@ -77,7 +77,7 @@ const Staking = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && <div className="page-content">
+      {nodeData?.length && listunspentState ? <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -102,11 +102,11 @@ const Staking = props => {
             />
           }
           {/* import Widget */}
-          {listunspentState && <Widget nodeData={nodeData} listunspentState={listunspentState} />}
-          {listunspentState && <StakingData listunspentState={listunspentState} nodeData={nodeData} />}
+          {<Widget nodeData={nodeData} listunspentState={listunspentState} />}
+          {<StakingData listunspentState={listunspentState} nodeData={nodeData} />}
 
         </Container>
-      </div>
+      </div> : <div style={{marginTop: "50vh"}} class="nb-spinner"></div>
       }
     </React.Fragment>
   );

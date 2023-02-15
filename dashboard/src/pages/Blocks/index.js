@@ -89,7 +89,7 @@ const Blocks = props => {
 
   return (
     <React.Fragment>
-      {nodeData?.length && <div className="page-content">
+      {nodeData?.length && lastestBlocks ? <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -114,11 +114,11 @@ const Blocks = props => {
             />
           }
           {/* import Widget */}
-          {nodeData && lastestBlocks && <Widget nodeData={nodeData} farAway={farAway} lastestBlocks={lastestBlocks} />}
-          {lastestBlocks && <BlocksData lastestBlocks={lastestBlocks} farAway={farAway} nodeData={nodeData} />}
+          {<Widget nodeData={nodeData} farAway={farAway} lastestBlocks={lastestBlocks} />}
+          {<BlocksData lastestBlocks={lastestBlocks} farAway={farAway} nodeData={nodeData} />}
 
         </Container>
-      </div>
+      </div> : <div style={{marginTop: "50vh"}} class="nb-spinner"></div>
       }
     </React.Fragment>
   );

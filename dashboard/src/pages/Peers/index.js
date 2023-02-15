@@ -98,7 +98,7 @@ const Peers = props => {
 
   return (
     <React.Fragment>
-      {peersData?.length && <div className="page-content">
+      {peersData?.length && ipLocationData ? <div className="page-content">
         {props.isTitle ?
           <MetaTags>
             <title>Preloader | Revo Node Manager</title>
@@ -123,11 +123,11 @@ const Peers = props => {
             />
           }
           {/* import Widget */}
-          {peersData && ipLocationData && <Widget peersData={peersData} ipLocationData={ipLocationData} timePassed={timePassed} />}
-          {peersData && ipLocationData && <PeersData peersData={peersData} ipLocationData={ipLocationData} timePassed={timePassed} />}
+          {<Widget peersData={peersData} ipLocationData={ipLocationData} timePassed={timePassed} />}
+          {<PeersData peersData={peersData} ipLocationData={ipLocationData} timePassed={timePassed} />}
 
         </Container>
-      </div>
+      </div> : <div style={{marginTop: "50vh"}} class="nb-spinner"></div>
       }
     </React.Fragment>
   );
