@@ -66,7 +66,7 @@ const Peers = props => {
       body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
-        if((res).includes("Error")){
+        if(res?.Error){
           setPeersData(false);
         }else{
           setPeersData(res);
@@ -81,7 +81,7 @@ const Peers = props => {
         body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.json())
         .then(res => {        
-          if((res).includes("Error")){
+          if(res?.Error){
             setIpLocationData(false);
           }else {
             setIpLocationData(res);  
