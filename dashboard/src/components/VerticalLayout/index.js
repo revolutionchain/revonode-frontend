@@ -35,6 +35,10 @@ class Layout extends Component {
   componentDidMount() {
     //init body click event fot toggle rightbar
     document.body.addEventListener("click", this.hideRightbar, true);
+    
+    if (!this.props.isLogged) {
+      return props.history.push('/login');
+    }
 
     if (this.props.isPreloader === true) {
       document.getElementById("preloader").style.display = "block";
