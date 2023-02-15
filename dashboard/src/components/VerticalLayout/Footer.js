@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Container, Row, Col } from "reactstrap"
 import { useSelector } from "react-redux";
 
-const Footer = () => {
+const Footer = (props) => {
 
   const [nodeVersion, setNodeVersion] = useState(false);
   const typedUser = useSelector(state => state.Login.userTyped);
