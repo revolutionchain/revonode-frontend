@@ -1068,7 +1068,9 @@ app.post('/api/getpeersip', (req, res, next) => {
 
   
   let peersIpJsonFileData = fs.readFileSync('peersIp.json');
-  peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
+  if(typeof(peersIpJsonFileData) == 'string'){
+    peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
+  }
   res.send(peersIpJsonFileData);
 })
 
