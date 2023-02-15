@@ -66,7 +66,11 @@ const Peers = props => {
       body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
     }).then(data => data.json())
       .then(res => {
-        setPeersData(res);
+        if((res).includes("Error")){
+          setPeersData(false);
+        }else{
+          setPeersData(res);
+        }
       })
       .catch(err => setPeersData(false)); 
       fetch(`${url}/getpeersip`, {
@@ -78,9 +82,12 @@ const Peers = props => {
         body: JSON.stringify({user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.json())
         .then(res => {        
-          setIpLocationData(res);        
-        })
-        .catch(err => setIpLocationData(false));    
+          if((res).includes("Error")){
+            setIpLocationData(false);
+          }else {
+            setIpLocationData(res);  
+          }      
+        })  
   }
 
   useEffect(() => {

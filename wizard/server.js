@@ -1051,7 +1051,7 @@ app.post('/api/getpeers', (req, res, next) => {
     peersJsonFileData = JSON.parse(peersJsonFileData);
     res.send(peersJsonFileData);
   }else {
-    res.status(404).send('Peers not found');
+    res.send('Error: Peers not found');
   }
 })
 
@@ -1074,7 +1074,7 @@ app.post('/api/getpeersip', (req, res, next) => {
     peersIpJsonFileData = JSON.parse(peersIpJsonFileData);
     res.send(peersIpJsonFileData);
   }else {
-    res.status(404).send('PeersIp not found');    
+    res.send('Error: PeersIp not found');    
   }
 })
 
