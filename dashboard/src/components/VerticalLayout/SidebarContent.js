@@ -156,14 +156,11 @@ const SidebarContent = props => {
   function handleButton(stakingState) {
     let titleRes;
     let descriptionRes;
-    let passFilter = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    let invalidPassChar = [];    
+    let invalidPassChar = false;    
     if(walletPassState) {
-      (walletPassState).split("").map(e => {
-          if(!passFilter.includes(e)){
-              invalidPassChar.push(e);
+          if(walletPassState.includes(" ")){
+              invalidPassChar = true;
           }
-      })
   }          
     if (stakingState) {
       fetch(`${currentUrl}/walletlockforstaking`, {
@@ -185,7 +182,7 @@ const SidebarContent = props => {
         });
     } else {
 
-      if (!walletPassState || invalidPassChar.length) {
+      if (!walletPassState || invalidPassChar) {
         titleRes = "Wallet password error!"
         descriptionRes = "You must enter a valid password!"
         setconfirm_alert2(false);
