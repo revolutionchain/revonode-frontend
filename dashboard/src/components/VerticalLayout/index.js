@@ -37,7 +37,7 @@ class Layout extends Component {
     document.body.addEventListener("click", this.hideRightbar, true);
     
     if (!this.props.isLogged) {
-      return props.history.push('/login');
+      return this.props.history.push('/login');
     }
 
     if (this.props.isPreloader === true) {
