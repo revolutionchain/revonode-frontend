@@ -963,7 +963,7 @@ function checkPeersData() {
     const currentPeer = peersJsonFileData.find(d => d.id == peersData[i].id);
     if ((peersData.length !== peersJsonFileData.length) || (currentPeer == undefined) || ((currentPeer.addr).split(":")[0] !== (peersData[i].addr).split(":")[0])) {
 
-      Promise.all(peersData.map((e, j) => {
+      Promise.all(peersData.map(async (e, j) => {
         let currentIp;
         if ((e.addr).split(".").length < 4) {
           result = execSync(`dig ${e.addr} +short`, { encoding: 'utf8' });
@@ -975,7 +975,7 @@ function checkPeersData() {
           currentIp = { query: (e.addr).split(":")[0] };
         }
 
-        let response = axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
+        let response = await axios.get(`https://api.findip.net/${currentIp.query}/?token=5daf21526edd4cbf99b0e98b0e522c5a`);
         if(typeof(response.data) == 'object'){
           return response;
         }else {
