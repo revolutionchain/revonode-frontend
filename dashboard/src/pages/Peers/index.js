@@ -72,7 +72,6 @@ const Peers = props => {
           setPeersData(res);
         }
       })
-      .catch(err => setPeersData(false)); 
       fetch(`${url}/getpeersip`, {
         method: 'POST',
         headers: {
