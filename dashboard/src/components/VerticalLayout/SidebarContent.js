@@ -227,6 +227,16 @@ const SidebarContent = props => {
 
   }
 
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+     setIsHover(true);
+  };
+
+  const handleMouseLeave = () => {
+     setIsHover(false);
+  };
+
   return (
     <React.Fragment>
       {success_dlg ? (
@@ -272,21 +282,21 @@ const SidebarContent = props => {
 
             <li className="menu-title mt-3">More</li>*/}
             <li>
-              <Link onClick={() => props.tToggle()} to="/dashboard" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/dashboard" className="waves-effect">
                 <i className='bx bxs-dashboard'></i>
                 <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => props.tToggle()} to="/staking" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/staking" className="waves-effect">
                 <i className='mdi mdi-pickaxe'></i>
                 <span key="t-ui-elements">{props.t("Staking")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => props.tToggle()} to="/wallet" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/wallet" className="waves-effect">
                 <i className='bx bx-wallet'></i>
                 <span key="t-ui-elements">{props.t("Wallet")}</span>
               </Link>
@@ -294,7 +304,7 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link onClick={() => props.tToggle()} to="/blocks" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/blocks" className="waves-effect">
                 <i className='bx bxs-component'></i>
                 <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
@@ -302,30 +312,32 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link onClick={() => props.tToggle()} to="/peers" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/peers" className="waves-effect">
                 <i className='bx bx-radar'></i>
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => props.tToggle()} to="/tips" className="waves-effect">
+              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/tips" className="waves-effect">
                 <i className='bx bx bxs-rocket'></i>
                 <span key="t-ui-elements">{props.t("Tips")}</span>
               </Link>
             </li>
             {buttonStateLoaded && <li style={{position: "absolute", bottom: "0"}}>
               <Col xl={12} lg={12} sm={12} className="mb-2">
-                <div className="" style={{textAlign: "center"}}>
+                <div 
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave} className="mb-4" style={{textAlign: "center", backgroundColor: "#1b1b1b", width: "fit-content"}}>
                   <Button
                     color={buttonStakingState ? "danger" : "primary"}
                     onClick={() => {
                       setconfirm_alert2(true)
                     }}
                     id="sa-success"
-                    className='m-2 mb-4'
+                    className='m-2'
                   >
-                    <i className="mdi mdi-pickaxe"></i> {buttonStakingState ? "Disable" : "Enable"} Staking
+                    <i className="mdi mdi-pickaxe"></i> { document.body.clientWidth >= 993 ? <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> : isHover && <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> }
                   </Button>
                 </div>
                 {confirm_alert2 ? (
