@@ -76,11 +76,15 @@ const StakingDataWidget = props => {
                     return (
                 <div key={e.txid + "responsive"} className='main-divs-container'>
                   <div class="dropdown-divider"></div>
-                  <div className='main-divs-title'>
-                    <h5><i className="bx bx-hash"></i> TX id</h5>
-                    <span><a target="_blank" className={e.confirmations < 500 ? "text-muted" : ""} href={`${props.nodeData[11].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a></span>
-                  </div>
                   <div className='main-divs-content'>
+                  <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="bx bx-hash"></i> TX id
+                      </div>
+                      <div style={{width: "70%"}}>
+                      <a target="_blank" className={e.confirmations < 500 ? "text-muted" : ""} href={`${props.nodeData[11].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a>
+                      </div>
+                    </div>
                     <div style={{display: "flex", width: "100%"}}>
                       <div style={{width: "30%"}}>
                         <i className="fas fa-coins"></i> Amount
