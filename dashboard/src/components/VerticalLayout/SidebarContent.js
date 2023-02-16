@@ -343,7 +343,7 @@ const SidebarContent = props => {
                     id="sa-success"
                     className='m-2'
                   >
-                    <i className="mdi mdi-pickaxe"></i> { document.body.clientWidth >= 993 ? <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> : isHover && <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> }
+                    <i className="mdi mdi-pickaxe"></i> { props.type == "default" ? <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> : isHover && <span>{buttonStakingState ? "Disable" : "Enable"} Staking</span> }
                   </Button>
                 </div>
                 {confirm_alert2 ? (
