@@ -126,6 +126,7 @@ class Layout extends Component {
             type={this.props.leftSideBarType}
             isMobile={this.state.isMobile}
             typedUser={this.props.userTyped}
+            showRightSidebarAction={this.props.showRightSidebarAction}
     />}
 
           <div

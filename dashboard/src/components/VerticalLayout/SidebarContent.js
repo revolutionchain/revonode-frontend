@@ -272,7 +272,7 @@ const SidebarContent = props => {
 
             <li className="menu-title mt-3">More</li>*/}
             <li>
-              <Link to="/dashboard" className="waves-effect">
+              <Link onClick={() => props.showRightSidebarAction(false)} to="/dashboard" className="waves-effect">
                 <i className='bx bxs-dashboard'></i>
                 <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
