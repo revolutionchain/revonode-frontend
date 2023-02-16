@@ -334,7 +334,7 @@ const SidebarContent = props => {
               <Col xl={12} lg={12} sm={12} className="mb-2">
                 <div 
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave} className="mb-4" style={{textAlign: "center", backgroundColor: "#1b1b1b", width: "fit-content"}}>
+            onMouseLeave={handleMouseLeave} className="mb-4 p-2" style={props.type == "small" && isHover ? {textAlign: "center", backgroundColor: "#1b1b1b", width: "fit-content"} : {textAlign: "center", backgroundColor: "#1b1b1b"} }>
                   <Button
                     color={buttonStakingState ? "danger" : "primary"}
                     onClick={() => {

@@ -92,7 +92,7 @@ const PeersDataWidget = props => {
                           <div className='main-divs-content'>
                             <div style={{ display: "flex", width: "100%" }}>
                               <div style={{ width: "30%" }}>
-
+                                #
                               </div>
                               <div style={{ width: "70%" }}>
                                 {i + 1}
@@ -213,7 +213,7 @@ const PeersDataWidget = props => {
                           <div className='main-divs-content'>
                             <div style={{ display: "flex", width: "100%" }}>
                               <div style={{ width: "30%" }}>
-
+                                #
                               </div>
                               <div style={{ width: "70%" }}>
                                 {i + 1}
