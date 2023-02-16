@@ -25,7 +25,7 @@ const StakingDataWidget = props => {
 
 
   }, [props.listunspentState])
-  
+
 
 
   return (
@@ -42,7 +42,7 @@ const StakingDataWidget = props => {
                 <h4 className="card-title mb-2">My UTXOs</h4>
                 <hr />
 
-                <div class="table-responsive">
+                <div class="table-responsive main-tables-container">
                   <table class="table mb-0 table">
                     <thead>
                       <tr>
@@ -71,7 +71,57 @@ const StakingDataWidget = props => {
                       }
                     </tbody>
                   </table>
-                </div>
+                </div>{
+                  orderedState && (orderedState).map(e => {
+                    return (
+                <div key={e.txid + "responsive"} className='main-divs-container'>
+                  <div className='main-divs-title'>
+                    <h5><i className="bx bx-hash"></i> TX id</h5>
+                    <span>{e.txid}</span>
+                  </div>
+                  <div className='main-divs-content'>
+                    <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="fas fa-coins"></i> Amount
+                      </div>
+                      <div style={{width: "70%"}}>
+                        <b>{e.amount + " RVO"}</b>
+                      </div>
+                    </div>
+                    <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="bx bx-down-arrow-circle"></i> Address
+                      </div>
+                      <div style={{width: "70%"}}>
+                      {e.address}
+                      </div>
+                    </div>
+                    <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="bx bx-data"></i> Vout
+                      </div>
+                      <div style={{width: "70%"}}>
+                      {e.vout}
+                      </div>
+                    </div>
+                    <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="bx bx bx-label"></i> Label
+                      </div>
+                      <div style={{width: "70%"}}>
+                      {e.label}
+                      </div>
+                    </div>
+                    <div style={{display: "flex", width: "100%"}}>
+                      <div style={{width: "30%"}}>
+                        <i className="bx bx-check-shield"></i> Confirms
+                      </div>
+                      <div style={{width: "70%"}} className={e.confirmations < 500 ? "text-warning" : "text-primary"}>
+                      {e.confirmations}
+                      </div>
+                    </div>
+                  </div>
+                </div>)})}
               </CardBody>
             </Card>
           </Col>

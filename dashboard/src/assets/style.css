@@ -877,6 +877,18 @@ a {
   }
 }
 
+.main-divs-container {
+  display: none;
+}
+
+@media (max-width: 930px){
+  .main-tables-container {
+    display: none;
+  }
+  .main-divs-container{
+    display: initial;
+  }
+}
 
 @media (max-width: 768px){
   .container-g {    
