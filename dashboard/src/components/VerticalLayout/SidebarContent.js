@@ -237,6 +237,12 @@ const SidebarContent = props => {
      setIsHover(false);
   };
 
+  const handleToggle = () => { 
+    if(document.body.clientWidth <= 993){
+      props.tToggle()
+    } 
+  }
+
   return (
     <React.Fragment>
       {success_dlg ? (
@@ -282,21 +288,21 @@ const SidebarContent = props => {
 
             <li className="menu-title mt-3">More</li>*/}
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/dashboard" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/dashboard" className="waves-effect">
                 <i className='bx bxs-dashboard'></i>
                 <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/staking" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/staking" className="waves-effect">
                 <i className='mdi mdi-pickaxe'></i>
                 <span key="t-ui-elements">{props.t("Staking")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/wallet" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/wallet" className="waves-effect">
                 <i className='bx bx-wallet'></i>
                 <span key="t-ui-elements">{props.t("Wallet")}</span>
               </Link>
@@ -304,7 +310,7 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/blocks" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/blocks" className="waves-effect">
                 <i className='bx bxs-component'></i>
                 <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
@@ -312,14 +318,14 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/peers" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/peers" className="waves-effect">
                 <i className='bx bx-radar'></i>
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
 
             <li>
-              <Link onClick={() => { document.body.clientWidth >= 993 ? null : props.tToggle()}} to="/tips" className="waves-effect">
+              <Link onClick={() => handleToggle()} to="/tips" className="waves-effect">
                 <i className='bx bx bxs-rocket'></i>
                 <span key="t-ui-elements">{props.t("Tips")}</span>
               </Link>
