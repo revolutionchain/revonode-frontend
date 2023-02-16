@@ -272,21 +272,21 @@ const SidebarContent = props => {
 
             <li className="menu-title mt-3">More</li>*/}
             <li>
-              <Link onClick={() => props.showRightSidebarAction(false)} to="/dashboard" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/dashboard" className="waves-effect">
                 <i className='bx bxs-dashboard'></i>
                 <span key="t-ui-elements">{props.t("Dashboard")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/staking" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/staking" className="waves-effect">
                 <i className='mdi mdi-pickaxe'></i>
                 <span key="t-ui-elements">{props.t("Staking")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/wallet" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/wallet" className="waves-effect">
                 <i className='bx bx-wallet'></i>
                 <span key="t-ui-elements">{props.t("Wallet")}</span>
               </Link>
@@ -294,7 +294,7 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link to="/blocks" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/blocks" className="waves-effect">
                 <i className='bx bxs-component'></i>
                 <span key="t-ui-elements">{props.t("Blocks")}</span>
               </Link>
@@ -302,14 +302,14 @@ const SidebarContent = props => {
 
 
             <li>
-              <Link to="/peers" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/peers" className="waves-effect">
                 <i className='bx bx-radar'></i>
                 <span key="t-ui-elements">{props.t("Peers")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/tips" className="waves-effect">
+              <Link onClick={() => props.tToggle()} to="/tips" className="waves-effect">
                 <i className='bx bx bxs-rocket'></i>
                 <span key="t-ui-elements">{props.t("Tips")}</span>
               </Link>

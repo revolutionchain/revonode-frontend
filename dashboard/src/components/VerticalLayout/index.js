@@ -86,6 +86,25 @@ class Layout extends Component {
     }
   };
 
+  
+  tToggle = () => {
+    /*
+      set logic for changing sidebar
+    */
+    if (document.body.clientWidth >= 993) {
+      //desktop view
+      if (this.props.leftSideBarType === "default") {
+        this.props.changeSidebarType("small");
+      } else if (this.props.leftSideBarType === "small" || this.props.leftSideBarType === "compact") {
+        this.props.changeSidebarType("default");
+      }
+    } else {
+      //mobile view
+      document.body.classList.toggle("sidebar-enable");
+      this.props.changeSidebarType("default");
+    }
+  }
+
   //hides right sidebar on body click
   hideRightbar = (event) => {
     var rightbar = document.getElementById("right-bar");
@@ -126,7 +145,7 @@ class Layout extends Component {
             type={this.props.leftSideBarType}
             isMobile={this.state.isMobile}
             typedUser={this.props.userTyped}
-            showRightSidebarAction={this.props.showRightSidebarAction}
+            tToggle={this.tToggle}
     />}
 
           <div
