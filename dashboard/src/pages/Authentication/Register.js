@@ -174,15 +174,15 @@ const Register = props => {
                           ) : null}
                           <div style={{ display: `flex`, alignItems: `center` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={userIcon} />
-                            <input className='data-input' type='text' name='user' placeholder="Enter email" onChange={(e) => handleInputs(e)}></input>
+                            <input autocomplete="off" className='data-input' type='text' name='user' placeholder="Enter email" onChange={(e) => handleInputs(e)}></input>
                           </div>
                           <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={passIcon} />
-                            <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Enter password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
+                            <div autocomplete="off" className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='pass' placeholder="Enter password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
                           </div>
                           <div style={{ display: `flex`, alignItems: `center` }}>
                             <img style={{ width: `30px`, height: `30px`, marginTop: `5px` }} src={passIcon} />
-                            <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rePass' placeholder="Repeat password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
+                            <div autocomplete="off" className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rePass' placeholder="Repeat password" onChange={(e) => handleInputs(e)}></input><button onClick={() => handlePassButton()} style={{ height: `30px`, border: `none`, backgroundColor: `transparent` }}><img style={{ width: `40px`, height: `30px` }} src={passButtonState ? openEye : closedEye} /></button></div>
                           </div>
                         </AvForm>
                       </div>

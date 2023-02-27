@@ -196,15 +196,15 @@ export default function Seventhpage({ currentPage, setCurrentPage }) {
                 <div>
                     <div style={{ display: `flex`, alignItems: `center` }}>
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={userIcon} />
-                        <input className='data-input' type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
+                        <input autocomplete="off" className='data-input' type='text' name='rpcUser' placeholder="Username" onChange={(e) => handleInput(e)}></input>
                     </div>
                     <div style={{ display: `flex`, alignItems: `center`, margin: `5px 0` }}>
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                        <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
+                        <div className='data-input input-container'><input autocomplete="off" className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rpcPass' placeholder="Password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                     </div>
                     <div style={{ display: `flex`, alignItems: `center` }}>
                         <img style={{ width: `30px`, height: `30px`, paddingTop: `5px` }} src={passIcon} />
-                        <div className='data-input input-container'><input className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
+                        <div className='data-input input-container'><input autocomplete="off" className='data-input' style={{ width: `100%`, border: `none` }} type={passButtonState ? 'password' : 'text'} name='rpcRePass' placeholder="Repeat password" onChange={(e) => handleInput(e)}></input><button onClick={() => handlePassButton()} style={{height: `30px`, border: `none`, backgroundColor: `transparent`}}><img style={{width: `40px`, height: `30px`}} src={passButtonState ? openEye : closedEye}/></button></div>
                     </div>
                     {/*<input style={{ width: `60%`, fontSize: `16px` }} value={input.nodeName} type='text' name='nodeName' placeholder="Write a Node name" onChange={(e) => handleInput(e)}></input>*/}
                 </div>
