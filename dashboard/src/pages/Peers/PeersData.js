@@ -17,9 +17,9 @@ const PeersDataWidget = props => {
     props.peersData.length && (props.ipLocationData).map((e, i) => {
       let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
 
-      if (currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]) {
+      if (currentPeerData?.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData?.addr)?.split(":")[0]) {
         externalPeers.push(e);
-      } else if (currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]) {
+      } else if (currentPeerData?.network == "not_publicly_routable" || (currentPeerData?.addrlocal)?.split(":")[0] == (currentPeerData?.addr)?.split(":")[0]) {
         localPeers.push(e);
       }
     })
