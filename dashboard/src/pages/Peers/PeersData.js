@@ -59,7 +59,7 @@ const PeersDataWidget = props => {
                     <tbody>{externalPeersState && externalPeersState.map((e, i) => {
                       let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
 
-                      if (currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]) {
+                      if (currentPeerData && (currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0])) {
                         return (
                           <tr>
                             <th style={{ borderBottom: "none" }} scope="row">{i + 1}</th>
@@ -85,7 +85,7 @@ const PeersDataWidget = props => {
                   externalPeersState && externalPeersState.map((e, i) => {
                     let currentPeerData = (props.peersData).find(j => j.addr == e.addr)
 
-                    if (currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0]) {
+                    if (currentPeerData && (currentPeerData.network !== 'not_publicly_routable' && (currentPeerData?.addrlocal)?.split(":")[0] !== (currentPeerData.addr).split(":")[0])) {
                       return (
                         <div key={e.txid + "responsive"} className='main-divs-container'>
                           <div class="dropdown-divider"></div>
@@ -182,7 +182,7 @@ const PeersDataWidget = props => {
                       {
                         localPeersState && localPeersState.map((e, i) => {
                           let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
-                          if (currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]) {
+                          if (currentPeerData && (currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0])) {
                             return (
                               <tr>
                                 <th style={{ borderBottom: "none" }} scope="row">{i + 1}</th>
@@ -206,7 +206,7 @@ const PeersDataWidget = props => {
                 {
                   localPeersState && localPeersState.map((e, i) => {
                     let currentPeerData = (props.peersData).find(j => j.addr == e.addr);
-                    if (currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0]) {
+                    if (currentPeerData && (currentPeerData.network == "not_publicly_routable" || (currentPeerData?.addrlocal).split(":")[0] == (currentPeerData.addr).split(":")[0])) {
                       return (
                         <div key={e.txid + "responsive"} className='main-divs-container'>
                           <div class="dropdown-divider"></div>
