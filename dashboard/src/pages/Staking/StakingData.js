@@ -46,13 +46,13 @@ const StakingDataWidget = props => {
       <Row>
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>
+            {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>*/}
             
-            <div className="">
+            <div style={{display: "inline-block", float: "right"}} className="m-2 mb-4">
                               <Button
                                 color={"primary"}
                                 onClick={() => {
-                                  //setconfirm_alert(true)
+                                  setconfirm_alert(true)
                                 } }
                                 id="sa-success"
                               >
