@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
+import SweetAlert from "react-bootstrap-sweetalert"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
 const StakingDataWidget = props => {
 
   const [orderedState, setOrderedState] = useState(false);
+
+
+  
+
+  const [confirm_alert, setconfirm_alert] = useState(false)
+  const [confirm_alert2, setconfirm_alert2] = useState(false)
+  //const [success_msg, setsuccess_msg] = useState(false)
+  const [success_dlg, setsuccess_dlg] = useState(false)
+  const [dynamic_title, setdynamic_title] = useState("")
+  const [dynamic_description, setdynamic_description] = useState("")
+  const [error_dlg, seterror_dlg] = useState(false)
+
 
   useEffect(() => {
     let orderedList = props.listunspentState;
@@ -34,6 +47,32 @@ const StakingDataWidget = props => {
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>
+            
+            <div className="">
+                              <Button
+                                color={buttonWifiState ? "primary" : "secondary"}
+                                onClick={buttonWifiState ? () => {
+                                  setconfirm_alert(true)
+                                } : () => { }}
+                                id="sa-success"
+                              >
+                                UTXO Split
+                              </Button>
+                            </div>
+                            {confirm_alert ? (
+                              <SweetAlert
+                                title="Are you sure?"
+                                warning
+                                showCancel
+                                confirmButtonText="Yes, modify it!"
+                                confirmBtnBsStyle="success"
+                                cancelBtnBsStyle="danger"
+                                onConfirm={() => {}}
+                                onCancel={() => setconfirm_alert(false)}
+                              >
+                                Your Node Wifi data will be modified!
+                              </SweetAlert>
+                            ) : null}
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
             <br></br>
             <br></br>
