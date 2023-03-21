@@ -50,10 +50,10 @@ const StakingDataWidget = props => {
             
             <div className="">
                               <Button
-                                color={buttonWifiState ? "primary" : "secondary"}
-                                onClick={buttonWifiState ? () => {
-                                  setconfirm_alert(true)
-                                } : () => { }}
+                                color={"primary"}
+                                onClick={() => {
+                                  //setconfirm_alert(true)
+                                } }
                                 id="sa-success"
                               >
                                 UTXO Split
