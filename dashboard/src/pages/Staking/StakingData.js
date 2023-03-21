@@ -61,16 +61,16 @@ const StakingDataWidget = props => {
                             </div>
                             {confirm_alert ? (
                               <SweetAlert
-                                title="Are you sure?"
-                                warning
+                                title="UTXO Splitting"
                                 showCancel
-                                confirmButtonText="Yes, modify it!"
+                                confirmBtnText="Manual"
+                                cancelBtnText="Automatic"
                                 confirmBtnBsStyle="success"
-                                cancelBtnBsStyle="danger"
+                                cancelBtnBsStyle="success"
                                 onConfirm={() => {}}
                                 onCancel={() => setconfirm_alert(false)}
                               >
-                                Your Node Wifi data will be modified!
+                                Available Balance
                               </SweetAlert>
                             ) : null}
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
