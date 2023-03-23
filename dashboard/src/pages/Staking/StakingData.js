@@ -56,6 +56,7 @@ const StakingDataWidget = props => {
                                   setconfirm_alert(true)
                                 } }
                                 id="sa-success"
+                                style={{margin: "0"}}
                               >
                                 UTXO Split
                               </Button>
@@ -71,8 +72,8 @@ const StakingDataWidget = props => {
                                 onConfirm={() => {}}
                                 onCancel={() => setconfirm_alert(false)}
                               >
-                                <img src={uxtoImg}></img>
-                                Available Balance
+                                <img style={{display: "block", margin: "0 auto 10px 0", width: "70px", border: "2px solid", borderRadius: "50px"}} src={uxtoImg}></img>
+                                <span style={{display: "block"}}>Available Balance</span>
                                 {(props.nodeData[9].balance).toFixed(8) + " RVO"}
                               </SweetAlert>
                             ) : null}
