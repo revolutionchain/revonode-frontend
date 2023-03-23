@@ -9,6 +9,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 const StakingDataWidget = props => {
 
   const [orderedState, setOrderedState] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
 
 
@@ -76,7 +77,7 @@ const StakingDataWidget = props => {
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>*/}
 
-            <div style={{  float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
