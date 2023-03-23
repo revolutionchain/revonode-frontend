@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
+import uxtoImg from '../../assets/images/uxto.png';
 import SweetAlert from "react-bootstrap-sweetalert"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
@@ -70,7 +71,9 @@ const StakingDataWidget = props => {
                                 onConfirm={() => {}}
                                 onCancel={() => setconfirm_alert(false)}
                               >
+                                <img src={uxtoImg}></img>
                                 Available Balance
+                                {(props.nodeData[9].balance).toFixed(8) + " RVO"}
                               </SweetAlert>
                             ) : null}
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
