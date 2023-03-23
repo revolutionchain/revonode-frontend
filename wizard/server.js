@@ -1328,6 +1328,36 @@ app.post('/api/getstakinginfo', (req, res, next) => {
   res.send(response);
 })
 
+
+app.post('/api/walletunlock', async (req, res, next) => {
+  const { walletPassword, user, pass } = req.body;
+
+  
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  if(walletPassword){
+    execFile('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+      if (errShowMaster) {
+        res.send("The wallet password entered was incorrect.");
+      } else {
+        res.send("ok");        
+      }
+    });    
+  }else {
+    res.send("Invalid Password");
+  }
+
+})
+
 app.post('/api/walletunlockforstaking', async (req, res, next) => {
   const { walletPassword, user, pass } = req.body;
 
@@ -1397,7 +1427,7 @@ app.post('/api/getver', (req, res, next) => {
   res.send(result);
 })
 
-app.post('/api/utxo', (req, res, next) => {
+app.post('/api/splitutxosforaddress', (req, res, next) => {
   const { utxoValues, user, pass } = req.body;
   let userIsCreated = checkUserCreated();
   let authResult;
@@ -1411,8 +1441,26 @@ app.post('/api/utxo', (req, res, next) => {
   }
 
   
-//  let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
-console.log(utxoValues);
+  let result = execFileSync('bash', ['/home/revo/nodeutils', '-splitutxos', utxoValues.min, utxoValues.max], { encoding: 'utf8' });  
+  res.send('ok');
+})
+
+
+app.post('/api/mergeunspent', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
+  let result = execFileSync('bash', ['/home/revo/nodeutils', '-mergeunspent', '500'], { encoding: 'utf8' });  
   res.send('ok');
 })
 

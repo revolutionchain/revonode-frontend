@@ -3,6 +3,7 @@ import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import uxtoImg from '../../assets/images/uxto.png';
+import uxtoMergeImg from '../../assets/images/merge.png';
 import SweetAlert from "react-bootstrap-sweetalert"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
@@ -12,6 +13,7 @@ const StakingDataWidget = props => {
   const [orderedState, setOrderedState] = useState(false);
   const typedUser = useSelector(state => state.Login.userTyped);
   const [currentUrl, setCurrentUrl] = useState("");
+  const [walletPassState, setWalletPassState] = useState(false);
 
 
 
@@ -58,24 +60,91 @@ const StakingDataWidget = props => {
 
   }, [props.listunspentState])
 
-  
-  function handleButton() {
-      fetch(`${currentUrl}/utxo`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass})
-      }).then(data => data.text())
-        .then(res => {
-          if ((res).includes("ok")) {
-            console.log("uxto response: ok");
-          }
-        });
+
+  function handleSplitButton() {
+    fetch(`${currentUrl}/splitutxosforaddress`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass })
+    }).then(data => data.text())
+      .then(res => {
+        if ((res).includes("ok")) {
+          console.log("uxto response: ok");
+        }
+      });
+  }
+
+
+  function handleMergeButton() {
+    let titleRes;
+    let descriptionRes;
+    let invalidPassChar = false;
+    if (walletPassState) {
+      if (walletPassState.includes(" ")) {
+        invalidPassChar = true;
+      }
     }
 
-  
+    if (!walletPassState || invalidPassChar) {
+      titleRes = "Wallet password error!"
+      descriptionRes = "You must enter a valid password!"
+      setconfirm_alert2(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    }
+
+
+    let objData = {
+      walletPassword: walletPassState,
+      user: props.typedUser.user,
+      pass: props.typedUser.pass
+    }
+    fetch(`${currentUrl}/walletunlockforstaking`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        if ((res).includes("ok")) {
+          fetch(`${currentUrl}/mergeunspent`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(objData)
+          }).then(data => data.text())
+            .then(res => {
+
+              if ((res).includes("ok")) {
+                titleRes = "UTXO Merge Success!"
+                descriptionRes = "UTXO Merge done successfully";
+                setconfirm_alert2(false);
+                setsuccess_dlg(true);
+                setdynamic_title(titleRes);
+                setdynamic_description(descriptionRes);
+                setButtonStakingState(!buttonStakingState);
+              }
+            })
+        } else {
+          titleRes = "Wallet password error!"
+          descriptionRes = res;
+          setconfirm_alert2(false);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+          return seterror_dlg(true)
+        }
+      });
+
+
+  }
 
 
   !confirm_alert && isManual && setIsManual(false);
@@ -83,6 +152,36 @@ const StakingDataWidget = props => {
   return (
     <React.Fragment>
       <Row>
+        {success_dlg ? (
+          <SweetAlert
+            success
+            title={dynamic_title}
+            showConfirm={true}
+            timeout={0}
+            onConfirm={() => {
+              setsuccess_dlg(false)
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
+
+        {error_dlg ? (
+          <SweetAlert
+            error
+            title={dynamic_title}
+            showConfirm={dynamic_title.includes("Wallet password error!") ? false : true}
+            timeout={dynamic_title.includes("Wallet password error!") ? 2 : 0}
+            onConfirm={() => {
+              setTimeout(() => {
+                seterror_dlg(false)
+                setconfirm_alert2(true);
+              }, 2000)
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>*/}
@@ -108,13 +207,16 @@ const StakingDataWidget = props => {
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="success"
                 onConfirm={() => {
-                  if(!isManual){
+                  if (!isManual) {
                     setIsManual(true);
-                  }else {
-                    handleButton();
+                  } else {
+                    handleSplitButton();
                   }
                 }}
-                onCancel={() => setconfirm_alert(false)}
+                onCancel={() => {
+                  //setconfirm_alert(false)
+                  handleSplitButton();
+                }}
               >
                 <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>
                 <span style={{ display: "block" }}>Available Balance</span>
@@ -126,7 +228,7 @@ const StakingDataWidget = props => {
                       name="min"
                       label="Minimum"
                       defaultValue={100}
-                      onChange={(e) => {setInputValue({...inputValue, min: e.target.value}) }}
+                      onChange={(e) => { setInputValue({ ...inputValue, min: e.target.value }) }}
                       className="form-control"
                       placeholder="Enter minimum value"
                       type="text"
@@ -140,7 +242,7 @@ const StakingDataWidget = props => {
                       name="max"
                       label="Maximum"
                       defaultValue={100}
-                      onChange={(e) => {setInputValue({...inputValue, max: e.target.value}) }}
+                      onChange={(e) => { setInputValue({ ...inputValue, max: e.target.value }) }}
                       className="form-control"
                       placeholder="Enter maximum value"
                       type="text"
@@ -151,7 +253,44 @@ const StakingDataWidget = props => {
                 </div>}
               </SweetAlert>
             ) : null}
-            <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
+            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+              <Button
+                color={"primary"}
+                onClick={() => {
+                  setconfirm_alert2(true)
+                }}
+                id="sa-success"
+                style={{ margin: "0" }}
+              >
+                UTXO Merge
+              </Button>
+            </div>
+            {confirm_alert2 ? (
+              <SweetAlert
+                title="UTXO Merge"
+                showCancel={false}
+                confirmBtnText={"Confirm"}
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  handleMergeButton();
+                }}
+                onCancel={() => {
+                  setconfirm_alert2(false)
+                }}
+              >
+                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoMergeImg}></img>
+                <p>{"Enter your wallet unlock password to confirm the merging of all your utxos."}</p>
+                {<input
+                  type="password"
+                  className="form-control"
+                  placeholder="Enter Wallet Password"
+                  onChange={(e) => {
+                    setWalletPassState(e.target.value);
+                  }}
+                />}
+              </SweetAlert>
+            ) : null}
             <br></br>
             <br></br>
             <Card style={{ width: "100%" }}>
