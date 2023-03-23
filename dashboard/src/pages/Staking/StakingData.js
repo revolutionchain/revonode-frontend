@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import uxtoImg from '../../assets/images/uxto.png';
 import SweetAlert from "react-bootstrap-sweetalert"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
@@ -10,6 +11,7 @@ const StakingDataWidget = props => {
 
   const [orderedState, setOrderedState] = useState(false);
   const typedUser = useSelector(state => state.Login.userTyped);
+  const [currentUrl, setCurrentUrl] = useState("");
 
 
 
@@ -31,6 +33,14 @@ const StakingDataWidget = props => {
   })
 
   useEffect(() => {
+    let url;
+    if ((window.location.hostname).includes("revo.host")) {
+      url = `https://${window.location.hostname}/api`
+    } else {
+      url = `http://${window.location.hostname}:3001/api`
+    }
+
+    setCurrentUrl(url);
     let orderedList = props.listunspentState;
 
     orderedList.sort(function (a, b) {
