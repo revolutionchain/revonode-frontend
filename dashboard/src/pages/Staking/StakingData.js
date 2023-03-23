@@ -64,7 +64,7 @@ const StakingDataWidget = props => {
         });
     }
 
-  }
+  
 
 
   !confirm_alert && isManual && setIsManual(false);
