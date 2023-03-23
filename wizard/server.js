@@ -1397,7 +1397,7 @@ app.post('/api/getver', (req, res, next) => {
   res.send(result);
 })
 
-app.post('/api/uxto', (req, res, next) => {
+app.post('/api/utxo', (req, res, next) => {
   const { utxoValue, user, pass } = req.body;
   let userIsCreated = checkUserCreated();
   let authResult;
