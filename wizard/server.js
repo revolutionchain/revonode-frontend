@@ -1397,6 +1397,24 @@ app.post('/api/getver', (req, res, next) => {
   res.send(result);
 })
 
+app.post('/api/uxto', (req, res, next) => {
+  const { utxoValue, user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
+//  let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
+console.log(uxtoValue);
+  res.send('ok');
+})
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 

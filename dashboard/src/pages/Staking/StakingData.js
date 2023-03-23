@@ -11,7 +11,7 @@ const StakingDataWidget = props => {
   const [orderedState, setOrderedState] = useState(false);
 
 
-  
+
 
   const [confirm_alert, setconfirm_alert] = useState(false)
   const [confirm_alert2, setconfirm_alert2] = useState(false)
@@ -21,6 +21,13 @@ const StakingDataWidget = props => {
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
 
+
+
+  const [isManual, setIsManual] = useState(false);
+  const [inputValue, setInputValue] = useState({
+    min: 100,
+    max: 100
+  })
 
   useEffect(() => {
     let orderedList = props.listunspentState;
@@ -40,7 +47,27 @@ const StakingDataWidget = props => {
 
   }, [props.listunspentState])
 
+  
+  function handleButton() {
+      fetch(`${currentUrl}/utxo`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ uxtoValues: inputValue, user: typedUser.user, pass: typedUser.pass})
+      }).then(data => data.text())
+        .then(res => {
+          if ((res).includes("ok")) {
+            console.log("uxto response: ok");
+          }
+        });
+    }
 
+  }
+
+
+  !confirm_alert && isManual && setIsManual(false);
 
   return (
     <React.Fragment>
@@ -48,35 +75,71 @@ const StakingDataWidget = props => {
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>*/}
-            
-            <div style={{display: "inline-block", float: "right"}} className="m-2 mb-4">
-                              <Button
-                                color={"primary"}
-                                onClick={() => {
-                                  setconfirm_alert(true)
-                                } }
-                                id="sa-success"
-                                style={{margin: "0"}}
-                              >
-                                UTXO Split
-                              </Button>
-                            </div>
-                            {confirm_alert ? (
-                              <SweetAlert
-                                title="UTXO Splitting"
-                                showCancel
-                                confirmBtnText="Manual"
-                                cancelBtnText="Automatic"
-                                confirmBtnBsStyle="success"
-                                cancelBtnBsStyle="success"
-                                onConfirm={() => {}}
-                                onCancel={() => setconfirm_alert(false)}
-                              >
-                                <img style={{display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px"}} src={uxtoImg}></img>
-                                <span style={{display: "block"}}>Available Balance</span>
-                                {(props.nodeData[9].balance).toFixed(8) + " RVO"}
-                              </SweetAlert>
-                            ) : null}
+
+            <div style={{  float: "right", display: "none" }} className="m-2 mb-4">
+              <Button
+                color={"primary"}
+                onClick={() => {
+                  setconfirm_alert(true)
+                }}
+                id="sa-success"
+                style={{ margin: "0" }}
+              >
+                UTXO Split
+              </Button>
+            </div>
+            {confirm_alert ? (
+              <SweetAlert
+                title="UTXO Splitting"
+                showCancel={!isManual}
+                confirmBtnText={isManual ? "Confirm" : "Manual"}
+                cancelBtnText="Automatic"
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="success"
+                onConfirm={() => {
+                  if(!isManual){
+                    setIsManual(true);
+                  }else {
+                    handleButton();
+                  }
+                }}
+                onCancel={() => setconfirm_alert(false)}
+              >
+                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>
+                <span style={{ display: "block" }}>Available Balance</span>
+                {(props.nodeData[9].balance).toFixed(8) + " RVO"}
+                {isManual && <div style={{ display: "flex" }}>
+                  <div>
+                    <label>Minimum</label>
+                    <input
+                      name="min"
+                      label="Minimum"
+                      defaultValue={100}
+                      onChange={(e) => {setInputValue({...inputValue, min: e.target.value}) }}
+                      className="form-control"
+                      placeholder="Enter minimum value"
+                      type="text"
+                      style={{}}
+                      required
+                    ></input>
+                  </div>
+                  <div>
+                    <label>Maximum</label>
+                    <input
+                      name="max"
+                      label="Maximum"
+                      defaultValue={100}
+                      onChange={(e) => {setInputValue({...inputValue, max: e.target.value}) }}
+                      className="form-control"
+                      placeholder="Enter maximum value"
+                      type="text"
+                      style={{}}
+                      required
+                    ></input>
+                  </div>
+                </div>}
+              </SweetAlert>
+            ) : null}
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Merge</button>
             <br></br>
             <br></br>
@@ -117,59 +180,60 @@ const StakingDataWidget = props => {
                 </div>{
                   orderedState && (orderedState).map(e => {
                     return (
-                <div key={e.txid + "responsive"} className='main-divs-container'>
-                  <div class="dropdown-divider"></div>
-                  <div className='main-divs-content'>
-                  <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="bx bx-hash"></i> TX id
-                      </div>
-                      <div style={{width: "70%"}}>
-                      <a target="_blank" className={e.confirmations < 500 ? "text-muted" : ""} href={`${props.nodeData[11].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a>
-                      </div>
-                    </div>
-                    <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="fas fa-coins"></i> Amount
-                      </div>
-                      <div style={{width: "70%"}}>
-                        <b>{e.amount + " RVO"}</b>
-                      </div>
-                    </div>
-                    <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="bx bx-down-arrow-circle"></i> Address
-                      </div>
-                      <div style={{width: "70%"}}>
-                      {e.address}
-                      </div>
-                    </div>
-                    <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="bx bx-data"></i> Vout
-                      </div>
-                      <div style={{width: "70%"}}>
-                      {e.vout}
-                      </div>
-                    </div>
-                    <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="bx bx bx-label"></i> Label
-                      </div>
-                      <div style={{width: "70%"}}>
-                      {e.label}
-                      </div>
-                    </div>
-                    <div style={{display: "flex", width: "100%"}}>
-                      <div style={{width: "30%"}}>
-                        <i className="bx bx-check-shield"></i> Confirms
-                      </div>
-                      <div style={{width: "70%"}} className={e.confirmations < 500 ? "text-warning" : "text-primary"}>
-                      {e.confirmations}
-                      </div>
-                    </div>
-                  </div>
-                </div>)})}
+                      <div key={e.txid + "responsive"} className='main-divs-container'>
+                        <div class="dropdown-divider"></div>
+                        <div className='main-divs-content'>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="bx bx-hash"></i> TX id
+                            </div>
+                            <div style={{ width: "70%" }}>
+                              <a target="_blank" className={e.confirmations < 500 ? "text-muted" : ""} href={`${props.nodeData[11].EXPLORER_URL}tx/${e.txid}`}>{e.txid} </a>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="fas fa-coins"></i> Amount
+                            </div>
+                            <div style={{ width: "70%" }}>
+                              <b>{e.amount + " RVO"}</b>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="bx bx-down-arrow-circle"></i> Address
+                            </div>
+                            <div style={{ width: "70%" }}>
+                              {e.address}
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="bx bx-data"></i> Vout
+                            </div>
+                            <div style={{ width: "70%" }}>
+                              {e.vout}
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="bx bx bx-label"></i> Label
+                            </div>
+                            <div style={{ width: "70%" }}>
+                              {e.label}
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", width: "100%" }}>
+                            <div style={{ width: "30%" }}>
+                              <i className="bx bx-check-shield"></i> Confirms
+                            </div>
+                            <div style={{ width: "70%" }} className={e.confirmations < 500 ? "text-warning" : "text-primary"}>
+                              {e.confirmations}
+                            </div>
+                          </div>
+                        </div>
+                      </div>)
+                  })}
               </CardBody>
             </Card>
           </Col>
