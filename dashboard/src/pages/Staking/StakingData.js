@@ -130,7 +130,6 @@ const StakingDataWidget = props => {
                 setsuccess_dlg(true);
                 setdynamic_title(titleRes);
                 setdynamic_description(descriptionRes);
-                setButtonStakingState(!buttonStakingState);
               }
             })
         } else {
