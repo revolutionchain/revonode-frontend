@@ -1442,6 +1442,7 @@ app.post('/api/splitutxosforaddress', (req, res, next) => {
 
   
   let result = execFileSync('bash', ['/home/revo/nodeutils', '-splitutxos', utxoValues.min, utxoValues.max], { encoding: 'utf8' });  
+  console.log(result);
   res.send('ok');
 })
 
@@ -1461,6 +1462,7 @@ app.post('/api/mergeunspent', (req, res, next) => {
 
   
   let result = execFileSync('bash', ['/home/revo/nodeutils', '-mergeunspent', '500'], { encoding: 'utf8' });  
+  console.log(result);
   res.send('ok');
 })
 
