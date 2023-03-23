@@ -1345,7 +1345,7 @@ app.post('/api/walletunlock', async (req, res, next) => {
   }
 
   if(walletPassword){
-    execFile('bash', ['/home/revo/nodeutils', '-walletunlockforstaking', walletPassword], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
+    execFile('bash', ['/home/revo/nodeutils', '-walletunlock', walletPassword], (errShowMaster, stdoutShowMaster, stderrShowMaster) => {
       if (errShowMaster) {
         res.send("The wallet password entered was incorrect.");
       } else {
@@ -1460,8 +1460,11 @@ app.post('/api/mergeunspent', (req, res, next) => {
     return res.status(404).send("Error: Route protected")
   }
 
+
+  let master = execSync('cat /home/revo/master', { encoding: 'utf8' });
+  master = master.slice(0, master.length - 1);
   
-  let result = execFileSync('bash', ['/home/revo/nodeutils', '-mergeunspent', '500'], { encoding: 'utf8' });  
+  let result = execFileSync('bash', ['/home/revo/nodeutils', '-mergeunspent', master, '500'], { encoding: 'utf8' });  
   console.log(result);
   res.send('ok');
 })

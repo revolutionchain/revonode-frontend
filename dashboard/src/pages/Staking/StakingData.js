@@ -103,7 +103,7 @@ const StakingDataWidget = props => {
       user: typedUser.user,
       pass: typedUser.pass
     }
-    fetch(`${currentUrl}/walletunlockforstaking`, {
+    fetch(`${currentUrl}/walletunlock`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
