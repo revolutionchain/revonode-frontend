@@ -61,14 +61,20 @@ const StakingDataWidget = props => {
   }, [props.listunspentState])
 
 
-  function handleSplitButton() {
+  function handleSplitButton(value) {
+    let objData;
+    if(value){
+      objData = {utxoValues: value, user: typedUser.user, pass: typedUser.pass };
+    }else {
+      objData = { utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass };
+    }
     fetch(`${currentUrl}/splitutxosforaddress`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass })
+      body: JSON.stringify(objData)
     }).then(data => data.text())
       .then(res => {
         if ((res).includes("ok")) {
@@ -214,7 +220,7 @@ const StakingDataWidget = props => {
                 }}
                 onCancel={() => {
                   //setconfirm_alert(false)
-                  handleSplitButton();
+                  handleSplitButton({min: 100, max: 100});
                 }}
               >
                 <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>
