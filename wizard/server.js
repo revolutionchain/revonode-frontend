@@ -1398,7 +1398,7 @@ app.post('/api/getver', (req, res, next) => {
 })
 
 app.post('/api/utxo', (req, res, next) => {
-  const { utxoValue, user, pass } = req.body;
+  const { utxoValues, user, pass } = req.body;
   let userIsCreated = checkUserCreated();
   let authResult;
 
@@ -1412,7 +1412,7 @@ app.post('/api/utxo', (req, res, next) => {
 
   
 //  let result = execFileSync('bash', ['/home/revo/nodeutils', '-v'], { encoding: 'utf8' });  
-console.log(uxtoValue);
+console.log(utxoValues);
   res.send('ok');
 })
 

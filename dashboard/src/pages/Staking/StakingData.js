@@ -66,7 +66,7 @@ const StakingDataWidget = props => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ uxtoValues: inputValue, user: typedUser.user, pass: typedUser.pass})
+        body: JSON.stringify({ utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass})
       }).then(data => data.text())
         .then(res => {
           if ((res).includes("ok")) {
