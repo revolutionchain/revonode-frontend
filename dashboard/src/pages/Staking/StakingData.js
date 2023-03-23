@@ -100,8 +100,8 @@ const StakingDataWidget = props => {
 
     let objData = {
       walletPassword: walletPassState,
-      user: props.typedUser.user,
-      pass: props.typedUser.pass
+      user: typedUser.user,
+      pass: typedUser.pass
     }
     fetch(`${currentUrl}/walletunlockforstaking`, {
       method: 'POST',
