@@ -72,7 +72,7 @@ const StakingDataWidget = props => {
                                 onConfirm={() => {}}
                                 onCancel={() => setconfirm_alert(false)}
                               >
-                                <img style={{display: "block", margin: "0 auto 10px 0", width: "70px", border: "2px solid", borderRadius: "50px"}} src={uxtoImg}></img>
+                                <img style={{display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px"}} src={uxtoImg}></img>
                                 <span style={{display: "block"}}>Available Balance</span>
                                 {(props.nodeData[9].balance).toFixed(8) + " RVO"}
                               </SweetAlert>
