@@ -78,6 +78,7 @@ const StakingDataWidget = props => {
       titleRes = "Wallet password error!"
       descriptionRes = "You must enter a valid password!"
       setconfirm_alert2(false);
+      setconfirm_alert(false);
       setdynamic_title(titleRes);
       setdynamic_description(descriptionRes);
       return seterror_dlg(true)
@@ -107,6 +108,7 @@ const StakingDataWidget = props => {
           titleRes = "Wallet password error!"
           descriptionRes = res;
           setconfirm_alert2(false);
+          setconfirm_alert(false);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
           return seterror_dlg(true)
@@ -234,8 +236,8 @@ const StakingDataWidget = props => {
               <SweetAlert
                 title="UTXO Splitting"
                 showCancel={!isManual}
-                confirmBtnText={isManual ? "Confirm" : "Manual"}
-                cancelBtnText="Automatic"
+                confirmBtnText={isManual || !walletUnlocked ? "Confirm" : "Manual"}
+                cancelBtnText={!walletUnlocked ? "Cancel" : "Automatic"}
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="success"
                 onConfirm={() => {
