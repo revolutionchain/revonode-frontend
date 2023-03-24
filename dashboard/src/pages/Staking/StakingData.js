@@ -135,12 +135,12 @@ const StakingDataWidget = props => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(objData)
-    }).then(data => data.text())
+    }).then(data => data.json())
       .then(res => {
-        if ((res).includes("ok")) {
+        if (res.splitted || res.txid) {
           titleRes = "UTXO Split Success!"
-          descriptionRes = "UTXO Split done successfully";
-          setconfirm_alert2(false);
+          descriptionRes = res.txid ? [<span>Transaction Id</span>, <strong>{res.txid}</strong>] : "UTXO Split done successfully";
+          setconfirm_alert(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
@@ -164,12 +164,12 @@ const StakingDataWidget = props => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(objData)
-    }).then(data => data.text())
+    }).then(data => data.json())
       .then(res => {
 
-        if ((res).includes("ok")) {
+        if (res.txid) {
           titleRes = "UTXO Merge Success!"
-          descriptionRes = "UTXO Merge done successfully";
+          descriptionRes = [<span>Transaction Id</span>, <strong>{res.txid}</strong>];
           setconfirm_alert2(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
