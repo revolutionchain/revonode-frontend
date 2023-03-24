@@ -100,7 +100,7 @@ const StakingDataWidget = props => {
     }).then(data => data.text())
       .then(res => {
         if ((res).includes("ok")) {
-          setWalletPassState(true);
+          setWalletUnlocked(true);
           if (merge) {
             handleMergeButton();
           }
@@ -209,7 +209,11 @@ const StakingDataWidget = props => {
             onConfirm={() => {
               setTimeout(() => {
                 seterror_dlg(false)
-                setconfirm_alert2(true);
+                if(dynamic_title.includes("Merge")){
+                  setconfirm_alert2(true);
+                }else {
+                  setconfirm_alert(true);
+                }
               }, 2000)
             }}
           >
