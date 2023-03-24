@@ -33,6 +33,7 @@ const StakingDataWidget = props => {
     min: 100,
     max: 100
   })
+  const [walletUnlocked, setWalletUnlocked] = useState(false);
 
   useEffect(() => {
     let url;
@@ -61,30 +62,9 @@ const StakingDataWidget = props => {
   }, [props.listunspentState])
 
 
-  function handleSplitButton(value) {
-    let objData;
-    if(value){
-      objData = {utxoValues: value, user: typedUser.user, pass: typedUser.pass };
-    }else {
-      objData = { utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass };
-    }
-    fetch(`${currentUrl}/splitutxosforaddress`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(objData)
-    }).then(data => data.text())
-      .then(res => {
-        if ((res).includes("ok")) {
-          console.log("uxto response: ok");
-        }
-      });
-  }
+  function checkWalletPass(merge) {
 
 
-  function handleMergeButton() {
     let titleRes;
     let descriptionRes;
     let invalidPassChar = false;
@@ -104,7 +84,7 @@ const StakingDataWidget = props => {
     }
 
 
-    let objData = {
+    let ObjData = {
       walletPassword: walletPassState,
       user: typedUser.user,
       pass: typedUser.pass
@@ -115,29 +95,14 @@ const StakingDataWidget = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(objData)
+      body: JSON.stringify(ObjData)
     }).then(data => data.text())
       .then(res => {
         if ((res).includes("ok")) {
-          fetch(`${currentUrl}/mergeunspent`, {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(objData)
-          }).then(data => data.text())
-            .then(res => {
-
-              if ((res).includes("ok")) {
-                titleRes = "UTXO Merge Success!"
-                descriptionRes = "UTXO Merge done successfully";
-                setconfirm_alert2(false);
-                setsuccess_dlg(true);
-                setdynamic_title(titleRes);
-                setdynamic_description(descriptionRes);
-              }
-            })
+          setWalletPassState(true);
+          if(merge){
+            handleMergeButton();
+          }
         } else {
           titleRes = "Wallet password error!"
           descriptionRes = res;
@@ -147,12 +112,71 @@ const StakingDataWidget = props => {
           return seterror_dlg(true)
         }
       });
+  }
 
 
+  function handleSplitButton(value) {
+
+
+    let titleRes;
+    let descriptionRes;
+    let objData;
+    if (value) {
+      objData = { utxoValues: value, user: typedUser.user, pass: typedUser.pass };
+    } else {
+      objData = { utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass };
+    }
+    if ((res).includes("ok")) {
+      fetch(`${currentUrl}/splitutxosforaddress`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objData)
+      }).then(data => data.text())
+        .then(res => {
+          if ((res).includes("ok")) {
+            titleRes = "UTXO Split Success!"
+            descriptionRes = "UTXO Split done successfully";
+            setconfirm_alert2(false);
+            setsuccess_dlg(true);
+            setdynamic_title(titleRes);
+            setdynamic_description(descriptionRes);
+          }
+        })
+    }
+  }
+
+
+  function handleMergeButton() {
+    let titleRes;
+    let descriptionRes;
+    fetch(`${currentUrl}/mergeunspent`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+
+        if ((res).includes("ok")) {
+          titleRes = "UTXO Merge Success!"
+          descriptionRes = "UTXO Merge done successfully";
+          setconfirm_alert2(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }
+      })
   }
 
 
   !confirm_alert && isManual && setIsManual(false);
+  !confirm_alert && walletUnlocked && setWalletUnlocked(false);
+
 
   return (
     <React.Fragment>
@@ -212,50 +236,70 @@ const StakingDataWidget = props => {
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="success"
                 onConfirm={() => {
-                  if (!isManual) {
-                    setIsManual(true);
-                  } else {
-                    handleSplitButton();
+                  if(!walletUnlocked){
+                    checkWalletPass();
+                  }else {
+                    if (!isManual) {
+                      setIsManual(true);
+                    } else {
+                      handleSplitButton();
+                    }
                   }
                 }}
                 onCancel={() => {
-                  //setconfirm_alert(false)
-                  handleSplitButton({min: 100, max: 100});
+                  if(!walletUnlocked){
+                    setconfirm_alert(false);
+                  }else {
+                    handleSplitButton({ min: 100, max: 100 });
+                  }
                 }}
               >
-                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>
-                <span style={{ display: "block" }}>Available Balance</span>
-                {(props.nodeData[9].balance).toFixed(8) + " RVO"}
-                {isManual && <div style={{ display: "flex" }}>
+                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>{
+                  walletUnlocked ? <div>
+                    <span style={{ display: "block" }}>Available Balance</span>
+                    <strong>{(props.nodeData[9].balance).toFixed(8) + " RVO"}</strong>
+                    {isManual && <div style={{ display: "flex" }}>
+                      <div>
+                        <label>Minimum</label>
+                        <input
+                          name="min"
+                          label="Minimum"
+                          defaultValue={100}
+                          onChange={(e) => { setInputValue({ ...inputValue, min: e.target.value }) }}
+                          className="form-control"
+                          placeholder="Enter minimum value"
+                          type="text"
+                          style={{}}
+                          required
+                        ></input>
+                      </div>
+                      <div>
+                        <label>Maximum</label>
+                        <input
+                          name="max"
+                          label="Maximum"
+                          defaultValue={100}
+                          onChange={(e) => { setInputValue({ ...inputValue, max: e.target.value }) }}
+                          className="form-control"
+                          placeholder="Enter maximum value"
+                          type="text"
+                          style={{}}
+                          required
+                        ></input>
+                      </div>
+                    </div>}
+                  </div> : 
                   <div>
-                    <label>Minimum</label>
-                    <input
-                      name="min"
-                      label="Minimum"
-                      defaultValue={100}
-                      onChange={(e) => { setInputValue({ ...inputValue, min: e.target.value }) }}
-                      className="form-control"
-                      placeholder="Enter minimum value"
-                      type="text"
-                      style={{}}
-                      required
-                    ></input>
-                  </div>
-                  <div>
-                    <label>Maximum</label>
-                    <input
-                      name="max"
-                      label="Maximum"
-                      defaultValue={100}
-                      onChange={(e) => { setInputValue({ ...inputValue, max: e.target.value }) }}
-                      className="form-control"
-                      placeholder="Enter maximum value"
-                      type="text"
-                      style={{}}
-                      required
-                    ></input>
-                  </div>
-                </div>}
+                  <p>{"Enter your wallet unlock password to continue with utxo split."}</p>
+                  {<input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter Wallet Password"
+                    onChange={(e) => {
+                      setWalletPassState(e.target.value);
+                    }}
+                  />}
+                  </div>}
               </SweetAlert>
             ) : null}
             <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
@@ -278,7 +322,7 @@ const StakingDataWidget = props => {
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="danger"
                 onConfirm={() => {
-                  handleMergeButton();
+                  checkWalletPass(true);
                 }}
                 onCancel={() => {
                   setconfirm_alert2(false)
