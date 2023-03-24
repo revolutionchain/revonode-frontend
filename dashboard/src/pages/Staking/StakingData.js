@@ -84,7 +84,7 @@ const StakingDataWidget = props => {
     }
 
 
-    let ObjData = {
+    let objData = {
       walletPassword: walletPassState,
       user: typedUser.user,
       pass: typedUser.pass
@@ -95,12 +95,12 @@ const StakingDataWidget = props => {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(ObjData)
+      body: JSON.stringify(objData)
     }).then(data => data.text())
       .then(res => {
         if ((res).includes("ok")) {
           setWalletPassState(true);
-          if(merge){
+          if (merge) {
             handleMergeButton();
           }
         } else {
@@ -126,32 +126,35 @@ const StakingDataWidget = props => {
     } else {
       objData = { utxoValues: inputValue, user: typedUser.user, pass: typedUser.pass };
     }
-    if ((res).includes("ok")) {
-      fetch(`${currentUrl}/splitutxosforaddress`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(objData)
-      }).then(data => data.text())
-        .then(res => {
-          if ((res).includes("ok")) {
-            titleRes = "UTXO Split Success!"
-            descriptionRes = "UTXO Split done successfully";
-            setconfirm_alert2(false);
-            setsuccess_dlg(true);
-            setdynamic_title(titleRes);
-            setdynamic_description(descriptionRes);
-          }
-        })
-    }
+    fetch(`${currentUrl}/splitutxosforaddress`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        if ((res).includes("ok")) {
+          titleRes = "UTXO Split Success!"
+          descriptionRes = "UTXO Split done successfully";
+          setconfirm_alert2(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }
+      })
   }
 
 
   function handleMergeButton() {
     let titleRes;
     let descriptionRes;
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass
+    }
+    
     fetch(`${currentUrl}/mergeunspent`, {
       method: 'POST',
       headers: {
@@ -236,9 +239,9 @@ const StakingDataWidget = props => {
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="success"
                 onConfirm={() => {
-                  if(!walletUnlocked){
+                  if (!walletUnlocked) {
                     checkWalletPass();
-                  }else {
+                  } else {
                     if (!isManual) {
                       setIsManual(true);
                     } else {
@@ -247,9 +250,9 @@ const StakingDataWidget = props => {
                   }
                 }}
                 onCancel={() => {
-                  if(!walletUnlocked){
+                  if (!walletUnlocked) {
                     setconfirm_alert(false);
-                  }else {
+                  } else {
                     handleSplitButton({ min: 100, max: 100 });
                   }
                 }}
@@ -288,18 +291,18 @@ const StakingDataWidget = props => {
                         ></input>
                       </div>
                     </div>}
-                  </div> : 
-                  <div>
-                  <p>{"Enter your wallet unlock password to continue with utxo split."}</p>
-                  {<input
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter Wallet Password"
-                    onChange={(e) => {
-                      setWalletPassState(e.target.value);
-                    }}
-                  />}
-                  </div>}
+                  </div> :
+                    <div>
+                      <p>{"Enter your wallet unlock password to continue with utxo split."}</p>
+                      {<input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter Wallet Password"
+                        onChange={(e) => {
+                          setWalletPassState(e.target.value);
+                        }}
+                      />}
+                    </div>}
               </SweetAlert>
             ) : null}
             <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
