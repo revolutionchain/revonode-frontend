@@ -139,7 +139,7 @@ const StakingDataWidget = props => {
       .then(res => {
         if (res.splitted || res.txid) {
           titleRes = "UTXO Split Success!"
-          descriptionRes = res.txid ? [<span style={{display: "block"}}>Transaction Id</span>, <strong style={{display: "block"}}>{res.txid}</strong>] : "UTXO Split done successfully";
+          descriptionRes = res.txid ? [<span style={{display: "block"}}>Transaction Id</span>, <a target='_blank' href={`https://mainnet.revo.network/tx/${res.txid}`}><strong>{res.txid}</strong></a>] : "UTXO Split done successfully";
           setconfirm_alert(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
@@ -169,7 +169,7 @@ const StakingDataWidget = props => {
 
         if (res.txid) {
           titleRes = "UTXO Merge Success!"
-          descriptionRes = [<span style={{display: "block"}}>Transaction Id</span>, <strong style={{display: "block"}}>{res.txid}</strong>];
+          descriptionRes = [<span style={{display: "block"}}>Transaction Id</span>, <a target='_blank' href={`https://mainnet.revo.network/tx/${res.txid}`}><strong>{res.txid}</strong></a>];
           setconfirm_alert2(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
@@ -287,7 +287,6 @@ const StakingDataWidget = props => {
                         <input
                           name="max"
                           label="Maximum"
-                          defaultValue={100}
                           onChange={(e) => { setInputValue({ ...inputValue, max: e.target.value }) }}
                           className="form-control"
                           placeholder="Enter maximum value"
