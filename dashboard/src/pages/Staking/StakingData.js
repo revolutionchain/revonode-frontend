@@ -263,7 +263,7 @@ const StakingDataWidget = props => {
                   }
                 }}
               >
-                {isManual && <Button color={'danger'} onClick={() => setconfirm_alert(false)}>X</Button>}
+                {isManual && <Button color={'danger'} style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => setconfirm_alert(false)}>X</Button>}
                 <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>{
                   walletUnlocked ? <div>
                     <span style={{ display: "block" }}>Available Balance</span>
@@ -337,7 +337,7 @@ const StakingDataWidget = props => {
                   setconfirm_alert2(false)
                 }}
               >
-              {confirm_alert2 && <Button color={'danger'} onClick={() => setconfirm_alert(false)}>X</Button>}
+              {confirm_alert2 && <Button color={'danger'} style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => setconfirm_alert2(false)}>X</Button>}
                 <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoMergeImg}></img>
                 <p>{"Enter your wallet unlock password to confirm the merging of all your utxos."}</p>
                 {<input
