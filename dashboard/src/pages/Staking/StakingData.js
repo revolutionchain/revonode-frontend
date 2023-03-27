@@ -224,7 +224,7 @@ const StakingDataWidget = props => {
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  m-2 mb-4">UTXO Split</button>*/}
 
-            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
@@ -310,7 +310,7 @@ const StakingDataWidget = props => {
                     </div>}
               </SweetAlert>
             ) : null}
-            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
