@@ -92,6 +92,40 @@ const PeersDataWidget = props => {
   return (
     <React.Fragment>
       <Row>
+        {success_dlg ? (
+          <SweetAlert
+            success
+            title={dynamic_title}
+            showConfirm={true}
+            timeout={0}
+            onConfirm={() => {
+              setsuccess_dlg(false)
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
+
+        {error_dlg ? (
+          <SweetAlert
+            error
+            title={dynamic_title}
+            showConfirm={dynamic_title.includes("Wallet password error!") ? false : true}
+            timeout={dynamic_title.includes("Wallet password error!") ? 2 : 0}
+            onConfirm={() => {
+              setTimeout(() => {
+                seterror_dlg(false)
+                if(dynamic_title.includes("Merge")){
+                  setconfirm_alert2(true);
+                }else {
+                  setconfirm_alert(true);
+                }
+              }, 2000)
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary mx-2 mb-4">Add Node</button>*/}
