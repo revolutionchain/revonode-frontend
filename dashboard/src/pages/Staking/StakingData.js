@@ -137,7 +137,7 @@ const StakingDataWidget = props => {
       body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
-        if (res.splitted || res.txid) {
+        if (res.splited || res.txid) {
           titleRes = "UTXO Split Success!"
           descriptionRes = res.txid ? [<span style={{display: "block"}}>Transaction Id</span>, <a target='_blank' href={`https://mainnet.revo.network/tx/${res.txid}`}><strong>{res.txid}</strong></a>] : "UTXO Split done successfully";
           setconfirm_alert(false);
