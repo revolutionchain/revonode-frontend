@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
+import SweetAlert from "react-bootstrap-sweetalert"
 import Flag from 'react-world-flags'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
@@ -10,6 +11,21 @@ const PeersDataWidget = props => {
   const [localPeersState, setLocalPeersState] = useState(false);
   const [externalPeersState, setExternalPeersState] = useState(false);
 
+
+  
+
+  const [confirm_alert, setconfirm_alert] = useState(false)
+  const [confirm_alert2, setconfirm_alert2] = useState(false)
+  //const [success_msg, setsuccess_msg] = useState(false)
+  const [success_dlg, setsuccess_dlg] = useState(false)
+  const [dynamic_title, setdynamic_title] = useState("")
+  const [dynamic_description, setdynamic_description] = useState("")
+  const [error_dlg, seterror_dlg] = useState(false)
+
+
+  const [inputValue, setInputValue] = useState({
+    ip: "",
+  })
 
   useEffect(() => {
     let localPeers = [];
@@ -33,7 +49,56 @@ const PeersDataWidget = props => {
       <Row>
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary mx-2 mb-4">Add Node</button>
+            {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary mx-2 mb-4">Add Node</button>*/}
+            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+              <Button
+                color={"primary"}
+                onClick={() => {
+                  setconfirm_alert(true)
+                }}
+                id="sa-success"
+                style={{ margin: "0" }}
+              >
+                Add Node
+              </Button>
+            </div>
+            {confirm_alert ? (
+              <SweetAlert
+                title="Add a Node"
+                showCancel
+                warning
+                confirmBtnText={"Ok"}
+                cancelBtnText={"Cancel"}
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                }}
+                onCancel={() => {
+                    setconfirm_alert(false);
+                }}
+              >
+                {
+                  <div>                
+                    
+                    {<div style={{ display: "flex" }}>
+                      <div>
+                        <label>Node IP</label>
+                        <input
+                          name="ip"
+                          label="Node IP"
+                          onChange={(e) => { setInputValue({ ...inputValue, ip: e.target.value }) }}
+                          className="form-control"
+                          placeholder="Enter a Node IP "
+                          type="text"
+                          style={{}}
+                          required
+                        ></input>
+                      </div>
+                      </div>}
+                  </div> 
+                  }
+              </SweetAlert>
+            ) : null}
             <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Clear Banned</button>
             <br></br>
             <br></br>
