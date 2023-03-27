@@ -13,6 +13,7 @@ const PeersDataWidget = props => {
   const [localPeersState, setLocalPeersState] = useState(false);
   const [externalPeersState, setExternalPeersState] = useState(false);
   const typedUser = useSelector(state => state.Login.userTyped);
+  const [currentUrl, setCurrentUrl] = useState("");
 
 
   
@@ -31,6 +32,14 @@ const PeersDataWidget = props => {
   })
 
   useEffect(() => {
+    let url;
+    if ((window.location.hostname).includes("revo.host")) {
+      url = `https://${window.location.hostname}/api`
+    } else {
+      url = `http://${window.location.hostname}:3001/api`
+    }
+
+    setCurrentUrl(url);
     let localPeers = [];
     let externalPeers = [];
     props.peersData.length && (props.ipLocationData).map((e, i) => {
