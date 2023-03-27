@@ -111,7 +111,6 @@ const PeersDataWidget = props => {
               <SweetAlert
                 title="Add a Node"
                 showCancel
-                warning
                 confirmBtnText={"Add"}
                 cancelBtnText={"Cancel"}
                 confirmBtnBsStyle="success"
@@ -123,7 +122,7 @@ const PeersDataWidget = props => {
                     setconfirm_alert(false);
                 }}
               >
-              <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={addNodeImg}></img>
+              <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={addNodeImg}></img>
                 {
                   <div>                
                     {<div style={{}}>

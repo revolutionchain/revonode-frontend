@@ -1472,6 +1472,28 @@ app.post('/api/mergeunspent', (req, res, next) => {
   res.send(result);
 })
 
+
+
+app.post('/api/addnode', (req, res, next) => {
+  const { user, pass, ipValue } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+  
+  let result = execFileSync('bash', ['/home/revo/nodeutils', '-addnode', ipValue], { encoding: 'utf8' });  
+  res.send("ok");
+})
+
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {
