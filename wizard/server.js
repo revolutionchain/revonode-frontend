@@ -1489,7 +1489,11 @@ app.post('/api/addnode', (req, res, next) => {
 
   
   let result = execFileSync('bash', ['/home/revo/nodeutils', '-addnode', ipValue], { encoding: 'utf8' });  
+  if(result.includes("Error: Node already added")){
+	res.send("Error: Node already added");
+}else {
   res.send("ok");
+}
 })
 
 

@@ -83,6 +83,13 @@ const PeersDataWidget = props => {
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
+        }else if(res == "Error: Node already added"){
+          titleRes = "Add Node Error!"
+          descriptionRes = "Node already added!"
+          setconfirm_alert(false);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+          return seterror_dlg(true)
         }
       })
   }
@@ -110,17 +117,14 @@ const PeersDataWidget = props => {
           <SweetAlert
             error
             title={dynamic_title}
-            showConfirm={dynamic_title.includes("Wallet password error!") ? false : true}
-            timeout={dynamic_title.includes("Wallet password error!") ? 2 : 0}
+            showConfirm={true}
             onConfirm={() => {
-              setTimeout(() => {
                 seterror_dlg(false)
-                if(dynamic_title.includes("Merge")){
-                  setconfirm_alert2(true);
-                }else {
+                if(dynamic_title.includes("Add")){
                   setconfirm_alert(true);
+                }else {
+                  setconfirm_alert2(true);
                 }
-              }, 2000)
             }}
           >
             {dynamic_description}
