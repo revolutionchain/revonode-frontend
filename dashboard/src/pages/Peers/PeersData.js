@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import SweetAlert from "react-bootstrap-sweetalert"
 import Flag from 'react-world-flags'
+import addNodeImg from '../../assets/images/addnode.png';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 const PeersDataWidget = props => {
@@ -10,6 +12,7 @@ const PeersDataWidget = props => {
 
   const [localPeersState, setLocalPeersState] = useState(false);
   const [externalPeersState, setExternalPeersState] = useState(false);
+  const typedUser = useSelector(state => state.Login.userTyped);
 
 
   
@@ -44,6 +47,39 @@ const PeersDataWidget = props => {
   }, [props.peersData])
 
 
+  
+  function handleAddNodeButton() {
+    let titleRes;
+    let descriptionRes;
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass,
+      ipValue: inputValue.ip
+    }
+    
+    fetch(`${currentUrl}/addnode`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+
+        if (res == "ok") {
+          titleRes = "Node Added Successfully!"
+          descriptionRes = "Node added by IP successfully";
+          setconfirm_alert(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }
+      })
+  }
+
+
+
   return (
     <React.Fragment>
       <Row>
@@ -67,20 +103,21 @@ const PeersDataWidget = props => {
                 title="Add a Node"
                 showCancel
                 warning
-                confirmBtnText={"Ok"}
+                confirmBtnText={"Add"}
                 cancelBtnText={"Cancel"}
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="danger"
                 onConfirm={() => {
+                  handleAddNodeButton();
                 }}
                 onCancel={() => {
                     setconfirm_alert(false);
                 }}
               >
+              <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={addNodeImg}></img>
                 {
                   <div>                
-                    
-                    {<div style={{ display: "flex" }}>
+                    {<div style={{}}>
                       <div>
                         <label>Node IP</label>
                         <input
