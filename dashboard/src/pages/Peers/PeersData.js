@@ -114,7 +114,7 @@ const PeersDataWidget = props => {
     }).then(data => data.text())
       .then(res => {
         if (res == "ok") {
-          titleRes = "Banned Peers Cleared Successfully"
+          titleRes = "Banned Peers Cleared!"
           descriptionRes = "All banned peers has been cleared successfully!";
           setconfirm_alert2(false);
           setsuccess_dlg(true);
@@ -162,7 +162,7 @@ const PeersDataWidget = props => {
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary mx-2 mb-4">Add Node</button>*/}
-            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
@@ -212,7 +212,7 @@ const PeersDataWidget = props => {
               </SweetAlert>
             ) : null}
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Clear Banned</button>*/}
-            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
