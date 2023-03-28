@@ -1499,6 +1499,31 @@ app.post('/api/addnode', (req, res, next) => {
 })
 
 
+app.post('/api/clearbanned', (req, res, next) => {
+  const { user, pass } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
+    execFile('bash', ['/home/revo/nodeutils', '-clearbanned'], (err, stdout, stderr) => {
+      if (err) {
+        res.send("Error: Node already added");
+      } else {
+        res.send("ok");        
+      }
+    });    
+  
+})
+
+
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 

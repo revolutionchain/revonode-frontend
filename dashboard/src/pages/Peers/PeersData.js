@@ -95,6 +95,35 @@ const PeersDataWidget = props => {
   }
 
 
+  
+  function handleClearButton() {
+    let titleRes;
+    let descriptionRes;
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass
+    }
+    
+    fetch(`${currentUrl}/clearbanned`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        if (res == "ok") {
+          titleRes = "Banned Peers Cleared Successfully"
+          descriptionRes = "All banned peers has been cleared successfully!";
+          setconfirm_alert2(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }
+      })
+  }
+
 
   return (
     <React.Fragment>
@@ -182,7 +211,38 @@ const PeersDataWidget = props => {
                   }
               </SweetAlert>
             ) : null}
-            <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Clear Banned</button>
+            {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Clear Banned</button>*/}
+            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+              <Button
+                color={"primary"}
+                onClick={() => {
+                  setconfirm_alert2(true)
+                }}
+                id="sa-success"
+                style={{ margin: "0" }}
+              >
+                Clear Banned
+              </Button>
+            </div>
+            {confirm_alert2 ? (
+              <SweetAlert
+                title="Clear Banned"
+                showCancel
+                warning
+                confirmBtnText={"Confirm"}
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  handleClearButton();
+                }}
+                onCancel={() => {
+                  setconfirm_alert2(false)
+                }}
+              >
+                {/*<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoMergeImg}></img>*/}
+                <p>{"Are you sure to clear all banned peers?"}</p>
+              </SweetAlert>
+            ) : null}
             <br></br>
             <br></br>
             <Card style={{ width: "100%" }}>
