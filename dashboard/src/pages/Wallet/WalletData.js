@@ -21,6 +21,8 @@ const WalletDataWidget = props => {
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
 
+  const [walletPassState, setWalletPassState] = useState(false);
+
 
   const [continuePressed, setContinuePressed] = useState(false);
 
