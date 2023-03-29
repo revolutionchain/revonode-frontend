@@ -71,6 +71,18 @@ const WalletDataWidget = props => {
 
   }
 
+
+  const [isValidAmount, setIsValidAmount] = useState(false);
+
+  function handleAmountInput (e) {
+    let amount = e.target.value;
+    if(typeof(amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)){   
+      setIsValidAmount(true);
+    }else {
+      setIsValidAmount(false);
+    }
+  }
+
   /*
   
   function handleConfirmButton() {
@@ -194,6 +206,20 @@ const WalletDataWidget = props => {
                           placeholder="Enter a Wallet Address"
                           type="text"
                           style={isWalletValid ? {borderColor: "green"} : {borderColor: "red"}}
+                          required
+                        ></input>
+                      </div>
+                      <div>
+                        <label>Coins Amount</label>
+                        <input
+                          name="amount"
+                          label="Coins Amount"
+                          onChange={(e) => { handleAmountInput(e)}}
+                          className="form-control"
+                          placeholder="Enter Coins Amount"
+                          type="number"
+                          step={0.000000001}
+                          style={isValidAmount ? {borderColor: "green"} : {borderColor: "red"}}
                           required
                         ></input>
                       </div>
