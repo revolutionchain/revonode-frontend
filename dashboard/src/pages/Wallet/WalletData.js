@@ -49,7 +49,7 @@ const WalletDataWidget = props => {
       walletAddress: e.target.value
     }
 
-    if((walletAddress).length == 34){    
+    if((objData.walletAddress).length == 34){    
       fetch(`${currentUrl}/validateaddrress`, {
         method: 'POST',
         headers: {
