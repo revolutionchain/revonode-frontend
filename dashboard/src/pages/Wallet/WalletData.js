@@ -50,7 +50,7 @@ const WalletDataWidget = props => {
     }
 
     if((objData.walletAddress).length == 34){    
-      fetch(`${currentUrl}/validateaddrress`, {
+      fetch(`${currentUrl}/validateaddress`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -61,7 +61,7 @@ const WalletDataWidget = props => {
         .then(res => {
           if (res == "ok") {
             setIsWalletValid(true);
-          }else if(res == "error"){
+          }else if(res.includes("error")){
             setIsWalletValid(false);
           }
         })

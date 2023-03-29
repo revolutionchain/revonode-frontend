@@ -1524,7 +1524,7 @@ app.post('/api/clearbanned', (req, res, next) => {
 })
 
 
-app.post('/api/validateaddrress', (req, res, next) => {
+app.post('/api/validateaddress', (req, res, next) => {
   const { user, pass, walletAddress } = req.body;
   let userIsCreated = checkUserCreated();
   let authResult;
@@ -1538,7 +1538,7 @@ app.post('/api/validateaddrress', (req, res, next) => {
   }
 
 
-    execFile('bash', ['/home/revo/nodeutils', '-validateaddrress', walletAddress], (err, stdout, stderr) => {
+    execFile('bash', ['/home/revo/nodeutils', '-validateaddress', walletAddress], (err, stdout, stderr) => {
       if (err) {
         res.send("error: invalid wallet");
       } else {
