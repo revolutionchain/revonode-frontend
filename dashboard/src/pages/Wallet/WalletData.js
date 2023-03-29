@@ -150,7 +150,7 @@ const WalletDataWidget = props => {
       user: typedUser.user,
       pass: typedUser.pass,
       address: inputValue.address,
-      amount: inputValue.amount
+      amount: inputValue.coinsAmount
     }
     
     fetch(`${currentUrl}/sendtoaddress`, {
