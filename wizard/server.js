@@ -1548,6 +1548,34 @@ app.post('/api/validateaddress', (req, res, next) => {
   
 })
 
+
+app.post('/api/sendtoaddress', (req, res, next) => {
+  const { user, pass, address, amount } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
+    execFile('bash', ['/home/revo/nodeutils', '-sendtoaddress', address, amount], (err, stdout, stderr) => {
+      if (err) {
+        res.send("error: ");
+      } else {
+        res.send("ok");        
+      }
+    });    
+  
+})
+
+
+
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {

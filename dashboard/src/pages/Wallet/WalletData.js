@@ -11,7 +11,7 @@ const WalletDataWidget = props => {
   const typedUser = useSelector(state => state.Login.userTyped);
   const [currentUrl, setCurrentUrl] = useState("");
 
-  
+
 
   const [confirm_alert, setconfirm_alert] = useState(false)
   const [confirm_alert2, setconfirm_alert2] = useState(false)
@@ -21,6 +21,8 @@ const WalletDataWidget = props => {
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
 
+
+  const [continuePressed, setContinuePressed] = useState(false);
 
   const [inputValue, setInputValue] = useState({
     address: "",
@@ -42,14 +44,14 @@ const WalletDataWidget = props => {
   const [isWalletValid, setIsWalletValid] = useState(false);
 
 
-  function handleAddressInput (e) {
+  function handleAddressInput(e) {
     let objData = {
       user: typedUser.user,
       pass: typedUser.pass,
       walletAddress: e.target.value
     }
 
-    if((objData.walletAddress).length == 34){    
+    if ((objData.walletAddress).length == 34) {
       fetch(`${currentUrl}/validateaddress`, {
         method: 'POST',
         headers: {
@@ -61,11 +63,12 @@ const WalletDataWidget = props => {
         .then(res => {
           if (res == "ok") {
             setIsWalletValid(true);
-          }else if(res.includes("error")){
+            setInputValue({ ...inputValue, address: objData.walletAddress })
+          } else if (res.includes("error")) {
             setIsWalletValid(false);
           }
         })
-    }else {
+    } else {
       setIsWalletValid(false);
     }
 
@@ -74,27 +77,81 @@ const WalletDataWidget = props => {
 
   const [isValidAmount, setIsValidAmount] = useState(false);
 
-  function handleAmountInput (e) {
+  function handleAmountInput(e) {
     let amount = parseFloat(e.target.value);
-    if(typeof(amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)){   
+    if (typeof (amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)) {
       setIsValidAmount(true);
-    }else {
+      setInputValue({ ...inputValue, coinsAmount: amount })
+    } else {
       setIsValidAmount(false);
     }
   }
 
-  /*
+
   
-  function handleConfirmButton() {
+  function checkWalletPass() {
+
+    let titleRes;
+    let descriptionRes;
+    let invalidPassChar = false;
+    if (walletPassState) {
+      if (walletPassState.includes(" ")) {
+        invalidPassChar = true;
+      }
+    }
+
+    if (!walletPassState || invalidPassChar) {
+      titleRes = "Wallet password error!"
+      descriptionRes = "You must enter a valid password!"
+      setconfirm_alert2(false);
+      setconfirm_alert(false);
+      setdynamic_title(titleRes);
+      setdynamic_description(descriptionRes);
+      return seterror_dlg(true)
+    }
+
+
+    let objData = {
+      walletPassword: walletPassState,
+      user: typedUser.user,
+      pass: typedUser.pass
+    }
+    fetch(`${currentUrl}/walletunlock`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+        if ((res).includes("ok")) {
+          sendCoins();
+        } else {
+          titleRes = "Wallet password error!"
+          descriptionRes = res;
+          setconfirm_alert2(false);
+          setconfirm_alert(false);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+          return seterror_dlg(true)
+        }
+      });
+  }
+
+
+  
+  function sendCoins() {
     let titleRes;
     let descriptionRes;
     let objData = {
       user: typedUser.user,
       pass: typedUser.pass,
-      ipValue: inputValue.address
+      address: inputValue.address,
+      amount: inputValue.amount
     }
     
-    fetch(`${currentUrl}/validateaddrress`, {
+    fetch(`${currentUrl}/sendtoaddress`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -105,8 +162,8 @@ const WalletDataWidget = props => {
       .then(res => {
 
         if (res == "ok") {
-          titleRes = "Node Added Successfully!"
-          descriptionRes = "Node added by IP successfully";
+          titleRes = "Coins sent Successfully!"
+          descriptionRes = "Revo Coins has been sent successfully!";
           setconfirm_alert(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
@@ -121,8 +178,17 @@ const WalletDataWidget = props => {
         }
       })
   }
-*/
 
+
+  
+  !confirm_alert && isValidAmount && setIsValidAmount(false);
+  !confirm_alert && isWalletValid && setIsWalletValid(false);
+  !confirm_alert && ((inputValue.address).length || inputValue.coinsAmount !== 0 || (inputValue.walletPass).length) && setInputValue({
+    address: "",
+    coinsAmount: 0,
+    walletPass: ""
+  })  
+  !confirm_alert && continuePressed && setContinuePressed(false);
 
   const dateoptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'CET' };
 
@@ -151,12 +217,12 @@ const WalletDataWidget = props => {
             title={dynamic_title}
             showConfirm={true}
             onConfirm={() => {
-                seterror_dlg(false)
-                if(dynamic_title.includes("Add")){
-                  setconfirm_alert(true);
-                }else {
-                  setconfirm_alert2(true);
-                }
+              seterror_dlg(false)
+              if (dynamic_title.includes("Add")) {
+                setconfirm_alert(true);
+              } else {
+                setconfirm_alert2(true);
+              }
             }}
           >
             {dynamic_description}
@@ -181,51 +247,67 @@ const WalletDataWidget = props => {
               <SweetAlert
                 title="Send Coins"
                 showCancel
-                confirmBtnText={"Continue"}
+                confirmBtnText={!continuePressed ? "Continue" : "Confirm"}
                 cancelBtnText={"Cancel"}
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="danger"
                 onConfirm={() => {
-                  
+                  if(continuePressed){
+                    checkWalletPass();
+                  }else if(isValidAmount && isWalletValid) {
+                    setContinuePressed(true);
+                  }
                 }}
                 onCancel={() => {
-                    setconfirm_alert(false);
+                  setconfirm_alert(false);
                 }}
               >
-              {/*<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={addNodeImg}></img>*/}
+                {/*<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={addNodeImg}></img>*/}
                 {
-                  <div>                
-                    {<div style={{}}>
-                      <div>
-                        <label>Wallet Address</label>
-                        <input
-                          name="address"
-                          label="Wallet Address"
-                          onChange={(e) => { handleAddressInput(e)}}
-                          className="form-control"
-                          placeholder="Enter a Wallet Address"
-                          type="text"
-                          style={isWalletValid ? {borderColor: "green"} : {borderColor: "red"}}
-                          required
-                        ></input>
-                      </div>
-                      <div>
-                        <label>Coins Amount</label>
-                        <input
-                          name="amount"
-                          label="Coins Amount"
-                          onChange={(e) => { handleAmountInput(e)}}
-                          className="form-control"
-                          placeholder="Enter Coins Amount"
-                          type="number"
-                          step={0.000000001}
-                          style={isValidAmount ? {borderColor: "green"} : {borderColor: "red"}}
-                          required
-                        ></input>
-                      </div>
+                  (!isValidAmount || !isWalletValid || !continuePressed) ?
+                    <div>
+                      {<div style={{}}>
+                        <div>
+                          <label>Wallet Address</label>
+                          <input
+                            name="address"
+                            label="Wallet Address"
+                            onChange={(e) => { handleAddressInput(e) }}
+                            className="form-control"
+                            placeholder="Enter a Wallet Address"
+                            type="text"
+                            style={isWalletValid ? { borderColor: "green" } : { borderColor: "red" }}
+                            required
+                          ></input>
+                        </div>
+                        <div>
+                          <label>Coins Amount</label>
+                          <input
+                            name="amount"
+                            label="Coins Amount"
+                            onChange={(e) => { handleAmountInput(e) }}
+                            className="form-control"
+                            placeholder="Enter Coins Amount"
+                            type="number"
+                            step={0.000000001}
+                            style={isValidAmount ? { borderColor: "green" } : { borderColor: "red" }}
+                            required
+                          ></input>
+                        </div>
                       </div>}
-                  </div> 
-                  }
+                    </div> :
+                    <div>
+                      <p>{"Enter your wallet unlock password to send coins."}</p>
+                      {<input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter Wallet Password"
+                        onChange={(e) => {
+                          setWalletPassState(e.target.value);
+                        }}
+                      />}
+                    </div>
+                }
               </SweetAlert>
             ) : null}
             <br></br>
