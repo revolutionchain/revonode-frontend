@@ -1524,6 +1524,29 @@ app.post('/api/clearbanned', (req, res, next) => {
 })
 
 
+app.post('/api/validateaddrress', (req, res, next) => {
+  const { user, pass, walletAddress } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
+    execFile('bash', ['/home/revo/nodeutils', '-validateaddrress', walletAddress], (err, stdout, stderr) => {
+      if (err) {
+        res.send("error: invalid wallet");
+      } else {
+        res.send("ok");        
+      }
+    });    
+  
+})
 
 app.use(express.static(path.resolve(__dirname, "./build")))
 

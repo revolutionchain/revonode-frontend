@@ -1,15 +1,115 @@
 import React from 'react';
-import { Card, CardBody, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import SweetAlert from "react-bootstrap-sweetalert"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
 const WalletDataWidget = props => {
 
+  const typedUser = useSelector(state => state.Login.userTyped);
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  
+
+  const [confirm_alert, setconfirm_alert] = useState(false)
+  const [confirm_alert2, setconfirm_alert2] = useState(false)
+  //const [success_msg, setsuccess_msg] = useState(false)
+  const [success_dlg, setsuccess_dlg] = useState(false)
+  const [dynamic_title, setdynamic_title] = useState("")
+  const [dynamic_description, setdynamic_description] = useState("")
+  const [error_dlg, seterror_dlg] = useState(false)
+
+
+  const [inputValue, setInputValue] = useState({
+    address: "",
+    coinsAmount: 0,
+    walletPass: ""
+  })
 
   useEffect(() => {
-
+    let url;
+    if ((window.location.hostname).includes("revo.host")) {
+      url = `https://${window.location.hostname}/api`
+    } else {
+      url = `http://${window.location.hostname}:3001/api`
+    }
+    setCurrentUrl(url);
   }, [])
+
+
+  const [isWalletValid, setIsWalletValid] = useState(false);
+
+
+  function handleAddressInput (e) {
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass,
+      walletAddress: e.target.value
+    }
+
+    if((walletAddress).length == 34){    
+      fetch(`${currentUrl}/validateaddrress`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(objData)
+      }).then(data => data.text())
+        .then(res => {
+          if (res == "ok") {
+            setIsWalletValid(true);
+          }else if(res == "error"){
+            setIsWalletValid(false);
+          }
+        })
+    }else {
+      setIsWalletValid(false);
+    }
+
+  }
+
+  /*
+  
+  function handleConfirmButton() {
+    let titleRes;
+    let descriptionRes;
+    let objData = {
+      user: typedUser.user,
+      pass: typedUser.pass,
+      ipValue: inputValue.address
+    }
+    
+    fetch(`${currentUrl}/validateaddrress`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.text())
+      .then(res => {
+
+        if (res == "ok") {
+          titleRes = "Node Added Successfully!"
+          descriptionRes = "Node added by IP successfully";
+          setconfirm_alert(false);
+          setsuccess_dlg(true);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+        }else if(res == "Error: Node already added"){
+          titleRes = "Add Node Error!"
+          descriptionRes = "Node already added!"
+          setconfirm_alert(false);
+          setdynamic_title(titleRes);
+          setdynamic_description(descriptionRes);
+          return seterror_dlg(true)
+        }
+      })
+  }
+*/
 
 
   const dateoptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'CET' };
@@ -19,9 +119,89 @@ const WalletDataWidget = props => {
   return (
     <React.Fragment>
       <Row>
+        {success_dlg ? (
+          <SweetAlert
+            success
+            title={dynamic_title}
+            showConfirm={true}
+            timeout={0}
+            onConfirm={() => {
+              setsuccess_dlg(false)
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
+
+        {error_dlg ? (
+          <SweetAlert
+            error
+            title={dynamic_title}
+            showConfirm={true}
+            onConfirm={() => {
+                seterror_dlg(false)
+                if(dynamic_title.includes("Add")){
+                  setconfirm_alert(true);
+                }else {
+                  setconfirm_alert2(true);
+                }
+            }}
+          >
+            {dynamic_description}
+          </SweetAlert>
+        ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            <button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>
+            {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>*/}
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
+              <Button
+                color={"primary"}
+                onClick={() => {
+                  setconfirm_alert(true)
+                }}
+                id="sa-success"
+                style={{ margin: "0" }}
+              >
+                Send
+              </Button>
+            </div>
+            {confirm_alert ? (
+              <SweetAlert
+                title="Send Coins"
+                showCancel
+                confirmBtnText={"Continue"}
+                cancelBtnText={"Cancel"}
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  
+                }}
+                onCancel={() => {
+                    setconfirm_alert(false);
+                }}
+              >
+              {/*<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={addNodeImg}></img>*/}
+                {
+                  <div>                
+                    {<div style={{}}>
+                      <div>
+                        <label>Wallet Address</label>
+                        <input
+                          name="address"
+                          label="Wallet Address"
+                          onChange={(e) => { handleAddressInput(e)}}
+                          className="form-control"
+                          placeholder="Enter a Wallet Address"
+                          type="text"
+                          style={isWalletValid ? {borderColor: "green"} : {borderColor: "red"}}
+                          required
+                        ></input>
+                      </div>
+                      </div>}
+                  </div> 
+                  }
+              </SweetAlert>
+            ) : null}
             <br></br>
             <br></br>
             <Card style={{ width: "100%" }}>
