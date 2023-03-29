@@ -75,7 +75,7 @@ const WalletDataWidget = props => {
   const [isValidAmount, setIsValidAmount] = useState(false);
 
   function handleAmountInput (e) {
-    let amount = e.target.value;
+    let amount = parseFloat(e.target.value);
     if(typeof(amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)){   
       setIsValidAmount(true);
     }else {
