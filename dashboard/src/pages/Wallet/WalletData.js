@@ -170,9 +170,9 @@ const WalletDataWidget = props => {
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
-        }else if(res == "Error: Node already added"){
-          titleRes = "Add Node Error!"
-          descriptionRes = "Node already added!"
+        }else if(res.includes("error")){
+          titleRes = "Send Coins Error!"
+          descriptionRes = "Coins couldn't be sent!"
           setconfirm_alert(false);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
