@@ -43,7 +43,7 @@ const WalletDataWidget = props => {
     }
     setCurrentUrl(url);
 
-    let generated = (props.listtransactions).filter(e => !e?.generated);
+    let generated = (props.listtransactions).filter(e => !e?.generated).slice(0,20);
     setGeneratedList(generated);
 
 
