@@ -294,7 +294,7 @@ const WalletDataWidget = props => {
                               let value = parseFloat(e.target.value);
                               setInputValue({ ...inputValue, coinsAmount: value })
                             }}
-                            defaultValue={(inputValue.coinsAmount).length ? inputValue.coinsAmount : ""}
+                            defaultValue={(inputValue.coinsAmount).length ? (inputValue.coinsAmount).toString() : ""}
                             className="form-control"
                             placeholder="Enter Coins Amount"
                             type="number"
