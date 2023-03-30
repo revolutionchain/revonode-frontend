@@ -80,7 +80,7 @@ const WalletDataWidget = props => {
   const [isValidAmount, setIsValidAmount] = useState(false);
 
   function handleAmountInput() {
-    let amount = inputValue.coinsAmount;
+    let amount = parseFloat(inputValue.coinsAmount);
     if (typeof (amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)) {
       return true;
     } else {
@@ -291,10 +291,9 @@ const WalletDataWidget = props => {
                             name="amount"
                             label="Coins Amount"
                             onChange={(e) => {
-                              let value = parseFloat(e.target.value);
-                              setInputValue({ ...inputValue, coinsAmount: value })
+                              setInputValue({ ...inputValue, coinsAmount: e.target.value })
                             }}
-                            defaultValue={(inputValue.coinsAmount).length ? (inputValue.coinsAmount).toString() : ""}
+                            defaultValue={(inputValue.coinsAmount).length ? (inputValue.coinsAmount) : ""}
                             className="form-control"
                             placeholder="Enter Coins Amount"
                             type="number"
