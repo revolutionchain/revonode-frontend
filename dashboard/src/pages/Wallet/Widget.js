@@ -3,86 +3,87 @@ import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
-const widget = [
-    {
-        id: 1,
-        title: 'Balance',
-        text: '',
-        count: '0',
-        dollor: true,
-        icon: 'bx bx-wallet text-primary',
-        secondIcon: '',
-        percentage: '2.65%',
-        color: 'success',
-        upArrow: true
-    },
-    {
-        id: 2,
-        title: 'Unconfirmed',
-        text: '',
-        count: '0',
-        dollor: true,
-        icon: 'bx bxs-time-five text-primary',
-        secondIcon: '',
-        percentage: '4.58%',
-        color: 'danger',
-        upArrow: false
-    },
-    {
-        id: 3,
-        title: 'Immature',
-        text: '',
-        count: '0',
-        dollor: false,
-        icon: 'bx bx-left-down-arrow-circle text-primary',
-        secondIcon: '',
-        percentage: '14.33%',
-        color: 'success',
-        upArrow: true
-    },
-    {
-        id: 4,
-        title: 'Staking',
-        text: '',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-pickaxe text-primary',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
-    {
-        id: 5,
-        title: 'Wallet Version',
-        text: '',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-apple-icloud text-primary',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    },
-    {
-        id: 6,
-        title: 'TX Count',
-        text: '',
-        count: '0',
-        dollor: false,
-        icon: 'mdi mdi-database text-primary',
-        secondIcon: '',
-        percentage: '0.55%',
-        color: 'warning',
-        upArrow: true
-    }
-]
 
 
 const Widget = props => {
 
     const [ widgetState, setWidgetState ] = useState(false);
 useEffect(()=>{        
+    
+    const widget = [
+        {
+            id: 1,
+            title: 'Balance',
+            text: '',
+            count: '0',
+            dollor: true,
+            icon: 'bx bx-wallet text-primary',
+            secondIcon: '',
+            percentage: '2.65%',
+            color: 'success',
+            upArrow: true
+        },
+        {
+            id: 2,
+            title: 'Unconfirmed',
+            text: '',
+            count: '0',
+            dollor: true,
+            icon: 'bx bxs-time-five text-primary',
+            secondIcon: '',
+            percentage: '4.58%',
+            color: 'danger',
+            upArrow: false
+        },
+        {
+            id: 3,
+            title: 'Immature',
+            text: '',
+            count: '0',
+            dollor: false,
+            icon: 'bx bx-left-down-arrow-circle text-primary',
+            secondIcon: '',
+            percentage: '14.33%',
+            color: 'success',
+            upArrow: true
+        },
+        {
+            id: 4,
+            title: 'Staking',
+            text: '',
+            count: '0',
+            dollor: false,
+            icon: 'mdi mdi-pickaxe text-primary',
+            secondIcon: '',
+            percentage: '0.55%',
+            color: 'warning',
+            upArrow: true
+        },
+        {
+            id: 5,
+            title: 'Wallet Version',
+            text: '',
+            count: '0',
+            dollor: false,
+            icon: 'mdi mdi-apple-icloud text-primary',
+            secondIcon: '',
+            percentage: '0.55%',
+            color: 'warning',
+            upArrow: true
+        },
+        {
+            id: 6,
+            title: 'TX Count',
+            text: '',
+            count: '0',
+            dollor: false,
+            icon: 'mdi mdi-database text-primary',
+            secondIcon: '',
+            percentage: '0.55%',
+            color: 'warning',
+            upArrow: true
+        }
+    ]
     widget[0].count = (props.nodeData[9].balance).toFixed(8) + " RVO"
     widget[1].count = (props.nodeData[9].unconfirmed_balance).toFixed(8) + " RVO"
     widget[2].count = (props.nodeData[9].immature_balance).toFixed(8) + " RVO"

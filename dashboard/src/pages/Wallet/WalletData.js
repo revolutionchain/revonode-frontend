@@ -32,6 +32,8 @@ const WalletDataWidget = props => {
     walletPass: ""
   })
 
+  const [generatedList, setGeneratedList] = useState(false);
+
   useEffect(() => {
     let url;
     if ((window.location.hostname).includes("revo.host")) {
@@ -40,6 +42,11 @@ const WalletDataWidget = props => {
       url = `http://${window.location.hostname}:3001/api`
     }
     setCurrentUrl(url);
+
+    let generated = (props.listtransactions).filter(e => !e?.generated);
+    setGeneratedList(generated);
+
+
   }, [props.listtransactions])
 
 
@@ -337,7 +344,7 @@ const WalletDataWidget = props => {
                     </thead>
                     <tbody>
                       {
-                        (props.listtransactions).filter(e => !e?.generated).map(e => {
+                        generatedList && generatedList.map(e => {
                           return (<tr>
                             <th style={{ borderBottom: "none" }} scope="row">{e.category == 'receive' ? <i className='bx bx-left-down-arrow-circle text-primary'></i> : <i className='bx bx-right-top-arrow-circle text-danger'></i>}</th>
                             <td style={{ borderBottom: "none" }}><a target="_blank" href={props.nodeData[11].EXPLORER_URL + "address/" + e.address}>{e.address}</a></td>
@@ -352,7 +359,7 @@ const WalletDataWidget = props => {
                   </table>
                 </div>
                 {
-                  (props.listtransactions).filter(e => !e?.generated).map(e => {
+                  generatedList && generatedList.map(e => {
                     return (
                       <div key={e.txid + "responsive"} className='main-divs-container'>
                         <div class="dropdown-divider"></div>
