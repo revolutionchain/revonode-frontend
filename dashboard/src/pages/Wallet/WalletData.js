@@ -3,6 +3,7 @@ import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SweetAlert from "react-bootstrap-sweetalert"
+import walletIcon from '../../assets/images/walletmodalicon.png';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
@@ -311,6 +312,7 @@ const WalletDataWidget = props => {
                       </div>}
                     </div> :
                     <div>
+                    {<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={walletIcon}></img>}
                       <p>{"Enter your wallet unlock password to send coins."}</p>
                       {<input
                         type="password"

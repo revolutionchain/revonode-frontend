@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import uxtoImg from '../../assets/images/uxto.png';
 import uxtoMergeImg from '../../assets/images/merge.png';
 import SweetAlert from "react-bootstrap-sweetalert"
+import walletIcon from '../../assets/images/walletmodalicon.png';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 
@@ -209,6 +210,7 @@ const StakingDataWidget = props => {
             onConfirm={() => {
               setTimeout(() => {
                 seterror_dlg(false)
+                console.log(dynamic_title);
                 if(dynamic_title.includes("Merge")){
                   setconfirm_alert2(true);
                 }else {
@@ -298,6 +300,7 @@ const StakingDataWidget = props => {
                     </div>}
                   </div> :
                     <div>
+                    {<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={walletIcon}></img>}
                       <p>{"Enter your wallet unlock password to continue with utxo split."}</p>
                       {<input
                         type="password"
