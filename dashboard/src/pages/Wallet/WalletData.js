@@ -277,6 +277,7 @@ const WalletDataWidget = props => {
                             name="address"
                             label="Wallet Address"
                             onChange={(e) => { setInputValue({ ...inputValue, address: e.target.value }) }}
+                            defaultValue={(inputValue.address).length ? inputValue.address : ""}
                             className="form-control"
                             placeholder="Enter a Wallet Address"
                             type="text"
@@ -293,6 +294,7 @@ const WalletDataWidget = props => {
                               let value = parseFloat(e.target.value);
                               setInputValue({ ...inputValue, coinsAmount: value })
                             }}
+                            defaultValue={(inputValue.coinsAmount).length ? inputValue.coinsAmount : ""}
                             className="form-control"
                             placeholder="Enter Coins Amount"
                             type="number"
