@@ -65,13 +65,13 @@ const WalletDataWidget = props => {
         .then(res => {
           if (res == "ok") {
             setInputValue({ ...inputValue, address: objData.walletAddress })
-            return true;
+            setIsWalletValid(true);
           } else if (res.includes("error")) {
-            return false;
+            setIsWalletValid(false);
           }
         })
     } else {
-      return false;
+      setIsWalletValid(false);
     }
 
   }
@@ -257,9 +257,8 @@ const WalletDataWidget = props => {
                     checkWalletPass();
                   } else {
                     let amount = handleAmountInput();
-                    let address = handleAddressInput();
+                    handleAddressInput();
                     setIsValidAmount(amount);
-                    setIsWalletValid(address);
                     setContinuePressed(true);
                   }
                 }}
