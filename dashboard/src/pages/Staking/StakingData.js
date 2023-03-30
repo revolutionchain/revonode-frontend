@@ -26,6 +26,7 @@ const StakingDataWidget = props => {
   const [dynamic_title, setdynamic_title] = useState("")
   const [dynamic_description, setdynamic_description] = useState("")
   const [error_dlg, seterror_dlg] = useState(false)
+  const [pressedButton, setPressedButton] = useState("");
 
 
 
@@ -180,6 +181,9 @@ const StakingDataWidget = props => {
   }
 
 
+
+
+
   !confirm_alert && isManual && setIsManual(false);
   !confirm_alert && walletUnlocked && setWalletUnlocked(false);
 
@@ -210,8 +214,7 @@ const StakingDataWidget = props => {
             onConfirm={() => {
               setTimeout(() => {
                 seterror_dlg(false)
-                console.log(dynamic_title);
-                if(dynamic_title.includes("Merge")){
+                if(pressedButton.includes("Merge")){
                   setconfirm_alert2(true);
                 }else {
                   setconfirm_alert(true);
@@ -231,6 +234,7 @@ const StakingDataWidget = props => {
                 color={"primary"}
                 onClick={() => {
                   setconfirm_alert(true)
+                  setPressedButton("Split")
                 }}
                 id="sa-success"
                 style={{ margin: "0" }}
@@ -266,7 +270,8 @@ const StakingDataWidget = props => {
                 }}
               >
                 {confirm_alert && walletUnlocked && <Button color={'danger'} style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => setconfirm_alert(false)}>X</Button>}
-                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>{
+                {confirm_alert && <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoImg}></img>}
+                {
                   walletUnlocked ? <div>
                     <span style={{ display: "block" }}>Available Balance</span>
                     <strong>{(props.nodeData[9].balance).toFixed(8) + " RVO"}</strong>
@@ -318,6 +323,7 @@ const StakingDataWidget = props => {
                 color={"primary"}
                 onClick={() => {
                   setconfirm_alert2(true)
+                  setPressedButton("Margin")
                 }}
                 id="sa-success"
                 style={{ margin: "0" }}
@@ -340,7 +346,7 @@ const StakingDataWidget = props => {
                 }}
               >
               {confirm_alert2 && <Button color={'danger'} style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => setconfirm_alert2(false)}>X</Button>}
-                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={uxtoMergeImg}></img>
+                <img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px" }} src={walletIcon}></img>
                 <p>{"Enter your wallet unlock password to confirm the merging of all your utxos."}</p>
                 {<input
                   type="password"
