@@ -1567,7 +1567,7 @@ app.post('/api/sendtoaddress', (req, res, next) => {
       if (err) {
         res.send("error: ");
       } else {
-        res.send("ok");        
+        res.send(stdout.slice(0, stdout.length-1));        
       }
     });    
   

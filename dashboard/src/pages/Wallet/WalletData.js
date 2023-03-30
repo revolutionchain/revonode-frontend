@@ -46,11 +46,11 @@ const WalletDataWidget = props => {
   const [isWalletValid, setIsWalletValid] = useState(false);
 
 
-  function handleAddressInput(e) {
+  function handleAddressInput() {
     let objData = {
       user: typedUser.user,
       pass: typedUser.pass,
-      walletAddress: e.target.value
+      walletAddress: inputValue.address
     }
 
     if ((objData.walletAddress).length == 34) {
@@ -64,14 +64,14 @@ const WalletDataWidget = props => {
       }).then(data => data.text())
         .then(res => {
           if (res == "ok") {
-            setIsWalletValid(true);
             setInputValue({ ...inputValue, address: objData.walletAddress })
+            return true;
           } else if (res.includes("error")) {
-            setIsWalletValid(false);
+            return false;
           }
         })
     } else {
-      setIsWalletValid(false);
+      return false;
     }
 
   }
@@ -79,18 +79,17 @@ const WalletDataWidget = props => {
 
   const [isValidAmount, setIsValidAmount] = useState(false);
 
-  function handleAmountInput(e) {
-    let amount = parseFloat(e.target.value);
+  function handleAmountInput() {
+    let amount = inputValue.coinsAmount;
     if (typeof (amount) == 'number' && amount <= (props.nodeData[9].balance).toFixed(8)) {
-      setIsValidAmount(true);
-      setInputValue({ ...inputValue, coinsAmount: amount })
+      return true;
     } else {
-      setIsValidAmount(false);
+      return false;
     }
   }
 
 
-  
+
   function checkWalletPass() {
 
     let titleRes;
@@ -142,7 +141,7 @@ const WalletDataWidget = props => {
   }
 
 
-  
+
   function sendCoins() {
     let titleRes;
     let descriptionRes;
@@ -152,7 +151,7 @@ const WalletDataWidget = props => {
       address: inputValue.address,
       amount: inputValue.coinsAmount
     }
-    
+
     fetch(`${currentUrl}/sendtoaddress`, {
       method: 'POST',
       headers: {
@@ -163,14 +162,14 @@ const WalletDataWidget = props => {
     }).then(data => data.text())
       .then(res => {
 
-        if (res == "ok") {
+        if (res.length == 64) {
           titleRes = "Coins sent Successfully!"
-          descriptionRes = "Revo Coins has been sent successfully!";
+          descriptionRes = [<span style={{ display: "block" }}>Transaction Id</span>, <a target="_blank" href={`https://mainnet.revo.network/tx/${res}`}><strong>{res}</strong></a>];
           setconfirm_alert(false);
           setsuccess_dlg(true);
           setdynamic_title(titleRes);
           setdynamic_description(descriptionRes);
-        }else if(res.includes("error")){
+        } else if (res.includes("error")) {
           titleRes = "Send Coins Error!"
           descriptionRes = "Coins couldn't be sent!"
           setconfirm_alert(false);
@@ -182,14 +181,14 @@ const WalletDataWidget = props => {
   }
 
 
-  
+
   !confirm_alert && isValidAmount && setIsValidAmount(false);
   !confirm_alert && isWalletValid && setIsWalletValid(false);
   !confirm_alert && ((inputValue.address).length || inputValue.coinsAmount !== 0 || (inputValue.walletPass).length) && setInputValue({
     address: "",
     coinsAmount: 0,
     walletPass: ""
-  })  
+  })
   !confirm_alert && continuePressed && setContinuePressed(false);
 
   const dateoptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'CET' };
@@ -254,9 +253,13 @@ const WalletDataWidget = props => {
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="danger"
                 onConfirm={() => {
-                  if(continuePressed){
+                  if (continuePressed && isValidAmount && isWalletValid) {
                     checkWalletPass();
-                  }else if(isValidAmount && isWalletValid) {
+                  } else {
+                    let amount = handleAmountInput();
+                    let address = handleAddressInput();
+                    setIsValidAmount(amount);
+                    setIsWalletValid(address);
                     setContinuePressed(true);
                   }
                 }}
@@ -274,11 +277,11 @@ const WalletDataWidget = props => {
                           <input
                             name="address"
                             label="Wallet Address"
-                            onChange={(e) => { handleAddressInput(e) }}
+                            onChange={(e) => { setInputValue({ ...inputValue, address: e.target.value }) }}
                             className="form-control"
                             placeholder="Enter a Wallet Address"
                             type="text"
-                            style={isWalletValid ? { borderColor: "green" } : { borderColor: "red" }}
+                            style={continuePressed ? isWalletValid ? { borderColor: "green" } : { borderColor: "red" } : {}}
                             required
                           ></input>
                         </div>
@@ -287,12 +290,15 @@ const WalletDataWidget = props => {
                           <input
                             name="amount"
                             label="Coins Amount"
-                            onChange={(e) => { handleAmountInput(e) }}
+                            onChange={(e) => {
+                              let value = parseFloat(e.target.value);
+                              setInputValue({ ...inputValue, coinsAmount: value })
+                            }}
                             className="form-control"
                             placeholder="Enter Coins Amount"
                             type="number"
                             step={0.000000001}
-                            style={isValidAmount ? { borderColor: "green" } : { borderColor: "red" }}
+                            style={continuePressed ? isValidAmount ? { borderColor: "green" } : { borderColor: "red" } : {}}
                             required
                           ></input>
                         </div>
