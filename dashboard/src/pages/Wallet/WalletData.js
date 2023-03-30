@@ -182,14 +182,6 @@ const WalletDataWidget = props => {
 
 
 
-  !confirm_alert && isValidAmount && setIsValidAmount(false);
-  !confirm_alert && isWalletValid && setIsWalletValid(false);
-  !confirm_alert && ((inputValue.address).length || inputValue.coinsAmount !== 0 || (inputValue.walletPass).length) && setInputValue({
-    address: "",
-    coinsAmount: 0,
-    walletPass: ""
-  })
-  !confirm_alert && continuePressed && setContinuePressed(false);
 
   const dateoptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'CET' };
 
@@ -264,6 +256,14 @@ const WalletDataWidget = props => {
                 }}
                 onCancel={() => {
                   setconfirm_alert(false);
+                  setIsValidAmount(false);
+                  setIsWalletValid(false);
+                  setInputValue({
+                      address: "",
+                      coinsAmount: 0,
+                      walletPass: ""
+                    })
+                  setContinuePressed(false);
                 }}
               >
                 {/*<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={addNodeImg}></img>*/}
