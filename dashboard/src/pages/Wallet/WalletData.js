@@ -40,7 +40,7 @@ const WalletDataWidget = props => {
       url = `http://${window.location.hostname}:3001/api`
     }
     setCurrentUrl(url);
-  }, [])
+  }, [props.listtransactions])
 
 
   const [isWalletValid, setIsWalletValid] = useState(false);
@@ -240,7 +240,7 @@ const WalletDataWidget = props => {
               <SweetAlert
                 title="Send Coins"
                 showCancel
-                confirmBtnText={!continuePressed ? "Continue" : "Confirm"}
+                confirmBtnText={!continuePressed && !isValidAmount && !isWalletValid ? "Continue" : "Confirm"}
                 cancelBtnText={"Cancel"}
                 confirmBtnBsStyle="success"
                 cancelBtnBsStyle="danger"
@@ -297,7 +297,6 @@ const WalletDataWidget = props => {
                             className="form-control"
                             placeholder="Enter Coins Amount"
                             type="number"
-                            step={0.000000001}
                             style={continuePressed ? isValidAmount ? { borderColor: "green" } : { borderColor: "red" } : {}}
                             required
                           ></input>
