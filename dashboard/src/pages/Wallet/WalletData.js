@@ -231,7 +231,7 @@ const WalletDataWidget = props => {
         <Col md={12} xl={12} className="">
           <Col xl={12} >
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>*/}
-            <div style={{ display: "inline-block", float: "right", display: "none" }} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right"}} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
