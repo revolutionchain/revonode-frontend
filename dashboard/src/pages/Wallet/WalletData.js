@@ -28,6 +28,7 @@ const WalletDataWidget = props => {
 
 
   const [continuePressed, setContinuePressed] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
 
   const [inputValue, setInputValue] = useState({
     address: "",
@@ -258,7 +259,7 @@ const WalletDataWidget = props => {
                 }}>
                   <CopyToClipboard text={`${e[0]}`}
                     onCopy={() => { }}>
-                    <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
+                    <button className="btn btn-outline-success " id="CopyTooltip" >{e[0]}</button>
                   </CopyToClipboard>
                   <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={() => setTooltipOpen(!tooltipOpen)}>
                     Click to copy
