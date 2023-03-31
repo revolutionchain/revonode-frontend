@@ -65,7 +65,7 @@ const WalletDataWidget = props => {
       body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
-        let result = res.filter(e => e[1] > 0);
+        let result = res[0].filter(e => e[1] > 0);
         setAdressesList(result);
       })
 
