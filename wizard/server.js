@@ -1574,6 +1574,33 @@ app.post('/api/sendtoaddress', (req, res, next) => {
 })
 
 
+
+
+
+app.post('/api/listadressessgroupings', (req, res, next) => {
+  const { user, pass, address, amount } = req.body;
+  let userIsCreated = checkUserCreated();
+  let authResult;
+
+  
+  if(userIsCreated){
+    authResult = authUser(user, pass);
+  }
+  if(userIsCreated && !authResult){
+    return res.status(404).send("Error: Route protected")
+  }
+
+
+    execFile('bash', ['/home/revo/nodeutils', '/home/revo/daemon/revo-cli', '-datadir=/mnt/storage/.revo', 'listaddressgroupings'], (err, stdout, stderr) => {
+      if (err) {
+        res.send("error: ");
+      } else {
+        res.send(stdout);        
+      }
+    });    
+  
+})
+
 app.use(express.static(path.resolve(__dirname, "./build")))
 
 app.listen(PORT, () => {

@@ -34,6 +34,7 @@ const WalletDataWidget = props => {
   })
 
   const [generatedList, setGeneratedList] = useState(false);
+  const [addressesList, setAdressesList] = useState(false);
 
   useEffect(() => {
     let url;
@@ -44,8 +45,29 @@ const WalletDataWidget = props => {
     }
     setCurrentUrl(url);
 
-    let generated = (props.listtransactions).filter(e => !e?.generated).slice(0,20);
+    let generated = (props.listtransactions).filter(e => !e?.generated).slice(0, 20);
     setGeneratedList(generated);
+
+    let ObjData = {
+      user: typedUser.user,
+      pass: typedUser.pass
+    } 
+    
+    fetch(`${url}/listadressessgroupings`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(objData)
+    }).then(data => data.json())
+      .then(res => {
+        if (res !== "error") {
+          setAdressesList(res);
+          console.log(res);
+        } else if (res.includes("error")) {
+        }
+      })
 
 
   }, [props.listtransactions])
@@ -231,8 +253,20 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
+            {/* walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1"><div style={{
+              height: "100%", display: "flex", alignItems: "center"
+            }}>
+              <CopyToClipboard text={`${walletAddress}`}
+                onCopy={() => { }}>
+                <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
+              </CopyToClipboard>
+              <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={() => setTooltipOpen(!tooltipOpen)}>
+                Click to copy
+              </Tooltip>
+            </div>
+          </div>*/}
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>*/}
-            <div style={{ display: "inline-block", float: "right"}} className="m-2 mb-4">
+            <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
                 color={"primary"}
                 onClick={() => {
@@ -267,10 +301,10 @@ const WalletDataWidget = props => {
                   setIsValidAmount(false);
                   setIsWalletValid(false);
                   setInputValue({
-                      address: "",
-                      coinsAmount: 0,
-                      walletPass: ""
-                    })
+                    address: "",
+                    coinsAmount: 0,
+                    walletPass: ""
+                  })
                   setContinuePressed(false);
                 }}
               >
@@ -312,7 +346,7 @@ const WalletDataWidget = props => {
                       </div>}
                     </div> :
                     <div>
-                    {<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={walletIcon}></img>}
+                      {<img style={{ display: "block", margin: "0 auto 10px auto", width: "70px", border: "2px solid", borderRadius: "50px", padding: "5px" }} src={walletIcon}></img>}
                       <p>{"Enter your wallet unlock password to send coins."}</p>
                       {<input
                         type="password"
