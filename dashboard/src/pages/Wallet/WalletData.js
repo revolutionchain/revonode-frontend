@@ -3,6 +3,8 @@ import { Card, CardBody, Col, Row, Button } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SweetAlert from "react-bootstrap-sweetalert"
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Tooltip } from 'reactstrap';
 import walletIcon from '../../assets/images/walletmodalicon.png';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
@@ -62,11 +64,7 @@ const WalletDataWidget = props => {
       body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
-        if (res !== "error") {
-          setAdressesList(res);
-          console.log(res);
-        } else if (res.includes("error")) {
-        }
+        setAdressesList(res);
       })
 
 
@@ -253,18 +251,22 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            {/* walletAddress && <div className="dropdown d-none d-lg-inline-block ms-1"><div style={{
-              height: "100%", display: "flex", alignItems: "center"
-            }}>
-              <CopyToClipboard text={`${walletAddress}`}
-                onCopy={() => { }}>
-                <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
-              </CopyToClipboard>
-              <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={() => setTooltipOpen(!tooltipOpen)}>
-                Click to copy
-              </Tooltip>
-            </div>
-          </div>*/}
+            { addressesList && addressesList.filter(e => e[1] > 0).map(e=> {
+              return (
+                <div key={e[1]} className="d-none ms-1"><div style={{
+                  height: "100%", display: "flex", alignItems: "center"
+                }}>
+                  <CopyToClipboard text={`${e[0]}`}
+                    onCopy={() => { }}>
+                    <button className="btn btn-outline-success " id="CopyTooltip" >{walletAddress}</button>
+                  </CopyToClipboard>
+                  <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={() => setTooltipOpen(!tooltipOpen)}>
+                    Click to copy
+                  </Tooltip>
+                </div>
+              </div>
+              )
+            }) }
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>*/}
             <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button

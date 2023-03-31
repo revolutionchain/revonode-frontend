@@ -1590,15 +1590,9 @@ app.post('/api/listadressessgroupings', (req, res, next) => {
     return res.status(404).send("Error: Route protected")
   }
 
+  let result = execSync('/home/revo/daemon/revo-cli -datadir=/mnt/storage/.revo listaddressgroupings', { encoding: 'utf8' });
+  res.send(result);
 
-    execFile('bash', ['/home/revo/nodeutils', '/home/revo/daemon/revo-cli', '-datadir=/mnt/storage/.revo', 'listaddressgroupings'], (err, stdout, stderr) => {
-      if (err) {
-        res.send("error: ");
-      } else {
-        res.send(stdout);        
-      }
-    });    
-  
 })
 
 app.use(express.static(path.resolve(__dirname, "./build")))
