@@ -65,7 +65,8 @@ const WalletDataWidget = props => {
       body: JSON.stringify(objData)
     }).then(data => data.json())
       .then(res => {
-        setAdressesList(res);
+        let result = res.filter(e => e[1] > 0);
+        setAdressesList(result);
       })
 
 
@@ -252,7 +253,7 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            { addressesList && addressesList.filter(e => e[1] > 0).map(e=> {
+            { addressesList && addressesList.map(e=> {
               return (
                 <div key={e[1]} className="d-none ms-1"><div style={{
                   height: "100%", display: "flex", alignItems: "center"
