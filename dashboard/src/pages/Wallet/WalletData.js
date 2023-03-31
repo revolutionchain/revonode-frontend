@@ -48,7 +48,7 @@ const WalletDataWidget = props => {
     let generated = (props.listtransactions).filter(e => !e?.generated).slice(0, 20);
     setGeneratedList(generated);
 
-    let ObjData = {
+    let objData = {
       user: typedUser.user,
       pass: typedUser.pass
     } 
