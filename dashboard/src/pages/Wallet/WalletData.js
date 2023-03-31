@@ -28,7 +28,7 @@ const WalletDataWidget = props => {
 
 
   const [continuePressed, setContinuePressed] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const [tooltipOpenWallet, setTooltipOpenWallet] = React.useState(false);
 
   const [inputValue, setInputValue] = useState({
     address: "",
@@ -256,13 +256,13 @@ const WalletDataWidget = props => {
             { addressesList && addressesList.map(e=> {
               return (
                 <div key={e[1]} className="d-none ms-1"><div style={{
-                  height: "100%", display: "flex", alignItems: "center"
+                  height: "100%", display: "flex", alignItems: "center", width: "33%"
                 }}>
-                  <CopyToClipboard text={`${e[0]}`}
+                  <CopyToClipboard style={{width: "100%"}} text={`${e[0]}`}
                     onCopy={() => { }}>
                     <button className="btn btn-outline-success " id="CopyTooltip" >{e[0]}</button>
                   </CopyToClipboard>
-                  <Tooltip placement="bottom" isOpen={tooltipOpen} target="CopyTooltip" toggle={() => setTooltipOpen(!tooltipOpen)}>
+                  <Tooltip placement="bottom" isOpen={tooltipOpenWallet} target="CopyTooltip" toggle={() => setTooltipOpenWallet(!tooltipOpen)}>
                     Click to copy
                   </Tooltip>
                 </div>
