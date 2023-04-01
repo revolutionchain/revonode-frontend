@@ -262,9 +262,9 @@ const WalletDataWidget = props => {
                     onCopy={() => { }}>
                     <button className="btn btn-outline-success " id={"CopyTooltipWallet" + e[0]} >{e[0]}</button>
                   </CopyToClipboard>
-                  <div style={{ width: "34%", padding: "0 10px" }}>
+                  <button className='btn btn-outline-dark' style={{ width: "34%" }}>
                     {e[1] + " RVO"}
-                  </div>
+                  </button>
                   <Tooltip placement="bottom" isOpen={tooltipOpenWallet[e[0]]} target={"CopyTooltipWallet" + e[0]} toggle={() => {
                     let currentValue = !tooltipOpenWallet[e[0]]
                     setTooltipOpenWallet({ ...tooltipOpenWallet, [e[0]]: currentValue })
