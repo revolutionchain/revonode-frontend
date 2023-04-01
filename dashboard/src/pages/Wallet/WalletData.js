@@ -28,7 +28,7 @@ const WalletDataWidget = props => {
 
 
   const [continuePressed, setContinuePressed] = useState(false);
-  const [tooltipOpenWallet, setTooltipOpenWallet] = React.useState(false);
+  const [tooltipOpenWallet, setTooltipOpenWallet] = React.useState({});
 
   const [inputValue, setInputValue] = useState({
     address: "",
@@ -54,8 +54,8 @@ const WalletDataWidget = props => {
     let objData = {
       user: typedUser.user,
       pass: typedUser.pass
-    } 
-    
+    }
+
     fetch(`${url}/listadressessgroupings`, {
       method: 'POST',
       headers: {
@@ -253,25 +253,28 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            { addressesList && addressesList.map(e=> {
+            {addressesList && addressesList.map(e => {
               return (
                 <div key={e[1]} className="d-none ms-1"><div style={{
                   height: "100%", display: "flex", alignItems: "center", width: "50%"
                 }}>
-                  <CopyToClipboard style={{width: "66%"}} text={`${e[0]}`}
+                  <CopyToClipboard style={{ width: "66%" }} text={`${e[0]}`}
                     onCopy={() => { }}>
                     <button className="btn btn-outline-success " id={"CopyTooltipWallet" + e[0]} >{e[0]}</button>
                   </CopyToClipboard>
-                  <div style={{width: "34%", padding: "0 10px"}}>
+                  <div style={{ width: "34%", padding: "0 10px" }}>
                     {e[1] + " RVO"}
                   </div>
-                  <Tooltip placement="bottom" isOpen={tooltipOpenWallet} target={"CopyTooltipWallet" + e[0]} toggle={() => setTooltipOpenWallet(!tooltipOpenWallet)}>
+                  <Tooltip placement="bottom" isOpen={tooltipOpenWallet[e[0]]} target={"CopyTooltipWallet" + e[0]} toggle={() => {
+                    let currentValue = !tooltipOpenWallet[e[0]]
+                    setTooltipOpenWallet({ ...tooltipOpenWallet, currentValue })
+                  }}>
                     Click to copy
                   </Tooltip>
                 </div>
-              </div>
+                </div>
               )
-            }) }
+            })}
             {/*<button style={{ float: "right" }} type="button" id="sa-success" class="btn btn-secondary  mx-2 mb-4">Send</button>*/}
             <div style={{ display: "inline-block", float: "right" }} className="m-2 mb-4">
               <Button
