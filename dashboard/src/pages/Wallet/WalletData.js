@@ -267,7 +267,7 @@ const WalletDataWidget = props => {
                   </div>
                   <Tooltip placement="bottom" isOpen={tooltipOpenWallet[e[0]]} target={"CopyTooltipWallet" + e[0]} toggle={() => {
                     let currentValue = !tooltipOpenWallet[e[0]]
-                    setTooltipOpenWallet({ ...tooltipOpenWallet, currentValue })
+                    setTooltipOpenWallet({ ...tooltipOpenWallet, [e[0]]: currentValue })
                   }}>
                     Click to copy
                   </Tooltip>
