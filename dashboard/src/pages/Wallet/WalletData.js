@@ -253,10 +253,10 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
-            <h4 style={{marginBottom: "15px !important"}} className="card-title mb-2">My Change Addresses</h4>
+            <h4  className="card-title mb-3">My Change Addresses</h4>
             {addressesList && addressesList.map(e => {
               return (
-                <div style={{marginBottom: "10px"}} key={e[1]} className="d-none ms-1"><div style={{
+                <div style={{marginBottom: "10px"}} key={e[1]} className=""><div style={{
                   height: "100%", display: "flex", alignItems: "center", width: "50%"
                 }}>
                   <CopyToClipboard style={{ width: "66%"}} text={`${e[0]}`}
