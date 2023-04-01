@@ -253,16 +253,17 @@ const WalletDataWidget = props => {
         ) : null}
         <Col md={12} xl={12} className="">
           <Col xl={12} >
+            <h4 style={{marginBottom: "15px !important"}} className="card-title mb-2">My Change Addresses</h4>
             {addressesList && addressesList.map(e => {
               return (
-                <div key={e[1]} className="d-none ms-1"><div style={{
+                <div style={{marginBottom: "10px"}} key={e[1]} className="d-none ms-1"><div style={{
                   height: "100%", display: "flex", alignItems: "center", width: "50%"
                 }}>
                   <CopyToClipboard style={{ width: "66%" }} text={`${e[0]}`}
                     onCopy={() => { }}>
-                    <button className="btn btn-outline-success " id={"CopyTooltipWallet" + e[0]} >{e[0]}</button>
+                    <button style={{borderRadius: "0", borderRight: "none"}} className="btn btn-outline-success " id={"CopyTooltipWallet" + e[0]} >{e[0]}</button>
                   </CopyToClipboard>
-                  <button className='btn btn-outline-dark' style={{ width: "34%" }}>
+                  <button className='btn btn-outline-dark' style={{ width: "34%", borderRadius: "none" }}>
                     {e[1] + " RVO"}
                   </button>
                   <Tooltip placement="bottom" isOpen={tooltipOpenWallet[e[0]]} target={"CopyTooltipWallet" + e[0]} toggle={() => {
