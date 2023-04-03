@@ -966,6 +966,10 @@ a {
   cursor: initial;
 }
 
+.wallet-button {
+  border-right: none !important;
+}
+
 
 @media (max-width: 550px) {
 
