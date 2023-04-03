@@ -950,7 +950,45 @@ a {
 }
 
 
+.addresses-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.wallet-clipboard {
+  width: 66%;
+}
+
+.balance-button {
+  width: 34%;
+  cursor: initial;
+}
+
+
 @media (max-width: 550px) {
+
+  
+
+.addresses-container {
+  display: block;
+  width: 100%;
+}
+
+.wallet-clipboard {
+  width: 100%;
+}
+
+.balance-button {
+  width: 100%;
+}
+  
+.wallet-button {
+  border-right: 1px solid #2CB56B !important;
+}
+
+
   .signup-desc{
     min-height: calc(30vh - 50px);
     display: block;    
