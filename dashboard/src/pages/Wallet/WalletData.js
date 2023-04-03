@@ -256,7 +256,7 @@ const WalletDataWidget = props => {
             <h4  className="card-title mb-3">My Change Addresses</h4>
             {addressesList && addressesList.map(e => {
               return (
-                <div style={{marginBottom: "10px"}} key={e[1]} className="addresses-container"><div style={}>
+                <div style={{marginBottom: "10px"}} key={e[1]} className="addresses-container"><div>
                   <CopyToClipboard className="wallet-clipboard" text={`${e[0]}`}
                     onCopy={() => { }}>
                     <button className="btn btn-outline-success border-end-0 rounded-0 wallet-button"  id={"CopyTooltipWallet" + e[0]} >{e[0]}</button>
