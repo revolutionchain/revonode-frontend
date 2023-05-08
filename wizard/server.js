@@ -188,14 +188,16 @@ function checkUserCreated () {
 
 async function rebootedCall (){
   let userIsCreated = checkUserCreated();
+  let dashUser = getEnvValue('DASHBOARD_USER');
   if(userIsCreated){
-    let data = await globalDashboardFunction('-getwalletinfo');
+    let data = await globalDashboardFunction('-getnetworkinfo');
 
     let nodeInfo = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
     nodeInfo = JSON.parse(nodeInfo);
+    nodeName = ((nodeInfo.subversion).split("(")[1].slice(0,(nodeInfo.subversion).length - 1).slice(0,-2)).replaceAll(" ", "%20");
 
-    console.log(nodeInfo);
-    console.log(nodeInfo.walletname);
+    let response = await axios.get(`https://enrollment.revo.network/reboot.php?email=${dashUser}&node=${nodeName}`);
+    console.log("Node Rebooted Call Response: " + response.data);
   }
 }
 
