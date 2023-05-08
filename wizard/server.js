@@ -186,6 +186,23 @@ function checkUserCreated () {
   }
 }
 
+async function rebootedCall (){
+  let userIsCreated = checkUserCreated();
+  if(userIsCreated){
+    let data = await globalDashboardFunction('-getwalletinfo');
+
+    let nodeInfo = ((data).replaceAll("\\", "")).replaceAll("\n", "").replaceAll('\"', '"').replaceAll('"\\', '"').replaceAll("-of-", "_of_");
+    nodeInfo = JSON.parse(nodeInfo);
+
+    console.log(nodeInfo);
+    console.log(nodeInfo.walletname);
+  }
+}
+
+
+rebootedCall();
+
+
 app.post('/api/getdomain', (req, res, next) => {
   const { user, pass } = req.body;
   let userIsCreated = checkUserCreated();
