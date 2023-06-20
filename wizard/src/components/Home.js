@@ -3,10 +3,6 @@ import '../styles/style.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Firstpage from './wizardpages/firstpage';
-import Secondpage from './wizardpages/secondpage';
-import Thirdpage from './wizardpages/thirdpage';
-import Fourthpage from './wizardpages/fourthpage';
-import Fifthpage from './wizardpages/fifthpage';
 import Sixthpage from './wizardpages/sixthpage';
 import Seventhpage from './wizardpages/seventhpage';
 import Eighthpage from './wizardpages/eighthpage';
@@ -14,20 +10,17 @@ import Ninethpage from './wizardpages/ninethpage';
 import Tenthpage from './wizardpages/tenthpage';
 import revoLogo from '../styles/images/revo-light.png';
 import astronauteRevo1 from '../styles/images/AstronauteRevo-1.svg'
-import astronauteRevo2 from '../styles/images/AstronauteRevo-2.svg'
-import astronauteRevo3 from '../styles/images/AstronauteRevo-3.svg'
-import astronauteRevo4 from '../styles/images/AstronauteRevo-4.svg'
-import astronauteRevo5 from '../styles/images/AstronauteRevo-5.svg'
-import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
-import astronauteRevo7 from '../styles/images/AstronauteRevo-7.svg'
-import astronauteRevo8 from '../styles/images/AstronauteRevo-8.svg'
-import astronauteRevo9 from '../styles/images/AstronauteRevo-9.svg'
+import astronauteRevo2 from '../styles/images/AstronauteRevo-6.svg'
+import astronauteRevo3 from '../styles/images/AstronauteRevo-7.svg'
+import astronauteRevo4 from '../styles/images/AstronauteRevo-8.svg'
+import astronauteRevo5 from '../styles/images/AstronauteRevo-9.svg'
+import astronauteRevo6 from '../styles/images/AstronauteRevo-10.svg'
 
 
 
 export default function Home() {
     const [master, setMaster] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(6);
     const [drivesData, setDrivesData] = useState(false);
     const [ loaded, setLoaded ] = useState(false);
     const [ walletData, setWalletData ] = useState({
@@ -47,48 +40,39 @@ export default function Home() {
   
       setCurrentUrl(url);
         try{
-            let result = await axios.post(`${url}/checklocalip`);
+            let result=true;
+            /*
+            let result = await axios.post(`${url}/checklocalip`);*/
             setLoaded(result);
         }catch (err){
             window.location.reload();
         }    
         let initialPage = 1;
-        let masterState = await axios.post(`${url}/checkmaster`);
+
+        
+        let masterState;
+
+        try {
+            masterState = await axios.post(`${url}/checkmaster`);
+        }catch(err) {
+            masterState = {data: false};
+        }
+        
         setMaster(masterState.data);
-        if(masterState.data.includes("master")){
+        if(masterState.data && (masterState.data).includes("master")){
             window.location.href = `http://${window.location.hostname}/`;
         }else {
-            let getarrayinfo = await axios.post(`${url}/getarrayinfo`);
-            if (getarrayinfo.data.arrayStatus.includes('md0')) {
-                initialPage = initialPage + 3;
-                let getwificonfig = await axios.post(`${url}/getwificonfig`);
-                if (getwificonfig.data.includes('network') || (window.location.hostname).includes("revo.host")) {
-                    initialPage = (window.location.hostname).includes("revo.host") ? initialPage + 3 : initialPage + 2;
-                }
                 let getrpcdata = await axios.post(`${url}/getrevoconfig`);
-                if(!getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')) {
+                if(getrpcdata?.data?.includes('rpcuser')) {
                     initialPage = initialPage + 3
-                }else if (getwificonfig.data.includes('network') && getrpcdata?.data?.includes('rpcuser')){
-                    initialPage = initialPage + 2
                 }
                 setCurrentPage(initialPage);
             }
-        }
     }, []);
 
-    async function getDrives() {
-        let drivesData = await axios.post(`${currentUrl}/showdrives`);
-        setDrivesData(drivesData.data);
-    }
-
-    currentPage == 2 && !drivesData && getDrives();
 
     let leftContent = [
         { textLeft: 'Thank you for choosing to support REVO technology by joining the blockchain network!' },
-        { textLeft: 'The Revo software needs a certain amount of disk space, on this page you will need to select two SSD disks for saving the blockchain. It is always recommended to use storage devices of the same model and of the same capacity.' },
-        { textLeft: 'Your storage array has been successfully created!' },
-        { textLeft: 'Configure your node to work with WiFi. You can also give two connections for redoundancy.' },
-        { textLeft: 'The WiFi configuration has been completed successfully: you will need to restart your node to apply it.' },
         { textLeft: 'Please review revo software license.' },
         { textLeft: "Generating the configuration file for the Revo Node daemon. Usually you don't need to remember the RPC credentials, but it's very important to choose a secure combination if your node will be fully exposed on the network (exposed host)." },
         { textLeft: 'Please wait while the Revo software launches for the first time!' },
@@ -96,40 +80,36 @@ export default function Home() {
         { textLeft: 'From now on you are officially a full validator node of the Revo blockchain! Usually the synchronization of the blocks with the global network can take from a few hours to a few days! Welcome on board!' }
     ]
 
-    let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6,astronauteRevo7,astronauteRevo8,astronauteRevo9,astronauteRevo10];
+    let imgArr = [astronauteRevo1,astronauteRevo2,astronauteRevo3,astronauteRevo4,astronauteRevo5,astronauteRevo6];
 
 
     return (
-        <div class="main">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-desc">
-                        <div class="signup-desc-content">
+        <div className="main">
+            <div className="container">
+                <div className="signup-content">
+                    <div className="signup-desc">
+                        <div className="signup-desc-content">
                             <img className="revo-lgo" src={revoLogo} />
-                            <p class="desc">
+                            <p className="desc">
                                 { leftContent[currentPage-1]?.textLeft }
                             </p>
-                            {/*<img src="images/signup-img.jpg" alt="" class="signup-img" />*/}
+                            {/*<img src="images/signup-img.jpg" alt="" className="signup-img" />*/}
                         </div>
                         <img className={`astronautImage${currentPage}`} src={imgArr[currentPage-1]} />
                     </div>
-                    <div class="signup-form-conent">
-                        <div id="signup-form" class="signup-form" >
+                    <div className="signup-form-conent">
+                        <div id="signup-form" className="signup-form" >
                             <h3></h3>
                             <fieldset>
-                                <span class="step-current">Step {currentPage} / 10</span>
-                                <div class="form-group" style={!loaded ? {minHeight: `auto`, } : {}}>
-                                    {!loaded && <div><h2 style={{marginTop: `100px`, marginBottom: `50px`}}>Please wait while we load the last installation resources...</h2><div class="nb-spinner"></div></div>}
+                                <span className="step-current">Step {currentPage} / 6</span>
+                                <div className="form-group" style={!loaded ? {minHeight: `auto`, } : {}}>
+                                    {!loaded && <div><h2 style={{marginTop: `100px`, marginBottom: `50px`}}>Please wait while we load the last installation resources...</h2><div className="nb-spinner"></div></div>}
                                     {currentPage == 1 && loaded && <Firstpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 2 && loaded && drivesData.length ? <Secondpage currentPage={currentPage} setCurrentPage={setCurrentPage} drivesData={drivesData} /> : currentPage == 2 && loaded && <div style={{paddingTop: `230px`}} ><div class="nb-spinner"></div></div>}
-                                    {currentPage == 3 && loaded && <Thirdpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 4 && loaded && <Fourthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 5 && loaded && <Fifthpage currentPage={currentPage} setCurrentPage={setCurrentPage} setLoaded={setLoaded} />}
-                                    {currentPage == 6 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 7 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-                                    {currentPage == 8 && loaded && <Eighthpage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
-                                    {currentPage == 9 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} setWalletData={setWalletData} />}
-                                    {currentPage == 10 && loaded && <Tenthpage walletData={walletData} />}
+                                    {currentPage == 2 && loaded && <Sixthpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 3 && loaded && <Seventhpage currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+                                    {currentPage == 4 && loaded && <Eighthpage currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
+                                    {currentPage == 5 && loaded && <Ninethpage currentPage={currentPage} setCurrentPage={setCurrentPage} setWalletData={setWalletData} />}
+                                    {currentPage == 6 && loaded && <Tenthpage walletData={walletData} />}
                                 </div>
                             </fieldset>
                         </div>

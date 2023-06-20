@@ -23,8 +23,6 @@ export default function Tenthpage({ walletData }) {
   
         let masterState = await axios.post(`${url}/getwalletaddress`);
         walletData.walletAddress = masterState.data;
-        let getarrayinfo = await axios.post(`${url}/getarrayinfo`);
-        setArrayData(["md0"].concat(getarrayinfo.data.arrayStatus.split("md0")[1].split(" ").filter((e, i) => [3, 4, 5, 11].includes(i))));
         let result = await axios.post(`${url}/getrevoconfig`);
         let arr = []
         arr[0] = result.data.split("rpc")[1];
@@ -43,10 +41,7 @@ export default function Tenthpage({ walletData }) {
 
     const [textArea, setTextArea] = useState(false);
 
-    arrayData.length && rpcData?.user && privData.length && !textArea && setTextArea(`Disk Array Level: Raid ${arrayData[1].split("d")[1]}
-Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB
-
-RPC Username: ${rpcData?.user}
+    arrayData.length && rpcData?.user && privData.length && !textArea && setTextArea(`RPC Username: ${rpcData?.user}
 RPC Password: ${rpcData?.pass}
 
 Your node name: ${rpcData?.nodeName}
@@ -85,9 +80,7 @@ Private Key: ${privData}`);
     function printReports(divId){
         let content = document.createElement('div');
         content.innerHTML = `
-        <h2>My Revo Node configuration details</h2>
-        Disk Array Level: Raid ${arrayData[1]?.slice(4)}<br>
-        Disk Array Size:  ${(parseFloat(arrayData[4]) / 1000000).toFixed(2)}GB <br><br>        
+        <h2>My Revo Node configuration details</h2> 
         RPC Username: ${rpcData?.user}<br>
         RPC Password: ${rpcData?.pass}<br><br>        
         Your node name: ${rpcData?.nodeName}<br>
