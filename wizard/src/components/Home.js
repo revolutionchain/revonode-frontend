@@ -22,7 +22,7 @@ import astronauteRevo6 from '../styles/images/AstronauteRevo-6.svg'
 import astronauteRevo7 from '../styles/images/AstronauteRevo-7.svg'
 import astronauteRevo8 from '../styles/images/AstronauteRevo-8.svg'
 import astronauteRevo9 from '../styles/images/AstronauteRevo-9.svg'
-import astronauteRevo10 from '../styles/images/AstronauteRevo-10.svg'
+
 
 
 export default function Home() {
