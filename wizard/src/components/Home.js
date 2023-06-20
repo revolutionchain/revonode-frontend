@@ -40,9 +40,7 @@ export default function Home() {
   
       setCurrentUrl(url);
         try{
-            let result=true;
-            /*
-            let result = await axios.post(`${url}/checklocalip`);*/
+            let result = await axios.post(`${url}/checklocalip`);
             setLoaded(result);
         }catch (err){
             window.location.reload();
