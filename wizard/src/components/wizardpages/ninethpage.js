@@ -48,12 +48,14 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
         setIsLoading(true);
         if(input?.walletPass) {
                 if((input.walletPass).includes(" ")){
-                    invalidPassChar = true;
+                    invalidPassChar = "white space";
+                }else if ((input.walletPass).includes(";")){
+                    invalidPassChar = "; (Semicolon)";
                 }
         }             
         if(input?.walletName) {
             (input?.walletName).split("").map(e => {
-                if(!userFilter.includes(e)){
+                if(!(userFilter.includes(e))){
                     invalidUserChar.push(e);
                 }
             })
@@ -80,7 +82,7 @@ export default function Ninethpage({ currentPage, setCurrentPage, setWalletData 
             setErrorFound('Wallet name can only contains letters.');
             openModal();
         } else if (invalidPassChar) {
-            setErrorFound('Secret passphrase can not contains white spaces.');
+            setErrorFound(`Secret passphrase can not contains: ${invalidPassChar}.`);
             openModal();
         }
         setIsLoading(false);

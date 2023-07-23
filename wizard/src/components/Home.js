@@ -49,6 +49,7 @@ export default function Home() {
         try{
             let result = await axios.post(`${url}/checklocalip`);
             setLoaded(result);
+            //setLoaded(true);
         }catch (err){
             window.location.reload();
         }    
